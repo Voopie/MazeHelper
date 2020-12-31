@@ -6,7 +6,7 @@ local MEDIA_PATH = 'Interface\\AddOns\\' .. ADDON_NAME .. '\\Media\\';
 
 M.Path = MEDIA_PATH;
 
-M.INLINE_LEADER_ICON   = '|TInterface\\GroupFrame\\UI-Group-LeaderIcon:0|t';
+M.INLINE_LEADER_ICON   = '|TInterface\\GroupFrame\\UI-Group-LeaderIcon:16|t';
 M.INLINE_TANK_ICON     = _G.INLINE_TANK_ICON;
 M.INLINE_HEALER_ICON   = _G.INLINE_HEALER_ICON;
 M.INLINE_INFINITY_ICON = '|T' .. MEDIA_PATH .. 'icons32.blp:14:14:0:0:128:64:64:96:32:64|t';

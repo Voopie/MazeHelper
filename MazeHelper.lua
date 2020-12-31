@@ -546,7 +546,6 @@ end);
 
 scrollChild.Data.AutoAnnouncerAsPartyLeader = E.CreateCheckButton('MazeHelper_Settings_AutoAnnouncerAsPartyLeader_CheckButton', scrollChild);
 scrollChild.Data.AutoAnnouncerAsPartyLeader:SetPosition('TOPLEFT', scrollChild.Data.AutoAnnouncer, 'BOTTOMRIGHT', 0, 2);
-PixelUtil.SetPoint(scrollChild.Data.AutoAnnouncerAsPartyLeader.Label, 'LEFT', scrollChild.Data.AutoAnnouncerAsPartyLeader, 'RIGHT', 4, 2);
 scrollChild.Data.AutoAnnouncerAsPartyLeader:SetLabel(M.INLINE_LEADER_ICON);
 scrollChild.Data.AutoAnnouncerAsPartyLeader:SetTooltip(L['MAZE_HELPER_SETTINGS_AA_PARTY_LEADER']);
 scrollChild.Data.AutoAnnouncerAsPartyLeader:SetScript('OnClick', function(self)
@@ -554,7 +553,7 @@ scrollChild.Data.AutoAnnouncerAsPartyLeader:SetScript('OnClick', function(self)
 end);
 
 scrollChild.Data.AutoAnnouncerAsAlways = E.CreateCheckButton('MazeHelper_Settings_AutoAnnouncerAsAlways_CheckButton', scrollChild);
-scrollChild.Data.AutoAnnouncerAsAlways:SetPosition('LEFT', scrollChild.Data.AutoAnnouncerAsPartyLeader.Label, 'RIGHT', 12, -2);
+scrollChild.Data.AutoAnnouncerAsAlways:SetPosition('LEFT', scrollChild.Data.AutoAnnouncerAsPartyLeader.Label, 'RIGHT', 12, 0);
 scrollChild.Data.AutoAnnouncerAsAlways:SetLabel(M.INLINE_INFINITY_ICON);
 scrollChild.Data.AutoAnnouncerAsAlways:SetTooltip(L['MAZE_HELPER_SETTINGS_AA_ALWAYS']);
 scrollChild.Data.AutoAnnouncerAsAlways:SetScript('OnClick', function(self)
