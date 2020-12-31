@@ -1085,7 +1085,7 @@ function MazeHelper:ReceiveUnactiveButtonID(buttonID, sender)
         return;
     end
 
-    Button_RightOnClick(self, false, sender);
+    Button_RightOnClick(buttons[buttonID], false, sender);
 end
 
 local function UpdateShown()
