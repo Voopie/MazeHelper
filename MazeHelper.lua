@@ -166,7 +166,7 @@ MazeHelper.frame:SetScript('OnDragStop', BetterOnDragStop);
 do
     local AnimationFadeInGroup = MazeHelper.frame:CreateAnimationGroup();
     local fadeIn = AnimationFadeInGroup:CreateAnimation('Alpha');
-    fadeIn:SetDuration(0.5);
+    fadeIn:SetDuration(0.35);
     fadeIn:SetToAlpha(1)
     fadeIn:SetOrder(1);
     fadeIn:SetEndDelay(0);
@@ -482,8 +482,17 @@ scrollChild.Data.SyncEnabled:SetScript('OnClick', function(self)
     end
 end);
 
+scrollChild.Data.PredictSolution = E.CreateRoundedCheckButton(scrollChild);
+scrollChild.Data.PredictSolution:SetPosition('TOPLEFT', scrollChild.Data.SyncEnabled, 'BOTTOMLEFT', 0, 0);
+scrollChild.Data.PredictSolution:SetArea(26, 26);
+scrollChild.Data.PredictSolution:SetLabel(L['MAZE_HELPER_SETTINGS_PREDICT_SOLUTION_LABEL']);
+scrollChild.Data.PredictSolution:SetTooltip(L['MAZE_HELPER_SETTINGS_PREDICT_SOLUTION_TOOLTIP']);
+scrollChild.Data.PredictSolution:SetScript('OnClick', function(self)
+    MHMOTSConfig.PredictSolution = self:GetChecked();
+end);
+
 scrollChild.Data.UseColoredSymbols = E.CreateRoundedCheckButton(scrollChild);
-scrollChild.Data.UseColoredSymbols:SetPosition('TOPLEFT', scrollChild.Data.SyncEnabled, 'BOTTOMLEFT', 0, 0);
+scrollChild.Data.UseColoredSymbols:SetPosition('TOPLEFT', scrollChild.Data.PredictSolution, 'BOTTOMLEFT', 0, 0);
 scrollChild.Data.UseColoredSymbols:SetArea(26, 26);
 scrollChild.Data.UseColoredSymbols:SetLabel(L['MAZE_HELPER_SETTINGS_USE_COLORED_SYMBOLS_LABEL']);
 scrollChild.Data.UseColoredSymbols:SetTooltip(L['MAZE_HELPER_SETTINGS_USE_COLORED_SYMBOLS_TOOLTIP']);
@@ -647,9 +656,15 @@ function MazeHelper:CreateButton(index)
                 self.sender = nil;
             end
 
+            MazeHelper:SetUnactiveButton(self);
+            MazeHelper:ResetButtonSequence(self);
+
             if NUM_ACTIVE_BUTTONS < MAX_ACTIVE_BUTTONS then
                 MazeHelper.frame.SolutionText:SetText(L['MAZE_HELPER_CHOOSE_SYMBOLS_' .. (MAX_ACTIVE_BUTTONS - NUM_ACTIVE_BUTTONS)]);
-                if SOLUTION_BUTTON_ID ~= nil then MazeHelper:SetUnactiveButton(buttons[SOLUTION_BUTTON_ID]) end
+
+                if SOLUTION_BUTTON_ID ~= nil then
+                    MazeHelper:SetUnactiveButton(buttons[SOLUTION_BUTTON_ID]);
+                end
 
                 for i = 1, MAX_BUTTONS do
                     if buttons[i].state then
@@ -668,8 +683,6 @@ function MazeHelper:CreateButton(index)
                 MazeHelper.frame.ResetButton:SetEnabled(false);
             end
 
-            MazeHelper:SetUnactiveButton(self);
-            MazeHelper:ResetButtonSequence(self);
             MazeHelper:SendButtonID(self.id, 'UNACTIVE');
         end
     end);
@@ -716,7 +729,7 @@ function MazeHelper:UpdateButtonSequence(button)
     button.sequence = GetMinimumReservedSequence();
     RESERVED_BUTTONS_SEQUENCE[button.sequence] = true;
 
-    button.SequenceText:SetText(button.sequence == 1 and L['MAZE_HELPER_ENTRANCE'] or button.sequence);
+    button.SequenceText:SetText((MHMOTSConfig.PredictSolution and button.sequence == 1) and L['MAZE_HELPER_ENTRANCE'] or button.sequence);
 end
 
 function MazeHelper:ResetButtonSequence(button)
@@ -744,11 +757,11 @@ function MazeHelper:SetSolutionButton(button)
     button:SetBackdropBorderColor(0.2, 0.8, 0.4, 1);
 end
 
--- Garthul#2712
+-- Credit to Garthul#2712
 -- Main idea: The solution is the opposite of entrance symbol or opposite of an existing symbol that shares two features with entrance symbol. Order of conditions matter.
 local TryHeuristicSolution do
-    local function Filter(b, f) local r = {}; for i,v in pairs(b) do if f(v) then r[i]=v end end return r; end
-    local function Find(b, f) for i,v in pairs(b) do if f(v) then return i,v end end end
+    local function Filter(b, f) local r = {}; for i, v in pairs(b) do if f(v) then r[i] = v end end return r; end
+    local function Find(b, f) for i, v in pairs(b) do if f(v) then return i, v end end end
     local function Equals(s1, s2) return s1.fill == s2.fill and s1.leaf == s2.leaf and s1.circle == s2.circle end
     local function Opposite(s) return { fill = not s.fill, leaf = not s.leaf, circle = not s.circle } end
     local function NumberOfSharedFeatures(s1, s2) return (s1.fill == s2.fill and 1 or 0) + (s1.leaf == s2.leaf and 1 or 0) + (s1.circle == s2.circle and 1 or 0) end
@@ -856,10 +869,11 @@ function MazeHelper:UpdateSolution()
 
     SOLUTION_BUTTON_ID = nil;
 
-    if NUM_ACTIVE_BUTTONS < MAX_ACTIVE_BUTTONS then
+    if MHMOTSConfig.PredictSolution and NUM_ACTIVE_BUTTONS < MAX_ACTIVE_BUTTONS then
         SOLUTION_BUTTON_ID = TryHeuristicSolution();
-        PREDICTED_SOLUTION_BUTTON_ID = SOLUTION_BUTTON_ID or nil;
     end
+
+    PREDICTED_SOLUTION_BUTTON_ID = SOLUTION_BUTTON_ID or nil;
 
     if NUM_ACTIVE_BUTTONS == MAX_ACTIVE_BUTTONS then
         if PREDICTED_SOLUTION_BUTTON_ID then
@@ -900,6 +914,12 @@ function MazeHelper:UpdateSolution()
     local partyChatType = GetPartyChatType();
 
     if SOLUTION_BUTTON_ID then
+        for i = 1, MAX_BUTTONS do
+            if not buttons[i].state then
+                MazeHelper:SetUnactiveButton(buttons[i]);
+            end
+        end
+
         MazeHelper:SetSolutionButton(buttons[SOLUTION_BUTTON_ID]);
         MazeHelper.frame.MiniSolution.Icon:SetTexCoord(unpack(MHMOTSConfig.UseColoredSymbols and buttonsData[SOLUTION_BUTTON_ID].coords or buttonsData[SOLUTION_BUTTON_ID].coords_white));
 
@@ -935,7 +955,16 @@ function MazeHelper:UpdateSolution()
         MazeHelper.frame.AnnounceButton:SetShown(false);
 
         MazeHelper.frame.PassedButton:SetEnabled(false);
+
         if NUM_ACTIVE_BUTTONS == MAX_ACTIVE_BUTTONS then
+            for i = 1, MAX_BUTTONS do
+                if buttons[i].state then
+                    MazeHelper:SetActiveButton(buttons[i]);
+                else
+                    MazeHelper:SetUnactiveButton(buttons[i]);
+                end
+            end
+
             MazeHelper.frame.SolutionText:SetText(L['MAZE_HELPER_SOLUTION_NA']);
         end
     end
@@ -1063,9 +1092,15 @@ function MazeHelper:ReceiveUnactiveButtonID(buttonID, sender)
     buttons[buttonID].state = false;
     buttons[buttonID].sender = sender;
 
+    MazeHelper:SetUnactiveButton(buttons[buttonID]);
+    MazeHelper:ResetButtonSequence(buttons[buttonID]);
+
     if NUM_ACTIVE_BUTTONS < MAX_ACTIVE_BUTTONS then
         MazeHelper.frame.SolutionText:SetText(L['MAZE_HELPER_CHOOSE_SYMBOLS_' .. (MAX_ACTIVE_BUTTONS - NUM_ACTIVE_BUTTONS)]);
-        if SOLUTION_BUTTON_ID ~= nil then MazeHelper:SetUnactiveButton(buttons[SOLUTION_BUTTON_ID]) end
+
+        if SOLUTION_BUTTON_ID ~= nil then
+            MazeHelper:SetUnactiveButton(buttons[SOLUTION_BUTTON_ID]);
+        end
 
         for i = 1, MAX_BUTTONS do
             if buttons[i].state then
@@ -1082,9 +1117,6 @@ function MazeHelper:ReceiveUnactiveButtonID(buttonID, sender)
     if NUM_ACTIVE_BUTTONS == 0 then
         MazeHelper.frame.ResetButton:SetEnabled(false);
     end
-
-    MazeHelper:SetUnactiveButton(buttons[buttonID]);
-    MazeHelper:ResetButtonSequence(buttons[buttonID]);
 end
 
 local function UpdateShown()
@@ -1259,6 +1291,7 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
 
     MHMOTSConfig = MHMOTSConfig or {};
     MHMOTSConfig.SyncEnabled             = MHMOTSConfig.SyncEnabled == nil and true or MHMOTSConfig.SyncEnabled;
+    MHMOTSConfig.PredictSolution         = MHMOTSConfig.PredictSolution == nil and false or MHMOTSConfig.PredictSolution;
     MHMOTSConfig.PrintResettedPlayerName = MHMOTSConfig.PrintResettedPlayerName == nil and true or MHMOTSConfig.PrintResettedPlayerName;
     MHMOTSConfig.ShowAtBoss              = MHMOTSConfig.ShowAtBoss == nil and true or MHMOTSConfig.ShowAtBoss;
     MHMOTSConfig.StartInMinMode          = MHMOTSConfig.StartInMinMode == nil and false or MHMOTSConfig.StartInMinMode;
@@ -1273,6 +1306,7 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     MHMOTSConfig.AutoAnnouncerAsHealer      = MHMOTSConfig.AutoAnnouncerAsHealer == nil and false or MHMOTSConfig.AutoAnnouncerAsHealer;
 
     scrollChild.Data.SyncEnabled:SetChecked(MHMOTSConfig.SyncEnabled);
+    scrollChild.Data.PredictSolution:SetChecked(MHMOTSConfig.PredictSolution);
     scrollChild.Data.UseColoredSymbols:SetChecked(MHMOTSConfig.UseColoredSymbols);
     scrollChild.Data.ShowSequenceNumbers:SetChecked(MHMOTSConfig.ShowSequenceNumbers);
     scrollChild.Data.PrintResettedPlayerName:SetChecked(MHMOTSConfig.PrintResettedPlayerName);
