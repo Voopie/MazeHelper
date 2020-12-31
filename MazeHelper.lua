@@ -592,6 +592,71 @@ MazeHelper.frame.Settings.VersionText = MazeHelper.frame.Settings:CreateFontStri
 PixelUtil.SetPoint(MazeHelper.frame.Settings.VersionText, 'BOTTOM', MazeHelper.frame.Settings, 'TOP', 0, 0);
 MazeHelper.frame.Settings.VersionText:SetText(GetAddOnMetadata(ADDON_NAME, 'Version'));
 
+local function Button_LeftOnClick(button, send, sender)
+    if button.state or NUM_ACTIVE_BUTTONS == MAX_ACTIVE_BUTTONS then
+        return;
+    end
+
+    MazeHelper.frame.ResetButton:SetEnabled(true);
+
+    NUM_ACTIVE_BUTTONS = math.min(MAX_ACTIVE_BUTTONS, NUM_ACTIVE_BUTTONS + 1);
+
+    button.state  = true;
+    button.sender = sender;
+
+    MazeHelper:SetActiveButton(button);
+    MazeHelper:UpdateButtonSequence(button, NUM_ACTIVE_BUTTONS);
+    MazeHelper.frame.SolutionText:SetText(L['MAZE_HELPER_CHOOSE_SYMBOLS_' .. (MAX_ACTIVE_BUTTONS - NUM_ACTIVE_BUTTONS)]);
+
+    if send then
+        MazeHelper:SendButtonID(button.id, 'ACTIVE');
+    end
+
+    MazeHelper:UpdateSolution();
+end
+
+local function Button_RightOnClick(button, send, sender)
+    if not button.state then
+        return;
+    end
+
+
+    NUM_ACTIVE_BUTTONS = math.max(0, NUM_ACTIVE_BUTTONS - 1);
+    button.state  = false;
+    button.sender = sender;
+
+    MazeHelper:SetUnactiveButton(button);
+    MazeHelper:ResetButtonSequence(button);
+
+    if NUM_ACTIVE_BUTTONS < MAX_ACTIVE_BUTTONS then
+        MazeHelper.frame.SolutionText:SetText(L['MAZE_HELPER_CHOOSE_SYMBOLS_' .. (MAX_ACTIVE_BUTTONS - NUM_ACTIVE_BUTTONS)]);
+
+        if SOLUTION_BUTTON_ID ~= nil then
+            MazeHelper:SetUnactiveButton(buttons[SOLUTION_BUTTON_ID]);
+        end
+
+        for i = 1, MAX_BUTTONS do
+            if buttons[i].state then
+                MazeHelper:SetActiveButton(buttons[i]);
+            end
+        end
+
+        MazeHelper.frame.PassedButton:SetEnabled(false);
+        MazeHelper.frame.AnnounceButton:SetShown(false);
+        MazeHelper.frame.AnnounceButton.clicked = false;
+
+        MazeHelper:UpdateSolution();
+    end
+
+    if NUM_ACTIVE_BUTTONS == 0 then
+        MazeHelper.frame.ResetButton:SetEnabled(false);
+    end
+
+    if send then
+        MazeHelper:SendButtonID(button.id, 'UNACTIVE');
+    end
+end
+
 function MazeHelper:CreateButton(index)
     local button = CreateFrame('Button', nil, MazeHelper.frame.MainHolder, 'BackdropTemplate');
 
@@ -631,59 +696,9 @@ function MazeHelper:CreateButton(index)
 
     button:SetScript('OnClick', function(self, b)
         if b == 'LeftButton' then
-            if self.state or NUM_ACTIVE_BUTTONS == MAX_ACTIVE_BUTTONS then
-                return;
-            end
-
-            MazeHelper.frame.ResetButton:SetEnabled(true);
-
-            NUM_ACTIVE_BUTTONS = math.min(MAX_ACTIVE_BUTTONS, NUM_ACTIVE_BUTTONS + 1);
-            self.state = true;
-            MazeHelper:SetActiveButton(self);
-            MazeHelper:UpdateButtonSequence(self, NUM_ACTIVE_BUTTONS);
-            MazeHelper.frame.SolutionText:SetText(L['MAZE_HELPER_CHOOSE_SYMBOLS_' .. (MAX_ACTIVE_BUTTONS - NUM_ACTIVE_BUTTONS)]);
-
-            MazeHelper:SendButtonID(self.id, 'ACTIVE');
-            MazeHelper:UpdateSolution();
+            Button_LeftOnClick(self, true);
         elseif b == 'RightButton' then
-            if not self.state then
-                return;
-            end
-
-            if self.state then
-                NUM_ACTIVE_BUTTONS = math.max(0, NUM_ACTIVE_BUTTONS - 1);
-                self.state = false;
-                self.sender = nil;
-            end
-
-            MazeHelper:SetUnactiveButton(self);
-            MazeHelper:ResetButtonSequence(self);
-
-            if NUM_ACTIVE_BUTTONS < MAX_ACTIVE_BUTTONS then
-                MazeHelper.frame.SolutionText:SetText(L['MAZE_HELPER_CHOOSE_SYMBOLS_' .. (MAX_ACTIVE_BUTTONS - NUM_ACTIVE_BUTTONS)]);
-
-                if SOLUTION_BUTTON_ID ~= nil then
-                    MazeHelper:SetUnactiveButton(buttons[SOLUTION_BUTTON_ID]);
-                end
-
-                for i = 1, MAX_BUTTONS do
-                    if buttons[i].state then
-                        MazeHelper:SetActiveButton(buttons[i]);
-                    end
-                end
-
-                MazeHelper.frame.PassedButton:SetEnabled(false);
-                MazeHelper.frame.AnnounceButton:SetShown(false);
-                MazeHelper.frame.AnnounceButton.clicked = false;
-
-                MazeHelper:UpdateSolution();
-            end
-
-            if NUM_ACTIVE_BUTTONS == 0 then
-                MazeHelper.frame.ResetButton:SetEnabled(false);
-            end
-
-            MazeHelper:SendButtonID(self.id, 'UNACTIVE');
+            Button_RightOnClick(self, true, nil);
         end
     end);
 
@@ -1062,21 +1077,7 @@ function MazeHelper:ReceiveActiveButtonID(buttonID, sender)
         return;
     end
 
-    if buttons[buttonID].state or NUM_ACTIVE_BUTTONS == MAX_ACTIVE_BUTTONS then
-        return;
-    end
-
-    NUM_ACTIVE_BUTTONS = math.min(MAX_ACTIVE_BUTTONS, NUM_ACTIVE_BUTTONS + 1);
-    buttons[buttonID].state = true;
-    buttons[buttonID].sender = sender;
-
-    MazeHelper:SetReceivedButton(buttons[buttonID]);
-    MazeHelper:UpdateButtonSequence(buttons[buttonID], NUM_ACTIVE_BUTTONS);
-    MazeHelper.frame.SolutionText:SetText(L['MAZE_HELPER_CHOOSE_SYMBOLS_' .. (MAX_ACTIVE_BUTTONS - NUM_ACTIVE_BUTTONS)]);
-
-    MazeHelper.frame.ResetButton:SetEnabled(true);
-
-    MazeHelper:UpdateSolution();
+    Button_LeftOnClick(buttons[buttonID], false, sender);
 end
 
 function MazeHelper:ReceiveUnactiveButtonID(buttonID, sender)
@@ -1084,39 +1085,7 @@ function MazeHelper:ReceiveUnactiveButtonID(buttonID, sender)
         return;
     end
 
-    if not buttons[buttonID].state then
-        return;
-    end
-
-    NUM_ACTIVE_BUTTONS = math.max(0, NUM_ACTIVE_BUTTONS - 1);
-    buttons[buttonID].state = false;
-    buttons[buttonID].sender = sender;
-
-    MazeHelper:SetUnactiveButton(buttons[buttonID]);
-    MazeHelper:ResetButtonSequence(buttons[buttonID]);
-
-    if NUM_ACTIVE_BUTTONS < MAX_ACTIVE_BUTTONS then
-        MazeHelper.frame.SolutionText:SetText(L['MAZE_HELPER_CHOOSE_SYMBOLS_' .. (MAX_ACTIVE_BUTTONS - NUM_ACTIVE_BUTTONS)]);
-
-        if SOLUTION_BUTTON_ID ~= nil then
-            MazeHelper:SetUnactiveButton(buttons[SOLUTION_BUTTON_ID]);
-        end
-
-        for i = 1, MAX_BUTTONS do
-            if buttons[i].state then
-                MazeHelper:SetActiveButton(buttons[i]);
-            end
-        end
-
-        MazeHelper.frame.PassedButton:SetEnabled(false);
-        MazeHelper.frame.AnnounceButton:SetShown(false);
-
-        MazeHelper:UpdateSolution()
-    end
-
-    if NUM_ACTIVE_BUTTONS == 0 then
-        MazeHelper.frame.ResetButton:SetEnabled(false);
-    end
+    Button_RightOnClick(self, false, sender);
 end
 
 local function UpdateShown()
