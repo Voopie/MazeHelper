@@ -178,7 +178,7 @@ E.CreateScrollFrame = function(parent, scrollStep)
     end);
 
     scrollBar:EnableMouse(true);
-    scrollBar:HookScript('OnMouseWheel', function(self, value, scrollBar)
+    scrollBar:HookScript('OnMouseWheel', function(self, value)
         ScrollFrameTemplate_OnMouseWheel(self, value, self);
     end);
 

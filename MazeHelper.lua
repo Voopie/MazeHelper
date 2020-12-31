@@ -194,7 +194,7 @@ MazeHelper.frame.CloseButton:GetNormalTexture():SetVertexColor(0.7, 0.7, 0.7, 1)
 MazeHelper.frame.CloseButton:SetHighlightTexture(M.Icons.TEXTURE, 'BLEND');
 MazeHelper.frame.CloseButton:GetHighlightTexture():SetTexCoord(unpack(M.Icons.COORDS.CROSS_WHITE));
 MazeHelper.frame.CloseButton:GetHighlightTexture():SetVertexColor(1, 0.85, 0, 1);
-MazeHelper.frame.CloseButton:SetScript('OnClick', function(self)
+MazeHelper.frame.CloseButton:SetScript('OnClick', function()
     if MazeHelper.frame.Settings:IsShown() then
         MazeHelper.frame.SettingsButton:Click();
     end
@@ -592,7 +592,7 @@ MazeHelper.frame.Settings.VersionText = MazeHelper.frame.Settings:CreateFontStri
 PixelUtil.SetPoint(MazeHelper.frame.Settings.VersionText, 'BOTTOM', MazeHelper.frame.Settings, 'TOP', 0, 0);
 MazeHelper.frame.Settings.VersionText:SetText(GetAddOnMetadata(ADDON_NAME, 'Version'));
 
-local function Button_LeftOnClick(button, send, sender)
+local function LeftButton_OnClick(button, send, sender)
     if button.state or NUM_ACTIVE_BUTTONS == MAX_ACTIVE_BUTTONS then
         return;
     end
@@ -615,11 +615,10 @@ local function Button_LeftOnClick(button, send, sender)
     MazeHelper:UpdateSolution();
 end
 
-local function Button_RightOnClick(button, send, sender)
+local function RightButton_OnClick(button, send, sender)
     if not button.state then
         return;
     end
-
 
     NUM_ACTIVE_BUTTONS = math.max(0, NUM_ACTIVE_BUTTONS - 1);
     button.state  = false;
@@ -677,7 +676,7 @@ function MazeHelper:CreateButton(index)
     button.Icon:SetTexCoord(unpack(MHMOTSConfig.UseColoredSymbols and buttonsData[index].coords or buttonsData[index].coords_white));
 
     button:SetBackdrop({
-        insets = {top = 1, left = 1, bottom = 1, right = 1},
+        insets   = { top = 1, left = 1, bottom = 1, right = 1 },
         edgeFile = 'Interface\\Buttons\\WHITE8x8',
 		edgeSize = 2,
     });
@@ -696,9 +695,9 @@ function MazeHelper:CreateButton(index)
 
     button:SetScript('OnClick', function(self, b)
         if b == 'LeftButton' then
-            Button_LeftOnClick(self, true);
+            LeftButton_OnClick(self, true);
         elseif b == 'RightButton' then
-            Button_RightOnClick(self, true, nil);
+            RightButton_OnClick(self, true, nil);
         end
     end);
 
@@ -1077,7 +1076,7 @@ function MazeHelper:ReceiveActiveButtonID(buttonID, sender)
         return;
     end
 
-    Button_LeftOnClick(buttons[buttonID], false, sender);
+    LeftButton_OnClick(buttons[buttonID], false, sender);
 end
 
 function MazeHelper:ReceiveUnactiveButtonID(buttonID, sender)
@@ -1085,7 +1084,7 @@ function MazeHelper:ReceiveUnactiveButtonID(buttonID, sender)
         return;
     end
 
-    Button_RightOnClick(buttons[buttonID], false, sender);
+    RightButton_OnClick(buttons[buttonID], false, sender);
 end
 
 local function UpdateShown()
