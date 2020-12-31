@@ -119,17 +119,6 @@ local buttonsData = {
     },
 };
 
-local buttonsMOTSHMap = {
-    [1] = 4,
-    [2] = 3,
-    [3] = 2,
-    [4] = 1,
-    [5] = 8,
-    [6] = 7,
-    [7] = 6,
-    [8] = 5,
-};
-
 local function GetPartyChatType()
     return (not IsInRaid() and IsInGroup(LE_PARTY_CATEGORY_INSTANCE)) and 'INSTANCE_CHAT' or (IsInGroup(LE_PARTY_CATEGORY_HOME) and 'PARTY' or false);
 end
@@ -985,28 +974,29 @@ function MazeHelper:UpdateSolution()
 end
 
 function MazeHelper:SendResetCommand()
-    local partyChatType = GetPartyChatType();
-    if partyChatType then
-        if MHMOTSConfig.SyncEnabled then
-            C_ChatInfo.SendAddonMessage('MAZEHELPER', 'SendReset', partyChatType);
-        end
-
-        -- Mists of Tirna Scithe Helper addon compatibility
-        C_ChatInfo.SendAddonMessage('MOTSH', 'reset', partyChatType);
+    if not MHMOTSConfig.SyncEnabled then
+        return;
     end
+
+    local partyChatType = GetPartyChatType();
+    if not partyChatType then
+        return;
+    end
+
+    C_ChatInfo.SendAddonMessage('MAZEHELPER', 'SendReset', partyChatType);
 end
 
 function MazeHelper:SendPassedCommand(step)
-    local partyChatType = GetPartyChatType();
-    if partyChatType then
-        if MHMOTSConfig.SyncEnabled then
-            local data = 'SendPassed|'.. step;
-            C_ChatInfo.SendAddonMessage('MAZEHELPER', data, partyChatType);
-        end
-
-        -- Mists of Tirna Scithe Helper addon compatibility
-        C_ChatInfo.SendAddonMessage('MOTSH', 'reset', partyChatType);
+    if not MHMOTSConfig.SyncEnabled then
+        return;
     end
+
+    local partyChatType = GetPartyChatType();
+    if not partyChatType then
+        return;
+    end
+
+    C_ChatInfo.SendAddonMessage('MAZEHELPER', string.format('SendPassed|%s', step), partyChatType);
 end
 
 function MazeHelper:SendPassedCounter()
@@ -1019,7 +1009,7 @@ function MazeHelper:SendPassedCounter()
         return;
     end
 
-    C_ChatInfo.SendAddonMessage('MAZEHELPER', 'RECPC|' .. PASSED_COUNTER, partyChatType);
+    C_ChatInfo.SendAddonMessage('MAZEHELPER', string.format('RECPC|%s', PASSED_COUNTER), partyChatType);
 end
 
 function MazeHelper:RequestPassedCounter()
@@ -1036,16 +1026,16 @@ function MazeHelper:RequestPassedCounter()
 end
 
 function MazeHelper:SendButtonID(buttonID, mode)
-    local partyChatType = GetPartyChatType();
-    if partyChatType then
-        if MHMOTSConfig.SyncEnabled then
-            local data = 'SendButtonID|' .. buttonID .. '|' .. mode;
-            C_ChatInfo.SendAddonMessage('MAZEHELPER', data, partyChatType);
-        end
-
-        -- Mists of Tirna Scithe Helper addon compatibility
-        C_ChatInfo.SendAddonMessage('MOTSH', buttonsMOTSHMap[buttonID], partyChatType);
+    if not MHMOTSConfig.SyncEnabled then
+        return;
     end
+
+    local partyChatType = GetPartyChatType();
+    if not partyChatType then
+        return;
+    end
+
+    C_ChatInfo.SendAddonMessage('MAZEHELPER', string.format('SendButtonID|%s|%s', buttonID, mode), partyChatType);
 end
 
 function MazeHelper:ReceiveResetCommand()
@@ -1187,12 +1177,6 @@ local function UpdateBossState(encounterID, inFight, killed)
 
     ResetAll();
 
-    local partyChatType = GetPartyChatType();
-    if partyChatType then
-        -- Mists of Tirna Scithe Helper addon compatibility
-        C_ChatInfo.SendAddonMessage('MOTSH', 'reset', partyChatType);
-    end
-
     bossKilled = killed;
     UpdateShown();
 end
@@ -1265,7 +1249,6 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     MHMOTSConfig.StartInMinMode          = MHMOTSConfig.StartInMinMode == nil and false or MHMOTSConfig.StartInMinMode;
     MHMOTSConfig.UseColoredSymbols       = MHMOTSConfig.UseColoredSymbols == nil and true or MHMOTSConfig.UseColoredSymbols;
     MHMOTSConfig.ShowSequenceNumbers     = MHMOTSConfig.ShowSequenceNumbers == nil and true or MHMOTSConfig.ShowSequenceNumbers;
-    MHMOTSConfig.WASupport               = nil;
 
     MHMOTSConfig.AutoAnnouncer              = MHMOTSConfig.AutoAnnouncer == nil and false or MHMOTSConfig.AutoAnnouncer;
     MHMOTSConfig.AutoAnnouncerAsPartyLeader = MHMOTSConfig.AutoAnnouncerAsPartyLeader == nil and true or MHMOTSConfig.AutoAnnouncerAsPartyLeader;
