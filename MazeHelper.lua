@@ -763,14 +763,14 @@ end
 -- Credit to Garthul#2712
 -- Main idea: The solution is the opposite of entrance symbol or opposite of an existing symbol that shares two features with entrance symbol. Order of conditions matter.
 local TryHeuristicSolution do
-    local function Filter(b, f) local r = {}; for i, v in pairs(b) do if f(v) then r[i] = v end end return r; end
-    local function Find(b, f) for i, v in pairs(b) do if f(v) then return i, v end end end
-    local function Equals(s1, s2) return s1.fill == s2.fill and s1.leaf == s2.leaf and s1.circle == s2.circle end
-    local function Opposite(s) return { fill = not s.fill, leaf = not s.leaf, circle = not s.circle } end
-    local function NumberOfSharedFeatures(s1, s2) return (s1.fill == s2.fill and 1 or 0) + (s1.leaf == s2.leaf and 1 or 0) + (s1.circle == s2.circle and 1 or 0) end
+    local function Filter(b, f) local r = {}; for i, v in pairs(b) do if f(v) then r[i] = v; end end return r; end
+    local function Find(b, f) for i, v in pairs(b) do if f(v) then return i, v; end end end
+    local function Equals(s1, s2) return s1.fill == s2.fill and s1.leaf == s2.leaf and s1.circle == s2.circle; end
+    local function Opposite(s) return { fill = not s.fill, leaf = not s.leaf, circle = not s.circle }; end
+    local function NumberOfSharedFeatures(s1, s2) return (s1.fill == s2.fill and 1 or 0) + (s1.leaf == s2.leaf and 1 or 0) + (s1.circle == s2.circle and 1 or 0); end
 
     local IsActiveButtonFunction = function(b) return b.state; end
-    local IsEntranceButtonFunction = function(b) return b.state and b.sequence == 1 end
+    local IsEntranceButtonFunction = function(b) return b.state and b.sequence == 1; end
 
     function TryHeuristicSolution()
         if inEncounter then
@@ -797,21 +797,23 @@ local TryHeuristicSolution do
                     return i;
                 end
 
-                local IsDifferentFromFirstAndSecond = function(b) return not Equals(b.data, helperButton.data) and not Equals(b.data, entranceButton.data) end
+                local IsDifferentFromFirstAndSecond = function(b) return not Equals(b.data, helperButton.data) and not Equals(b.data, entranceButton.data); end
                 local _, thirdButton = Find(activeButtons, IsDifferentFromFirstAndSecond);
 
                 if thirdButton ~= nil then
                     local solutionSymbol;
-                    if NumberOfSharedFeatures(thirdButton.data, entranceButton.data) == 1 then
+                    local numSharedFeatures = NumberOfSharedFeatures(thirdButton.data, entranceButton.data);
+
+                    if numSharedFeatures == 1 then
                         solutionSymbol = Opposite(helperButton.data);
                     end
 
-                    if NumberOfSharedFeatures(thirdButton.data, entranceButton.data) == 2 then
+                    if numSharedFeatures == 2 then
                         solutionSymbol = Opposite(entranceButton.data);
                     end
 
-                    local IsSolutionSymbol = function(b) return Equals(b.data, solutionSymbol); end
                     if solutionSymbol ~= nil then
+                        local IsSolutionSymbol = function(b) return Equals(b.data, solutionSymbol); end
                         return Find(buttons, IsSolutionSymbol);
                     end
                 end
@@ -914,9 +916,9 @@ function MazeHelper:UpdateSolution()
         end
     end
 
-    local partyChatType = GetPartyChatType();
-
     if SOLUTION_BUTTON_ID then
+        local partyChatType = GetPartyChatType();
+
         for i = 1, MAX_BUTTONS do
             if not buttons[i].state then
                 MazeHelper:SetUnactiveButton(buttons[i]);
