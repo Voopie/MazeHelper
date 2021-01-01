@@ -7,7 +7,8 @@ local tonumber = tonumber;
 -- WoW API
 local IsInRaid, IsInGroup, UnitIsGroupLeader, GetMinimapZoneText = IsInRaid, IsInGroup, UnitIsGroupLeader, GetMinimapZoneText;
 
-C_ChatInfo.RegisterAddonMessagePrefix('MAZEHELPER');
+local ADDON_COMM_PREFIX = 'MAZEHELPER';
+C_ChatInfo.RegisterAddonMessagePrefix(ADDON_COMM_PREFIX);
 
 local playerNameWithRealm, playerRole, inInstance, bossKilled, inEncounter, isMinimized;
 local startedInMinMode = false;
@@ -982,7 +983,7 @@ function MazeHelper:SendResetCommand()
         return;
     end
 
-    C_ChatInfo.SendAddonMessage('MAZEHELPER', 'SendReset', partyChatType);
+    C_ChatInfo.SendAddonMessage(ADDON_COMM_PREFIX, 'SendReset', partyChatType);
 end
 
 function MazeHelper:SendPassedCommand(step)
@@ -995,7 +996,7 @@ function MazeHelper:SendPassedCommand(step)
         return;
     end
 
-    C_ChatInfo.SendAddonMessage('MAZEHELPER', string.format('SendPassed|%s', step), partyChatType);
+    C_ChatInfo.SendAddonMessage(ADDON_COMM_PREFIX, string.format('SendPassed|%s', step), partyChatType);
 end
 
 function MazeHelper:SendPassedCounter()
@@ -1008,7 +1009,7 @@ function MazeHelper:SendPassedCounter()
         return;
     end
 
-    C_ChatInfo.SendAddonMessage('MAZEHELPER', string.format('RECPC|%s', PASSED_COUNTER), partyChatType);
+    C_ChatInfo.SendAddonMessage(ADDON_COMM_PREFIX, string.format('RECPC|%s', PASSED_COUNTER), partyChatType);
 end
 
 function MazeHelper:RequestPassedCounter()
@@ -1021,7 +1022,7 @@ function MazeHelper:RequestPassedCounter()
         return;
     end
 
-    C_ChatInfo.SendAddonMessage('MAZEHELPER', 'REQPC', partyChatType);
+    C_ChatInfo.SendAddonMessage(ADDON_COMM_PREFIX, 'REQPC', partyChatType);
 end
 
 function MazeHelper:SendButtonID(buttonID, mode)
@@ -1034,7 +1035,7 @@ function MazeHelper:SendButtonID(buttonID, mode)
         return;
     end
 
-    C_ChatInfo.SendAddonMessage('MAZEHELPER', string.format('SendButtonID|%s|%s', buttonID, mode), partyChatType);
+    C_ChatInfo.SendAddonMessage(ADDON_COMM_PREFIX, string.format('SendButtonID|%s|%s', buttonID, mode), partyChatType);
 end
 
 function MazeHelper:ReceiveResetCommand()
@@ -1197,7 +1198,7 @@ function MazeHelper.frame:CHAT_MSG_ADDON(prefix, message, _, sender)
         return;
     end
 
-    if prefix == 'MAZEHELPER' then
+    if prefix == ADDON_COMM_PREFIX then
         local p, buttonID, mode = strsplit('|', message);
         if p == 'SendButtonID'  then
             if mode == 'ACTIVE' then
