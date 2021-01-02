@@ -157,11 +157,12 @@ do
     local AnimationFadeInGroup = MazeHelper.frame:CreateAnimationGroup();
     local fadeIn = AnimationFadeInGroup:CreateAnimation('Alpha');
     fadeIn:SetDuration(0.35);
-    fadeIn:SetToAlpha(1)
-    fadeIn:SetOrder(1);
-    fadeIn:SetEndDelay(0);
+    fadeIn:SetFromAlpha(0);
+    fadeIn:SetToAlpha(1);
+    fadeIn:SetStartDelay(0);
+    fadeIn:SetSmoothing('OUT');
 
-    MazeHelper.frame:SetScript('OnShow', function()
+    MazeHelper.frame:HookScript('OnShow', function()
         AnimationFadeInGroup:Play();
     end);
 end
