@@ -16,6 +16,7 @@ local startedInMinMode = false;
 local FRAME_SIZE = 300;
 local X_OFFSET = 2;
 local Y_OFFSET = -2;
+local BUTTON_SIZE = 64;
 
 local EMPTY_STRING = ''; -- NANO-OPTIMIZATION!
 
@@ -658,7 +659,7 @@ function MazeHelper:CreateButton(index)
         PixelUtil.SetPoint(button, 'LEFT', buttons[index - 1], 'RIGHT', X_OFFSET, 0);
     end
 
-    PixelUtil.SetSize(button, 64, 64);
+    PixelUtil.SetSize(button, BUTTON_SIZE, BUTTON_SIZE);
 
     button.Icon = button:CreateTexture(nil, 'ARTWORK');
     PixelUtil.SetPoint(button.Icon, 'TOPLEFT', button, 'TOPLEFT', 4, -4);
