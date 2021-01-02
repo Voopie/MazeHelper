@@ -769,10 +769,24 @@ end
 -- Credit to Garthul#2712
 -- Main idea: The solution is the opposite of entrance symbol or opposite of an existing symbol that shares two features with entrance symbol. Order of conditions matter.
 local TryHeuristicSolution do
-    local function Filter(b, f) local r = {}; for i, v in pairs(b) do if f(v) then r[i] = v; end end return r; end
+    local filterTable = {};
+
+    local reusableOppositeTable = {
+        fill   = false,
+        leaf   = false,
+        circle = false,
+    };
+
+    local function Filter(b, f) table.wipe(filterTable); for i, v in pairs(b) do if f(v) then r[i] = v; end end return r; end
     local function Find(b, f) for i, v in pairs(b) do if f(v) then return i, v; end end end
     local function Equals(s1, s2) return s1.fill == s2.fill and s1.leaf == s2.leaf and s1.circle == s2.circle; end
-    local function Opposite(s) return { fill = not s.fill, leaf = not s.leaf, circle = not s.circle }; end
+    local function Opposite(s)
+        reusableOppositeTable.fill   = not s.fill;
+        reusableOppositeTable.leaf   = not s.leaf;
+        reusableOppositeTable.circle = not s.circle;
+
+        return reusableOppositeTable;
+    end
     local function NumberOfSharedFeatures(s1, s2) return (s1.fill == s2.fill and 1 or 0) + (s1.leaf == s2.leaf and 1 or 0) + (s1.circle == s2.circle and 1 or 0); end
 
     local IsActiveButtonFunction = function(b) return b.state; end
@@ -812,9 +826,7 @@ local TryHeuristicSolution do
 
                     if numSharedFeatures == 1 then
                         solutionSymbol = Opposite(helperButton.data);
-                    end
-
-                    if numSharedFeatures == 2 then
+                    elseif numSharedFeatures == 2 then
                         solutionSymbol = Opposite(entranceButton.data);
                     end
 
