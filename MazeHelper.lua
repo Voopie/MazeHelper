@@ -670,7 +670,7 @@ function MazeHelper:CreateButton(index)
     button:SetBackdrop({
         insets   = { top = 1, left = 1, bottom = 1, right = 1 },
         edgeFile = 'Interface\\Buttons\\WHITE8x8',
-		edgeSize = 2,
+        edgeSize = 2,
     });
 
     MazeHelper:SetUnactiveButton(button);
