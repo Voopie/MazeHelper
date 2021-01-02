@@ -462,7 +462,9 @@ if gameLocale == 'zhTW' then -- BNS333 (https://www.curseforge.com/members/bns33
     return;
 end
 
-if gameLocale == 'zhCN' then -- Geminil82 (https://www.curseforge.com/members/Geminil82)
+-- Geminil82 (https://www.curseforge.com/members/Geminil82)
+-- gjfLeo (https://github.com/gjfLeo)
+if gameLocale == 'zhCN' then
     L['MAZE_HELPER_ZONE_NAME'] = '纱雾迷结';
     L['MAZE_HELPER_ANNOUNCE_FLOWER_FULL_CIRCLE'] = '有环 实心 花';
     L['MAZE_HELPER_ANNOUNCE_FLOWER_FULL_NOCIRCLE'] = '无环 实心 花';
