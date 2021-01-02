@@ -686,7 +686,7 @@ function MazeHelper:CreateButton(index)
         if b == 'LeftButton' then
             LeftButton_OnClick(self, true);
         elseif b == 'RightButton' then
-            RightButton_OnClick(self, true, nil);
+            RightButton_OnClick(self, true);
         end
     end);
 
