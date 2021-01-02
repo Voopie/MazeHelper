@@ -594,7 +594,7 @@ local function LeftButton_OnClick(button, send, sender)
     button.sender = sender;
 
     MazeHelper:SetActiveButton(button);
-    MazeHelper:UpdateButtonSequence(button, NUM_ACTIVE_BUTTONS);
+    MazeHelper:UpdateButtWonSequence(button);
     MazeHelper.frame.SolutionText:SetText(L['MAZE_HELPER_CHOOSE_SYMBOLS_' .. (MAX_ACTIVE_BUTTONS - NUM_ACTIVE_BUTTONS)]);
 
     if send then
