@@ -11,6 +11,8 @@ M.INLINE_TANK_ICON     = _G.INLINE_TANK_ICON;
 M.INLINE_HEALER_ICON   = _G.INLINE_HEALER_ICON;
 M.INLINE_INFINITY_ICON = '|T' .. MEDIA_PATH .. 'icons32.blp:14:14:0:0:128:64:64:96:32:64|t';
 
+M.INLINE_ENTRANCE_ICON = '|T' .. MEDIA_PATH .. 'icons32.blp:12:12:-1:1:128:64:96:128:32:64|t';
+
 M.BACKGROUND_WHITE = MEDIA_PATH .. 'background-white.blp';
 M.BBH = MEDIA_PATH .. 'bbh.blp';
 
@@ -18,13 +20,14 @@ M.Icons = {
     TEXTURE = MEDIA_PATH .. 'icons32.blp', -- 128x64
 
     COORDS = {
-        MEGAPHONE_WHITE = {0, 1/4, 0, 1/2},
-        CROSS_WHITE     = {1/4, 2/4, 0, 1/2},
-        SPANNER_WHITE   = {2/4, 3/4, 0, 1/2},
-        GEAR_WHITE      = {3/4, 4/4, 0, 1/2},
+        MEGAPHONE_WHITE = {  0, 1/4,   0, 1/2},
+        CROSS_WHITE     = {1/4, 2/4,   0, 1/2},
+        SPANNER_WHITE   = {2/4, 3/4,   0, 1/2},
+        GEAR_WHITE      = {3/4, 4/4,   0, 1/2},
         INFINITY_WHITE  = {2/4, 3/4, 1/2, 2/2},
+        ENTRANCE        = {3/4, 4/4, 1/2, 2/2},
 
-        CHECKBUTTON_CHECKED = {0, 1/4, 1/2, 2/2},
+        CHECKBUTTON_CHECKED = {  0, 1/4, 1/2, 2/2},
         CHECKBUTTON_NORMAL  = {1/4, 2/4, 1/2, 2/2},
     },
 };

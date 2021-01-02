@@ -732,7 +732,7 @@ function MazeHelper:UpdateButtonSequence(button)
     button.sequence = GetMinimumReservedSequence();
     RESERVED_BUTTONS_SEQUENCE[button.sequence] = true;
 
-    button.SequenceText:SetText((MHMOTSConfig.PredictSolution and button.sequence == 1) and L['MAZE_HELPER_ENTRANCE'] or button.sequence);
+    button.SequenceText:SetText((MHMOTSConfig.PredictSolution and button.sequence == 1) and M.INLINE_ENTRANCE_ICON or button.sequence);
 end
 
 function MazeHelper:ResetButtonSequence(button)
