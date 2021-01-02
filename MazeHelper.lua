@@ -338,6 +338,7 @@ MazeHelper.frame.SolutionText:SetText(L['MAZE_HELPER_CHOOSE_SYMBOLS_4']);
 local function ResetAll()
     NUM_ACTIVE_BUTTONS = 0;
     SOLUTION_BUTTON_ID = nil;
+    PREDICTED_SOLUTION_BUTTON_ID = nil;
 
     for i = 1, #RESERVED_BUTTONS_SEQUENCE do
         RESERVED_BUTTONS_SEQUENCE[i] = false;
@@ -479,6 +480,7 @@ scrollChild.Data.PredictSolution:SetLabel(L['MAZE_HELPER_SETTINGS_PREDICT_SOLUTI
 scrollChild.Data.PredictSolution:SetTooltip(L['MAZE_HELPER_SETTINGS_PREDICT_SOLUTION_TOOLTIP']);
 scrollChild.Data.PredictSolution:SetScript('OnClick', function(self)
     MHMOTSConfig.PredictSolution = self:GetChecked();
+    ResetAll();
 end);
 
 scrollChild.Data.UseColoredSymbols = E.CreateRoundedCheckButton(scrollChild);
@@ -760,6 +762,10 @@ function MazeHelper:SetSolutionButton(button)
     button:SetBackdropBorderColor(0.2, 0.8, 0.4, 1);
 end
 
+function MazeHelper:SetPredictedButton(button)
+    button:SetBackdropBorderColor(1, 0.9, 0.71, 1);
+end
+
 -- Credit to Garthul#2712
 -- Main idea: The solution is the opposite of entrance symbol or opposite of an existing symbol that shares two features with entrance symbol. Order of conditions matter.
 local TryHeuristicSolution do
@@ -876,9 +882,8 @@ function MazeHelper:UpdateSolution()
 
     if MHMOTSConfig.PredictSolution and NUM_ACTIVE_BUTTONS < MAX_ACTIVE_BUTTONS then
         SOLUTION_BUTTON_ID = TryHeuristicSolution();
+        PREDICTED_SOLUTION_BUTTON_ID = SOLUTION_BUTTON_ID or nil;
     end
-
-    PREDICTED_SOLUTION_BUTTON_ID = SOLUTION_BUTTON_ID or nil;
 
     if NUM_ACTIVE_BUTTONS == MAX_ACTIVE_BUTTONS then
         if PREDICTED_SOLUTION_BUTTON_ID then
@@ -925,7 +930,12 @@ function MazeHelper:UpdateSolution()
             end
         end
 
-        MazeHelper:SetSolutionButton(buttons[SOLUTION_BUTTON_ID]);
+        if PREDICTED_SOLUTION_BUTTON_ID then
+            MazeHelper:SetPredictedButton(buttons[PREDICTED_SOLUTION_BUTTON_ID]);
+        else
+            MazeHelper:SetSolutionButton(buttons[SOLUTION_BUTTON_ID]);
+        end
+
         MazeHelper.frame.MiniSolution.Icon:SetTexCoord(unpack(MHMOTSConfig.UseColoredSymbols and buttonsData[SOLUTION_BUTTON_ID].coords or buttonsData[SOLUTION_BUTTON_ID].coords_white));
 
         MazeHelper.frame.AnnounceButton:SetShown((not isMinimized and partyChatType and not MHMOTSConfig.AutoAnnouncer) and true or false);
