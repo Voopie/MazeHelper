@@ -35,7 +35,6 @@ L['MAZE_HELPER_CLEARED_BY'] = 'Cleared by %s';
 L['MAZE_HELPER_PASSED'] = 'Passed';
 L['MAZE_HELPER_RESETED_PLAYER'] = '|cffffb833MH:|r %s |cffff0537resetted|r this mini-game';
 L['MAZE_HELPER_PASSED_PLAYER'] = '|cffffb833MH:|r %s clicked on «|cff66ff6ePassed|r» button';
-L['MAZE_HELPER_MOTSH_RESETED_PLAYER'] = '|cffffb833MH:|r %s |cffff0537resetted|r this mini-game (Mists of Tirna Scithe Helper)';
 L['MAZE_HELPER_ANNOUNCE_SOLUTION'] = '%s';
 L['MAZE_HELPER_ANNOUNCE_LEAF_FULL_CIRCLE'] = 'Filled leaf in a circle';
 L['MAZE_HELPER_ANNOUNCE_LEAF_FULL_NOCIRCLE'] = 'Filled leaf without a circle';
@@ -88,7 +87,6 @@ if gameLocale == 'ruRU' then
     L['MAZE_HELPER_PASSED'] = 'Прошли';
     L['MAZE_HELPER_RESETED_PLAYER'] = '|cffffb833MH:|r %s |cffff0537сбросил|r мини-игру';
     L['MAZE_HELPER_PASSED_PLAYER'] = '|cffffb833MH:|r %s кликнул на кнопку «|cff66ff6eПрошли|r»';
-    L['MAZE_HELPER_MOTSH_RESETED_PLAYER'] = '|cffffb833MH:|r %s |cffff0537сбросил|r мини-игру (Mists of Tirna Scithe Helper)';
     L['MAZE_HELPER_ANNOUNCE_SOLUTION'] = '%s';
     L['MAZE_HELPER_ANNOUNCE_LEAF_FULL_CIRCLE'] = 'Полный листок в круге / Filled leaf in a circle';
     L['MAZE_HELPER_ANNOUNCE_LEAF_FULL_NOCIRCLE'] = 'Полный листок без круга / Filled leaf without a circle';
@@ -144,7 +142,6 @@ if gameLocale == 'deDE' then -- Google Translate
     L['MAZE_HELPER_PASSED'] = 'Übergeben';
     L['MAZE_HELPER_RESETED_PLAYER'] = '|cffffb833MH:|r %s hat dieses Minispiel |cffff0537zurückgesetzt|r';
     L['MAZE_HELPER_PASSED_PLAYER'] = '|cffffb833MH:|r %s klickte auf «|cff66ff6eBestanden|r»';
-    L['MAZE_HELPER_MOTSH_RESETED_PLAYER'] = '|cffffb833MH:|r %s hat dieses Minispiel |cffff0537zurückgesetzt|r (Mists of Tirna Scithe Helper)';
     L['MAZE_HELPER_ANNOUNCE_SOLUTION'] = '%s';
     L['MAZE_HELPER_ANNOUNCE_LEAF_FULL_CIRCLE'] = 'Gefülltes Blatt im Kreis / Filled leaf in a circle';
     L['MAZE_HELPER_ANNOUNCE_LEAF_FULL_NOCIRCLE'] = 'Gefülltes Blatt ohne Kreis / Filled leaf without a circle';
@@ -200,7 +197,6 @@ if gameLocale == 'frFR' then -- Google Translate
     L['MAZE_HELPER_PASSED'] = 'Passer';
     L['MAZE_HELPER_RESETED_PLAYER'] = '|cffffb833MH:|r %s a |cffff0537réinitialisé|r ce mini-jeu';
     L['MAZE_HELPER_PASSED_PLAYER'] = '|cffffb833MH:|r %s a cliqué sur le bouton «|cff66ff6ePasser|r»';
-    L['MAZE_HELPER_MOTSH_RESETED_PLAYER'] = '|cffffb833MH:|r %s a |cffff0537réinitialisé|r ce mini-jeu (Mists of Tirna Scithe Helper)';
     L['MAZE_HELPER_ANNOUNCE_SOLUTION'] = '%s';
     L['MAZE_HELPER_ANNOUNCE_LEAF_FULL_CIRCLE'] = 'Feuille remplie dans un cercle / Filled leaf in a circle';
     L['MAZE_HELPER_ANNOUNCE_LEAF_FULL_NOCIRCLE'] = 'Feuille remplie sans cercle / Filled leaf without a circle';
@@ -256,7 +252,6 @@ if gameLocale == 'itIT' then -- Google Translate
     L['MAZE_HELPER_PASSED'] = 'Passato';
     L['MAZE_HELPER_RESETED_PLAYER'] = '|cffffb833MH:|r %s |cffff0537ha ripristinato|r questo minigioco';
     L['MAZE_HELPER_PASSED_PLAYER'] = '|cffffb833MH:|r %s ha fatto clic sul pulsante «|cff66ff6ePassato|r»';
-    L['MAZE_HELPER_MOTSH_RESETED_PLAYER'] = '|cffffb833MH:|r %s |cffff0537ha ripristinato|r questo minigioco (Mists of Tirna Scithe Helper)';
     L['MAZE_HELPER_ANNOUNCE_SOLUTION'] = '%s';
     L['MAZE_HELPER_ANNOUNCE_LEAF_FULL_CIRCLE'] = 'Foglia piena in un cerchio / Filled leaf in a circle';
     L['MAZE_HELPER_ANNOUNCE_LEAF_FULL_NOCIRCLE'] = 'Foglia piena senza cerchio / Filled leaf without a circle';
@@ -312,7 +307,6 @@ if gameLocale == 'ptBR' then -- Brazilian Portuguese (Google Translate)
     L['MAZE_HELPER_PASSED'] = 'Passado';
     L['MAZE_HELPER_RESETED_PLAYER'] = '|cffffb833MH:|r %s |cffff0537redefiniu|r este minijogo';
     L['MAZE_HELPER_PASSED_PLAYER'] = '|cffffb833MH:|r %s clicou no botão «|cff66ff6ePassado|r»';
-    L['MAZE_HELPER_MOTSH_RESETED_PLAYER'] = '|cffffb833MH:|r %s |cffff0537redefiniu|r este minijogo (Mists of Tirna Scithe Helper)';
     L['MAZE_HELPER_ANNOUNCE_SOLUTION'] = '%s';
     L['MAZE_HELPER_ANNOUNCE_LEAF_FULL_CIRCLE'] = 'Folha preenchida em um círculo / Filled leaf in a circle';
     L['MAZE_HELPER_ANNOUNCE_LEAF_FULL_NOCIRCLE'] = 'Folha preenchida sem círculo / Filled leaf without a circle';
@@ -368,7 +362,6 @@ if gameLocale == 'esES' then -- Spanish (Google Translate)
     L['MAZE_HELPER_PASSED'] = 'Aprobado';
     L['MAZE_HELPER_RESETED_PLAYER'] = '|cffffb833MH:|r %s |cffff0537resetted|r este minijuego';
     L['MAZE_HELPER_PASSED_PLAYER'] = '|cffffb833MH:|r %s hizo clic en el botón «|cff66ff6eAprobado|r»';
-    L['MAZE_HELPER_MOTSH_RESETED_PLAYER'] = '|cffffb833MH:|r %s |cffff0537resetted|r este minijuego (Mists of Tirna Scithe Helper)';
     L['MAZE_HELPER_ANNOUNCE_SOLUTION'] = '%s';
     L['MAZE_HELPER_ANNOUNCE_LEAF_FULL_CIRCLE'] = 'Hoja llena en un círcul / Filled leaf in a circle';
     L['MAZE_HELPER_ANNOUNCE_LEAF_FULL_NOCIRCLE'] = 'Hoja llena sin círculo / Filled leaf without a circle';
@@ -439,7 +432,6 @@ if gameLocale == 'zhTW' then -- BNS333 (https://www.curseforge.com/members/bns33
     L['MAZE_HELPER_LEAF_NOFULL_CIRCLE'] = '有外環空心的葉';
     L['MAZE_HELPER_LEAF_NOFULL_NOCIRCLE'] = '無外環空心的葉';
     L['MAZE_HELPER_RESETED_PLAYER'] = '|cffffb833MH:|r %s |cffff0537已重置|r此小遊戲';
-    L['MAZE_HELPER_MOTSH_RESETED_PLAYER'] = '|cffffb833MH:|r %s |cffff0537已重置|r此小遊戲 (Mists of Tirna Scithe Helper)';
     L['MAZE_HELPER_PASSED'] = '已通過';
     L['MAZE_HELPER_PASSED_PLAYER'] = '|cffffb833MH:|r %s 點擊了«|cff66ff6e已通過|r»按鈕';
     L['MAZE_HELPER_RESET'] = '重置';
@@ -494,7 +486,6 @@ if gameLocale == 'zhCN' then -- Geminil82 (https://www.curseforge.com/members/Ge
     L['MAZE_HELPER_LEAF_FULL_NOCIRCLE'] = '无外环实心的叶';
     L['MAZE_HELPER_LEAF_NOFULL_CIRCLE'] = '有外环空心的叶';
     L['MAZE_HELPER_LEAF_NOFULL_NOCIRCLE'] = '无外环空心的叶';
-    L['MAZE_HELPER_MOTSH_RESETED_PLAYER'] = '|cffffb833MH:|r %s |cffff0537已重置|r此小游戏 (Mists of Tirna Scithe Helper)';
     L['MAZE_HELPER_PASSED'] = '通过';
     L['MAZE_HELPER_PASSED_PLAYER'] = '|cffffb833MH:|r %s 点击了«|cff66ff6e通过|r»按钮';
     L['MAZE_HELPER_RESET'] = '重置';
@@ -550,7 +541,6 @@ if gameLocale == 'koKR' then -- hinski (https://www.curseforge.com/members/hinsk
     L['MAZE_HELPER_LEAF_FULL_NOCIRCLE'] = '원 없는 색칠한 잎';
     L['MAZE_HELPER_LEAF_NOFULL_CIRCLE'] = '원 안의 빈 잎';
     L['MAZE_HELPER_LEAF_NOFULL_NOCIRCLE'] = '원 없는 빈 잎';
-    L['MAZE_HELPER_MOTSH_RESETED_PLAYER'] = '|cffffb833MH:|r %s이(가) 이 퍼즐을 |cffff0537초기화|r했습니다 (Mists of Tirna Scithe Helper)';
     L['MAZE_HELPER_PASSED'] = '통과';
     L['MAZE_HELPER_PASSED_PLAYER'] = '|cffffb833MH:|r %s이(가) «|cff66ff6e통과|r» 버튼을 눌렀습니다';
     L['MAZE_HELPER_RESET'] = '초기화';
