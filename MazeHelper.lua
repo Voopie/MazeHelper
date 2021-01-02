@@ -987,7 +987,11 @@ function MazeHelper:UpdateSolution()
         if NUM_ACTIVE_BUTTONS == MAX_ACTIVE_BUTTONS then
             for i = 1, MAX_BUTTONS do
                 if buttons[i].state then
-                    MazeHelper:SetActiveButton(buttons[i]);
+                    if buttons[i].sender then
+                        MazeHelper:SetReceivedButton(buttons[i]);
+                    else
+                        MazeHelper:SetActiveButton(buttons[i]);
+                    end
                 else
                     MazeHelper:SetUnactiveButton(buttons[i]);
                 end
@@ -1248,7 +1252,7 @@ function MazeHelper.frame:CHAT_MSG_ADDON(prefix, message, _, sender)
         elseif p == 'RECPC' then
             MazeHelper:ReceivePassedCounter(tonumber(buttonID));
         end
-	end
+    end
 end
 
 function MazeHelper.frame:PLAYER_SPECIALIZATION_CHANGED(unit)
