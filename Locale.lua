@@ -120,7 +120,8 @@ if gameLocale == 'ruRU' then
     return;
 end
 
-if gameLocale == 'deDE' then -- Google Translate
+-- Udaberrico (https://github.com/Udaberrico)
+if gameLocale == 'deDE' then
     L['MAZE_HELPER_ZONE_NAME'] = 'Nebelschleierdickicht';
     L['MAZE_HELPER_RESET'] = 'Zurücksetzen';
     L['MAZE_HELPER_CHOOSE_SYMBOLS_4'] = 'Wählen Sie 4 Symbole';
