@@ -844,8 +844,9 @@ local TryHeuristicSolution do
 end
 
 local GetSolution do
-    function GetSolution()
+    local function GetSumCharacteristics()
         local circleSum, flowerSum, leafSum, fillSum = 0, 0, 0, 0;
+
         for i = 1, MAX_BUTTONS do
             if buttons[i].state then
                 if buttons[i].data.circle then
@@ -866,7 +867,12 @@ local GetSolution do
             end
         end
 
+        return circleSum, flowerSum, leafSum, fillSum;
+    end
+
+    local function GetDominateCharacteristics(circleSum, flowerSum, leafSum, fillSum)
         local fill, flower, leaf, circle;
+
         if fillSum == 3 then
             fill = false;
         elseif fillSum == 1 then
@@ -890,6 +896,12 @@ local GetSolution do
         elseif circleSum == 1 then
             circle = true;
         end
+
+        return fill, flower, leaf, circle;
+    end
+
+    function GetSolution()
+        local fill, flower, leaf, circle = GetDominateCharacteristics(GetSumCharacteristics());
 
         local solutionButtonId;
         for i = 1, MAX_BUTTONS do
