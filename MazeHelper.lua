@@ -226,7 +226,7 @@ PixelUtil.SetPoint(MazeHelper.frame.MinButton.icon, 'BOTTOM', MazeHelper.frame.M
 PixelUtil.SetSize(MazeHelper.frame.MinButton.icon, 10, 2);
 MazeHelper.frame.MinButton.icon:SetTexture('Interface\\Buttons\\WHITE8x8');
 MazeHelper.frame.MinButton.icon:SetVertexColor(0.7, 0.7, 0.7, 1);
-MazeHelper.frame.MinButton:SetScript('OnClick', function(self)
+MazeHelper.frame.MinButton:SetScript('OnClick', function()
     isMinimized = true;
 
     PixelUtil.SetHeight(MazeHelper.frame, 40);
@@ -584,6 +584,7 @@ MazeHelper.frame.Settings.VersionText = MazeHelper.frame.Settings:CreateFontStri
 PixelUtil.SetPoint(MazeHelper.frame.Settings.VersionText, 'BOTTOM', MazeHelper.frame.Settings, 'TOP', 0, 0);
 MazeHelper.frame.Settings.VersionText:SetText(GetAddOnMetadata(ADDON_NAME, 'Version'));
 
+-- sender can be nil
 local function LeftButton_OnClick(button, send, sender)
     if button.state or NUM_ACTIVE_BUTTONS == MAX_ACTIVE_BUTTONS then
         return;
@@ -607,6 +608,7 @@ local function LeftButton_OnClick(button, send, sender)
     MazeHelper:UpdateSolution();
 end
 
+-- sender can be nil
 local function RightButton_OnClick(button, send, sender)
     if not button.state then
         return;
