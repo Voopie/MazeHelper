@@ -843,54 +843,81 @@ local TryHeuristicSolution do
     end
 end
 
--- DON'T LOOK AT THIS SHIT PLEEEEASE :( I WAS DRUNK, BUT IT STILL WORKS SOMEHOW
-function MazeHelper:UpdateSolution()
-    local circleSum, flowerSum, leafSum, fillSum = 0, 0, 0, 0;
-    for i = 1, MAX_BUTTONS do
-        if buttons[i].state then
-            if buttons[i].data.circle then
-                circleSum = circleSum + 1;
-            end
+local GetSolution do
+    function GetSolution()
+        local circleSum, flowerSum, leafSum, fillSum = 0, 0, 0, 0;
+        for i = 1, MAX_BUTTONS do
+            if buttons[i].state then
+                if buttons[i].data.circle then
+                    circleSum = circleSum + 1;
+                end
 
-            if buttons[i].data.flower then
-                flowerSum = flowerSum + 1;
-            end
+                if buttons[i].data.flower then
+                    flowerSum = flowerSum + 1;
+                end
 
-            if buttons[i].data.leaf then
-                leafSum = leafSum + 1;
-            end
+                if buttons[i].data.leaf then
+                    leafSum = leafSum + 1;
+                end
 
-            if buttons[i].data.fill then
-                fillSum = fillSum + 1;
+                if buttons[i].data.fill then
+                    fillSum = fillSum + 1;
+                end
             end
         end
-    end
 
-    local fill, flower, leaf, circle;
-    if fillSum == 3 then
-        fill = false;
-    elseif fillSum == 1 then
-        fill = true;
-    end
+        local fill, flower, leaf, circle;
+        if fillSum == 3 then
+            fill = false;
+        elseif fillSum == 1 then
+            fill = true;
+        end
 
-    if flowerSum == 3 then
-        flower = false
-    elseif flowerSum == 1 then
-        flower = true;
-    end
+        if flowerSum == 3 then
+            flower = false
+        elseif flowerSum == 1 then
+            flower = true;
+        end
 
-    if leafSum == 3 then
-        leaf = false;
-    elseif leafSum == 1 then
-        leaf = true;
-    end
+        if leafSum == 3 then
+            leaf = false;
+        elseif leafSum == 1 then
+            leaf = true;
+        end
 
-    if circleSum == 3 then
-        circle = false;
-    elseif circleSum == 1 then
-        circle = true;
-    end
+        if circleSum == 3 then
+            circle = false;
+        elseif circleSum == 1 then
+            circle = true;
+        end
 
+        local solutionButtonId;
+        for i = 1, MAX_BUTTONS do
+            if buttons[i].state then
+                if buttons[i].data.fill == fill then
+                    solutionButtonId = i;
+                end
+
+                if buttons[i].data.leaf == leaf then
+                    solutionButtonId = i;
+                end
+
+                if buttons[i].data.flower == flower then
+                    solutionButtonId = i;
+                end
+
+                if buttons[i].data.circle == circle then
+                    solutionButtonId = i;
+                end
+            end
+        end
+
+        return solutionButtonId;
+    end
+end
+
+-- DON'T LOOK AT THIS SHIT PLEEEEASE :( I WAS DRUNK, BUT IT STILL WORKS SOMEHOW
+function MazeHelper:UpdateSolution()
     SOLUTION_BUTTON_ID = nil;
 
     if MHMOTSConfig.PredictSolution and NUM_ACTIVE_BUTTONS < MAX_ACTIVE_BUTTONS then
@@ -913,25 +940,7 @@ function MazeHelper:UpdateSolution()
             PREDICTED_SOLUTION_BUTTON_ID = nil;
         end
 
-        for i = 1, MAX_BUTTONS do
-            if buttons[i].state then
-                if buttons[i].data.fill == fill then
-                    SOLUTION_BUTTON_ID = i;
-                end
-
-                if buttons[i].data.leaf == leaf then
-                    SOLUTION_BUTTON_ID = i;
-                end
-
-                if buttons[i].data.flower == flower then
-                    SOLUTION_BUTTON_ID = i;
-                end
-
-                if buttons[i].data.circle == circle then
-                    SOLUTION_BUTTON_ID = i;
-                end
-            end
-        end
+        SOLUTION_BUTTON_ID = GetSolution();
     end
 
     if SOLUTION_BUTTON_ID then
