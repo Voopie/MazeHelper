@@ -870,6 +870,7 @@ local GetSolution do
         return circleSum, flowerSum, leafSum, fillSum;
     end
 
+    -- return values can be nil
     local function GetDominateCharacteristics(circleSum, flowerSum, leafSum, fillSum)
         local fill, flower, leaf, circle;
 
@@ -901,9 +902,9 @@ local GetSolution do
     end
 
     function GetSolution()
+        local solutionButtonId;
         local fill, flower, leaf, circle = GetDominateCharacteristics(GetSumCharacteristics());
 
-        local solutionButtonId;
         for i = 1, MAX_BUTTONS do
             if buttons[i].state then
                 if buttons[i].data.fill == fill then
