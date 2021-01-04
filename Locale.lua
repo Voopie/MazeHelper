@@ -527,7 +527,7 @@ if gameLocale == 'koKR' then -- hinski (https://www.curseforge.com/members/hinsk
     L['MAZE_HELPER_ANNOUNCE_FLOWER_NOFULL_CIRCLE'] = '원 안의 빈 꽃';
     L['MAZE_HELPER_ANNOUNCE_FLOWER_NOFULL_NOCIRCLE'] = '원 없는 빈 꽃';
     L['MAZE_HELPER_ANNOUNCE_LEAF_FULL_CIRCLE'] = '원 안의 색칠한 잎';
-    L['MAZE_HELPER_ANNOUNCE_LEAF_FULL_NOCIRCLE'] = '원 없는 색칠한 잎'
+    L['MAZE_HELPER_ANNOUNCE_LEAF_FULL_NOCIRCLE'] = '원 없는 색칠한 잎';
     L['MAZE_HELPER_ANNOUNCE_LEAF_NOFULL_CIRCLE'] = '원 안의 빈 잎';
     L['MAZE_HELPER_ANNOUNCE_LEAF_NOFULL_NOCIRCLE'] = '원 없는 빈 잎';
     L['MAZE_HELPER_ANNOUNCE_SOLUTION'] = '%s';
