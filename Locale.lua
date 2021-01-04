@@ -527,7 +527,7 @@ if gameLocale == 'koKR' then -- hinski (https://www.curseforge.com/members/hinsk
     L['MAZE_HELPER_ANNOUNCE_FLOWER_NOFULL_CIRCLE'] = '원 안의 빈 꽃';
     L['MAZE_HELPER_ANNOUNCE_FLOWER_NOFULL_NOCIRCLE'] = '원 없는 빈 꽃';
     L['MAZE_HELPER_ANNOUNCE_LEAF_FULL_CIRCLE'] = '원 안의 색칠한 잎';
-    L['MAZE_HELPER_ANNOUNCE_LEAF_FULL_NOCIRCLE'] = '원 없는 색칠한 잎';
+    L['MAZE_HELPER_ANNOUNCE_LEAF_FULL_NOCIRCLE'] = '원 없는 색칠한 잎'
     L['MAZE_HELPER_ANNOUNCE_LEAF_NOFULL_CIRCLE'] = '원 안의 빈 잎';
     L['MAZE_HELPER_ANNOUNCE_LEAF_NOFULL_NOCIRCLE'] = '원 없는 빈 잎';
     L['MAZE_HELPER_ANNOUNCE_SOLUTION'] = '%s';
@@ -549,28 +549,28 @@ if gameLocale == 'koKR' then -- hinski (https://www.curseforge.com/members/hinsk
     L['MAZE_HELPER_RESET'] = '초기화';
     L['MAZE_HELPER_RESETED_PLAYER'] = '|cffffb833MH:|r %s이(가) 이 퍼즐을 |cffff0537초기화|r했습니다';
     L['MAZE_HELPER_SENDED_BY'] = '%s의 전송';
-    L['MAZE_HELPER_SOLUTION'] = '|cff33cc66%s|r';
-    L['MAZE_HELPER_SOLUTION_NA'] = '|cffffb833정답이 없습니다...|r';
-    L['MAZE_HELPER_SETTINGS_REVEAL_RESETTER_LABEL'] = '퍼즐을 초기화한 사람 공개';
-    L['MAZE_HELPER_SETTINGS_REVEAL_RESETTER_TOOLTIP'] = '채팅에 «초기화» 혹은 «통과» 버튼을 누른 사람의 이름을 넣습니다 (자신만 해당)';
+    L['MAZE_HELPER_SETTINGS_AA_ALWAYS'] = '항상';
+    L['MAZE_HELPER_SETTINGS_AA_HEALER'] = '힐러';
+    L['MAZE_HELPER_SETTINGS_AA_PARTY_LEADER'] = '파티장';
+    L['MAZE_HELPER_SETTINGS_AA_TANK'] = '탱커';
     L['MAZE_HELPER_SETTINGS_AUTOANNOUNCER_LABEL'] = '자동 알리기 활성화';
     L['MAZE_HELPER_SETTINGS_AUTOANNOUNCER_TOOLTIP'] = '자동으로 완성된 정답을 파티 채팅에 보냄';
-    L['MAZE_HELPER_SETTINGS_START_IN_MINMODE_LABEL'] = '접은 상태에서 시작';
-    L['MAZE_HELPER_SETTINGS_START_IN_MINMODE_TOOLTIP'] = '처음엔 접은 상태로 나옴';
-    L['MAZE_HELPER_SETTINGS_AA_PARTY_LEADER'] = '파티장';
-    L['MAZE_HELPER_SETTINGS_AA_ALWAYS'] = '항상';
-    L['MAZE_HELPER_SETTINGS_AA_TANK'] = '탱커';
-    L['MAZE_HELPER_SETTINGS_AA_HEALER'] = '힐러';
+    L['MAZE_HELPER_SETTINGS_PREDICT_SOLUTION_LABEL'] = '정답 예측';
+    L['MAZE_HELPER_SETTINGS_PREDICT_SOLUTION_TOOLTIP'] = '2-3 단계로 정답을 예측하지만, |cffff6a00첫 번째|r로 선택한 모양은 |cffff6a00반드시|r 입구 방향의 모양이여야 합니다';
+    L['MAZE_HELPER_SETTINGS_REVEAL_RESETTER_LABEL'] = '퍼즐을 초기화한 사람 공개';
+    L['MAZE_HELPER_SETTINGS_REVEAL_RESETTER_TOOLTIP'] = '채팅에 «초기화» 혹은 «통과» 버튼을 누른 사람의 이름을 넣습니다 (자신만 해당)';
     L['MAZE_HELPER_SETTINGS_SHOW_AT_BOSS_LABEL'] = '보스에서 나오게 하기';
     L['MAZE_HELPER_SETTINGS_SHOW_AT_BOSS_TOOLTIP'] = '«미스트콜러»와 전투 시 이 애드온을 보이게 함';
+    L['MAZE_HELPER_SETTINGS_SHOW_SEQUENCE_NUMBERS_LABEL'] = '순서 표시';
+    L['MAZE_HELPER_SETTINGS_SHOW_SEQUENCE_NUMBERS_TOOLTIP'] = '모양을 선택할 때 누른 순서를 표시함 (1, 2, 3, 4)';
+    L['MAZE_HELPER_SETTINGS_START_IN_MINMODE_LABEL'] = '접은 상태에서 시작';
+    L['MAZE_HELPER_SETTINGS_START_IN_MINMODE_TOOLTIP'] = '처음엔 접은 상태로 나옴';
     L['MAZE_HELPER_SETTINGS_SYNC_ENABLED_LABEL'] = '파티 동기화';
     L['MAZE_HELPER_SETTINGS_SYNC_ENABLED_TOOLTIP'] = '다른 파티원과 선택한 모양 공유 활성화|n|n|cffff6a00끄지 않는 것을 권장합니다|r';
     L['MAZE_HELPER_SETTINGS_USE_COLORED_SYMBOLS_LABEL'] = '색이 있는 모양 사용';
     L['MAZE_HELPER_SETTINGS_USE_COLORED_SYMBOLS_TOOLTIP'] = '흑백 대신 유채색된 모양 사용';
-    L['MAZE_HELPER_SETTINGS_SHOW_SEQUENCE_NUMBERS_LABEL'] = '순서 표시';
-    L['MAZE_HELPER_SETTINGS_SHOW_SEQUENCE_NUMBERS_TOOLTIP'] = '모양을 선택할 때 누른 순서를 표시함 (1, 2, 3, 4)';
-    L['MAZE_HELPER_SETTINGS_PREDICT_SOLUTION_LABEL'] = '솔루션 예측';
-    L['MAZE_HELPER_SETTINGS_PREDICT_SOLUTION_TOOLTIP'] = '2-3 단계로 솔루션을 예측하지만|cffff6a00첫 번째|r 선택 기호|cffff6a00은|r 입구 기호 여야합니다';
+    L['MAZE_HELPER_SOLUTION'] = '|cff33cc66%s|r';
+    L['MAZE_HELPER_SOLUTION_NA'] = '|cffffb833정답이 없습니다...|r';
 
     return;
 end
