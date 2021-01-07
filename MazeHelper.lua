@@ -365,8 +365,6 @@ local function ResetAll()
     MazeHelper.frame.ResetButton:SetEnabled(false);
 end
 
-MazeHelper.frame.ResetAll = ResetAll;
-
 MazeHelper.frame.BottomButtonsHolder = CreateFrame('Frame', nil, MazeHelper.frame.MainHolder);
 PixelUtil.SetPoint(MazeHelper.frame.BottomButtonsHolder, 'TOP', MazeHelper.frame.SolutionText, 'BOTTOM', 0, -8);
 PixelUtil.SetSize(MazeHelper.frame.BottomButtonsHolder, MazeHelper.frame.MainHolder:GetWidth(), 22);
@@ -1157,6 +1155,7 @@ local function UpdateShown()
     end
 end
 
+MazeHelper.frame.ResetAll    = ResetAll;
 MazeHelper.frame.UpdateShown = UpdateShown;
 
 MazeHelper.frame:RegisterEvent('ADDON_LOADED');
@@ -1227,10 +1226,9 @@ local function UpdateBossState(encounterID, inFight, killed)
     end
 
     inEncounter = inFight;
+    bossKilled  = killed;
 
     ResetAll();
-
-    bossKilled = killed;
     UpdateShown();
 end
 
