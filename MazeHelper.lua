@@ -189,6 +189,8 @@ MazeHelper.frame.CloseButton:SetScript('OnClick', function()
     if MazeHelper.frame.Settings:IsShown() then
         MazeHelper.frame.Settings:SetShown(false);
         MazeHelper.frame.SettingsButton:SetShown(true);
+        MazeHelper.frame.MainHolder:SetShown(true);
+        MazeHelper.frame.MinButton:SetShown(true);
         return;
     end
 
