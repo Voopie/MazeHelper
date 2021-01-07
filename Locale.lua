@@ -12,6 +12,8 @@ local L = MazeHelper.L;
 
 -- Common
 L['MAZE_HELPER_EXCLAMATION_MARK'] = '|TInterface\\OptionsFrame\\UI-OptionsFrame-NewFeatureIcon:0:0:0:0|t ';
+L['MAZE_HELPER_SOLUTION'] = '|cff33cc66%s|r';
+L['MAZE_HELPER_ANNOUNCE_SOLUTION'] = '%s';
 
 -- Default to enUS
 L['MAZE_HELPER_ZONE_NAME'] = 'Mistveil Tangle';
@@ -21,7 +23,6 @@ L['MAZE_HELPER_CHOOSE_SYMBOLS_3'] = 'Select 3 more symbols';
 L['MAZE_HELPER_CHOOSE_SYMBOLS_2'] = 'Select 2 more symbols';
 L['MAZE_HELPER_CHOOSE_SYMBOLS_1'] = 'Select 1 more symbol';
 L['MAZE_HELPER_SOLUTION_NA'] = '|cffffb833There is no solution...|r';
-L['MAZE_HELPER_SOLUTION'] = '|cff33cc66%s|r';
 L['MAZE_HELPER_LEAF_FULL_CIRCLE'] = 'Filled leaf in a circle';
 L['MAZE_HELPER_LEAF_FULL_NOCIRCLE'] = 'Filled leaf without a circle';
 L['MAZE_HELPER_LEAF_NOFULL_CIRCLE'] = 'Empty leaf in a circle';
@@ -35,7 +36,6 @@ L['MAZE_HELPER_CLEARED_BY'] = 'Cleared by %s';
 L['MAZE_HELPER_PASSED'] = 'Passed';
 L['MAZE_HELPER_RESETED_PLAYER'] = '|cffffb833MH:|r %s |cffff0537resetted|r this mini-game';
 L['MAZE_HELPER_PASSED_PLAYER'] = '|cffffb833MH:|r %s clicked on «|cff66ff6ePassed|r» button';
-L['MAZE_HELPER_ANNOUNCE_SOLUTION'] = '%s';
 L['MAZE_HELPER_ANNOUNCE_LEAF_FULL_CIRCLE'] = 'Filled leaf in a circle';
 L['MAZE_HELPER_ANNOUNCE_LEAF_FULL_NOCIRCLE'] = 'Filled leaf without a circle';
 L['MAZE_HELPER_ANNOUNCE_LEAF_NOFULL_CIRCLE'] = 'Empty leaf in a circle';
@@ -73,7 +73,6 @@ if gameLocale == 'ruRU' then
     L['MAZE_HELPER_CHOOSE_SYMBOLS_2'] = 'Выберите еще 2 символа';
     L['MAZE_HELPER_CHOOSE_SYMBOLS_1'] = 'Выберите еще 1 символ';
     L['MAZE_HELPER_SOLUTION_NA'] = '|cffffb833Решение отсутствует...|r';
-    L['MAZE_HELPER_SOLUTION'] = '|cff33cc66%s|r';
     L['MAZE_HELPER_LEAF_FULL_CIRCLE'] = 'Полный листок в круге';
     L['MAZE_HELPER_LEAF_FULL_NOCIRCLE'] = 'Полный листок без круга';
     L['MAZE_HELPER_LEAF_NOFULL_CIRCLE'] = 'Пустой листок в круге';
@@ -87,7 +86,6 @@ if gameLocale == 'ruRU' then
     L['MAZE_HELPER_PASSED'] = 'Прошли';
     L['MAZE_HELPER_RESETED_PLAYER'] = '|cffffb833MH:|r %s |cffff0537сбросил|r мини-игру';
     L['MAZE_HELPER_PASSED_PLAYER'] = '|cffffb833MH:|r %s кликнул на кнопку «|cff66ff6eПрошли|r»';
-    L['MAZE_HELPER_ANNOUNCE_SOLUTION'] = '%s';
     L['MAZE_HELPER_ANNOUNCE_LEAF_FULL_CIRCLE'] = 'Полный листок в круге / Filled leaf in a circle';
     L['MAZE_HELPER_ANNOUNCE_LEAF_FULL_NOCIRCLE'] = 'Полный листок без круга / Filled leaf without a circle';
     L['MAZE_HELPER_ANNOUNCE_LEAF_NOFULL_CIRCLE'] = 'Пустой листок в круге / Empty leaf in a circle';
@@ -129,7 +127,6 @@ if gameLocale == 'deDE' then
     L['MAZE_HELPER_CHOOSE_SYMBOLS_2'] = 'Wählen Sie 2 weitere Symbole';
     L['MAZE_HELPER_CHOOSE_SYMBOLS_1'] = 'Wählen Sie 1 weiteres symbol';
     L['MAZE_HELPER_SOLUTION_NA'] = '|cffffb833Keine Lösung gefunden...|r';
-    L['MAZE_HELPER_SOLUTION'] = '|cff33cc66%s|r';
     L['MAZE_HELPER_LEAF_FULL_CIRCLE'] = 'Gefülltes Blatt im Kreis';
     L['MAZE_HELPER_LEAF_FULL_NOCIRCLE'] = 'Gefülltes Blatt ohne Kreis';
     L['MAZE_HELPER_LEAF_NOFULL_CIRCLE'] = 'Leeres Blatt im Kreis';
@@ -143,7 +140,6 @@ if gameLocale == 'deDE' then
     L['MAZE_HELPER_PASSED'] = 'Übergeben';
     L['MAZE_HELPER_RESETED_PLAYER'] = '|cffffb833MH:|r %s hat dieses Minispiel |cffff0537zurückgesetzt|r';
     L['MAZE_HELPER_PASSED_PLAYER'] = '|cffffb833MH:|r %s klickte auf «|cff66ff6eBestanden|r»';
-    L['MAZE_HELPER_ANNOUNCE_SOLUTION'] = '%s';
     L['MAZE_HELPER_ANNOUNCE_LEAF_FULL_CIRCLE'] = 'Gefülltes Blatt im Kreis / Filled leaf in a circle';
     L['MAZE_HELPER_ANNOUNCE_LEAF_FULL_NOCIRCLE'] = 'Gefülltes Blatt ohne Kreis / Filled leaf without a circle';
     L['MAZE_HELPER_ANNOUNCE_LEAF_NOFULL_CIRCLE'] = 'Leeres Blatt im Kreis / Empty leaf in a circle';
@@ -184,7 +180,6 @@ if gameLocale == 'frFR' then -- Google Translate
     L['MAZE_HELPER_CHOOSE_SYMBOLS_2'] = 'Sélectionnez 2 autres symboles';
     L['MAZE_HELPER_CHOOSE_SYMBOLS_1'] = 'Sélectionnez 1 autre symbole';
     L['MAZE_HELPER_SOLUTION_NA'] = '|cffffb833Il n\'y a pas de solution...|r';
-    L['MAZE_HELPER_SOLUTION'] = '|cff33cc66%s|r';
     L['MAZE_HELPER_LEAF_FULL_CIRCLE'] = 'Feuille remplie dans un cercle';
     L['MAZE_HELPER_LEAF_FULL_NOCIRCLE'] = 'Feuille remplie sans cercle';
     L['MAZE_HELPER_LEAF_NOFULL_CIRCLE'] = 'Feuille vide dans un cercle';
@@ -198,7 +193,6 @@ if gameLocale == 'frFR' then -- Google Translate
     L['MAZE_HELPER_PASSED'] = 'Passer';
     L['MAZE_HELPER_RESETED_PLAYER'] = '|cffffb833MH:|r %s a |cffff0537réinitialisé|r ce mini-jeu';
     L['MAZE_HELPER_PASSED_PLAYER'] = '|cffffb833MH:|r %s a cliqué sur le bouton «|cff66ff6ePasser|r»';
-    L['MAZE_HELPER_ANNOUNCE_SOLUTION'] = '%s';
     L['MAZE_HELPER_ANNOUNCE_LEAF_FULL_CIRCLE'] = 'Feuille remplie dans un cercle / Filled leaf in a circle';
     L['MAZE_HELPER_ANNOUNCE_LEAF_FULL_NOCIRCLE'] = 'Feuille remplie sans cercle / Filled leaf without a circle';
     L['MAZE_HELPER_ANNOUNCE_LEAF_NOFULL_CIRCLE'] = 'Feuille vide dans un cercle / Empty leaf in a circle';
@@ -239,7 +233,6 @@ if gameLocale == 'itIT' then -- Google Translate
     L['MAZE_HELPER_CHOOSE_SYMBOLS_2'] = 'Seleziona altri 2 simboli';
     L['MAZE_HELPER_CHOOSE_SYMBOLS_1'] = 'Seleziona 1 altro simbolo';
     L['MAZE_HELPER_SOLUTION_NA'] = '|cffffb833Non c\'è soluzione...|r';
-    L['MAZE_HELPER_SOLUTION'] = '|cff33cc66%s|r';
     L['MAZE_HELPER_LEAF_FULL_CIRCLE'] = 'Foglia piena in un cerchio';
     L['MAZE_HELPER_LEAF_FULL_NOCIRCLE'] = 'Foglia piena senza cerchio';
     L['MAZE_HELPER_LEAF_NOFULL_CIRCLE'] = 'Foglia vuota in un cerchio';
@@ -253,7 +246,6 @@ if gameLocale == 'itIT' then -- Google Translate
     L['MAZE_HELPER_PASSED'] = 'Passato';
     L['MAZE_HELPER_RESETED_PLAYER'] = '|cffffb833MH:|r %s |cffff0537ha ripristinato|r questo minigioco';
     L['MAZE_HELPER_PASSED_PLAYER'] = '|cffffb833MH:|r %s ha fatto clic sul pulsante «|cff66ff6ePassato|r»';
-    L['MAZE_HELPER_ANNOUNCE_SOLUTION'] = '%s';
     L['MAZE_HELPER_ANNOUNCE_LEAF_FULL_CIRCLE'] = 'Foglia piena in un cerchio / Filled leaf in a circle';
     L['MAZE_HELPER_ANNOUNCE_LEAF_FULL_NOCIRCLE'] = 'Foglia piena senza cerchio / Filled leaf without a circle';
     L['MAZE_HELPER_ANNOUNCE_LEAF_NOFULL_CIRCLE'] = 'Foglia vuota in un cerchio / Empty leaf in a circle';
@@ -294,7 +286,6 @@ if gameLocale == 'ptBR' then -- Brazilian Portuguese (Google Translate)
     L['MAZE_HELPER_CHOOSE_SYMBOLS_2'] = 'Selecione mais 2 símbolos';
     L['MAZE_HELPER_CHOOSE_SYMBOLS_1'] = 'Selecione mais 1 símbolo';
     L['MAZE_HELPER_SOLUTION_NA'] = '|cffffb833Não há solução...|r';
-    L['MAZE_HELPER_SOLUTION'] = '|cff33cc66%s|r';
     L['MAZE_HELPER_LEAF_FULL_CIRCLE'] = 'Folha preenchida em um círculo';
     L['MAZE_HELPER_LEAF_FULL_NOCIRCLE'] = 'Folha preenchida sem círculo';
     L['MAZE_HELPER_LEAF_NOFULL_CIRCLE'] = 'Folha vazia em um círculo';
@@ -308,7 +299,6 @@ if gameLocale == 'ptBR' then -- Brazilian Portuguese (Google Translate)
     L['MAZE_HELPER_PASSED'] = 'Passado';
     L['MAZE_HELPER_RESETED_PLAYER'] = '|cffffb833MH:|r %s |cffff0537redefiniu|r este minijogo';
     L['MAZE_HELPER_PASSED_PLAYER'] = '|cffffb833MH:|r %s clicou no botão «|cff66ff6ePassado|r»';
-    L['MAZE_HELPER_ANNOUNCE_SOLUTION'] = '%s';
     L['MAZE_HELPER_ANNOUNCE_LEAF_FULL_CIRCLE'] = 'Folha preenchida em um círculo / Filled leaf in a circle';
     L['MAZE_HELPER_ANNOUNCE_LEAF_FULL_NOCIRCLE'] = 'Folha preenchida sem círculo / Filled leaf without a circle';
     L['MAZE_HELPER_ANNOUNCE_LEAF_NOFULL_CIRCLE'] = 'Folha vazia em um círculo / Empty leaf in a circle';
@@ -349,7 +339,6 @@ if gameLocale == 'esES' then -- Spanish (Google Translate)
     L['MAZE_HELPER_CHOOSE_SYMBOLS_2'] = 'Seleccione 2 símbolos más';
     L['MAZE_HELPER_CHOOSE_SYMBOLS_1'] = 'Seleccione 1 símbolo más';
     L['MAZE_HELPER_SOLUTION_NA'] = '|cffffb833No hay solución...|r';
-    L['MAZE_HELPER_SOLUTION'] = '|cff33cc66%s|r';
     L['MAZE_HELPER_LEAF_FULL_CIRCLE'] = 'Hoja llena en un círculo';
     L['MAZE_HELPER_LEAF_FULL_NOCIRCLE'] = 'Hoja llena sin círculo';
     L['MAZE_HELPER_LEAF_NOFULL_CIRCLE'] = 'Hoja vacía en un círculo';
@@ -363,7 +352,6 @@ if gameLocale == 'esES' then -- Spanish (Google Translate)
     L['MAZE_HELPER_PASSED'] = 'Aprobado';
     L['MAZE_HELPER_RESETED_PLAYER'] = '|cffffb833MH:|r %s |cffff0537resetted|r este minijuego';
     L['MAZE_HELPER_PASSED_PLAYER'] = '|cffffb833MH:|r %s hizo clic en el botón «|cff66ff6eAprobado|r»';
-    L['MAZE_HELPER_ANNOUNCE_SOLUTION'] = '%s';
     L['MAZE_HELPER_ANNOUNCE_LEAF_FULL_CIRCLE'] = 'Hoja llena en un círcul / Filled leaf in a circle';
     L['MAZE_HELPER_ANNOUNCE_LEAF_FULL_NOCIRCLE'] = 'Hoja llena sin círculo / Filled leaf without a circle';
     L['MAZE_HELPER_ANNOUNCE_LEAF_NOFULL_CIRCLE'] = 'Hoja vacía en un círculo / Empty leaf in a circle';
@@ -398,10 +386,7 @@ end
 
 if gameLocale == 'esMX' then -- Latin American Spanish
     L['MAZE_HELPER_ZONE_NAME'] = 'Espesura Veloniebla';
-    L['MAZE_HELPER_ANNOUNCE_SOLUTION'] = '%s';
     -- L['MAZE_HELPER_RESET'] = 'Reiniciar';
-    -- L['MAZE_HELPER_SOLUTION'] = '|cff33cc66%s|r';
-
     -- L['MAZE_HELPER_SETTINGS_AA_TANK'] = 'Tanque';
     -- L['MAZE_HELPER_SETTINGS_AA_HEALER'] = 'Sanador';
 
@@ -418,7 +403,6 @@ if gameLocale == 'zhTW' then -- BNS333 (https://www.curseforge.com/members/bns33
     L['MAZE_HELPER_ANNOUNCE_LEAF_FULL_NOCIRCLE'] = '無外環實心的葉';
     L['MAZE_HELPER_ANNOUNCE_LEAF_NOFULL_CIRCLE'] = '有外環空心的葉';
     L['MAZE_HELPER_ANNOUNCE_LEAF_NOFULL_NOCIRCLE'] = '無外環空心的葉';
-    L['MAZE_HELPER_ANNOUNCE_SOLUTION'] = '%s';
     L['MAZE_HELPER_CHOOSE_SYMBOLS_1'] = '再點選一個標誌';
     L['MAZE_HELPER_CHOOSE_SYMBOLS_2'] = '再點選兩個標誌';
     L['MAZE_HELPER_CHOOSE_SYMBOLS_3'] = '再點選三個標誌';
@@ -449,7 +433,6 @@ if gameLocale == 'zhTW' then -- BNS333 (https://www.curseforge.com/members/bns33
     L['MAZE_HELPER_SETTINGS_SHOW_AT_BOSS_TOOLTIP'] = '與«喚霧者»戰鬥時顯示此助手';
     L['MAZE_HELPER_SETTINGS_START_IN_MINMODE_LABEL'] = '以最小化模式啟動';
     L['MAZE_HELPER_SETTINGS_START_IN_MINMODE_TOOLTIP'] = '首次出現將以最小化模式進行';
-    L['MAZE_HELPER_SOLUTION'] = '|cff33cc66%s|r';
     L['MAZE_HELPER_SOLUTION_NA'] = '|cffffb833沒有解決方案...|r';
     L['MAZE_HELPER_SETTINGS_SYNC_ENABLED_LABEL'] = '組同步';
     L['MAZE_HELPER_SETTINGS_SYNC_ENABLED_TOOLTIP'] = '啟用符號選擇與其他組成員的同步|n|n|cffff6a00不建議關閉|r';
@@ -475,7 +458,6 @@ if gameLocale == 'zhCN' then
     L['MAZE_HELPER_ANNOUNCE_LEAF_FULL_NOCIRCLE'] = '无环 实心 叶';
     L['MAZE_HELPER_ANNOUNCE_LEAF_NOFULL_CIRCLE'] = '有环 空心 叶';
     L['MAZE_HELPER_ANNOUNCE_LEAF_NOFULL_NOCIRCLE'] = '无环 空心 叶';
-    L['MAZE_HELPER_ANNOUNCE_SOLUTION'] = '%s';
     L['MAZE_HELPER_CHOOSE_SYMBOLS_1'] = '再点一个标志';
     L['MAZE_HELPER_CHOOSE_SYMBOLS_2'] = '再点两个标志';
     L['MAZE_HELPER_CHOOSE_SYMBOLS_3'] = '再点三个标志';
@@ -510,7 +492,6 @@ if gameLocale == 'zhCN' then
     L['MAZE_HELPER_SETTINGS_SYNC_ENABLED_TOOLTIP'] = '启用符号选择与其他队伍成员的同步|n|n|cffff6a00不建议关闭|r';
     L['MAZE_HELPER_SETTINGS_USE_COLORED_SYMBOLS_LABEL'] = '使用彩色符号';
     L['MAZE_HELPER_SETTINGS_USE_COLORED_SYMBOLS_TOOLTIP'] = '使用彩色符号代替黑白';
-    L['MAZE_HELPER_SOLUTION'] = '|cff33cc66%s|r';
     L['MAZE_HELPER_SOLUTION_NA'] = '|cffffb833没有答案...|r';
     L['MAZE_HELPER_SETTINGS_SHOW_SEQUENCE_NUMBERS_LABEL'] = '显示序号';
     L['MAZE_HELPER_SETTINGS_SHOW_SEQUENCE_NUMBERS_TOOLTIP'] = '单击符号时显示序号(1/2/3/4)';
@@ -530,7 +511,6 @@ if gameLocale == 'koKR' then -- hinski (https://www.curseforge.com/members/hinsk
     L['MAZE_HELPER_ANNOUNCE_LEAF_FULL_NOCIRCLE'] = '원 없는 색칠한 잎';
     L['MAZE_HELPER_ANNOUNCE_LEAF_NOFULL_CIRCLE'] = '원 안의 빈 잎';
     L['MAZE_HELPER_ANNOUNCE_LEAF_NOFULL_NOCIRCLE'] = '원 없는 빈 잎';
-    L['MAZE_HELPER_ANNOUNCE_SOLUTION'] = '%s';
     L['MAZE_HELPER_CHOOSE_SYMBOLS_1'] = '1개의 모양을 더 고르세요';
     L['MAZE_HELPER_CHOOSE_SYMBOLS_2'] = '2개의 모양을 더 고르세요';
     L['MAZE_HELPER_CHOOSE_SYMBOLS_3'] = '3개의 모양을 더 고르세요';
@@ -569,7 +549,6 @@ if gameLocale == 'koKR' then -- hinski (https://www.curseforge.com/members/hinsk
     L['MAZE_HELPER_SETTINGS_SYNC_ENABLED_TOOLTIP'] = '다른 파티원과 선택한 모양 공유 활성화|n|n|cffff6a00끄지 않는 것을 권장합니다|r';
     L['MAZE_HELPER_SETTINGS_USE_COLORED_SYMBOLS_LABEL'] = '색이 있는 모양 사용';
     L['MAZE_HELPER_SETTINGS_USE_COLORED_SYMBOLS_TOOLTIP'] = '흑백 대신 유채색된 모양 사용';
-    L['MAZE_HELPER_SOLUTION'] = '|cff33cc66%s|r';
     L['MAZE_HELPER_SOLUTION_NA'] = '|cffffb833정답이 없습니다...|r';
 
     return;
