@@ -585,7 +585,7 @@ PixelUtil.SetPoint(MazeHelper.frame.Settings.VersionText, 'BOTTOM', MazeHelper.f
 MazeHelper.frame.Settings.VersionText:SetText(GetAddOnMetadata(ADDON_NAME, 'Version'));
 
 -- sender can be nil
-local function LeftButton_OnClick(button, send, sender)
+local function Button_SetActive(button, send, sender)
     if button.state or NUM_ACTIVE_BUTTONS == MAX_ACTIVE_BUTTONS then
         return;
     end
@@ -609,7 +609,7 @@ local function LeftButton_OnClick(button, send, sender)
 end
 
 -- sender can be nil
-local function RightButton_OnClick(button, send, sender)
+local function Button_SetUnactive(button, send, sender)
     if not button.state then
         return;
     end
@@ -689,9 +689,9 @@ function MazeHelper:CreateButton(index)
 
     button:SetScript('OnClick', function(self, b)
         if b == 'LeftButton' then
-            LeftButton_OnClick(self, true);
+            Button_SetActive(self, true);
         elseif b == 'RightButton' then
-            RightButton_OnClick(self, true);
+            Button_SetUnactive(self, true);
         end
     end);
 
@@ -1119,7 +1119,7 @@ function MazeHelper:ReceiveActiveButtonID(buttonID, sender)
         return;
     end
 
-    LeftButton_OnClick(buttons[buttonID], false, sender);
+    Button_SetActive(buttons[buttonID], false, sender);
 end
 
 function MazeHelper:ReceiveUnactiveButtonID(buttonID, sender)
@@ -1127,7 +1127,7 @@ function MazeHelper:ReceiveUnactiveButtonID(buttonID, sender)
         return;
     end
 
-    RightButton_OnClick(buttons[buttonID], false, sender);
+    Button_SetUnactive(buttons[buttonID], false, sender);
 end
 
 local function UpdateShown()
