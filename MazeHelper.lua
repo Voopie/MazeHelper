@@ -187,7 +187,9 @@ MazeHelper.frame.CloseButton:GetHighlightTexture():SetTexCoord(unpack(M.Icons.CO
 MazeHelper.frame.CloseButton:GetHighlightTexture():SetVertexColor(1, 0.85, 0, 1);
 MazeHelper.frame.CloseButton:SetScript('OnClick', function()
     if MazeHelper.frame.Settings:IsShown() then
-        MazeHelper.frame.SettingsButton:Click();
+        MazeHelper.frame.Settings:SetShown(false);
+        MazeHelper.frame.SettingsButton:SetShown(true);
+        return;
     end
 
     MazeHelper.frame:SetShown(false);
@@ -206,11 +208,7 @@ MazeHelper.frame.SettingsButton:GetHighlightTexture():SetVertexColor(1, 0.85, 0,
 MazeHelper.frame.SettingsButton:SetScript('OnClick', function(self)
     local settingsIsShown = MazeHelper.frame.Settings:IsShown();
 
-    if not settingsIsShown then
-        self:LockHighlight();
-    else
-        self:UnlockHighlight();
-    end
+    self:SetShown(false);
 
     MazeHelper.frame.Settings:SetShown(not settingsIsShown);
     MazeHelper.frame.MainHolder:SetShown(settingsIsShown);
