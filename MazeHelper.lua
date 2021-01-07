@@ -582,7 +582,7 @@ MazeHelper.frame.Settings.VersionText = MazeHelper.frame.Settings:CreateFontStri
 PixelUtil.SetPoint(MazeHelper.frame.Settings.VersionText, 'BOTTOM', MazeHelper.frame.Settings, 'TOP', 0, 0);
 MazeHelper.frame.Settings.VersionText:SetText(GetAddOnMetadata(ADDON_NAME, 'Version'));
 
--- sender can be nil
+-- send & sender can be nil
 local function Button_SetActive(button, send, sender)
     if button.state or NUM_ACTIVE_BUTTONS == MAX_ACTIVE_BUTTONS then
         return;
@@ -606,7 +606,7 @@ local function Button_SetActive(button, send, sender)
     MazeHelper:UpdateSolution();
 end
 
--- sender can be nil
+-- send & sender can be nil
 local function Button_SetUnactive(button, send, sender)
     if not button.state then
         return;
