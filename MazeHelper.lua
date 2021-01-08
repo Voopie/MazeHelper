@@ -346,8 +346,8 @@ local function ResetAll()
     end
 
     for i = 1, MAX_BUTTONS do
-        MazeHelper:SetUnactiveButton(buttons[i]);
-        MazeHelper:ResetButtonSequence(buttons[i]);
+        buttons[i]:SetUnactive();
+        buttons[i]:ResetSequence();
 
         buttons[i].state = false;
         buttons[i].sender = nil;
@@ -595,8 +595,9 @@ local function Button_SetActive(button, send, sender)
     button.state  = true;
     button.sender = sender;
 
-    MazeHelper:SetActiveButton(button);
-    MazeHelper:UpdateButtonSequence(button);
+    button:SetActive();
+    button:UpdateSequence();
+
     MazeHelper.frame.SolutionText:SetText(L['MAZE_HELPER_CHOOSE_SYMBOLS_' .. (MAX_ACTIVE_BUTTONS - NUM_ACTIVE_BUTTONS)]);
 
     if send then
@@ -616,19 +617,19 @@ local function Button_SetUnactive(button, send, sender)
     button.state  = false;
     button.sender = sender;
 
-    MazeHelper:SetUnactiveButton(button);
-    MazeHelper:ResetButtonSequence(button);
+    button:SetUnactive();
+    button:ResetSequence();
 
     if NUM_ACTIVE_BUTTONS < MAX_ACTIVE_BUTTONS then
         MazeHelper.frame.SolutionText:SetText(L['MAZE_HELPER_CHOOSE_SYMBOLS_' .. (MAX_ACTIVE_BUTTONS - NUM_ACTIVE_BUTTONS)]);
 
         if SOLUTION_BUTTON_ID ~= nil then
-            MazeHelper:SetUnactiveButton(buttons[SOLUTION_BUTTON_ID]);
+            buttons[SOLUTION_BUTTON_ID]:SetUnactive();
         end
 
         for i = 1, MAX_BUTTONS do
             if buttons[i].state then
-                MazeHelper:SetActiveButton(buttons[i]);
+                buttons[i]:SetActive();
             end
         end
 
@@ -648,8 +649,20 @@ local function Button_SetUnactive(button, send, sender)
     end
 end
 
+local function GetMinimumReservedSequence()
+    for i = 1, #RESERVED_BUTTONS_SEQUENCE do
+        if RESERVED_BUTTONS_SEQUENCE[i] == false then
+            return i;
+        end
+    end
+end
+
 function MazeHelper:CreateButton(index)
     local button = CreateFrame('Button', nil, MazeHelper.frame.MainHolder, 'BackdropTemplate');
+
+    button.id    = index;
+    button.data  = buttonsData[index];
+    button.state = false;
 
     if index == 1 then
         PixelUtil.SetPoint(button, 'TOPLEFT', MazeHelper.frame.MainHolder, 'TOPLEFT', 20, -20);
@@ -667,22 +680,53 @@ function MazeHelper:CreateButton(index)
     button.Icon:SetTexture(M.Symbols.TEXTURE);
     button.Icon:SetTexCoord(unpack(MHMOTSConfig.UseColoredSymbols and buttonsData[index].coords or buttonsData[index].coords_white));
 
+    button.SequenceText = button:CreateFontString(nil, 'ARTWORK', 'GameFontNormal');
+    PixelUtil.SetPoint(button.SequenceText, 'BOTTOMRIGHT', button, 'BOTTOMRIGHT', -2, 2);
+    button.SequenceText:SetShown(MHMOTSConfig.ShowSequenceNumbers);
+
     button:SetBackdrop({
         insets   = { top = 1, left = 1, bottom = 1, right = 1 },
         edgeFile = 'Interface\\Buttons\\WHITE8x8',
         edgeSize = 2,
     });
 
-    MazeHelper:SetUnactiveButton(button);
+    button.SetReceived = function(self)
+        self:SetBackdropBorderColor(0.9, 1, 0.1, 1);
+    end
 
-    button.SequenceText = button:CreateFontString(nil, 'ARTWORK', 'GameFontNormal');
-    PixelUtil.SetPoint(button.SequenceText, 'BOTTOMRIGHT', button, 'BOTTOMRIGHT', -2, 2);
-    button.SequenceText:SetShown(MHMOTSConfig.ShowSequenceNumbers);
+    button.SetUnactive = function(self)
+        self:SetBackdropBorderColor(0, 0, 0, 0);
+    end
 
-    button.id    = index;
-    button.data  = buttonsData[index];
-    button.state = false;
+    button.SetActive = function(self)
+        self:SetBackdropBorderColor(0.4, 0.52, 0.95, 1);
+    end
 
+    button.SetSolution = function(self)
+        self:SetBackdropBorderColor(0.2, 0.8, 0.4, 1);
+    end
+
+    button.SetPredicted = function(self)
+        self:SetBackdropBorderColor(1, 0.9, 0.71, 1);
+    end
+
+    button.UpdateSequence = function(self)
+        self.sequence = GetMinimumReservedSequence();
+        RESERVED_BUTTONS_SEQUENCE[self.sequence] = true;
+
+        self.SequenceText:SetText((MHMOTSConfig.PredictSolution and self.sequence == 1) and M.INLINE_ENTRANCE_ICON or self.sequence);
+    end
+
+    button.ResetSequence = function(self)
+        if self.sequence then
+            RESERVED_BUTTONS_SEQUENCE[self.sequence] = false;
+            self.sequence = nil;
+        end
+
+        self.SequenceText:SetText(EMPTY_STRING);
+    end
+
+    button:SetUnactive();
     button:RegisterForClicks('LeftButtonUp', 'RightButtonUp');
 
     button:SetScript('OnClick', function(self, b)
@@ -721,50 +765,6 @@ function MazeHelper:CreateButtons()
     for i = 1, MAX_BUTTONS do
         MazeHelper:CreateButton(i);
     end
-end
-
-local function GetMinimumReservedSequence()
-    for i = 1, #RESERVED_BUTTONS_SEQUENCE do
-        if RESERVED_BUTTONS_SEQUENCE[i] == false then
-            return i;
-        end
-    end
-end
-
-function MazeHelper:UpdateButtonSequence(button)
-    button.sequence = GetMinimumReservedSequence();
-    RESERVED_BUTTONS_SEQUENCE[button.sequence] = true;
-
-    button.SequenceText:SetText((MHMOTSConfig.PredictSolution and button.sequence == 1) and M.INLINE_ENTRANCE_ICON or button.sequence);
-end
-
-function MazeHelper:ResetButtonSequence(button)
-    if button.sequence then
-        RESERVED_BUTTONS_SEQUENCE[button.sequence] = false;
-        button.sequence = nil;
-    end
-
-    button.SequenceText:SetText(EMPTY_STRING);
-end
-
-function MazeHelper:SetUnactiveButton(button)
-    button:SetBackdropBorderColor(0, 0, 0, 0);
-end
-
-function MazeHelper:SetActiveButton(button)
-    button:SetBackdropBorderColor(0.4, 0.52, 0.95, 1);
-end
-
-function MazeHelper:SetReceivedButton(button)
-    button:SetBackdropBorderColor(0.9, 1, 0.1, 1);
-end
-
-function MazeHelper:SetSolutionButton(button)
-    button:SetBackdropBorderColor(0.2, 0.8, 0.4, 1);
-end
-
-function MazeHelper:SetPredictedButton(button)
-    button:SetBackdropBorderColor(1, 0.9, 0.71, 1);
 end
 
 -- Credit to Garthul#2712
@@ -942,12 +942,12 @@ function MazeHelper:UpdateSolution()
         if PREDICTED_SOLUTION_BUTTON_ID then
             if buttons[PREDICTED_SOLUTION_BUTTON_ID].state then
                 if buttons[PREDICTED_SOLUTION_BUTTON_ID].sender then
-                    MazeHelper:SetReceivedButton(buttons[PREDICTED_SOLUTION_BUTTON_ID]);
+                    buttons[PREDICTED_SOLUTION_BUTTON_ID]:SetReceived();
                 else
-                    MazeHelper:SetActiveButton(buttons[PREDICTED_SOLUTION_BUTTON_ID]);
+                    buttons[PREDICTED_SOLUTION_BUTTON_ID]:SetActive();
                 end
             else
-                MazeHelper:SetUnactiveButton(buttons[PREDICTED_SOLUTION_BUTTON_ID]);
+                buttons[PREDICTED_SOLUTION_BUTTON_ID]:SetUnactive();
             end
 
             PREDICTED_SOLUTION_BUTTON_ID = nil;
@@ -961,14 +961,14 @@ function MazeHelper:UpdateSolution()
 
         for i = 1, MAX_BUTTONS do
             if not buttons[i].state then
-                MazeHelper:SetUnactiveButton(buttons[i]);
+                buttons[i]:SetUnactive();
             end
         end
 
         if PREDICTED_SOLUTION_BUTTON_ID then
-            MazeHelper:SetPredictedButton(buttons[PREDICTED_SOLUTION_BUTTON_ID]);
+            buttons[PREDICTED_SOLUTION_BUTTON_ID]:SetPredicted();
         else
-            MazeHelper:SetSolutionButton(buttons[SOLUTION_BUTTON_ID]);
+            buttons[SOLUTION_BUTTON_ID]:SetSolution();
         end
 
         MazeHelper.frame.MiniSolution.Icon:SetTexCoord(unpack(MHMOTSConfig.UseColoredSymbols and buttonsData[SOLUTION_BUTTON_ID].coords or buttonsData[SOLUTION_BUTTON_ID].coords_white));
@@ -1010,12 +1010,12 @@ function MazeHelper:UpdateSolution()
             for i = 1, MAX_BUTTONS do
                 if buttons[i].state then
                     if buttons[i].sender then
-                        MazeHelper:SetReceivedButton(buttons[i]);
+                        buttons[i]:SetReceived();
                     else
-                        MazeHelper:SetActiveButton(buttons[i]);
+                        buttons[i]:SetActive();
                     end
                 else
-                    MazeHelper:SetUnactiveButton(buttons[i]);
+                    buttons[i]:SetUnactive();
                 end
             end
 
