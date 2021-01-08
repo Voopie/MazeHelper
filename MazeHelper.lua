@@ -778,7 +778,7 @@ local TryHeuristicSolution do
         circle = false,
     };
 
-    local function Filter(b, f) table.wipe(filterTable); for i, v in pairs(b) do if f(v) then filterTable[i] = v; end end return filterTable; end
+    local function Filter(b, f) wipe(filterTable); for i, v in pairs(b) do if f(v) then filterTable[i] = v; end end return filterTable; end
     local function Find(b, f) for i, v in pairs(b) do if f(v) then return i, v; end end end
     local function Equals(s1, s2) return s1.fill == s2.fill and s1.leaf == s2.leaf and s1.circle == s2.circle; end
     local function Opposite(s)
