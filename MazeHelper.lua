@@ -134,12 +134,6 @@ local function BetterOnDragStop(frame)
     PixelUtil.SetPoint(frame, point, relativeTo, relativePoint, xOfs, yOfs);
 end
 
-local function SwitchSymbolsColorMode(isColored)
-    for i = 1, MAX_BUTTONS do
-        buttons[i].Icon:SetTexCoord(unpack(isColored and buttonsData[i].coords or buttonsData[i].coords_white));
-    end
-end
-
 MazeHelper.frame = CreateFrame('Frame', 'ST_Maze_Helper', UIParent);
 PixelUtil.SetPoint(MazeHelper.frame, 'CENTER', UIParent, 'CENTER', -FRAME_SIZE, FRAME_SIZE);
 PixelUtil.SetSize(MazeHelper.frame, FRAME_SIZE + X_OFFSET * (MAX_ACTIVE_BUTTONS - 1), FRAME_SIZE * 3/4);
@@ -517,7 +511,10 @@ settingsScrollChild.Data.UseColoredSymbols:SetLabel(L['MAZE_HELPER_SETTINGS_USE_
 settingsScrollChild.Data.UseColoredSymbols:SetTooltip(L['MAZE_HELPER_SETTINGS_USE_COLORED_SYMBOLS_TOOLTIP']);
 settingsScrollChild.Data.UseColoredSymbols:SetScript('OnClick', function(self)
     MHMOTSConfig.UseColoredSymbols = self:GetChecked();
-    SwitchSymbolsColorMode(MHMOTSConfig.UseColoredSymbols);
+
+    for i = 1, MAX_BUTTONS do
+        buttons[i].Icon:SetTexCoord(unpack(MHMOTSConfig.UseColoredSymbols and buttonsData[i].coords or buttonsData[i].coords_white));
+    end
 end);
 
 settingsScrollChild.Data.ShowSequenceNumbers = E.CreateRoundedCheckButton(settingsScrollChild);
