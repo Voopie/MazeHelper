@@ -165,6 +165,34 @@ do
     MazeHelper.frame:HookScript('OnShow', function()
         AnimationFadeInGroup:Play();
     end);
+
+    local AnimationFadeOutGroup = MazeHelper.frame:CreateAnimationGroup();
+    local fadeOut = AnimationFadeOutGroup:CreateAnimation('Alpha');
+    fadeOut:SetDuration(0.2);
+    fadeOut:SetFromAlpha(1);
+    fadeOut:SetToAlpha(0);
+    fadeOut:SetStartDelay(0);
+
+    AnimationFadeOutGroup:SetScript('OnFinished', function()
+        MazeHelper.frame:HideDefault();
+    end);
+
+    MazeHelper.frame.HideDefault = MazeHelper.frame.Hide;
+    MazeHelper.frame.Hide = function()
+        AnimationFadeOutGroup:Play();
+    end
+
+    MazeHelper.frame.SetShown = function(self, state)
+        if not state then
+            if self:IsShown() then
+                self:Hide();
+            end
+        else
+            if not self:IsShown() then
+                self:Show();
+            end
+        end
+    end
 end
 
 -- Background
