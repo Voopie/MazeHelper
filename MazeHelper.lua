@@ -134,9 +134,9 @@ local function BetterOnDragStop(frame)
     PixelUtil.SetPoint(frame, point, relativeTo, relativePoint, xOfs, yOfs);
 end
 
-local function SwitchSymbolsColorMode(colored)
+local function SwitchSymbolsColorMode(isColored)
     for i = 1, MAX_BUTTONS do
-        buttons[i].Icon:SetTexCoord(unpack(colored and buttonsData[i].coords or buttonsData[i].coords_white));
+        buttons[i].Icon:SetTexCoord(unpack(isColored and buttonsData[i].coords or buttonsData[i].coords_white));
     end
 end
 
