@@ -15,7 +15,7 @@ local SOUND_CHANNEL = 'Dialog';
 local Sets = {
     [1] = {
         solutionIndex = 2,
-        set = {
+        buttons = {
             [1] = MazeHelper.ButtonsData[1],
             [2] = MazeHelper.ButtonsData[7],
             [3] = MazeHelper.ButtonsData[3],
@@ -24,7 +24,7 @@ local Sets = {
     },
     [2] = {
         solutionIndex = 4,
-        set = {
+        buttons = {
             [1] = MazeHelper.ButtonsData[5],
             [2] = MazeHelper.ButtonsData[8],
             [3] = MazeHelper.ButtonsData[6],
@@ -33,7 +33,7 @@ local Sets = {
     },
     [3] = {
         solutionIndex = 1,
-        set = {
+        buttons = {
             [1] = MazeHelper.ButtonsData[5],
             [2] = MazeHelper.ButtonsData[2],
             [3] = MazeHelper.ButtonsData[8],
@@ -42,7 +42,7 @@ local Sets = {
     },
     [4] = {
         solutionIndex = 1,
-        set = {
+        buttons = {
             [1] = MazeHelper.ButtonsData[5],
             [2] = MazeHelper.ButtonsData[8],
             [3] = MazeHelper.ButtonsData[4],
@@ -51,7 +51,7 @@ local Sets = {
     },
     [5] = {
         solutionIndex = 4,
-        set = {
+        buttons = {
             [1] = MazeHelper.ButtonsData[7],
             [2] = MazeHelper.ButtonsData[1],
             [3] = MazeHelper.ButtonsData[5],
@@ -60,7 +60,7 @@ local Sets = {
     },
     [6] = {
         solutionIndex = 1,
-        set = {
+        buttons = {
             [1] = MazeHelper.ButtonsData[3],
             [2] = MazeHelper.ButtonsData[8],
             [3] = MazeHelper.ButtonsData[6],
@@ -69,7 +69,7 @@ local Sets = {
     },
     [7] = {
         solutionIndex = 3,
-        set = {
+        buttons = {
             [1] = MazeHelper.ButtonsData[3],
             [2] = MazeHelper.ButtonsData[8],
             [3] = MazeHelper.ButtonsData[2],
@@ -78,7 +78,7 @@ local Sets = {
     },
     [8] = {
         solutionIndex = 3,
-        set = {
+        buttons = {
             [1] = MazeHelper.ButtonsData[7],
             [2] = MazeHelper.ButtonsData[5],
             [3] = MazeHelper.ButtonsData[4],
@@ -87,7 +87,7 @@ local Sets = {
     },
     [9] = {
         solutionIndex = 3,
-        set = {
+        buttons = {
             [1] = MazeHelper.ButtonsData[6],
             [2] = MazeHelper.ButtonsData[8],
             [3] = MazeHelper.ButtonsData[3],
@@ -96,7 +96,7 @@ local Sets = {
     },
     [10] = {
         solutionIndex = 3,
-        set = {
+        buttons = {
             [1] = MazeHelper.ButtonsData[2],
             [2] = MazeHelper.ButtonsData[6],
             [3] = MazeHelper.ButtonsData[7],
@@ -105,7 +105,7 @@ local Sets = {
     },
     [11] = {
         solutionIndex = 2,
-        set = {
+        buttons = {
             [1] = MazeHelper.ButtonsData[7],
             [2] = MazeHelper.ButtonsData[6],
             [3] = MazeHelper.ButtonsData[3],
@@ -114,7 +114,7 @@ local Sets = {
     },
     [12] = {
         solutionIndex = 4,
-        set = {
+        buttons = {
             [1] = MazeHelper.ButtonsData[2],
             [2] = MazeHelper.ButtonsData[4],
             [3] = MazeHelper.ButtonsData[6],
@@ -123,7 +123,7 @@ local Sets = {
     },
     [13] = {
         solutionIndex = 4,
-        set = {
+        buttons = {
             [1] = MazeHelper.ButtonsData[2],
             [2] = MazeHelper.ButtonsData[3],
             [3] = MazeHelper.ButtonsData[4],
@@ -132,7 +132,7 @@ local Sets = {
     },
     [14] = {
         solutionIndex = 4,
-        set = {
+        buttons = {
             [1] = MazeHelper.ButtonsData[1],
             [2] = MazeHelper.ButtonsData[3],
             [3] = MazeHelper.ButtonsData[5],
@@ -141,7 +141,7 @@ local Sets = {
     },
     [15] = {
         solutionIndex = 1,
-        set = {
+        buttons = {
             [1] = MazeHelper.ButtonsData[1],
             [2] = MazeHelper.ButtonsData[6],
             [3] = MazeHelper.ButtonsData[7],
@@ -150,7 +150,7 @@ local Sets = {
     },
     [16] = {
         solutionIndex = 2,
-        set = {
+        buttons = {
             [1] = MazeHelper.ButtonsData[2],
             [2] = MazeHelper.ButtonsData[3],
             [3] = MazeHelper.ButtonsData[5],
@@ -212,7 +212,7 @@ local function UpdateButtons()
             solutionButtonIndex = i;
         end
 
-        buttons[i].Icon:SetTexCoord(unpack(set.set[i].coords));
+        buttons[i].Icon:SetTexCoord(unpack(set.buttons[i].coords));
         buttons[i]:SetUnactive();
     end
 end
