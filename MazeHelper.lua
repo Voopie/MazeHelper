@@ -639,6 +639,7 @@ local function Button_SetUnactive(button, send, sender)
     end
 
     NUM_ACTIVE_BUTTONS = math.max(0, NUM_ACTIVE_BUTTONS - 1);
+
     button.state  = false;
     button.sender = sender;
 
@@ -715,16 +716,16 @@ function MazeHelper:CreateButton(index)
         edgeSize = 2,
     });
 
-    button.SetReceived = function(self)
-        self:SetBackdropBorderColor(0.9, 1, 0.1, 1);
+    button.SetActive = function(self)
+        self:SetBackdropBorderColor(0.4, 0.52, 0.95, 1);
     end
 
     button.SetUnactive = function(self)
         self:SetBackdropBorderColor(0, 0, 0, 0);
     end
 
-    button.SetActive = function(self)
-        self:SetBackdropBorderColor(0.4, 0.52, 0.95, 1);
+    button.SetReceived = function(self)
+        self:SetBackdropBorderColor(0.9, 1, 0.1, 1);
     end
 
     button.SetSolution = function(self)
