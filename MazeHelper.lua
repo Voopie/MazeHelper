@@ -141,10 +141,17 @@ end
 local function BetterOnDragStop(frame)
     local point, relativeTo, relativePoint, xOfs, yOfs = frame:GetPoint();
 
+    MHMOTSConfig.SavedPosition[1] = point;
+    MHMOTSConfig.SavedPosition[2] = relativeTo
+    MHMOTSConfig.SavedPosition[3] = relativePoint;
+    MHMOTSConfig.SavedPosition[4] = xOfs;
+    MHMOTSConfig.SavedPosition[5] = yOfs;
+
     frame:StopMovingOrSizing();
 
     frame:ClearAllPoints();
-    PixelUtil.SetPoint(frame, point, relativeTo, relativePoint, xOfs, yOfs);
+    PixelUtil.SetPoint(frame, point, relativeTo or UIParent, relativePoint, xOfs, yOfs);
+    frame:SetUserPlaced(true);
 end
 
 MazeHelper.frame = CreateFrame('Frame', 'ST_Maze_Helper', UIParent);
@@ -1234,6 +1241,12 @@ local function UpdateData(frame) -- Not good name, i know...
 end
 
 function MazeHelper.frame:PLAYER_LOGIN()
+    if MHMOTSConfig.SavedPosition and #MHMOTSConfig.SavedPosition > 1 then
+        self:ClearAllPoints();
+        PixelUtil.SetPoint(self, MHMOTSConfig.SavedPosition[1], MHMOTSConfig.SavedPosition[2] or UIParent, MHMOTSConfig.SavedPosition[3], MHMOTSConfig.SavedPosition[4], MHMOTSConfig.SavedPosition[5]);
+        self:SetUserPlaced(true);
+	end
+
     UpdateData(self);
 end
 
@@ -1326,6 +1339,9 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     self:UnregisterEvent('ADDON_LOADED');
 
     MHMOTSConfig = MHMOTSConfig or {};
+
+    MHMOTSConfig.SavedPosition = MHMOTSConfig.SavedPosition or {};
+
     MHMOTSConfig.SyncEnabled             = MHMOTSConfig.SyncEnabled == nil and true or MHMOTSConfig.SyncEnabled;
     MHMOTSConfig.PredictSolution         = MHMOTSConfig.PredictSolution == nil and false or MHMOTSConfig.PredictSolution;
     MHMOTSConfig.PrintResettedPlayerName = MHMOTSConfig.PrintResettedPlayerName == nil and true or MHMOTSConfig.PrintResettedPlayerName;
