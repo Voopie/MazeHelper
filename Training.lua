@@ -218,13 +218,13 @@ local function UpdateButtons()
 end
 
 local function PlayRandomSuccessSound()
-    if not MazeHelper.TrainingFrame.NoSoundButton:GetChecked() then
+    if not MHMOTSConfig.TrainingNoSound then
         PlaySound(SuccessSounds[GetSoundRandomIndex(1, SuccessSoundsCount)], SOUND_CHANNEL);
     end
 end
 
 local function PlayRandomErrorSound()
-    if not MazeHelper.TrainingFrame.NoSoundButton:GetChecked() then
+    if not MHMOTSConfig.TrainingNoSound then
         PlaySound(ErrorSounds[GetSoundRandomIndex(1, ErrorSoundsCount)], SOUND_CHANNEL);
     end
 end
