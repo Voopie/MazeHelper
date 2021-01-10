@@ -131,7 +131,11 @@ local buttonsData = {
 };
 
 local function GetPartyChatType()
-    return (not IsInRaid() and IsInGroup(LE_PARTY_CATEGORY_INSTANCE)) and 'INSTANCE_CHAT' or (IsInGroup(LE_PARTY_CATEGORY_HOME) and 'PARTY' or false);
+    if IsInRaid() then
+        return false;
+    end
+
+    return IsInGroup(LE_PARTY_CATEGORY_INSTANCE) and 'INSTANCE_CHAT' or (IsInGroup(LE_PARTY_CATEGORY_HOME) and 'PARTY' or false);
 end
 
 local function BetterOnDragStop(frame)
