@@ -17,18 +17,21 @@ M.BACKGROUND_WHITE = MEDIA_PATH .. 'background-white.blp';
 M.BBH = MEDIA_PATH .. 'bbh.blp';
 
 M.Icons = {
-    TEXTURE = MEDIA_PATH .. 'icons32.blp', -- 128x64
+    TEXTURE = MEDIA_PATH .. 'icons32.blp', -- 128x128
 
     COORDS = {
-        MEGAPHONE_WHITE = {  0, 1/4,   0, 1/2},
-        CROSS_WHITE     = {1/4, 2/4,   0, 1/2},
-        SPANNER_WHITE   = {2/4, 3/4,   0, 1/2},
-        GEAR_WHITE      = {3/4, 4/4,   0, 1/2},
-        INFINITY_WHITE  = {2/4, 3/4, 1/2, 2/2},
-        ENTRANCE        = {3/4, 4/4, 1/2, 2/2},
+        MEGAPHONE_WHITE  = {  0, 1/4,   0, 1/4},
+        CROSS_WHITE      = {1/4, 2/4,   0, 1/4},
+        SPANNER_WHITE    = {2/4, 3/4,   0, 1/4},
+        GEAR_WHITE       = {3/4, 4/4,   0, 1/4},
+        INFINITY_WHITE   = {2/4, 3/4, 1/4, 2/4},
+        ENTRANCE         = {3/4, 4/4, 1/4, 2/4},
+        MUSIC_NOTE       = {  0, 1/4, 2/4, 3/4},
+        MAZE_BRAIN       = {1/4, 2/4, 2/4, 3/4},
+        CROSS_THIN_WHITE = {2/4, 3/4, 2/4, 3/4},
 
-        CHECKBUTTON_CHECKED = {  0, 1/4, 1/2, 2/2},
-        CHECKBUTTON_NORMAL  = {1/4, 2/4, 1/2, 2/2},
+        CHECKBUTTON_CHECKED = {  0, 1/4, 1/4, 2/4},
+        CHECKBUTTON_NORMAL  = {1/4, 2/4, 1/4, 2/4},
     },
 };
 

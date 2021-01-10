@@ -8,3 +8,4 @@ Locale.lua
 Media\Data.lua
 Elements.lua
 MazeHelper.lua
+Training.lua

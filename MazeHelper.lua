@@ -130,6 +130,8 @@ local buttonsData = {
     },
 };
 
+MazeHelper.ButtonsData = buttonsData;
+
 local function GetPartyChatType()
     if IsInRaid() then
         return false;
@@ -219,8 +221,8 @@ MazeHelper.frame.background:SetAlpha(0.85);
 
 -- Close Button
 MazeHelper.frame.CloseButton = CreateFrame('Button', nil, MazeHelper.frame);
-PixelUtil.SetPoint(MazeHelper.frame.CloseButton, 'TOPRIGHT', MazeHelper.frame, 'TOPRIGHT', -8, -4);
-PixelUtil.SetSize(MazeHelper.frame.CloseButton, 10, 10);
+PixelUtil.SetPoint(MazeHelper.frame.CloseButton, 'TOPRIGHT', MazeHelper.frame, 'TOPRIGHT', -8, -2);
+PixelUtil.SetSize(MazeHelper.frame.CloseButton, 12, 12);
 MazeHelper.frame.CloseButton:SetNormalTexture(M.Icons.TEXTURE);
 MazeHelper.frame.CloseButton:GetNormalTexture():SetTexCoord(unpack(M.Icons.COORDS.CROSS_WHITE));
 MazeHelper.frame.CloseButton:GetNormalTexture():SetVertexColor(0.7, 0.7, 0.7, 1);
@@ -233,6 +235,8 @@ MazeHelper.frame.CloseButton:SetScript('OnClick', function()
         MazeHelper.frame.SettingsButton:SetShown(true);
         MazeHelper.frame.MainHolder:SetShown(true);
         MazeHelper.frame.MinButton:SetShown(true);
+        MazeHelper.frame.TrainingModeButton:SetShown(true);
+
         return;
     end
 
@@ -241,8 +245,8 @@ end);
 
 -- Settings Button
 MazeHelper.frame.SettingsButton = CreateFrame('Button', nil, MazeHelper.frame);
-PixelUtil.SetPoint(MazeHelper.frame.SettingsButton, 'RIGHT', MazeHelper.frame.CloseButton, 'LEFT', -10, 0);
-PixelUtil.SetSize(MazeHelper.frame.SettingsButton, 11, 11);
+PixelUtil.SetPoint(MazeHelper.frame.SettingsButton, 'RIGHT', MazeHelper.frame.CloseButton, 'LEFT', -8, 0);
+PixelUtil.SetSize(MazeHelper.frame.SettingsButton, 14, 14);
 MazeHelper.frame.SettingsButton:SetNormalTexture(M.Icons.TEXTURE);
 MazeHelper.frame.SettingsButton:GetNormalTexture():SetTexCoord(unpack(M.Icons.COORDS.GEAR_WHITE));
 MazeHelper.frame.SettingsButton:GetNormalTexture():SetVertexColor(0.7, 0.7, 0.7, 1);
@@ -257,14 +261,30 @@ MazeHelper.frame.SettingsButton:SetScript('OnClick', function(self)
     MazeHelper.frame.Settings:SetShown(not settingsIsShown);
     MazeHelper.frame.MainHolder:SetShown(settingsIsShown);
     MazeHelper.frame.MinButton:SetShown(settingsIsShown);
+    MazeHelper.frame.TrainingModeButton:SetShown(settingsIsShown);
+end);
+
+-- Training Mode Button
+MazeHelper.frame.TrainingModeButton = CreateFrame('Button', nil, MazeHelper.frame);
+PixelUtil.SetPoint(MazeHelper.frame.TrainingModeButton, 'RIGHT', MazeHelper.frame.SettingsButton, 'LEFT', -8, 0);
+PixelUtil.SetSize(MazeHelper.frame.TrainingModeButton, 14, 14);
+MazeHelper.frame.TrainingModeButton:SetNormalTexture(M.Icons.TEXTURE);
+MazeHelper.frame.TrainingModeButton:GetNormalTexture():SetTexCoord(unpack(M.Icons.COORDS.MAZE_BRAIN));
+MazeHelper.frame.TrainingModeButton:GetNormalTexture():SetVertexColor(0.7, 0.7, 0.7, 1);
+MazeHelper.frame.TrainingModeButton:SetHighlightTexture(M.Icons.TEXTURE, 'BLEND');
+MazeHelper.frame.TrainingModeButton:GetHighlightTexture():SetTexCoord(unpack(M.Icons.COORDS.MAZE_BRAIN));
+MazeHelper.frame.TrainingModeButton:GetHighlightTexture():SetVertexColor(1, 0.85, 0, 1);
+MazeHelper.frame.TrainingModeButton:SetScript('OnClick', function(self)
+    MazeHelper.frame:SetShown(false);
+    MazeHelper.TrainingFrame:SetShown(true);
 end);
 
 -- Minimize Button
 MazeHelper.frame.MinButton = CreateFrame('Button', nil, MazeHelper.frame);
-PixelUtil.SetPoint(MazeHelper.frame.MinButton, 'RIGHT', MazeHelper.frame.SettingsButton, 'LEFT', -8, 0);
+PixelUtil.SetPoint(MazeHelper.frame.MinButton, 'RIGHT', MazeHelper.frame.TrainingModeButton, 'LEFT', -8, 0);
 PixelUtil.SetSize(MazeHelper.frame.MinButton, 14, 14);
 MazeHelper.frame.MinButton.icon = MazeHelper.frame.MinButton:CreateTexture(nil, 'OVERLAY');
-PixelUtil.SetPoint(MazeHelper.frame.MinButton.icon, 'BOTTOM', MazeHelper.frame.MinButton, 'BOTTOM', 0, 2);
+PixelUtil.SetPoint(MazeHelper.frame.MinButton.icon, 'BOTTOM', MazeHelper.frame.MinButton, 'BOTTOM', 0, 0);
 PixelUtil.SetSize(MazeHelper.frame.MinButton.icon, 10, 2);
 MazeHelper.frame.MinButton.icon:SetTexture('Interface\\Buttons\\WHITE8x8');
 MazeHelper.frame.MinButton.icon:SetVertexColor(0.7, 0.7, 0.7, 1);
@@ -283,7 +303,7 @@ MazeHelper.frame.MinButton:SetScript('OnClick', function()
     PixelUtil.SetPoint(MazeHelper.frame.background, 'TOPLEFT', MazeHelper.frame, 'TOPLEFT', -15, 0);
     PixelUtil.SetPoint(MazeHelper.frame.background, 'BOTTOMRIGHT', MazeHelper.frame, 'BOTTOMRIGHT', 15, 0);
 
-    PixelUtil.SetPoint(MazeHelper.frame.CloseButton, 'TOPRIGHT', MazeHelper.frame, 'TOPRIGHT', -8, -9);
+    PixelUtil.SetPoint(MazeHelper.frame.CloseButton, 'TOPRIGHT', MazeHelper.frame, 'TOPRIGHT', -8, -8);
 
     MazeHelper.frame.PassedCounter:ClearAllPoints();
     PixelUtil.SetPoint(MazeHelper.frame.PassedCounter, 'LEFT', MazeHelper.frame, 'LEFT', -18, 5);
@@ -306,6 +326,7 @@ MazeHelper.frame.MinButton:SetScript('OnClick', function()
     MazeHelper.frame.InvisibleMaxButton:SetShown(true);
 
     MazeHelper.frame.MinButton:SetShown(false);
+    MazeHelper.frame.TrainingModeButton:SetShown(false);
 end);
 MazeHelper.frame.MinButton:SetScript('OnEnter', function(self) self.icon:SetVertexColor(1, 0.85, 0, 1); end);
 MazeHelper.frame.MinButton:SetScript('OnLeave', function(self) self.icon:SetVertexColor(0.7, 0.7, 0.7, 1); end);
@@ -355,7 +376,8 @@ MazeHelper.frame.InvisibleMaxButton:SetScript('OnClick', function()
 
     MazeHelper.frame.InvisibleMaxButton:SetShown(false);
 
-    MazeHelper.frame.MinButton:Show();
+    MazeHelper.frame.MinButton:SetShown(true);
+    MazeHelper.frame.TrainingModeButton:SetShown(true);
 end);
 MazeHelper.frame.InvisibleMaxButton:RegisterForDrag('LeftButton');
 MazeHelper.frame.InvisibleMaxButton:SetScript('OnDragStart', function()
@@ -1356,6 +1378,8 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     MHMOTSConfig.AutoAnnouncerAsTank        = MHMOTSConfig.AutoAnnouncerAsTank == nil and false or MHMOTSConfig.AutoAnnouncerAsTank;
     MHMOTSConfig.AutoAnnouncerAsHealer      = MHMOTSConfig.AutoAnnouncerAsHealer == nil and false or MHMOTSConfig.AutoAnnouncerAsHealer;
 
+    MHMOTSConfig.TrainingNoSound = MHMOTSConfig.TrainingNoSound == nil and false or MHMOTSConfig.TrainingNoSound;
+
     settingsScrollChild.Data.SyncEnabled:SetChecked(MHMOTSConfig.SyncEnabled);
     settingsScrollChild.Data.PredictSolution:SetChecked(MHMOTSConfig.PredictSolution);
     settingsScrollChild.Data.UseColoredSymbols:SetChecked(MHMOTSConfig.UseColoredSymbols);
@@ -1375,6 +1399,13 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     settingsScrollChild.Data.AutoAnnouncerAsTank:SetEnabled(MHMOTSConfig.AutoAnnouncer);
     settingsScrollChild.Data.AutoAnnouncerAsHealer:SetEnabled(MHMOTSConfig.AutoAnnouncer);
 
+    MazeHelper.TrainingFrame.NoSoundButton:SetChecked(MHMOTSConfig.TrainingNoSound);
+    if MHMOTSConfig.TrainingNoSound then
+        MazeHelper.TrainingFrame.NoSoundButton:GetNormalTexture():SetVertexColor(0.8, 0.2, 0.4, 1);
+    else
+        MazeHelper.TrainingFrame.NoSoundButton:GetNormalTexture():SetVertexColor(0.2, 0.8, 0.4, 1);
+    end
+
     MazeHelper:CreateButtons();
 
     self:RegisterEvent('PLAYER_LOGIN');
@@ -1387,6 +1418,8 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
 
     _G['SLASH_MAZEHELPER1'] = '/mh';
     SlashCmdList['MAZEHELPER'] = function()
-        MazeHelper.frame:SetShown(not MazeHelper.frame:IsShown());
+        if not MazeHelper.TrainingFrame:IsShown() then
+            MazeHelper.frame:SetShown(not MazeHelper.frame:IsShown());
+        end
     end
 end
