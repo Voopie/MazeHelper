@@ -37,6 +37,15 @@ local PREDICTED_SOLUTION_BUTTON_ID;
 
 local MISTCALLER_ENCOUNTER_ID = 2392;
 
+local EVENTS_INSTANCE = {
+    'ZONE_CHANGED',
+    'ZONE_CHANGED_INDOORS',
+    'ZONE_CHANGED_NEW_AREA',
+    'ENCOUNTER_START',
+    'ENCOUNTER_END',
+    'BOSS_KILL',
+};
+
 local buttons = {}
 local buttonsData = {
     [1] = {
@@ -1208,19 +1217,13 @@ local function UpdateData(frame) -- Not good name, i know...
     startedInMinMode = false;
 
     if inInstance then
-        frame:RegisterEvent('ZONE_CHANGED');
-        frame:RegisterEvent('ZONE_CHANGED_INDOORS');
-        frame:RegisterEvent('ZONE_CHANGED_NEW_AREA');
-        frame:RegisterEvent('ENCOUNTER_START');
-        frame:RegisterEvent('ENCOUNTER_END');
-        frame:RegisterEvent('BOSS_KILL');
+        for _, event in ipairs(EVENTS_INSTANCE) do
+            frame:RegisterEvent(event);
+        end
     else
-        frame:UnregisterEvent('ZONE_CHANGED');
-        frame:UnregisterEvent('ZONE_CHANGED_INDOORS');
-        frame:UnregisterEvent('ZONE_CHANGED_NEW_AREA');
-        frame:UnregisterEvent('ENCOUNTER_START');
-        frame:UnregisterEvent('ENCOUNTER_END');
-        frame:UnregisterEvent('BOSS_KILL');
+        for _, event in ipairs(EVENTS_INSTANCE) do
+            frame:UnregisterEvent(event);
+        end
     end
 
     UpdateShown();
