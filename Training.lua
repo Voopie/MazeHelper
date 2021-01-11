@@ -216,6 +216,8 @@ local function UpdateButtons()
         buttons[i].Icon:SetTexCoord(unpack(set.buttons[i].coords));
         buttons[i]:SetUnactive();
     end
+
+    MazeHelper.TrainingFrame.PlayAgainButton:SetShown(false);
 end
 
 local function PlayRandomSuccessSound()
@@ -281,10 +283,7 @@ do
     end
 end
 
-MazeHelper.TrainingFrame:HookScript('OnShow', function()
-    UpdateButtons();
-    MazeHelper.TrainingFrame.PlayAgainButton:SetShown(false);
-end);
+MazeHelper.TrainingFrame:HookScript('OnShow', UpdateButtons);
 
 MazeHelper.TrainingFrame.Background = MazeHelper.TrainingFrame:CreateTexture(nil, 'BACKGROUND');
 PixelUtil.SetPoint(MazeHelper.TrainingFrame.Background, 'TOPLEFT', MazeHelper.TrainingFrame, 'TOPLEFT', -15, 8);
@@ -334,11 +333,8 @@ MazeHelper.TrainingFrame.PlayAgainButton = CreateFrame('Button', nil, MazeHelper
 PixelUtil.SetPoint(MazeHelper.TrainingFrame.PlayAgainButton, 'TOP', MazeHelper.TrainingFrame, 'BOTTOM', 0, -4);
 MazeHelper.TrainingFrame.PlayAgainButton:SetText(L['MAZE_HELPER_TRAINING_PLAY_AGAIN']);
 PixelUtil.SetSize(MazeHelper.TrainingFrame.PlayAgainButton, tonumber(MazeHelper.TrainingFrame.PlayAgainButton:GetTextWidth()) + 20, 22);
-MazeHelper.TrainingFrame.PlayAgainButton:SetScript('OnClick', function(self)
-    UpdateButtons();
-    self:SetShown(false);
-end);
 MazeHelper.TrainingFrame.PlayAgainButton:SetShown(false);
+MazeHelper.TrainingFrame.PlayAgainButton:SetScript('OnClick', UpdateButtons);
 
 local function CreateButton(index)
     local button = CreateFrame('Button', nil, MazeHelper.TrainingFrame, 'BackdropTemplate');
