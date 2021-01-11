@@ -281,6 +281,11 @@ do
     end
 end
 
+MazeHelper.TrainingFrame:HookScript('OnShow', function()
+    UpdateButtons();
+    MazeHelper.TrainingFrame.PlayAgainButton:SetShown(false);
+end);
+
 MazeHelper.TrainingFrame.Background = MazeHelper.TrainingFrame:CreateTexture(nil, 'BACKGROUND');
 PixelUtil.SetPoint(MazeHelper.TrainingFrame.Background, 'TOPLEFT', MazeHelper.TrainingFrame, 'TOPLEFT', -15, 8);
 PixelUtil.SetPoint(MazeHelper.TrainingFrame.Background, 'BOTTOMRIGHT', MazeHelper.TrainingFrame, 'BOTTOMRIGHT', 15, -38);
@@ -302,10 +307,7 @@ MazeHelper.TrainingFrame.CloseButton:SetHighlightTexture(M.Icons.TEXTURE, 'BLEND
 MazeHelper.TrainingFrame.CloseButton:GetHighlightTexture():SetTexCoord(unpack(M.Icons.COORDS.CROSS_WHITE));
 MazeHelper.TrainingFrame.CloseButton:GetHighlightTexture():SetVertexColor(1, 0.85, 0, 1);
 MazeHelper.TrainingFrame.CloseButton:SetScript('OnClick', function()
-    UpdateButtons();
-    MazeHelper.TrainingFrame.PlayAgainButton:SetShown(false);
     MazeHelper.TrainingFrame:SetShown(false);
-
     MazeHelper.frame:SetShown(true);
 end);
 
