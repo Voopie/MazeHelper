@@ -14,6 +14,7 @@ M.INLINE_ENTRANCE_ICON = '|T' .. MEDIA_PATH .. 'icons32.blp:12:12:-1:1:128:128:9
 
 M.BACKGROUND_WHITE = MEDIA_PATH .. 'background-white.blp';
 M.BBH = MEDIA_PATH .. 'bbh.blp';
+M.BGH = MEDIA_PATH .. 'bgh.blp';
 
 M.Icons = {
     TEXTURE = MEDIA_PATH .. 'icons32.blp', -- 128x128
