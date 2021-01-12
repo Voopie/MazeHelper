@@ -514,6 +514,12 @@ MazeHelper.frame.TrainingModeButton:SetScript('OnClick', function()
     MazeHelper.frame:SetShown(false);
     MazeHelper.TrainingFrame:SetShown(true);
 end);
+MazeHelper.TrainingFrame.TrainingModeButton:HookScript('OnEnter', function(self)
+    GameTooltip:SetOwner(self, 'ANCHOR_RIGHT');
+    GameTooltip:AddLine(L['MAZE_HELPER_TRAINING_BUTTON_TOOLTIP'], 1, 0.85, 0, true);
+    GameTooltip:Show();
+end);
+MazeHelper.TrainingFrame.TrainingModeButton:HookScript('OnLeave', GameTooltip_Hide);
 MazeHelper.frame.TrainingModeButton.Background = MazeHelper.frame.TrainingModeButton:CreateTexture(nil, 'BACKGROUND');
 PixelUtil.SetPoint(MazeHelper.frame.TrainingModeButton.Background, 'TOPLEFT', MazeHelper.frame.TrainingModeButton, 'TOPLEFT', -30, 30);
 PixelUtil.SetPoint(MazeHelper.frame.TrainingModeButton.Background, 'BOTTOMRIGHT', MazeHelper.frame.TrainingModeButton, 'BOTTOMRIGHT', 30, -30);
