@@ -310,16 +310,19 @@ MazeHelper.TrainingFrame.CloseButton:SetScript('OnClick', function()
     MazeHelper.frame:SetShown(true);
 end);
 
+local function GameTooltip_NoSoundButton_Show(self)
+    GameTooltip:SetOwner(self, 'ANCHOR_RIGHT');
+    GameTooltip:AddLine(MHMOTSConfig.TrainingNoSound and SOUND_EFFECTS_DISABLED or SOUND_EFFECTS_ENABLED, 1, 0.85, 0, true);
+    GameTooltip:Show();
+end
+
 MazeHelper.TrainingFrame.NoSoundButton = CreateFrame('CheckButton', nil, MazeHelper.TrainingFrame);
 PixelUtil.SetPoint(MazeHelper.TrainingFrame.NoSoundButton, 'BOTTOMRIGHT', MazeHelper.TrainingFrame, 'BOTTOMRIGHT', -8, 4);
 PixelUtil.SetSize(MazeHelper.TrainingFrame.NoSoundButton, 12, 12);
 MazeHelper.TrainingFrame.NoSoundButton:SetNormalTexture(M.Icons.TEXTURE);
 MazeHelper.TrainingFrame.NoSoundButton:GetNormalTexture():SetTexCoord(unpack(M.Icons.COORDS.MUSIC_NOTE));
 MazeHelper.TrainingFrame.NoSoundButton:GetNormalTexture():SetVertexColor(0.2, 0.8, 0.4, 1);
-MazeHelper.TrainingFrame.NoSoundButton:SetHighlightTexture(M.Icons.TEXTURE, 'BLEND');
-MazeHelper.TrainingFrame.NoSoundButton:GetHighlightTexture():SetTexCoord(unpack(M.Icons.COORDS.MUSIC_NOTE));
-MazeHelper.TrainingFrame.NoSoundButton:GetHighlightTexture():SetVertexColor(1, 0.85, 0, 1);
-MazeHelper.TrainingFrame.NoSoundButton:SetScript('OnClick', function()
+MazeHelper.TrainingFrame.NoSoundButton:SetScript('OnClick', function(self)
     MHMOTSConfig.TrainingNoSound = MazeHelper.TrainingFrame.NoSoundButton:GetChecked();
 
     if MHMOTSConfig.TrainingNoSound then
@@ -327,7 +330,13 @@ MazeHelper.TrainingFrame.NoSoundButton:SetScript('OnClick', function()
     else
         MazeHelper.TrainingFrame.NoSoundButton:GetNormalTexture():SetVertexColor(0.2, 0.8, 0.4, 1);
     end
+
+    if GameTooltip:IsOwned(self) then
+        GameTooltip_NoSoundButton_Show(self)
+    end
 end);
+MazeHelper.TrainingFrame.NoSoundButton:HookScript('OnEnter', GameTooltip_NoSoundButton_Show);
+MazeHelper.TrainingFrame.NoSoundButton:HookScript('OnLeave', GameTooltip_Hide);
 
 MazeHelper.TrainingFrame.PlayAgainButton = CreateFrame('Button', nil, MazeHelper.TrainingFrame, 'SharedButtonSmallTemplate');
 PixelUtil.SetPoint(MazeHelper.TrainingFrame.PlayAgainButton, 'TOP', MazeHelper.TrainingFrame, 'BOTTOM', 0, -4);
