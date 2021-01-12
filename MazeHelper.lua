@@ -947,7 +947,7 @@ local GetSolution do
     end
 
     -- return values can be nil
-    local function GetDominatedCharacteristics(circleSum, flowerSum, leafSum, fillSum)
+    local function GetOddCharacteristics(circleSum, flowerSum, leafSum, fillSum)
         local fill, flower, leaf, circle;
 
         if fillSum == 3 then
@@ -979,7 +979,7 @@ local GetSolution do
 
     function GetSolution()
         local solutionButtonId;
-        local fill, flower, leaf, circle = GetDominatedCharacteristics(GetSumCharacteristics());
+        local fill, flower, leaf, circle = GetOddCharacteristics(GetSumCharacteristics());
 
         for i = 1, MAX_BUTTONS do
             if buttons[i].state then
