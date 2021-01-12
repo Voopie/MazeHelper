@@ -217,11 +217,11 @@ local function UpdateButtons()
         buttons[i]:SetUnactive();
     end
 
-    MazeHelper.TrainingFrame.PlayAgainButton:SetShown(false);
+    MazeHelper.PracticeFrame.PlayAgainButton:SetShown(false);
 end
 
 local function PlayRandomSuccessSound()
-    if MHMOTSConfig.TrainingNoSound then
+    if MHMOTSConfig.PracticeNoSound then
         return;
     end
 
@@ -229,33 +229,33 @@ local function PlayRandomSuccessSound()
 end
 
 local function PlayRandomErrorSound()
-    if MHMOTSConfig.TrainingNoSound then
+    if MHMOTSConfig.PracticeNoSound then
         return;
     end
 
     PlaySound(ErrorSounds[GetSoundRandomIndex(1, ErrorSoundsCount)], SOUND_CHANNEL);
 end
 
-MazeHelper.TrainingFrame = CreateFrame('Frame', 'ST_Maze_Helper_Training', UIParent);
-PixelUtil.SetPoint(MazeHelper.TrainingFrame, 'CENTER', UIParent, 'CENTER', 0, FRAME_SIZE * 1.5);
-PixelUtil.SetSize(MazeHelper.TrainingFrame, FRAME_SIZE + X_OFFSET * (MAX_BUTTONS - 1), BUTTON_SIZE + X_OFFSET);
-MazeHelper.TrainingFrame:SetShown(false);
+MazeHelper.PracticeFrame = CreateFrame('Frame', 'ST_Maze_Helper_Practice', UIParent);
+PixelUtil.SetPoint(MazeHelper.PracticeFrame, 'CENTER', UIParent, 'CENTER', 0, FRAME_SIZE * 1.5);
+PixelUtil.SetSize(MazeHelper.PracticeFrame, FRAME_SIZE + X_OFFSET * (MAX_BUTTONS - 1), BUTTON_SIZE + X_OFFSET);
+MazeHelper.PracticeFrame:SetShown(false);
 
 -- Animation Show/Hide Fade
 do
-    local AnimationFadeInGroup = MazeHelper.TrainingFrame:CreateAnimationGroup();
+    local AnimationFadeInGroup = MazeHelper.PracticeFrame:CreateAnimationGroup();
     local fadeIn = AnimationFadeInGroup:CreateAnimation('Alpha');
     fadeIn:SetDuration(0.3);
     fadeIn:SetFromAlpha(0);
     fadeIn:SetToAlpha(1);
     fadeIn:SetStartDelay(0);
 
-    MazeHelper.TrainingFrame:HookScript('OnShow', function()
+    MazeHelper.PracticeFrame:HookScript('OnShow', function()
         UpdateButtons();
         AnimationFadeInGroup:Play();
     end);
 
-    local AnimationFadeOutGroup = MazeHelper.TrainingFrame:CreateAnimationGroup();
+    local AnimationFadeOutGroup = MazeHelper.PracticeFrame:CreateAnimationGroup();
     local fadeOut = AnimationFadeOutGroup:CreateAnimation('Alpha');
     fadeOut:SetDuration(0.2);
     fadeOut:SetFromAlpha(1);
@@ -263,15 +263,15 @@ do
     fadeOut:SetStartDelay(0);
 
     AnimationFadeOutGroup:SetScript('OnFinished', function()
-        MazeHelper.TrainingFrame:HideDefault();
+        MazeHelper.PracticeFrame:HideDefault();
     end);
 
-    MazeHelper.TrainingFrame.HideDefault = MazeHelper.TrainingFrame.Hide;
-    MazeHelper.TrainingFrame.Hide = function()
+    MazeHelper.PracticeFrame.HideDefault = MazeHelper.PracticeFrame.Hide;
+    MazeHelper.PracticeFrame.Hide = function()
         AnimationFadeOutGroup:Play();
     end
 
-    MazeHelper.TrainingFrame.SetShown = function(self, state)
+    MazeHelper.PracticeFrame.SetShown = function(self, state)
         if not state then
             if self:IsShown() then
                 self:Hide();
@@ -284,71 +284,71 @@ do
     end
 end
 
-MazeHelper.TrainingFrame.Background = MazeHelper.TrainingFrame:CreateTexture(nil, 'BACKGROUND');
-PixelUtil.SetPoint(MazeHelper.TrainingFrame.Background, 'TOPLEFT', MazeHelper.TrainingFrame, 'TOPLEFT', -15, 8);
-PixelUtil.SetPoint(MazeHelper.TrainingFrame.Background, 'BOTTOMRIGHT', MazeHelper.TrainingFrame, 'BOTTOMRIGHT', 15, -38);
-MazeHelper.TrainingFrame.Background:SetTexture(M.BACKGROUND_WHITE);
-MazeHelper.TrainingFrame.Background:SetVertexColor(0.05, 0.05, 0.05);
-MazeHelper.TrainingFrame.Background:SetAlpha(0.85);
+MazeHelper.PracticeFrame.Background = MazeHelper.PracticeFrame:CreateTexture(nil, 'BACKGROUND');
+PixelUtil.SetPoint(MazeHelper.PracticeFrame.Background, 'TOPLEFT', MazeHelper.PracticeFrame, 'TOPLEFT', -15, 8);
+PixelUtil.SetPoint(MazeHelper.PracticeFrame.Background, 'BOTTOMRIGHT', MazeHelper.PracticeFrame, 'BOTTOMRIGHT', 15, -38);
+MazeHelper.PracticeFrame.Background:SetTexture(M.BACKGROUND_WHITE);
+MazeHelper.PracticeFrame.Background:SetVertexColor(0.05, 0.05, 0.05);
+MazeHelper.PracticeFrame.Background:SetAlpha(0.85);
 
-MazeHelper.TrainingFrame.TitleText = MazeHelper.TrainingFrame:CreateFontString(nil, 'ARTWORK', 'GameFontNormal');
-PixelUtil.SetPoint(MazeHelper.TrainingFrame.TitleText, 'BOTTOM', MazeHelper.TrainingFrame, 'TOP', 0, 4);
-MazeHelper.TrainingFrame.TitleText:SetText(L['MAZE_HELPER_TRAINING_TITLE']);
+MazeHelper.PracticeFrame.TitleText = MazeHelper.PracticeFrame:CreateFontString(nil, 'ARTWORK', 'GameFontNormal');
+PixelUtil.SetPoint(MazeHelper.PracticeFrame.TitleText, 'BOTTOM', MazeHelper.PracticeFrame, 'TOP', 0, 4);
+MazeHelper.PracticeFrame.TitleText:SetText(L['MAZE_HELPER_PRACTICE_TITLE']);
 
-MazeHelper.TrainingFrame.CloseButton = CreateFrame('Button', nil, MazeHelper.TrainingFrame);
-PixelUtil.SetPoint(MazeHelper.TrainingFrame.CloseButton, 'TOPRIGHT', MazeHelper.TrainingFrame, 'TOPRIGHT', -8, -4);
-PixelUtil.SetSize(MazeHelper.TrainingFrame.CloseButton, 10, 10);
-MazeHelper.TrainingFrame.CloseButton:SetNormalTexture(M.Icons.TEXTURE);
-MazeHelper.TrainingFrame.CloseButton:GetNormalTexture():SetTexCoord(unpack(M.Icons.COORDS.CROSS_WHITE));
-MazeHelper.TrainingFrame.CloseButton:GetNormalTexture():SetVertexColor(0.7, 0.7, 0.7, 1);
-MazeHelper.TrainingFrame.CloseButton:SetHighlightTexture(M.Icons.TEXTURE, 'BLEND');
-MazeHelper.TrainingFrame.CloseButton:GetHighlightTexture():SetTexCoord(unpack(M.Icons.COORDS.CROSS_WHITE));
-MazeHelper.TrainingFrame.CloseButton:GetHighlightTexture():SetVertexColor(1, 0.85, 0, 1);
-MazeHelper.TrainingFrame.CloseButton:SetScript('OnClick', function()
-    MazeHelper.TrainingFrame:SetShown(false);
+MazeHelper.PracticeFrame.CloseButton = CreateFrame('Button', nil, MazeHelper.PracticeFrame);
+PixelUtil.SetPoint(MazeHelper.PracticeFrame.CloseButton, 'TOPRIGHT', MazeHelper.PracticeFrame, 'TOPRIGHT', -8, -4);
+PixelUtil.SetSize(MazeHelper.PracticeFrame.CloseButton, 10, 10);
+MazeHelper.PracticeFrame.CloseButton:SetNormalTexture(M.Icons.TEXTURE);
+MazeHelper.PracticeFrame.CloseButton:GetNormalTexture():SetTexCoord(unpack(M.Icons.COORDS.CROSS_WHITE));
+MazeHelper.PracticeFrame.CloseButton:GetNormalTexture():SetVertexColor(0.7, 0.7, 0.7, 1);
+MazeHelper.PracticeFrame.CloseButton:SetHighlightTexture(M.Icons.TEXTURE, 'BLEND');
+MazeHelper.PracticeFrame.CloseButton:GetHighlightTexture():SetTexCoord(unpack(M.Icons.COORDS.CROSS_WHITE));
+MazeHelper.PracticeFrame.CloseButton:GetHighlightTexture():SetVertexColor(1, 0.85, 0, 1);
+MazeHelper.PracticeFrame.CloseButton:SetScript('OnClick', function()
+    MazeHelper.PracticeFrame:SetShown(false);
     MazeHelper.frame:SetShown(true);
 end);
 
 local function GameTooltip_NoSoundButton_Show(self)
     GameTooltip:SetOwner(self, 'ANCHOR_RIGHT');
-    GameTooltip:AddLine(MHMOTSConfig.TrainingNoSound and SOUND_EFFECTS_DISABLED or SOUND_EFFECTS_ENABLED, 1, 0.85, 0, true);
+    GameTooltip:AddLine(MHMOTSConfig.PracticeNoSound and SOUND_EFFECTS_DISABLED or SOUND_EFFECTS_ENABLED, 1, 0.85, 0, true);
     GameTooltip:Show();
 end
 
-MazeHelper.TrainingFrame.NoSoundButton = CreateFrame('CheckButton', nil, MazeHelper.TrainingFrame);
-PixelUtil.SetPoint(MazeHelper.TrainingFrame.NoSoundButton, 'BOTTOMRIGHT', MazeHelper.TrainingFrame, 'BOTTOMRIGHT', -8, 4);
-PixelUtil.SetSize(MazeHelper.TrainingFrame.NoSoundButton, 12, 12);
-MazeHelper.TrainingFrame.NoSoundButton:SetNormalTexture(M.Icons.TEXTURE);
-MazeHelper.TrainingFrame.NoSoundButton:GetNormalTexture():SetTexCoord(unpack(M.Icons.COORDS.MUSIC_NOTE));
-MazeHelper.TrainingFrame.NoSoundButton:GetNormalTexture():SetVertexColor(0.2, 0.8, 0.4, 1);
-MazeHelper.TrainingFrame.NoSoundButton:SetScript('OnClick', function(self)
-    MHMOTSConfig.TrainingNoSound = MazeHelper.TrainingFrame.NoSoundButton:GetChecked();
+MazeHelper.PracticeFrame.NoSoundButton = CreateFrame('CheckButton', nil, MazeHelper.PracticeFrame);
+PixelUtil.SetPoint(MazeHelper.PracticeFrame.NoSoundButton, 'BOTTOMRIGHT', MazeHelper.PracticeFrame, 'BOTTOMRIGHT', -8, 4);
+PixelUtil.SetSize(MazeHelper.PracticeFrame.NoSoundButton, 12, 12);
+MazeHelper.PracticeFrame.NoSoundButton:SetNormalTexture(M.Icons.TEXTURE);
+MazeHelper.PracticeFrame.NoSoundButton:GetNormalTexture():SetTexCoord(unpack(M.Icons.COORDS.MUSIC_NOTE));
+MazeHelper.PracticeFrame.NoSoundButton:GetNormalTexture():SetVertexColor(0.2, 0.8, 0.4, 1);
+MazeHelper.PracticeFrame.NoSoundButton:SetScript('OnClick', function(self)
+    MHMOTSConfig.PracticeNoSound = MazeHelper.PracticeFrame.NoSoundButton:GetChecked();
 
-    if MHMOTSConfig.TrainingNoSound then
-        MazeHelper.TrainingFrame.NoSoundButton:GetNormalTexture():SetVertexColor(0.8, 0.2, 0.4, 1);
+    if MHMOTSConfig.PracticeNoSound then
+        MazeHelper.PracticeFrame.NoSoundButton:GetNormalTexture():SetVertexColor(0.8, 0.2, 0.4, 1);
     else
-        MazeHelper.TrainingFrame.NoSoundButton:GetNormalTexture():SetVertexColor(0.2, 0.8, 0.4, 1);
+        MazeHelper.PracticeFrame.NoSoundButton:GetNormalTexture():SetVertexColor(0.2, 0.8, 0.4, 1);
     end
 
     if GameTooltip:IsOwned(self) then
         GameTooltip_NoSoundButton_Show(self)
     end
 end);
-MazeHelper.TrainingFrame.NoSoundButton:HookScript('OnEnter', GameTooltip_NoSoundButton_Show);
-MazeHelper.TrainingFrame.NoSoundButton:HookScript('OnLeave', GameTooltip_Hide);
+MazeHelper.PracticeFrame.NoSoundButton:HookScript('OnEnter', GameTooltip_NoSoundButton_Show);
+MazeHelper.PracticeFrame.NoSoundButton:HookScript('OnLeave', GameTooltip_Hide);
 
-MazeHelper.TrainingFrame.PlayAgainButton = CreateFrame('Button', nil, MazeHelper.TrainingFrame, 'SharedButtonSmallTemplate');
-PixelUtil.SetPoint(MazeHelper.TrainingFrame.PlayAgainButton, 'TOP', MazeHelper.TrainingFrame, 'BOTTOM', 0, -4);
-MazeHelper.TrainingFrame.PlayAgainButton:SetText(L['MAZE_HELPER_TRAINING_PLAY_AGAIN']);
-PixelUtil.SetSize(MazeHelper.TrainingFrame.PlayAgainButton, tonumber(MazeHelper.TrainingFrame.PlayAgainButton:GetTextWidth()) + 20, 22);
-MazeHelper.TrainingFrame.PlayAgainButton:SetShown(false);
-MazeHelper.TrainingFrame.PlayAgainButton:SetScript('OnClick', UpdateButtons);
+MazeHelper.PracticeFrame.PlayAgainButton = CreateFrame('Button', nil, MazeHelper.PracticeFrame, 'SharedButtonSmallTemplate');
+PixelUtil.SetPoint(MazeHelper.PracticeFrame.PlayAgainButton, 'TOP', MazeHelper.PracticeFrame, 'BOTTOM', 0, -4);
+MazeHelper.PracticeFrame.PlayAgainButton:SetText(L['MAZE_HELPER_PRACTICE_PLAY_AGAIN']);
+PixelUtil.SetSize(MazeHelper.PracticeFrame.PlayAgainButton, tonumber(MazeHelper.PracticeFrame.PlayAgainButton:GetTextWidth()) + 20, 22);
+MazeHelper.PracticeFrame.PlayAgainButton:SetShown(false);
+MazeHelper.PracticeFrame.PlayAgainButton:SetScript('OnClick', UpdateButtons);
 
 local function CreateButton(index)
-    local button = CreateFrame('Button', nil, MazeHelper.TrainingFrame, 'BackdropTemplate');
+    local button = CreateFrame('Button', nil, MazeHelper.PracticeFrame, 'BackdropTemplate');
 
     if index == 1 then
-        PixelUtil.SetPoint(button, 'LEFT', MazeHelper.TrainingFrame, 'LEFT', 20, 0);
+        PixelUtil.SetPoint(button, 'LEFT', MazeHelper.PracticeFrame, 'LEFT', 20, 0);
     else
         PixelUtil.SetPoint(button, 'LEFT', buttons[index - 1], 'RIGHT', X_OFFSET, 0);
     end
@@ -398,7 +398,7 @@ local function CreateButton(index)
             buttons[solutionButtonIndex]:SetSolution();
         end
 
-        MazeHelper.TrainingFrame.PlayAgainButton:SetShown(true);
+        MazeHelper.PracticeFrame.PlayAgainButton:SetShown(true);
     end);
 
     table.insert(buttons, index, button);
