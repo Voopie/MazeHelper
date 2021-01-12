@@ -455,7 +455,7 @@ PixelUtil.SetSize(MazeHelper.frame.PassedCounter, 64, 64);
 MazeHelper.frame.PassedCounter:SetScale(1.25);
 MazeHelper.frame.PassedCounter.Background = MazeHelper.frame.PassedCounter:CreateTexture(nil, 'BACKGROUND');
 MazeHelper.frame.PassedCounter.Background:SetAllPoints();
-MazeHelper.frame.PassedCounter.Background:SetTexture(M.Rings);
+MazeHelper.frame.PassedCounter.Background:SetTexture(M.Rings.TEXTURE);
 MazeHelper.frame.PassedCounter.Background:SetTexCoord(unpack(M.Rings.COORDS.BLUE));
 MazeHelper.frame.PassedCounter.Text = MazeHelper.frame.PassedCounter:CreateFontString(nil, 'ARTWORK', 'GameFontNormalShadowHuge2');
 PixelUtil.SetPoint(MazeHelper.frame.PassedCounter.Text, 'CENTER', MazeHelper.frame.PassedCounter, 'CENTER', -2, -1);
@@ -524,7 +524,7 @@ MazeHelper.frame.PracticeModeButton:HookScript('OnLeave', GameTooltip_Hide);
 MazeHelper.frame.PracticeModeButton.Background = MazeHelper.frame.PracticeModeButton:CreateTexture(nil, 'BACKGROUND');
 PixelUtil.SetPoint(MazeHelper.frame.PracticeModeButton.Background, 'TOPLEFT', MazeHelper.frame.PracticeModeButton, 'TOPLEFT', -30, 30);
 PixelUtil.SetPoint(MazeHelper.frame.PracticeModeButton.Background, 'BOTTOMRIGHT', MazeHelper.frame.PracticeModeButton, 'BOTTOMRIGHT', 30, -30);
-MazeHelper.frame.PracticeModeButton.Background:SetTexture(M.Rings);
+MazeHelper.frame.PracticeModeButton.Background:SetTexture(M.Rings.TEXTURE);
 MazeHelper.frame.PracticeModeButton.Background:SetTexCoord(unpack(M.Rings.COORDS.GREEN));
 
 local settingsScrollChild = E.CreateScrollFrame(MazeHelper.frame.Settings, 26);
