@@ -105,7 +105,7 @@ E.CreateScrollFrame = function(parent, scrollStep)
     scrollChild.Data = {};
 
     local scrollArea = CreateFrame('ScrollFrame', '$parentScrollFrame', parent, 'UIPanelScrollFrameTemplate');
-    PixelUtil.SetPoint(scrollArea, 'TOPLEFT', parent, 'TOPLEFT', 0, 0);
+    PixelUtil.SetPoint(scrollArea, 'TOPLEFT', parent, 'TOPLEFT', 0, -8);
     PixelUtil.SetPoint(scrollArea, 'BOTTOMRIGHT', parent, 'BOTTOMRIGHT', -27, 20);
 
     scrollArea:SetScrollChild(scrollChild);
