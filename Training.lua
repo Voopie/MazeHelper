@@ -251,6 +251,7 @@ do
     fadeIn:SetStartDelay(0);
 
     MazeHelper.TrainingFrame:HookScript('OnShow', function()
+        UpdateButtons();
         AnimationFadeInGroup:Play();
     end);
 
@@ -282,8 +283,6 @@ do
         end
     end
 end
-
-MazeHelper.TrainingFrame:HookScript('OnShow', UpdateButtons);
 
 MazeHelper.TrainingFrame.Background = MazeHelper.TrainingFrame:CreateTexture(nil, 'BACKGROUND');
 PixelUtil.SetPoint(MazeHelper.TrainingFrame.Background, 'TOPLEFT', MazeHelper.TrainingFrame, 'TOPLEFT', -15, 8);
