@@ -16,6 +16,15 @@ M.BACKGROUND_WHITE = MEDIA_PATH .. 'background-white.blp';
 M.BBH = MEDIA_PATH .. 'bbh.blp';
 M.BGH = MEDIA_PATH .. 'bgh.blp';
 
+M.Rings = {
+    TEXTURE = MEDIA_PATH .. 'rings.blp', -- 256x128
+
+    COORDS = {
+        BLUE  = {  0, 1/2, 0, 1},
+        GREEN = {1/2,   1, 0, 1},
+    },
+};
+
 M.Icons = {
     TEXTURE = MEDIA_PATH .. 'icons32.blp', -- 128x128
 
