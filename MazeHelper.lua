@@ -334,10 +334,12 @@ MazeHelper.frame.InvisibleMaxButton:SetShown(false);
 MazeHelper.frame.MainHolder = CreateFrame('Frame', nil, MazeHelper.frame);
 MazeHelper.frame.MainHolder:SetAllPoints();
 
+-- Large Solution Symbol
 MazeHelper.LargeSymbol = CreateFrame('Frame', nil, MazeHelper.frame);
 PixelUtil.SetPoint(MazeHelper.LargeSymbol, 'TOP', UIParent, 'TOP', 0, -32);
 PixelUtil.SetSize(MazeHelper.LargeSymbol, 64, 64)
 MazeHelper.LargeSymbol:SetIgnoreParentScale(true);
+MazeHelper.LargeSymbol:SetScale(UIParent:GetEffectiveScale());
 MazeHelper.LargeSymbol.Icon = MazeHelper.LargeSymbol:CreateTexture(nil, 'ARTWORK');
 MazeHelper.LargeSymbol.Icon:SetAllPoints();
 MazeHelper.LargeSymbol.Icon:SetTexture(M.Symbols.TEXTURE);
@@ -346,6 +348,7 @@ PixelUtil.SetPoint(MazeHelper.LargeSymbol.Background, 'TOPLEFT', MazeHelper.Larg
 PixelUtil.SetPoint(MazeHelper.LargeSymbol.Background, 'BOTTOMRIGHT', MazeHelper.LargeSymbol, 'BOTTOMRIGHT', 64, -64);
 MazeHelper.LargeSymbol.Background:SetTexture(M.Rings.TEXTURE);
 MazeHelper.LargeSymbol.Background:SetTexCoord(unpack(M.Rings.COORDS.GREEN));
+MazeHelper.LargeSymbol.Background:SetAlpha(0.8);
 MazeHelper.LargeSymbol:SetShown(false);
 MazeHelper.LargeSymbol:HookScript('OnShow', function()
     PlaySoundFile(M.Sounds.Notification, 'SFX');
