@@ -658,7 +658,12 @@ local function Button_SetActive(button, send, sender)
     button.state  = true;
     button.sender = sender;
 
-    button:SetActive();
+    if sender then
+        button:SetReceived();
+    else
+        button:SetActive();
+    end
+
     button:UpdateSequence();
 
     MazeHelper.frame.SolutionText:SetText(L['MAZE_HELPER_CHOOSE_SYMBOLS_' .. (MAX_ACTIVE_BUTTONS - NUM_ACTIVE_BUTTONS)]);
