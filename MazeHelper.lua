@@ -346,6 +346,9 @@ PixelUtil.SetPoint(MazeHelper.LargeSymbol.Background, 'BOTTOMRIGHT', MazeHelper.
 MazeHelper.LargeSymbol.Background:SetTexture(M.Rings.TEXTURE);
 MazeHelper.LargeSymbol.Background:SetTexCoord(unpack(M.Rings.COORDS.GREEN));
 MazeHelper.LargeSymbol:SetShown(false);
+MazeHelper.LargeSymbol:HookScript('OnShow', function()
+    PlaySoundFile(M.Sounds.Notification, 'SFX');
+end);
 E.CreateAnimation(MazeHelper.LargeSymbol, 'FadeInOut');
 
 -- Solution Text

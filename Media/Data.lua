@@ -73,6 +73,8 @@ M.Symbols = {
 };
 
 M.Sounds = {
+    Notification = MEDIA_PATH .. 'notification.ogg',
+
     Mistcaller = {
         Success = {
             [1] = MEDIA_PATH .. 'success_1.ogg',
