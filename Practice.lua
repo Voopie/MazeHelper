@@ -228,6 +228,7 @@ MazeHelper.PracticeFrame = CreateFrame('Frame', 'ST_Maze_Helper_Practice', UIPar
 PixelUtil.SetPoint(MazeHelper.PracticeFrame, 'CENTER', UIParent, 'CENTER', 0, FRAME_SIZE * 1.5);
 PixelUtil.SetSize(MazeHelper.PracticeFrame, FRAME_SIZE + X_OFFSET * (MAX_BUTTONS - 1), BUTTON_SIZE + X_OFFSET);
 MazeHelper.PracticeFrame:SetShown(false);
+MazeHelper.PracticeFrame:HookScript('OnShow', UpdateButtons);
 E.CreateAnimation(MazeHelper.PracticeFrame, 'FadeInOut');
 
 MazeHelper.PracticeFrame.Background = MazeHelper.PracticeFrame:CreateTexture(nil, 'BACKGROUND');
