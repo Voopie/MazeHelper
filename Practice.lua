@@ -10,7 +10,7 @@ local buttons = {};
 local solutionButtonIndex;
 local isLocked = false;
 
-local SOUND_CHANNEL = 'Dialog';
+local SOUND_CHANNEL = 'SFX';
 
 local Sets = {
     [1] = {
@@ -213,7 +213,7 @@ local function PlayRandomSuccessSound()
         return;
     end
 
-    PlaySound(M.Sounds.Mistcaller.Success[GetSoundRandomIndex(1, SuccessSoundsCount)], SOUND_CHANNEL);
+    PlaySoundFile(M.Sounds.Mistcaller.Success[GetSoundRandomIndex(1, SuccessSoundsCount)], SOUND_CHANNEL);
 end
 
 local function PlayRandomErrorSound()
@@ -221,7 +221,7 @@ local function PlayRandomErrorSound()
         return;
     end
 
-    PlaySound(M.Sounds.Mistcaller.Error[GetSoundRandomIndex(1, ErrorSoundsCount)], SOUND_CHANNEL);
+    PlaySoundFile(M.Sounds.Mistcaller.Error[GetSoundRandomIndex(1, ErrorSoundsCount)], SOUND_CHANNEL);
 end
 
 MazeHelper.PracticeFrame = CreateFrame('Frame', 'ST_Maze_Helper_Practice', UIParent);

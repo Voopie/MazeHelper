@@ -75,14 +75,12 @@ M.Symbols = {
 M.Sounds = {
     Mistcaller = {
         Success = {
-            [1] = 154206, -- 3522233
-            [2] = 154207, -- 3522234
-            [3] = 154216, -- 3522243
+            [1] = MEDIA_PATH .. 'success_1.ogg',
+            [2] = MEDIA_PATH .. 'success_2.ogg',
         },
         Error   = {
-            [1] = 154217, -- 3522244
-            [2] = 154222, -- 3522249
-            [3] = 154223, -- 3522250
+            [1] = MEDIA_PATH .. 'error_1.ogg',
+            [2] = MEDIA_PATH .. 'error_2.ogg',
         },
     }
 }
