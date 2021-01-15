@@ -337,6 +337,7 @@ MazeHelper.frame.MainHolder:SetAllPoints();
 MazeHelper.LargeSymbol = CreateFrame('Frame', nil, MazeHelper.frame);
 PixelUtil.SetPoint(MazeHelper.LargeSymbol, 'TOP', UIParent, 'TOP', 0, -32);
 PixelUtil.SetSize(MazeHelper.LargeSymbol, 64, 64)
+MazeHelper.LargeSymbol:SetIgnoreParentScale(true);
 MazeHelper.LargeSymbol.Icon = MazeHelper.LargeSymbol:CreateTexture(nil, 'ARTWORK');
 MazeHelper.LargeSymbol.Icon:SetAllPoints();
 MazeHelper.LargeSymbol.Icon:SetTexture(M.Symbols.TEXTURE);
