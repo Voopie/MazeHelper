@@ -1,5 +1,5 @@
 local _, MazeHelper = ...;
-local L, M = MazeHelper.L, MazeHelper.M;
+local L, E, M = MazeHelper.L, MazeHelper.E, MazeHelper.M;
 
 local FRAME_SIZE = 300;
 local X_OFFSET = 6;
@@ -228,49 +228,7 @@ MazeHelper.PracticeFrame = CreateFrame('Frame', 'ST_Maze_Helper_Practice', UIPar
 PixelUtil.SetPoint(MazeHelper.PracticeFrame, 'CENTER', UIParent, 'CENTER', 0, FRAME_SIZE * 1.5);
 PixelUtil.SetSize(MazeHelper.PracticeFrame, FRAME_SIZE + X_OFFSET * (MAX_BUTTONS - 1), BUTTON_SIZE + X_OFFSET);
 MazeHelper.PracticeFrame:SetShown(false);
-
--- Animation Show/Hide Fade
-do
-    local AnimationFadeInGroup = MazeHelper.PracticeFrame:CreateAnimationGroup();
-    local fadeIn = AnimationFadeInGroup:CreateAnimation('Alpha');
-    fadeIn:SetDuration(0.3);
-    fadeIn:SetFromAlpha(0);
-    fadeIn:SetToAlpha(1);
-    fadeIn:SetStartDelay(0);
-
-    MazeHelper.PracticeFrame:HookScript('OnShow', function()
-        UpdateButtons();
-        AnimationFadeInGroup:Play();
-    end);
-
-    local AnimationFadeOutGroup = MazeHelper.PracticeFrame:CreateAnimationGroup();
-    local fadeOut = AnimationFadeOutGroup:CreateAnimation('Alpha');
-    fadeOut:SetDuration(0.2);
-    fadeOut:SetFromAlpha(1);
-    fadeOut:SetToAlpha(0);
-    fadeOut:SetStartDelay(0);
-
-    AnimationFadeOutGroup:SetScript('OnFinished', function()
-        MazeHelper.PracticeFrame:HideDefault();
-    end);
-
-    MazeHelper.PracticeFrame.HideDefault = MazeHelper.PracticeFrame.Hide;
-    MazeHelper.PracticeFrame.Hide = function()
-        AnimationFadeOutGroup:Play();
-    end
-
-    MazeHelper.PracticeFrame.SetShown = function(self, state)
-        if not state then
-            if self:IsShown() then
-                self:Hide();
-            end
-        else
-            if not self:IsShown() then
-                self:Show();
-            end
-        end
-    end
-end
+E.CreateAnimation(MazeHelper.PracticeFrame, 'FadeInOut');
 
 MazeHelper.PracticeFrame.Background = MazeHelper.PracticeFrame:CreateTexture(nil, 'BACKGROUND');
 PixelUtil.SetPoint(MazeHelper.PracticeFrame.Background, 'TOPLEFT', MazeHelper.PracticeFrame, 'TOPLEFT', -15, 8);

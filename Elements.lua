@@ -186,3 +186,48 @@ E.CreateScrollFrame = function(parent, scrollStep)
 
     return scrollChild, scrollArea;
 end
+
+E.CreateAnimation = function(frame, mode)
+    if not frame then
+        return;
+    end
+
+    local AnimationFadeInGroup = frame:CreateAnimationGroup();
+    local fadeIn = AnimationFadeInGroup:CreateAnimation('Alpha');
+    fadeIn:SetDuration(0.3);
+    fadeIn:SetFromAlpha(0);
+    fadeIn:SetToAlpha(1);
+    fadeIn:SetStartDelay(0);
+
+    frame:HookScript('OnShow', function()
+        AnimationFadeInGroup:Play();
+    end);
+
+    local AnimationFadeOutGroup = frame:CreateAnimationGroup();
+    local fadeOut = AnimationFadeOutGroup:CreateAnimation('Alpha');
+    fadeOut:SetDuration(0.2);
+    fadeOut:SetFromAlpha(1);
+    fadeOut:SetToAlpha(0);
+    fadeOut:SetStartDelay(0);
+
+    AnimationFadeOutGroup:SetScript('OnFinished', function()
+        frame:HideDefault();
+    end);
+
+    frame.HideDefault = frame.Hide;
+    frame.Hide = function()
+        AnimationFadeOutGroup:Play();
+    end
+
+    frame.SetShown = function(self, state)
+        if not state then
+            if self:IsShown() then
+                self:Hide();
+            end
+        else
+            if not self:IsShown() then
+                self:Show();
+            end
+        end
+    end
+end
