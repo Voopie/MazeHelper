@@ -65,7 +65,7 @@ L['MAZE_HELPER_SETTINGS_SHOW_SEQUENCE_NUMBERS_TOOLTIP'] = 'Show sequence numbers
 L['MAZE_HELPER_SETTINGS_PREDICT_SOLUTION_LABEL'] = 'Predict solution';
 L['MAZE_HELPER_SETTINGS_PREDICT_SOLUTION_TOOLTIP'] = 'Predict the solution on 2-3 steps, but |cffff6a00first|r picked symbol |cffff6a00must be|r the entrance symbol';
 L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_LABEL'] = 'Show large symbol';
-L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = 'Show large symbol at the top of the screen when there is a solution';
+L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = 'Show a large symbol at the top of the screen if there is a ready-made solution';
 L['MAZE_HELPER_PRACTICE_TITLE'] = 'Select a symbol that differs in one way from the others';
 L['MAZE_HELPER_PRACTICE_PLAY_AGAIN'] = 'Play again';
 L['MAZE_HELPER_PRACTICE_BUTTON_TOOLTIP'] = 'Practice';
@@ -178,6 +178,8 @@ if gameLocale == 'deDE' then
     L['MAZE_HELPER_SETTINGS_SHOW_SEQUENCE_NUMBERS_TOOLTIP'] = 'Zeigen Sie Sequenznummern an, wenn Sie auf Symbole klicken (1, 2, 3, 4)';
     L['MAZE_HELPER_SETTINGS_PREDICT_SOLUTION_LABEL'] = 'Vorhersage der Lösung';
     L['MAZE_HELPER_SETTINGS_PREDICT_SOLUTION_TOOLTIP'] = 'Sagen Sie die Lösung in 2-3 Schritten voraus, aber |cffff6a00zuerst|r ausgewähltes Symbol |cffff6a00muss|r das Eingangssymbol sein';
+    L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_LABEL'] = 'Großes Symbol anzeigen';
+    L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = 'Zeigen Sie oben auf dem Bildschirm ein großes Symbol an, wenn eine fertige Lösung vorhanden ist';
     L['MAZE_HELPER_PRACTICE_TITLE'] = 'Wählen Sie ein Symbol aus, das sich in einer Hinsicht von den anderen unterscheidet';
     L['MAZE_HELPER_PRACTICE_PLAY_AGAIN'] = 'Nochmal abspielen';
     L['MAZE_HELPER_PRACTICE_BUTTON_TOOLTIP'] = 'Trainieren';
@@ -234,6 +236,8 @@ if gameLocale == 'frFR' then -- Google Translate
     L['MAZE_HELPER_SETTINGS_SHOW_SEQUENCE_NUMBERS_TOOLTIP'] = 'Afficher les numéros de séquence en cliquant sur les symboles (1, 2, 3, 4)';
     L['MAZE_HELPER_SETTINGS_PREDICT_SOLUTION_LABEL'] = 'Solution de prédiction';
     L['MAZE_HELPER_SETTINGS_PREDICT_SOLUTION_TOOLTIP'] = 'Prédire la solution sur 2-3 étapes, mais |cffff6a00en premier|r symbole choisi |cffff6a00doit être|r le symbole d\'entrée';
+    L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_LABEL'] = 'Afficher le grand symbole';
+    L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = 'Afficher un grand symbole en haut de l\'écran s\'il existe une solution toute faite';
     L['MAZE_HELPER_PRACTICE_TITLE'] = 'Sélectionnez un symbole qui diffère d\'une manière des autres';
     L['MAZE_HELPER_PRACTICE_PLAY_AGAIN'] = 'Rejouer';
     L['MAZE_HELPER_PRACTICE_BUTTON_TOOLTIP'] = 'La pratique';
@@ -290,6 +294,8 @@ if gameLocale == 'itIT' then -- Google Translate
     L['MAZE_HELPER_SETTINGS_SHOW_SEQUENCE_NUMBERS_TOOLTIP'] = 'Mostra i numeri di sequenza quando si fa clic sui simboli (1, 2, 3, 4)';
     L['MAZE_HELPER_SETTINGS_PREDICT_SOLUTION_LABEL'] = 'Predire soluzione';
     L['MAZE_HELPER_SETTINGS_PREDICT_SOLUTION_TOOLTIP'] = 'Prevedere la soluzione su 2-3 passaggi, ma |cffff6a00il primo|r scelto simbolo |cffff6a00deve essere|r il simbolo di entrata';
+    L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_LABEL'] = 'Mostra il simbolo grande';
+    L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = 'Mostra un grande simbolo nella parte superiore dello schermo se c\'è una soluzione già pronta';
     L['MAZE_HELPER_PRACTICE_TITLE'] = 'Seleziona un simbolo che differisce in un modo dagli altri';
     L['MAZE_HELPER_PRACTICE_PLAY_AGAIN'] = 'Gioca di nuovo';
     L['MAZE_HELPER_PRACTICE_BUTTON_TOOLTIP'] = 'Pratica';
@@ -346,6 +352,8 @@ if gameLocale == 'ptBR' then -- Brazilian Portuguese (Google Translate)
     L['MAZE_HELPER_SETTINGS_SHOW_SEQUENCE_NUMBERS_TOOLTIP'] = 'Mostrar números de sequência ao clicar nos símbolos (1, 2, 3, 4)';
     L['MAZE_HELPER_SETTINGS_PREDICT_SOLUTION_LABEL'] = 'Solução de previsão';
     L['MAZE_HELPER_SETTINGS_PREDICT_SOLUTION_TOOLTIP'] = 'Preveja a solução em 2-3 etapas, mas |cffff6a00primeiro|r escolheu o símbolo |cffff6a00deve ser|r o símbolo de entrada';
+    L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_LABEL'] = 'Mostrar símbolo grande';
+    L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = 'Mostra um grande símbolo no topo da tela se houver uma solução pronta';
     L['MAZE_HELPER_PRACTICE_TITLE'] = 'Selecione um símbolo que difere de uma forma dos outros';
     L['MAZE_HELPER_PRACTICE_PLAY_AGAIN'] = 'Jogar de novo';
     L['MAZE_HELPER_PRACTICE_BUTTON_TOOLTIP'] = 'Prática';
@@ -402,6 +410,8 @@ if gameLocale == 'esES' then -- Spanish (Google Translate)
     L['MAZE_HELPER_SETTINGS_SHOW_SEQUENCE_NUMBERS_TOOLTIP'] = 'Mostrar números de secuencia al hacer clic en los símbolos (1, 2, 3, 4)';
     L['MAZE_HELPER_SETTINGS_PREDICT_SOLUTION_LABEL'] = 'Predecir solución';
     L['MAZE_HELPER_SETTINGS_PREDICT_SOLUTION_TOOLTIP'] = 'Predecir la solución en 2-3 pasos, pero |cffff6a00el primer|r símbolo elegido |cffff6a00debe ser|r el símbolo de entrada';
+    L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_LABEL'] = 'Mostrar símbolo grande';
+    L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = 'Muestre un símbolo grande en la parte superior de la pantalla si hay una solución preparada';
     L['MAZE_HELPER_PRACTICE_TITLE'] = 'Seleccione un símbolo que difiera en un sentido de los demás';
     L['MAZE_HELPER_PRACTICE_PLAY_AGAIN'] = 'Juega de nuevo';
     L['MAZE_HELPER_PRACTICE_BUTTON_TOOLTIP'] = 'Práctica';
@@ -467,6 +477,8 @@ if gameLocale == 'zhTW' then -- BNS333 (https://www.curseforge.com/members/bns33
     L['MAZE_HELPER_SETTINGS_SHOW_SEQUENCE_NUMBERS_TOOLTIP'] = '單擊符號時顯示序列號（1、2、3、4）';
     L['MAZE_HELPER_SETTINGS_PREDICT_SOLUTION_LABEL'] = '預測解決方案';
     L['MAZE_HELPER_SETTINGS_PREDICT_SOLUTION_TOOLTIP'] = '在2-3步上預測解決方案，但是|cffff6a00第一個|r選擇的符號|cffff6a00必須是|r入口符號';
+    L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_LABEL'] = '顯示大符號';
+    L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = '如果有現成的解決方案，請在屏幕頂部顯示一個大符號';
     L['MAZE_HELPER_PRACTICE_TITLE'] = '選擇一個符號與其他符號不同的符號';
     L['MAZE_HELPER_PRACTICE_PLAY_AGAIN'] = '再玩一次';
     L['MAZE_HELPER_PRACTICE_BUTTON_TOOLTIP'] = '實踐';
@@ -525,6 +537,8 @@ if gameLocale == 'zhCN' then
     L['MAZE_HELPER_SETTINGS_SHOW_SEQUENCE_NUMBERS_TOOLTIP'] = '单击符号时显示序号(1/2/3/4)';
     L['MAZE_HELPER_SETTINGS_PREDICT_SOLUTION_LABEL'] = '预测答案';
     L['MAZE_HELPER_SETTINGS_PREDICT_SOLUTION_TOOLTIP'] = '在2-3步预测答案，但是|cffff6a00第一个|r选择的符号|cffff6a00必须是|r入口符号';
+    L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_LABEL'] = '显示大符号';
+    L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = '如果有现成的解决方案，请在屏幕顶部显示一个大符号';
     L['MAZE_HELPER_PRACTICE_TITLE'] = '选择一个符号与其他符号不同的符号';
     L['MAZE_HELPER_PRACTICE_PLAY_AGAIN'] = '再玩一次';
     L['MAZE_HELPER_PRACTICE_BUTTON_TOOLTIP'] = '实践';
@@ -581,6 +595,8 @@ if gameLocale == 'koKR' then -- hinski (https://www.curseforge.com/members/hinsk
     L['MAZE_HELPER_SETTINGS_USE_COLORED_SYMBOLS_LABEL'] = '색이 있는 모양 사용';
     L['MAZE_HELPER_SETTINGS_USE_COLORED_SYMBOLS_TOOLTIP'] = '흑백 대신 유채색된 모양 사용';
     L['MAZE_HELPER_SOLUTION_NA'] = '|cffffb833정답이 없습니다...|r';
+    L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_LABEL'] = '큰 기호 표시';
+    L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = '기성 솔루션이있는 경우 화면 상단에 큰 기호 표시';
     L['MAZE_HELPER_PRACTICE_TITLE'] = '한면에서 다른 기호와 다른 기호를 선택하십시오';
     L['MAZE_HELPER_PRACTICE_PLAY_AGAIN'] = '다시 플레이';
     L['MAZE_HELPER_PRACTICE_BUTTON_TOOLTIP'] = '연습';
