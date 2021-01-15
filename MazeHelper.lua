@@ -1412,11 +1412,7 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     settingsScrollChild.Data.AutoAnnouncerAsHealer:SetEnabled(MHMOTSConfig.AutoAnnouncer);
 
     MazeHelper.PracticeFrame.NoSoundButton:SetChecked(MHMOTSConfig.PracticeNoSound);
-    if MHMOTSConfig.PracticeNoSound then
-        MazeHelper.PracticeFrame.NoSoundButton:GetNormalTexture():SetVertexColor(0.8, 0.2, 0.4, 1);
-    else
-        MazeHelper.PracticeFrame.NoSoundButton:GetNormalTexture():SetVertexColor(0.2, 0.8, 0.4, 1);
-    end
+    MazeHelper.PracticeFrame.NoSoundButton:SetTurned(not MHMOTSConfig.PracticeNoSound);
 
     MazeHelper.frame:SetScale(MHMOTSConfig.SavedScale);
 

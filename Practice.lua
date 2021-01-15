@@ -268,14 +268,18 @@ PixelUtil.SetSize(MazeHelper.PracticeFrame.NoSoundButton, 12, 12);
 MazeHelper.PracticeFrame.NoSoundButton:SetNormalTexture(M.Icons.TEXTURE);
 MazeHelper.PracticeFrame.NoSoundButton:GetNormalTexture():SetTexCoord(unpack(M.Icons.COORDS.MUSIC_NOTE));
 MazeHelper.PracticeFrame.NoSoundButton:GetNormalTexture():SetVertexColor(0.2, 0.8, 0.4, 1);
+MazeHelper.PracticeFrame.NoSoundButton.SetTurned = function(self, state)
+    if state then
+        self:GetNormalTexture():SetVertexColor(0.2, 0.8, 0.4, 1);
+    else
+        self:GetNormalTexture():SetVertexColor(0.8, 0.2, 0.4, 1);
+    end
+end
+
 MazeHelper.PracticeFrame.NoSoundButton:SetScript('OnClick', function(self)
     MHMOTSConfig.PracticeNoSound = MazeHelper.PracticeFrame.NoSoundButton:GetChecked();
 
-    if MHMOTSConfig.PracticeNoSound then
-        MazeHelper.PracticeFrame.NoSoundButton:GetNormalTexture():SetVertexColor(0.8, 0.2, 0.4, 1);
-    else
-        MazeHelper.PracticeFrame.NoSoundButton:GetNormalTexture():SetVertexColor(0.2, 0.8, 0.4, 1);
-    end
+    self:SetTurned(not MHMOTSConfig.PracticeNoSound);
 
     if GameTooltip:IsOwned(self) then
         GameTooltip_NoSoundButton_Show(self)
