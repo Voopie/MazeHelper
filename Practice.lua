@@ -275,7 +275,6 @@ MazeHelper.PracticeFrame.NoSoundButton.SetTurned = function(self, state)
         self:GetNormalTexture():SetVertexColor(0.8, 0.2, 0.4, 1);
     end
 end
-
 MazeHelper.PracticeFrame.NoSoundButton:SetScript('OnClick', function(self)
     MHMOTSConfig.PracticeNoSound = MazeHelper.PracticeFrame.NoSoundButton:GetChecked();
 
