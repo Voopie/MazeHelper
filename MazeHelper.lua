@@ -169,47 +169,7 @@ MazeHelper.frame:SetScript('OnDragStart', function(self)
     end
 end);
 MazeHelper.frame:SetScript('OnDragStop', BetterOnDragStop);
-
-do
-    local AnimationFadeInGroup = MazeHelper.frame:CreateAnimationGroup();
-    local fadeIn = AnimationFadeInGroup:CreateAnimation('Alpha');
-    fadeIn:SetDuration(0.3);
-    fadeIn:SetFromAlpha(0);
-    fadeIn:SetToAlpha(1);
-    fadeIn:SetStartDelay(0);
-
-    MazeHelper.frame:HookScript('OnShow', function()
-        AnimationFadeInGroup:Play();
-    end);
-
-    local AnimationFadeOutGroup = MazeHelper.frame:CreateAnimationGroup();
-    local fadeOut = AnimationFadeOutGroup:CreateAnimation('Alpha');
-    fadeOut:SetDuration(0.2);
-    fadeOut:SetFromAlpha(1);
-    fadeOut:SetToAlpha(0);
-    fadeOut:SetStartDelay(0);
-
-    AnimationFadeOutGroup:SetScript('OnFinished', function()
-        MazeHelper.frame:HideDefault();
-    end);
-
-    MazeHelper.frame.HideDefault = MazeHelper.frame.Hide;
-    MazeHelper.frame.Hide = function()
-        AnimationFadeOutGroup:Play();
-    end
-
-    MazeHelper.frame.SetShown = function(self, state)
-        if not state then
-            if self:IsShown() then
-                self:Hide();
-            end
-        else
-            if not self:IsShown() then
-                self:Show();
-            end
-        end
-    end
-end
+E.CreateAnimation(MazeHelper.frame, 'FadeInOut');
 
 -- Background
 MazeHelper.frame.background = MazeHelper.frame:CreateTexture(nil, 'BACKGROUND');
@@ -374,6 +334,20 @@ MazeHelper.frame.InvisibleMaxButton:SetShown(false);
 MazeHelper.frame.MainHolder = CreateFrame('Frame', nil, MazeHelper.frame);
 MazeHelper.frame.MainHolder:SetAllPoints();
 
+MazeHelper.LargeSymbol = CreateFrame('Frame', nil, MazeHelper.frame);
+PixelUtil.SetPoint(MazeHelper.LargeSymbol, 'TOP', UIParent, 'TOP', 0, -32);
+PixelUtil.SetSize(MazeHelper.LargeSymbol, 64, 64)
+MazeHelper.LargeSymbol.Icon = MazeHelper.LargeSymbol:CreateTexture(nil, 'ARTWORK');
+MazeHelper.LargeSymbol.Icon:SetAllPoints();
+MazeHelper.LargeSymbol.Icon:SetTexture(M.Symbols.TEXTURE);
+MazeHelper.LargeSymbol.Background = MazeHelper.LargeSymbol:CreateTexture(nil, 'BACKGROUND');
+PixelUtil.SetPoint(MazeHelper.LargeSymbol.Background, 'TOPLEFT', MazeHelper.LargeSymbol, 'TOPLEFT', -64, 64);
+PixelUtil.SetPoint(MazeHelper.LargeSymbol.Background, 'BOTTOMRIGHT', MazeHelper.LargeSymbol, 'BOTTOMRIGHT', 64, -64);
+MazeHelper.LargeSymbol.Background:SetTexture(M.Rings.TEXTURE);
+MazeHelper.LargeSymbol.Background:SetTexCoord(unpack(M.Rings.COORDS.GREEN));
+MazeHelper.LargeSymbol:SetShown(false);
+E.CreateAnimation(MazeHelper.LargeSymbol, 'FadeInOut');
+
 -- Solution Text
 MazeHelper.frame.SolutionText = MazeHelper.frame.MainHolder:CreateFontString(nil, 'ARTWORK', 'GameFontNormalLarge');
 PixelUtil.SetPoint(MazeHelper.frame.SolutionText, 'LEFT', MazeHelper.frame, 'LEFT', 2, -54);
@@ -404,6 +378,7 @@ local function ResetAll()
     MazeHelper.frame.AnnounceButton:SetShown(false);
     MazeHelper.frame.AnnounceButton.clicked = false;
 
+    MazeHelper.LargeSymbol:SetShown(false);
     MazeHelper.frame.MiniSolution:SetShown(false);
     MazeHelper.frame.PassedCounter:SetShown(true);
 
@@ -598,8 +573,21 @@ settingsScrollChild.Data.ShowAtBoss:SetScript('OnClick', function(self)
     MHMOTSConfig.ShowAtBoss = self:GetChecked();
 end);
 
+settingsScrollChild.Data.ShowLargeSymbol = E.CreateRoundedCheckButton(settingsScrollChild);
+settingsScrollChild.Data.ShowLargeSymbol:SetPosition('TOPLEFT', settingsScrollChild.Data.ShowAtBoss, 'BOTTOMLEFT', 0, 0);
+settingsScrollChild.Data.ShowLargeSymbol:SetArea(26, 26);
+settingsScrollChild.Data.ShowLargeSymbol:SetLabel(L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_LABEL']);
+settingsScrollChild.Data.ShowLargeSymbol:SetTooltip(L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP']);
+settingsScrollChild.Data.ShowLargeSymbol:SetScript('OnClick', function(self)
+    MHMOTSConfig.ShowLargeSymbol = self:GetChecked();
+
+    if SOLUTION_BUTTON_ID then
+        MazeHelper.LargeSymbol:SetShown(MHMOTSConfig.ShowLargeSymbol);
+    end
+end);
+
 settingsScrollChild.Data.StartInMinMode = E.CreateRoundedCheckButton(settingsScrollChild);
-settingsScrollChild.Data.StartInMinMode:SetPosition('TOPLEFT', settingsScrollChild.Data.ShowAtBoss, 'BOTTOMLEFT', 0, 0);
+settingsScrollChild.Data.StartInMinMode:SetPosition('TOPLEFT', settingsScrollChild.Data.ShowLargeSymbol, 'BOTTOMLEFT', 0, 0);
 settingsScrollChild.Data.StartInMinMode:SetArea(26, 26);
 settingsScrollChild.Data.StartInMinMode:SetLabel(L['MAZE_HELPER_SETTINGS_START_IN_MINMODE_LABEL']);
 settingsScrollChild.Data.StartInMinMode:SetTooltip(L['MAZE_HELPER_SETTINGS_START_IN_MINMODE_TOOLTIP']);
@@ -1047,6 +1035,9 @@ function MazeHelper:UpdateSolution()
             buttons[SOLUTION_BUTTON_ID]:SetSolution();
         end
 
+        MazeHelper.LargeSymbol.Icon:SetTexCoord(unpack(MHMOTSConfig.UseColoredSymbols and buttonsData[SOLUTION_BUTTON_ID].coords or buttonsData[SOLUTION_BUTTON_ID].coords_white));
+        MazeHelper.LargeSymbol:SetShown(MHMOTSConfig.ShowLargeSymbol);
+
         MazeHelper.frame.MiniSolution.Icon:SetTexCoord(unpack(MHMOTSConfig.UseColoredSymbols and buttonsData[SOLUTION_BUTTON_ID].coords or buttonsData[SOLUTION_BUTTON_ID].coords_white));
 
         MazeHelper.frame.AnnounceButton:SetShown((not isMinimized and partyChatType and not MHMOTSConfig.AutoAnnouncer) and true or false);
@@ -1076,6 +1067,7 @@ function MazeHelper:UpdateSolution()
             end
         end
     else
+        MazeHelper.LargeSymbol:SetShown(false);
         MazeHelper.frame.MiniSolution:SetShown(false);
         MazeHelper.frame.PassedCounter:SetShown(true);
         MazeHelper.frame.AnnounceButton:SetShown(false);
@@ -1379,6 +1371,7 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     MHMOTSConfig.StartInMinMode          = MHMOTSConfig.StartInMinMode == nil and false or MHMOTSConfig.StartInMinMode;
     MHMOTSConfig.UseColoredSymbols       = MHMOTSConfig.UseColoredSymbols == nil and true or MHMOTSConfig.UseColoredSymbols;
     MHMOTSConfig.ShowSequenceNumbers     = MHMOTSConfig.ShowSequenceNumbers == nil and true or MHMOTSConfig.ShowSequenceNumbers;
+    MHMOTSConfig.ShowLargeSymbol         = MHMOTSConfig.ShowLargeSymbol == nil and true or MHMOTSConfig.ShowLargeSymbol;
 
     MHMOTSConfig.AutoAnnouncer              = MHMOTSConfig.AutoAnnouncer == nil and false or MHMOTSConfig.AutoAnnouncer;
     MHMOTSConfig.AutoAnnouncerAsPartyLeader = MHMOTSConfig.AutoAnnouncerAsPartyLeader == nil and true or MHMOTSConfig.AutoAnnouncerAsPartyLeader;
@@ -1394,6 +1387,7 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     settingsScrollChild.Data.ShowSequenceNumbers:SetChecked(MHMOTSConfig.ShowSequenceNumbers);
     settingsScrollChild.Data.PrintResettedPlayerName:SetChecked(MHMOTSConfig.PrintResettedPlayerName);
     settingsScrollChild.Data.ShowAtBoss:SetChecked(MHMOTSConfig.ShowAtBoss);
+    settingsScrollChild.Data.ShowLargeSymbol:SetChecked(MHMOTSConfig.ShowLargeSymbol);
     settingsScrollChild.Data.StartInMinMode:SetChecked(MHMOTSConfig.StartInMinMode);
 
     settingsScrollChild.Data.AutoAnnouncer:SetChecked(MHMOTSConfig.AutoAnnouncer);

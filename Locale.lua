@@ -64,6 +64,8 @@ L['MAZE_HELPER_SETTINGS_SHOW_SEQUENCE_NUMBERS_LABEL'] = 'Show sequence numbers';
 L['MAZE_HELPER_SETTINGS_SHOW_SEQUENCE_NUMBERS_TOOLTIP'] = 'Show sequence numbers when clicking on symbols (1, 2, 3, 4)';
 L['MAZE_HELPER_SETTINGS_PREDICT_SOLUTION_LABEL'] = 'Predict solution';
 L['MAZE_HELPER_SETTINGS_PREDICT_SOLUTION_TOOLTIP'] = 'Predict the solution on 2-3 steps, but |cffff6a00first|r picked symbol |cffff6a00must be|r the entrance symbol';
+L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_LABEL'] = 'Show large symbol';
+L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = 'Show large symbol at the top of the screen when there is a solution';
 L['MAZE_HELPER_PRACTICE_TITLE'] = 'Select a symbol that differs in one way from the others';
 L['MAZE_HELPER_PRACTICE_PLAY_AGAIN'] = 'Play again';
 L['MAZE_HELPER_PRACTICE_BUTTON_TOOLTIP'] = 'Practice';
@@ -117,6 +119,8 @@ if gameLocale == 'ruRU' then
     L['MAZE_HELPER_SETTINGS_SHOW_SEQUENCE_NUMBERS_TOOLTIP'] = 'Показывать порядковые номера при нажатии на символы (1, 2, 3, 4)';
     L['MAZE_HELPER_SETTINGS_PREDICT_SOLUTION_LABEL'] = 'Предсказывать решение';
     L['MAZE_HELPER_SETTINGS_PREDICT_SOLUTION_TOOLTIP'] = 'Предсказывать решение на 2–3 шагах, но |cffff6a00первый|r выбранный символ |cffff6a00должен быть|r символом входа';
+    L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_LABEL'] = 'Показывать большой символ';
+    L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = 'Показывать большой символ вверху экрана при наличии решения';
     L['MAZE_HELPER_PRACTICE_TITLE'] = 'Выберите символ, отличающийся чем-то одним от других';
     L['MAZE_HELPER_PRACTICE_PLAY_AGAIN'] = 'Сыграть ещё';
     L['MAZE_HELPER_PRACTICE_BUTTON_TOOLTIP'] = 'Практика';
