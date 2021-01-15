@@ -1372,6 +1372,7 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     MHMOTSConfig = MHMOTSConfig or {};
 
     MHMOTSConfig.SavedPosition = MHMOTSConfig.SavedPosition or {};
+    MHMOTSConfig.SavedScale = MHMOTSConfig.SavedScale or 1;
 
     MHMOTSConfig.SyncEnabled             = MHMOTSConfig.SyncEnabled == nil and true or MHMOTSConfig.SyncEnabled;
     MHMOTSConfig.PredictSolution         = MHMOTSConfig.PredictSolution == nil and false or MHMOTSConfig.PredictSolution;
@@ -1417,6 +1418,8 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
         MazeHelper.PracticeFrame.NoSoundButton:GetNormalTexture():SetVertexColor(0.2, 0.8, 0.4, 1);
     end
 
+    MazeHelper.frame:SetScale(MHMOTSConfig.SavedScale);
+
     MazeHelper:CreateButtons();
 
     self:RegisterEvent('PLAYER_LOGIN');
@@ -1428,7 +1431,14 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     end
 
     _G['SLASH_MAZEHELPER1'] = '/mh';
-    SlashCmdList['MAZEHELPER'] = function()
+    SlashCmdList['MAZEHELPER'] = function(input)
+        if input and string.find(input, 'scale') then
+            local _, scale = strsplit(' ', input);
+            MHMOTSConfig.SavedScale = tonumber(scale);
+            MazeHelper.frame:SetScale(MHMOTSConfig.SavedScale);
+            return;
+        end
+
         if not MazeHelper.PracticeFrame:IsShown() then
             MazeHelper.frame:SetShown(not MazeHelper.frame:IsShown());
         end
