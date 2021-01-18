@@ -159,8 +159,8 @@ local Sets = {
     },
 };
 local SetsCount          = #Sets;
-local SuccessSoundsCount = #M.Sounds.Mistcaller.Success;
-local ErrorSoundsCount   = #M.Sounds.Mistcaller.Error;
+local SuccessSoundsCount = #M.Sounds.PracticeMode.Success;
+local ErrorSoundsCount   = #M.Sounds.PracticeMode.Error;
 
 local lastSoundIndex = 0;
 local function GetSoundRandomIndex(m, n)
@@ -213,7 +213,7 @@ local function PlayRandomSuccessSound()
         return;
     end
 
-    PlaySoundFile(M.Sounds.Mistcaller.Success[GetSoundRandomIndex(1, SuccessSoundsCount)], SOUND_CHANNEL);
+    PlaySoundFile(M.Sounds.PracticeMode.Success[GetSoundRandomIndex(1, SuccessSoundsCount)], SOUND_CHANNEL);
 end
 
 local function PlayRandomErrorSound()
@@ -221,7 +221,7 @@ local function PlayRandomErrorSound()
         return;
     end
 
-    PlaySoundFile(M.Sounds.Mistcaller.Error[GetSoundRandomIndex(1, ErrorSoundsCount)], SOUND_CHANNEL);
+    PlaySoundFile(M.Sounds.PracticeMode.Error[GetSoundRandomIndex(1, ErrorSoundsCount)], SOUND_CHANNEL);
 end
 
 MazeHelper.PracticeFrame = CreateFrame('Frame', 'ST_Maze_Helper_Practice', UIParent);

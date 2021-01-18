@@ -75,7 +75,7 @@ M.Symbols = {
 M.Sounds = {
     Notification = MEDIA_PATH .. 'notification.ogg',
 
-    Mistcaller = {
+    PracticeMode = {
         Success = {
             [1] = MEDIA_PATH .. 'success_1.ogg',
             [2] = MEDIA_PATH .. 'success_2.ogg',
