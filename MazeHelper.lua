@@ -1433,8 +1433,13 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     SlashCmdList['MAZEHELPER'] = function(input)
         if input and string.find(input, 'scale') then
             local _, scale = strsplit(' ', input);
+            if scale == 'reset' or scale == 'r' then
+                scale = 1;
+            end
+
             MHMOTSConfig.SavedScale = tonumber(scale);
             MazeHelper.frame:SetScale(MHMOTSConfig.SavedScale);
+
             return;
         end
 
