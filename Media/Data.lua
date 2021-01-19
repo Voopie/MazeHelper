@@ -43,7 +43,7 @@ M.Icons = {
         CHECKBUTTON_CHECKED = {  0, 1/4, 1/4, 2/4},
         CHECKBUTTON_NORMAL  = {1/4, 2/4, 1/4, 2/4},
 
-        CIRCLE_NORMAL    = {0, 1/4, 3/4 + 0.01, 4/4},
+        CIRCLE_NORMAL    = {  0, 1/4, 3/4 + 0.01, 4/4},
         CIRCLE_HIGHLIGHT = {1/4, 2/4, 3/4 + 0.01, 4/4},
     },
 };
