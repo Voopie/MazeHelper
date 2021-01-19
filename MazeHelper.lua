@@ -648,6 +648,16 @@ settingsScrollChild.Data.AutoAnnouncerAsHealer:SetScript('OnClick', function(sel
     MHMOTSConfig.AutoAnnouncerAsHealer = self:GetChecked();
 end);
 
+settingsScrollChild.Data.Scale = E.CreateSlider('Scale', settingsScrollChild);
+settingsScrollChild.Data.Scale:SetPosition('TOPLEFT', settingsScrollChild.Data.AutoAnnouncer, 'BOTTOMLEFT', 4, -40);
+settingsScrollChild.Data.Scale:SetLabel(L['MAZE_HELPER_SETTINGS_SCALE_LABEL']);
+settingsScrollChild.Data.Scale:SetTooltip(L['MAZE_HELPER_SETTINGS_SCALE_TOOLTIP']);
+settingsScrollChild.Data.Scale:SetValues(1, 0.25, 3, 0.05);
+settingsScrollChild.Data.Scale.Callback = function(_, value)
+    MHMOTSConfig.SavedScale = tonumber(value);
+    MazeHelper.frame:SetScale(MHMOTSConfig.SavedScale);
+end
+
 MazeHelper.frame.Settings.VersionText = MazeHelper.frame.Settings:CreateFontString(nil, 'ARTWORK', 'GameFontDisable');
 PixelUtil.SetPoint(MazeHelper.frame.Settings.VersionText, 'TOP', MazeHelper.frame.Settings, 'BOTTOM', 0, 12);
 MazeHelper.frame.Settings.VersionText:SetText(GetAddOnMetadata(ADDON_NAME, 'Version'));
@@ -1414,6 +1424,8 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     settingsScrollChild.Data.AutoAnnouncerAsTank:SetEnabled(MHMOTSConfig.AutoAnnouncer);
     settingsScrollChild.Data.AutoAnnouncerAsHealer:SetEnabled(MHMOTSConfig.AutoAnnouncer);
 
+    settingsScrollChild.Data.Scale:SetValue(MHMOTSConfig.SavedScale);
+
     MazeHelper.PracticeFrame.NoSoundButton:SetChecked(MHMOTSConfig.PracticeNoSound);
     MazeHelper.PracticeFrame.NoSoundButton:SetTurned(not MHMOTSConfig.PracticeNoSound);
 
@@ -1433,12 +1445,17 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     SlashCmdList['MAZEHELPER'] = function(input)
         if input and string.find(input, 'scale') then
             local _, scale = strsplit(' ', input);
-            if scale == 'reset' or scale == 'r' then
+            if not scale or scale == '' or scale == 'reset' or scale == 'r' then
                 scale = 1;
             end
 
-            MHMOTSConfig.SavedScale = tonumber(scale);
+            scale = tonumber(scale);
+            scale = math.min(scale, 3);
+            scale = math.max(scale, 0.25);
+
+            MHMOTSConfig.SavedScale = scale;
             MazeHelper.frame:SetScale(MHMOTSConfig.SavedScale);
+            settingsScrollChild.Data.Scale:SetValue(MHMOTSConfig.SavedScale);
 
             return;
         end

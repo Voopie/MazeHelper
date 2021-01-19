@@ -15,6 +15,7 @@ M.INLINE_ENTRANCE_ICON = '|T' .. MEDIA_PATH .. 'icons32.blp:12:12:-1:1:128:128:9
 M.BACKGROUND_WHITE = MEDIA_PATH .. 'background-white.blp';
 M.BBH = MEDIA_PATH .. 'bbh.blp';
 M.BGH = MEDIA_PATH .. 'bgh.blp';
+M.SLIDER_BORDER = MEDIA_PATH .. 'slider-border.blp';
 
 M.Rings = {
     TEXTURE = MEDIA_PATH .. 'rings.blp', -- 256x128
@@ -41,6 +42,9 @@ M.Icons = {
 
         CHECKBUTTON_CHECKED = {  0, 1/4, 1/4, 2/4},
         CHECKBUTTON_NORMAL  = {1/4, 2/4, 1/4, 2/4},
+
+        CIRCLE_NORMAL    = {0, 1/4, 3/4 + 0.01, 4/4},
+        CIRCLE_HIGHLIGHT = {1/4, 2/4, 3/4 + 0.01, 4/4},
     },
 };
 

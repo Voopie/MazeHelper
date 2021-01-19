@@ -231,3 +231,170 @@ E.CreateAnimation = function(frame, mode)
         end
     end
 end
+
+local function SliderRound(val, minVal, valueStep)
+    return math.floor((val - minVal) / valueStep + 0.5) * valueStep + minVal;
+end
+
+E.CreateSlider = function(name, parent)
+    local slider  = CreateFrame('Slider', 'MazeHelper_Settings_' .. name .. 'Slider', parent, 'OptionsSliderTemplate');
+    local editbox = CreateFrame('EditBox', '$parentEditBox', slider, 'InputBoxTemplate');
+
+    slider:SetOrientation('HORIZONTAL');
+
+    PixelUtil.SetPoint(slider.Low, 'TOPLEFT', slider, 'BOTTOMLEFT', 1, -1);
+    PixelUtil.SetPoint(slider.High, 'TOPRIGHT', slider, 'BOTTOMRIGHT', -1, -1);
+    PixelUtil.SetPoint(slider.Text, 'BOTTOMLEFT', slider, 'TOPLEFT', 1, 0);
+
+    slider.Text:SetFontObject(GameFontNormal);
+
+    slider.Thumb:SetSize(26, 26);
+    slider.Thumb:SetTexture(M.Icons.TEXTURE);
+    slider.Thumb:SetTexCoord(unpack(M.Icons.COORDS.CIRCLE_NORMAL));
+
+    slider:HookScript('OnEnter', function(self)
+        self.Thumb:SetTexCoord(unpack(M.Icons.COORDS.CIRCLE_HIGHLIGHT));
+    end);
+
+    slider:HookScript('OnLeave', function(self)
+        self.Thumb:SetTexCoord(unpack(M.Icons.COORDS.CIRCLE_NORMAL));
+    end);
+
+    slider:SetBackdrop({
+        bgFile   = 'Interface\\Buttons\\UI-SliderBar-Background',
+        edgeFile = M.SLIDER_BORDER,
+        tile     = true,
+        tileEdge = true,
+        tileSize = 8,
+        edgeSize = 8,
+        insets   = { left = 3, right = 3, top = 6, bottom = 6 },
+    });
+
+    slider.SetPosition = function(self, point, relativeTo, relativePoint, offsetX, offsetY)
+        PixelUtil.SetPoint(self, point, relativeTo, relativePoint, offsetX, offsetY);
+    end
+
+    hooksecurefunc(slider, 'SetValue', function(self, value)
+        self.currentValue = value;
+    end);
+
+    slider.SetTooltip = function(self, tooltip)
+        self.tooltipText = tooltip;
+    end
+
+    slider.SetLabel = function(self, label)
+        self.Text:SetText(label);
+    end
+
+    slider.SetValues = function(self, currentValue, minValue, maxValue, stepValue)
+        self.currentValue = currentValue or 0;
+        self.minValue     = minValue or 0;
+        self.maxValue     = maxValue or 100;
+        self.stepValue    = stepValue or 1;
+
+        self:SetMinMaxValues(self.minValue, self.maxValue);
+        self:SetStepsPerPage(self.stepValue);
+        self:SetValueStep(self.stepValue);
+        self:SetValue(SliderRound(self.currentValue, self.minValue, self.stepValue));
+
+        self.Low:SetText(self.minValue);
+        self.High:SetText(self.maxValue);
+
+        self.editbox:SetText(SliderRound(self.currentValue, self.minValue, self.stepValue));
+    end
+
+    slider:SetScript('OnValueChanged', function(self, value)
+        value = SliderRound(value, self.minValue, self.stepValue);
+        self.currentValue = value;
+
+        self.editbox:SetText(self.currentValue);
+
+        if slider:IsDraggingThumb() and self.editbox:HasFocus() then
+            self.editbox:ClearFocus();
+        end
+    end);
+
+    slider:SetScript('OnMouseUp', function(self)
+        if self.Callback then
+            self:Callback(self.currentValue);
+        end
+    end);
+
+    editbox:ClearAllPoints();
+    PixelUtil.SetPoint(editbox, 'TOP', slider, 'BOTTOM', 4, 2);
+    PixelUtil.SetSize(editbox, 40, 30);
+
+    editbox:SetFontObject(GameFontHighlight);
+    editbox:SetAutoFocus(false);
+
+    editbox.Left:Hide();
+    editbox.Middle:Hide();
+    editbox.Right:Hide();
+
+    editbox.Background = CreateFrame('Frame', '$parentBackground', editbox, 'BackdropTemplate');
+    PixelUtil.SetPoint(editbox.Background, 'TOPLEFT', editbox, 'TOPLEFT', -5, -4);
+    PixelUtil.SetSize(editbox.Background, 41, 21);
+    editbox.Background:SetFrameLevel(editbox:GetFrameLevel() - 1);
+    editbox.Background:SetBackdrop({
+        bgFile   = 'Interface\\Buttons\\WHITE8x8',
+        insets   = { top = 1, left = 1, bottom = 1, right = 1 },
+        edgeFile = 'Interface\\Buttons\\WHITE8x8',
+        edgeSize = 1
+    });
+
+    editbox.Background:SetBackdropColor(0.05, 0.05, 0.05, 1);
+    editbox.Background:SetBackdropBorderColor(0.3, 0.3, 0.3, 1);
+
+    editbox:SetScript('OnEnterPressed', function(self)
+        self.lastValue = nil;
+        self:ClearFocus();
+
+        local value = tonumber(self:GetText());
+        if value then
+            value = math.min(value, self:GetParent().maxValue);
+            value = math.max(value, self:GetParent().minValue);
+        else
+            value = self:GetParent().currentValue;
+        end
+
+        self:GetParent():SetValue(SliderRound(value, self:GetParent().minValue, self:GetParent().stepValue));
+        if self:GetParent().Callback then
+            self:GetParent():Callback(self:GetParent().currentValue);
+        end
+
+        PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
+    end);
+
+    editbox:SetScript('OnEditFocusGained', function(self)
+        self.lastValue = tonumber(self:GetNumber());
+        self:HighlightText();
+        self.Background:SetBackdropBorderColor(0.8, 0.8, 0.8, 1);
+    end);
+
+    editbox:SetScript('OnEditFocusLost', function(self)
+        if self.lastValue then
+            self:SetText(SliderRound(self.lastValue, self:GetParent().minValue, self:GetParent().stepValue));
+        end
+
+        EditBox_ClearHighlight(self);
+        self.Background:SetBackdropBorderColor(0.3, 0.3, 0.3, 1);
+    end);
+
+    editbox:HookScript('OnEnter', function(self)
+        if not self:GetParent().tooltipText then
+            return;
+        end
+
+        GameTooltip:SetOwner(self, 'ANCHOR_RIGHT');
+        GameTooltip:AddLine(self:GetParent().tooltipText, 1, 0.85, 0, true);
+        GameTooltip:Show();
+    end);
+    editbox:HookScript('OnLeave', GameTooltip_Hide);
+
+
+    slider.editbox = editbox;
+
+    slider:Show();
+
+    return slider;
+end
