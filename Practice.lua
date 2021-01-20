@@ -157,15 +157,6 @@ local Sets = {
             [4] = MazeHelper.ButtonsData[6],
         },
     },
-    [17] = {
-        solutionIndex = 4,
-        buttons = {
-            [1] = MazeHelper.ButtonsData[1],
-            [2] = MazeHelper.ButtonsData[3],
-            [3] = MazeHelper.ButtonsData[4],
-            [4] = MazeHelper.ButtonsData[5],
-        },
-    },
 };
 local SetsCount          = #Sets;
 local SuccessSoundsCount = #M.Sounds.PracticeMode.Success;
