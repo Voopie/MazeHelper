@@ -946,16 +946,12 @@ end
 
 local GetSolution do
     local function GetSumCharacteristics()
-        local fillSum, flowerSum, leafSum, circleSum = 0, 0, 0, 0;
+        local fillSum,  leafSum, circleSum = 0, 0, 0, 0;
 
         for i = 1, MAX_BUTTONS do
             if buttons[i].state then
                 if buttons[i].data.circle then
                     circleSum = circleSum + 1;
-                end
-
-                if buttons[i].data.flower then
-                    flowerSum = flowerSum + 1;
                 end
 
                 if buttons[i].data.leaf then
@@ -968,97 +964,46 @@ local GetSolution do
             end
         end
 
-        return fillSum, flowerSum, leafSum, circleSum;
-    end
-
-    -- returned values can be nil
-    local function GetOddCharacteristics(fillSum, flowerSum, leafSum, circleSum)
-        local fill, flower, leaf, circle;
-
-        if fillSum == 3 then
-            fill = false;
-        elseif fillSum == 1 then
-            fill = true;
-        end
-
-        if flowerSum == 3 then
-            flower = false
-        elseif flowerSum == 1 then
-            flower = true;
-        end
-
-        if leafSum == 3 then
-            leaf = false;
-        elseif leafSum == 1 then
-            leaf = true;
-        end
-
-        if circleSum == 3 then
-            circle = false;
-        elseif circleSum == 1 then
-            circle = true;
-        end
-
-        if not MHMOTSConfig.AllowMultipleSolutions then
-            local multipleFound = 1;
-
-            for i = 1, MAX_BUTTONS do
-                if buttons[i].state then
-                    if (circleSum == 1 and buttons[i].data.circle) or (circleSum == 3 and not buttons[i].data.circle) then
-                        multipleFound = multipleFound + 1;
-                        break;
-                    end
-                end
-            end
-
-            for i = 1, MAX_BUTTONS do
-                if buttons[i].state then
-                    if (fillSum == 1 and buttons[i].data.fill) or (fillSum == 3 and not buttons[i].data.fill) then
-                        multipleFound = multipleFound + 1;
-                        break;
-                    end
-                end
-            end
-
-            for i = 1, MAX_BUTTONS do
-                if buttons[i].state then
-                    if (leafSum == 1 and buttons[i].data.leaf) or (leafSum == 3 and not buttons[i].data.leaf) then
-                        multipleFound = multipleFound + 1;
-                        break;
-                    end
-                end
-            end
-
-            if multipleFound > 2 then
-                return;
-            end
-        end
-
-        return fill, flower, leaf, circle;
+        return fillSum, leafSum, circleSum;
     end
 
     function GetSolution()
+        local fillSum, leafSum, circleSum = GetSumCharacteristics();
         local solutionButtonId;
-        local fill, flower, leaf, circle = GetOddCharacteristics(GetSumCharacteristics());
+        local multipleFound = 0;
 
         for i = 1, MAX_BUTTONS do
             if buttons[i].state then
-                if buttons[i].data.fill == fill then
+                if (fillSum == 1 and buttons[i].data.fill) or (fillSum == 3 and not buttons[i].data.fill) then
                     solutionButtonId = i;
-                end
-
-                if buttons[i].data.leaf == leaf then
-                    solutionButtonId = i;
-                end
-
-                if buttons[i].data.flower == flower then
-                    solutionButtonId = i;
-                end
-
-                if buttons[i].data.circle == circle then
-                    solutionButtonId = i;
+                    multipleFound = multipleFound + 1;
+                    break;
                 end
             end
+        end
+
+        for i = 1, MAX_BUTTONS do
+            if buttons[i].state then
+                if (leafSum == 1 and buttons[i].data.leaf) or (leafSum == 3 and not buttons[i].data.leaf) then
+                    solutionButtonId = i;
+                    multipleFound = multipleFound + 1;
+                    break;
+                end
+            end
+        end
+
+        for i = 1, MAX_BUTTONS do
+            if buttons[i].state then
+                if (circleSum == 1 and buttons[i].data.circle) or (circleSum == 3 and not buttons[i].data.circle) then
+                    solutionButtonId = i;
+                    multipleFound = multipleFound + 1;
+                    break;
+                end
+            end
+        end
+
+        if multipleFound > 1 then
+            return;
         end
 
         return solutionButtonId;
