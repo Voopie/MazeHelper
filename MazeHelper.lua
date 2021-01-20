@@ -1309,9 +1309,9 @@ function MazeHelper.frame:PLAYER_LOGIN()
     end
 
     if MHMOTSConfig.SavedPositionLargeSymbol and #MHMOTSConfig.SavedPositionLargeSymbol > 1 then
-        self.LargeSymbol:ClearAllPoints();
-        PixelUtil.SetPoint(self.LargeSymbol, MHMOTSConfig.SavedPositionLargeSymbol[1], MHMOTSConfig.SavedPositionLargeSymbol[2] or UIParent, MHMOTSConfig.SavedPositionLargeSymbol[3], MHMOTSConfig.SavedPositionLargeSymbol[4], MHMOTSConfig.SavedPositionLargeSymbol[5]);
-        self.LargeSymbol:SetUserPlaced(true);
+        MazeHelper.LargeSymbol:ClearAllPoints();
+        PixelUtil.SetPoint(MazeHelper.LargeSymbol, MHMOTSConfig.SavedPositionLargeSymbol[1], MHMOTSConfig.SavedPositionLargeSymbol[2] or UIParent, MHMOTSConfig.SavedPositionLargeSymbol[3], MHMOTSConfig.SavedPositionLargeSymbol[4], MHMOTSConfig.SavedPositionLargeSymbol[5]);
+        MazeHelper.LargeSymbol:SetUserPlaced(true);
 	end
 
     UpdateData(self);
