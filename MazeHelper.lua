@@ -678,6 +678,7 @@ end);
 
 settingsScrollChild.Data.Scale = E.CreateSlider('Scale', settingsScrollChild);
 settingsScrollChild.Data.Scale:SetPosition('TOPLEFT', settingsScrollChild.Data.AutoAnnouncer, 'BOTTOMLEFT', 4, -42);
+PixelUtil.SetWidth(settingsScrollChild.Data.Scale, FRAME_SIZE + X_OFFSET * (MAX_ACTIVE_BUTTONS - 1) - 50);
 settingsScrollChild.Data.Scale:SetLabel(L['MAZE_HELPER_SETTINGS_SCALE_LABEL']);
 settingsScrollChild.Data.Scale:SetTooltip(L['MAZE_HELPER_SETTINGS_SCALE_TOOLTIP']);
 settingsScrollChild.Data.Scale:SetValues(1, 0.25, 3, 0.05);
@@ -688,6 +689,7 @@ end
 
 settingsScrollChild.Data.ScaleLargeSymbol = E.CreateSlider('Scale', settingsScrollChild);
 settingsScrollChild.Data.ScaleLargeSymbol:SetPosition('TOPLEFT', settingsScrollChild.Data.Scale, 'BOTTOMLEFT', 0, -42);
+PixelUtil.SetWidth(settingsScrollChild.Data.ScaleLargeSymbol, FRAME_SIZE + X_OFFSET * (MAX_ACTIVE_BUTTONS - 1) - 50);
 settingsScrollChild.Data.ScaleLargeSymbol:SetLabel(L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_LABEL']);
 settingsScrollChild.Data.ScaleLargeSymbol:SetTooltip(L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_TOOLTIP']);
 settingsScrollChild.Data.ScaleLargeSymbol:SetValues(1, 0.25, 3, 0.05);
