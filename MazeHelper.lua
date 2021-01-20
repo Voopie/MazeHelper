@@ -563,18 +563,8 @@ settingsScrollChild.Data.ShowAtBoss:SetScript('OnClick', function(self)
     MHMOTSConfig.ShowAtBoss = self:GetChecked();
 end);
 
-settingsScrollChild.Data.AllowMultipleSolutions = E.CreateRoundedCheckButton(settingsScrollChild);
-settingsScrollChild.Data.AllowMultipleSolutions:SetPosition('TOPLEFT', settingsScrollChild.Data.ShowAtBoss, 'BOTTOMLEFT', 0, 0);
-settingsScrollChild.Data.AllowMultipleSolutions:SetArea(26, 26);
-settingsScrollChild.Data.AllowMultipleSolutions:SetLabel(L['MAZE_HELPER_SETTINGS_ALLOW_MULTIPLE_SOLUTIONS_LABEL']);
-settingsScrollChild.Data.AllowMultipleSolutions:SetTooltip(L['MAZE_HELPER_SETTINGS_ALLOW_MULTIPLE_SOLUTIONS_TOOLTIP']);
-settingsScrollChild.Data.AllowMultipleSolutions:SetScript('OnClick', function(self)
-    MHMOTSConfig.AllowMultipleSolutions = self:GetChecked();
-    ResetAll();
-end);
-
 settingsScrollChild.Data.PredictSolution = E.CreateRoundedCheckButton(settingsScrollChild);
-settingsScrollChild.Data.PredictSolution:SetPosition('TOPLEFT', settingsScrollChild.Data.AllowMultipleSolutions, 'BOTTOMLEFT', 0, 0);
+settingsScrollChild.Data.PredictSolution:SetPosition('TOPLEFT', settingsScrollChild.Data.ShowAtBoss, 'BOTTOMLEFT', 0, 0);
 settingsScrollChild.Data.PredictSolution:SetArea(26, 26);
 settingsScrollChild.Data.PredictSolution:SetLabel(L['MAZE_HELPER_SETTINGS_PREDICT_SOLUTION_LABEL']);
 settingsScrollChild.Data.PredictSolution:SetTooltip(L['MAZE_HELPER_SETTINGS_PREDICT_SOLUTION_TOOLTIP']);
@@ -1430,8 +1420,7 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     MHMOTSConfig.UseColoredSymbols       = MHMOTSConfig.UseColoredSymbols == nil and true or MHMOTSConfig.UseColoredSymbols;
     MHMOTSConfig.ShowSequenceNumbers     = MHMOTSConfig.ShowSequenceNumbers == nil and true or MHMOTSConfig.ShowSequenceNumbers;
     MHMOTSConfig.ShowLargeSymbol         = MHMOTSConfig.ShowLargeSymbol == nil and true or MHMOTSConfig.ShowLargeSymbol;
-    MHMOTSConfig.AllowMultipleSolutions  = MHMOTSConfig.AllowMultipleSolutions == nil and false or MHMOTSConfig.AllowMultipleSolutions;
-
+ 
     MHMOTSConfig.AutoAnnouncer              = MHMOTSConfig.AutoAnnouncer == nil and false or MHMOTSConfig.AutoAnnouncer;
     MHMOTSConfig.AutoAnnouncerAsPartyLeader = MHMOTSConfig.AutoAnnouncerAsPartyLeader == nil and true or MHMOTSConfig.AutoAnnouncerAsPartyLeader;
     MHMOTSConfig.AutoAnnouncerAsAlways      = MHMOTSConfig.AutoAnnouncerAsAlways == nil and false or MHMOTSConfig.AutoAnnouncerAsAlways;
@@ -1448,7 +1437,6 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     settingsScrollChild.Data.ShowAtBoss:SetChecked(MHMOTSConfig.ShowAtBoss);
     settingsScrollChild.Data.ShowLargeSymbol:SetChecked(MHMOTSConfig.ShowLargeSymbol);
     settingsScrollChild.Data.StartInMinMode:SetChecked(MHMOTSConfig.StartInMinMode);
-    settingsScrollChild.Data.AllowMultipleSolutions:SetChecked(MHMOTSConfig.AllowMultipleSolutions);
 
     settingsScrollChild.Data.AutoAnnouncer:SetChecked(MHMOTSConfig.AutoAnnouncer);
     settingsScrollChild.Data.AutoAnnouncerAsPartyLeader:SetChecked(MHMOTSConfig.AutoAnnouncerAsPartyLeader);
