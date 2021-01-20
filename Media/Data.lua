@@ -13,9 +13,7 @@ M.INLINE_INFINITY_ICON = '|T' .. MEDIA_PATH .. 'icons32.blp:14:14:0:0:128:128:64
 M.INLINE_ENTRANCE_ICON = '|T' .. MEDIA_PATH .. 'icons32.blp:12:12:-1:1:128:128:96:128:32:64|t';
 
 M.BACKGROUND_WHITE = MEDIA_PATH .. 'background-white.blp';
-M.BBH = MEDIA_PATH .. 'bbh.blp';
-M.BGH = MEDIA_PATH .. 'bgh.blp';
-M.SLIDER_BORDER = MEDIA_PATH .. 'slider-border.blp';
+M.SLIDER_BORDER    = MEDIA_PATH .. 'slider-border.blp';
 
 M.Rings = {
     TEXTURE = MEDIA_PATH .. 'rings.blp', -- 256x128
