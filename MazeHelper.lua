@@ -946,7 +946,7 @@ end
 
 local GetSolution do
     local function GetSumCharacteristics()
-        local circleSum, flowerSum, leafSum, fillSum = 0, 0, 0, 0;
+        local fillSum, flowerSum, leafSum, circleSum = 0, 0, 0, 0;
 
         for i = 1, MAX_BUTTONS do
             if buttons[i].state then
@@ -968,11 +968,11 @@ local GetSolution do
             end
         end
 
-        return circleSum, flowerSum, leafSum, fillSum;
+        return fillSum, flowerSum, leafSum, circleSum;
     end
 
     -- return values can be nil
-    local function GetOddCharacteristics(circleSum, flowerSum, leafSum, fillSum)
+    local function GetOddCharacteristics(fillSum, flowerSum, leafSum, circleSum)
         local fill, flower, leaf, circle;
 
         if fillSum == 3 then
@@ -1000,10 +1000,28 @@ local GetSolution do
         end
 
         if not MHMOTSConfig.AllowMultipleSolutions then
-            if (fillSum == 3 and circleSum == 3) or (fillSum == 3 and flowerSum == 3) or (fillSum == 3 and leafSum == 3)
-                or (circleSum == 3 and flowerSum == 3) or (circleSum == 3 and leafSum == 3)
-                or (flowerSum == 3 and leafSum == 3) then
-                return; -- multiple solutions
+            if fillSum == 3 then
+                if circleSum == 3 or flowerSum == 3 or leafSum == 3 then
+                    return;
+                end
+            end
+
+            if circleSum == 3 then
+                if fillSum == 3 or flowerSum == 3 or leafSum == 3 then
+                    return;
+                end
+            end
+
+            if flowerSum == 3 then
+                if circleSum == 3 or fillSum == 3 or leafSum == 3 then
+                    return;
+                end
+            end
+
+            if leafSum == 3 then
+                if circleSum == 3 or fillSum == 3 or flowerSum == 3 then
+                    return;
+                end
             end
         end
 
