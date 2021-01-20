@@ -14,15 +14,6 @@ local SOUND_CHANNEL = 'SFX';
 
 local Sets = {
     [1] = {
-        solutionIndex = 2,
-        buttons = {
-            [1] = MazeHelper.ButtonsData[1],
-            [2] = MazeHelper.ButtonsData[7],
-            [3] = MazeHelper.ButtonsData[3],
-            [4] = MazeHelper.ButtonsData[2],
-        },
-    },
-    [2] = {
         solutionIndex = 4,
         buttons = {
             [1] = MazeHelper.ButtonsData[5],
@@ -31,7 +22,7 @@ local Sets = {
             [4] = MazeHelper.ButtonsData[3],
         },
     },
-    [3] = {
+    [2] = {
         solutionIndex = 1,
         buttons = {
             [1] = MazeHelper.ButtonsData[5],
@@ -40,7 +31,7 @@ local Sets = {
             [4] = MazeHelper.ButtonsData[4],
         },
     },
-    [4] = {
+    [3] = {
         solutionIndex = 1,
         buttons = {
             [1] = MazeHelper.ButtonsData[5],
@@ -49,7 +40,7 @@ local Sets = {
             [4] = MazeHelper.ButtonsData[3],
         },
     },
-    [5] = {
+    [4] = {
         solutionIndex = 4,
         buttons = {
             [1] = MazeHelper.ButtonsData[7],
@@ -58,7 +49,7 @@ local Sets = {
             [4] = MazeHelper.ButtonsData[4],
         },
     },
-    [6] = {
+    [5] = {
         solutionIndex = 1,
         buttons = {
             [1] = MazeHelper.ButtonsData[3],
@@ -67,7 +58,7 @@ local Sets = {
             [4] = MazeHelper.ButtonsData[5],
         },
     },
-    [7] = {
+    [6] = {
         solutionIndex = 3,
         buttons = {
             [1] = MazeHelper.ButtonsData[3],
@@ -76,7 +67,7 @@ local Sets = {
             [4] = MazeHelper.ButtonsData[7],
         },
     },
-    [8] = {
+    [7] = {
         solutionIndex = 3,
         buttons = {
             [1] = MazeHelper.ButtonsData[7],
@@ -85,7 +76,7 @@ local Sets = {
             [4] = MazeHelper.ButtonsData[6],
         },
     },
-    [9] = {
+    [8] = {
         solutionIndex = 3,
         buttons = {
             [1] = MazeHelper.ButtonsData[6],
@@ -94,7 +85,7 @@ local Sets = {
             [4] = MazeHelper.ButtonsData[5],
         },
     },
-    [10] = {
+    [9] = {
         solutionIndex = 3,
         buttons = {
             [1] = MazeHelper.ButtonsData[2],
@@ -103,7 +94,7 @@ local Sets = {
             [4] = MazeHelper.ButtonsData[1],
         },
     },
-    [11] = {
+    [10] = {
         solutionIndex = 2,
         buttons = {
             [1] = MazeHelper.ButtonsData[7],
@@ -112,7 +103,7 @@ local Sets = {
             [4] = MazeHelper.ButtonsData[1],
         },
     },
-    [12] = {
+    [11] = {
         solutionIndex = 4,
         buttons = {
             [1] = MazeHelper.ButtonsData[2],
@@ -121,25 +112,25 @@ local Sets = {
             [4] = MazeHelper.ButtonsData[7],
         },
     },
-    [13] = {
+    [12] = {
         solutionIndex = 4,
         buttons = {
             [1] = MazeHelper.ButtonsData[2],
             [2] = MazeHelper.ButtonsData[3],
             [3] = MazeHelper.ButtonsData[4],
-            [4] = MazeHelper.ButtonsData[7],
+            [4] = MazeHelper.ButtonsData[5],
         },
     },
-    [14] = {
+    [13] = {
         solutionIndex = 4,
         buttons = {
             [1] = MazeHelper.ButtonsData[1],
             [2] = MazeHelper.ButtonsData[3],
             [3] = MazeHelper.ButtonsData[5],
-            [4] = MazeHelper.ButtonsData[6],
+            [4] = MazeHelper.ButtonsData[8],
         },
     },
-    [15] = {
+    [14] = {
         solutionIndex = 1,
         buttons = {
             [1] = MazeHelper.ButtonsData[1],
@@ -148,13 +139,22 @@ local Sets = {
             [4] = MazeHelper.ButtonsData[8],
         },
     },
-    [16] = {
-        solutionIndex = 2,
+    [15] = {
+        solutionIndex = 1,
         buttons = {
             [1] = MazeHelper.ButtonsData[2],
             [2] = MazeHelper.ButtonsData[3],
             [3] = MazeHelper.ButtonsData[5],
-            [4] = MazeHelper.ButtonsData[6],
+            [4] = MazeHelper.ButtonsData[7],
+        },
+    },
+    [16] = {
+        solutionIndex = 3,
+        buttons = {
+            [1] = MazeHelper.ButtonsData[2],
+            [2] = MazeHelper.ButtonsData[4],
+            [3] = MazeHelper.ButtonsData[5],
+            [4] = MazeHelper.ButtonsData[8],
         },
     },
 };
