@@ -681,7 +681,6 @@ settingsScrollChild.Data.Scale:SetPosition('TOPLEFT', settingsScrollChild.Data.A
 PixelUtil.SetWidth(settingsScrollChild.Data.Scale, FRAME_SIZE + X_OFFSET * (MAX_ACTIVE_BUTTONS - 1) - 50);
 settingsScrollChild.Data.Scale:SetLabel(L['MAZE_HELPER_SETTINGS_SCALE_LABEL']);
 settingsScrollChild.Data.Scale:SetTooltip(L['MAZE_HELPER_SETTINGS_SCALE_TOOLTIP']);
-settingsScrollChild.Data.Scale:SetValues(1, 0.25, 3, 0.05);
 settingsScrollChild.Data.Scale.Callback = function(_, value)
     MHMOTSConfig.SavedScale = tonumber(value);
     MazeHelper.frame:SetScale(MHMOTSConfig.SavedScale);
@@ -692,7 +691,6 @@ settingsScrollChild.Data.ScaleLargeSymbol:SetPosition('TOPLEFT', settingsScrollC
 PixelUtil.SetWidth(settingsScrollChild.Data.ScaleLargeSymbol, FRAME_SIZE + X_OFFSET * (MAX_ACTIVE_BUTTONS - 1) - 50);
 settingsScrollChild.Data.ScaleLargeSymbol:SetLabel(L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_LABEL']);
 settingsScrollChild.Data.ScaleLargeSymbol:SetTooltip(L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_TOOLTIP']);
-settingsScrollChild.Data.ScaleLargeSymbol:SetValues(1, 0.25, 3, 0.05);
 settingsScrollChild.Data.ScaleLargeSymbol.Callback = function(_, value)
     MHMOTSConfig.SavedScaleLargeSymbol = tonumber(value);
     MazeHelper.LargeSymbol:SetScale(PixelUtil.GetPixelToUIUnitFactor() * MHMOTSConfig.SavedScaleLargeSymbol);
@@ -1422,7 +1420,7 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     MHMOTSConfig.UseColoredSymbols       = MHMOTSConfig.UseColoredSymbols == nil and true or MHMOTSConfig.UseColoredSymbols;
     MHMOTSConfig.ShowSequenceNumbers     = MHMOTSConfig.ShowSequenceNumbers == nil and true or MHMOTSConfig.ShowSequenceNumbers;
     MHMOTSConfig.ShowLargeSymbol         = MHMOTSConfig.ShowLargeSymbol == nil and true or MHMOTSConfig.ShowLargeSymbol;
- 
+
     MHMOTSConfig.AutoAnnouncer              = MHMOTSConfig.AutoAnnouncer == nil and false or MHMOTSConfig.AutoAnnouncer;
     MHMOTSConfig.AutoAnnouncerAsPartyLeader = MHMOTSConfig.AutoAnnouncerAsPartyLeader == nil and true or MHMOTSConfig.AutoAnnouncerAsPartyLeader;
     MHMOTSConfig.AutoAnnouncerAsAlways      = MHMOTSConfig.AutoAnnouncerAsAlways == nil and false or MHMOTSConfig.AutoAnnouncerAsAlways;
