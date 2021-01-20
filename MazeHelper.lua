@@ -1010,7 +1010,6 @@ local GetSolution do
     end
 end
 
--- DON'T LOOK AT THIS SHIT PLEEEEASE :( I WAS DRUNK, BUT IT STILL WORKS SOMEHOW
 function MazeHelper:UpdateSolution()
     SOLUTION_BUTTON_ID = nil;
 
