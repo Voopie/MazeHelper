@@ -1,7 +1,7 @@
 ## Interface: 90002
 ## Author: Voopie
 ## Title: Maze Helper [|cff235be8Mists of Tirna Scithe|r]
-## Version: 1.16
+## Version: 1.17
 ## SavedVariables: MHMOTSConfig
 
 Locale.lua
