@@ -531,8 +531,17 @@ settingsScrollChild.Data.SyncEnabled:SetScript('OnClick', function(self)
     end
 end);
 
+settingsScrollChild.Data.ShowAtBoss = E.CreateRoundedCheckButton(settingsScrollChild);
+settingsScrollChild.Data.ShowAtBoss:SetPosition('TOPLEFT', settingsScrollChild.Data.SyncEnabled, 'BOTTOMLEFT', 0, 0);
+settingsScrollChild.Data.ShowAtBoss:SetArea(26, 26);
+settingsScrollChild.Data.ShowAtBoss:SetLabel(L['MAZE_HELPER_SETTINGS_SHOW_AT_BOSS_LABEL']);
+settingsScrollChild.Data.ShowAtBoss:SetTooltip(L['MAZE_HELPER_SETTINGS_SHOW_AT_BOSS_TOOLTIP']);
+settingsScrollChild.Data.ShowAtBoss:SetScript('OnClick', function(self)
+    MHMOTSConfig.ShowAtBoss = self:GetChecked();
+end);
+
 settingsScrollChild.Data.AllowMultipleSolutions = E.CreateRoundedCheckButton(settingsScrollChild);
-settingsScrollChild.Data.AllowMultipleSolutions:SetPosition('TOPLEFT', settingsScrollChild.Data.SyncEnabled, 'BOTTOMLEFT', 0, 0);
+settingsScrollChild.Data.AllowMultipleSolutions:SetPosition('TOPLEFT', settingsScrollChild.Data.ShowAtBoss, 'BOTTOMLEFT', 0, 0);
 settingsScrollChild.Data.AllowMultipleSolutions:SetArea(26, 26);
 settingsScrollChild.Data.AllowMultipleSolutions:SetLabel(L['MAZE_HELPER_SETTINGS_ALLOW_MULTIPLE_SOLUTIONS_LABEL']);
 settingsScrollChild.Data.AllowMultipleSolutions:SetTooltip(L['MAZE_HELPER_SETTINGS_ALLOW_MULTIPLE_SOLUTIONS_TOOLTIP']);
@@ -551,8 +560,21 @@ settingsScrollChild.Data.PredictSolution:SetScript('OnClick', function(self)
     ResetAll();
 end);
 
+settingsScrollChild.Data.ShowLargeSymbol = E.CreateRoundedCheckButton(settingsScrollChild);
+settingsScrollChild.Data.ShowLargeSymbol:SetPosition('TOPLEFT', settingsScrollChild.Data.PredictSolution, 'BOTTOMLEFT', 0, 0);
+settingsScrollChild.Data.ShowLargeSymbol:SetArea(26, 26);
+settingsScrollChild.Data.ShowLargeSymbol:SetLabel(L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_LABEL']);
+settingsScrollChild.Data.ShowLargeSymbol:SetTooltip(L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP']);
+settingsScrollChild.Data.ShowLargeSymbol:SetScript('OnClick', function(self)
+    MHMOTSConfig.ShowLargeSymbol = self:GetChecked();
+
+    if SOLUTION_BUTTON_ID then
+        MazeHelper.LargeSymbol:SetShown(MHMOTSConfig.ShowLargeSymbol);
+    end
+end);
+
 settingsScrollChild.Data.UseColoredSymbols = E.CreateRoundedCheckButton(settingsScrollChild);
-settingsScrollChild.Data.UseColoredSymbols:SetPosition('TOPLEFT', settingsScrollChild.Data.PredictSolution, 'BOTTOMLEFT', 0, 0);
+settingsScrollChild.Data.UseColoredSymbols:SetPosition('TOPLEFT', settingsScrollChild.Data.ShowLargeSymbol, 'BOTTOMLEFT', 0, 0);
 settingsScrollChild.Data.UseColoredSymbols:SetArea(26, 26);
 settingsScrollChild.Data.UseColoredSymbols:SetLabel(L['MAZE_HELPER_SETTINGS_USE_COLORED_SYMBOLS_LABEL']);
 settingsScrollChild.Data.UseColoredSymbols:SetTooltip(L['MAZE_HELPER_SETTINGS_USE_COLORED_SYMBOLS_TOOLTIP']);
@@ -586,30 +608,8 @@ settingsScrollChild.Data.PrintResettedPlayerName:SetScript('OnClick', function(s
     MHMOTSConfig.PrintResettedPlayerName = self:GetChecked();
 end);
 
-settingsScrollChild.Data.ShowAtBoss = E.CreateRoundedCheckButton(settingsScrollChild);
-settingsScrollChild.Data.ShowAtBoss:SetPosition('TOPLEFT', settingsScrollChild.Data.PrintResettedPlayerName, 'BOTTOMLEFT', 0, 0);
-settingsScrollChild.Data.ShowAtBoss:SetArea(26, 26);
-settingsScrollChild.Data.ShowAtBoss:SetLabel(L['MAZE_HELPER_SETTINGS_SHOW_AT_BOSS_LABEL']);
-settingsScrollChild.Data.ShowAtBoss:SetTooltip(L['MAZE_HELPER_SETTINGS_SHOW_AT_BOSS_TOOLTIP']);
-settingsScrollChild.Data.ShowAtBoss:SetScript('OnClick', function(self)
-    MHMOTSConfig.ShowAtBoss = self:GetChecked();
-end);
-
-settingsScrollChild.Data.ShowLargeSymbol = E.CreateRoundedCheckButton(settingsScrollChild);
-settingsScrollChild.Data.ShowLargeSymbol:SetPosition('TOPLEFT', settingsScrollChild.Data.ShowAtBoss, 'BOTTOMLEFT', 0, 0);
-settingsScrollChild.Data.ShowLargeSymbol:SetArea(26, 26);
-settingsScrollChild.Data.ShowLargeSymbol:SetLabel(L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_LABEL']);
-settingsScrollChild.Data.ShowLargeSymbol:SetTooltip(L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP']);
-settingsScrollChild.Data.ShowLargeSymbol:SetScript('OnClick', function(self)
-    MHMOTSConfig.ShowLargeSymbol = self:GetChecked();
-
-    if SOLUTION_BUTTON_ID then
-        MazeHelper.LargeSymbol:SetShown(MHMOTSConfig.ShowLargeSymbol);
-    end
-end);
-
 settingsScrollChild.Data.StartInMinMode = E.CreateRoundedCheckButton(settingsScrollChild);
-settingsScrollChild.Data.StartInMinMode:SetPosition('TOPLEFT', settingsScrollChild.Data.ShowLargeSymbol, 'BOTTOMLEFT', 0, 0);
+settingsScrollChild.Data.StartInMinMode:SetPosition('TOPLEFT', settingsScrollChild.Data.PrintResettedPlayerName, 'BOTTOMLEFT', 0, 0);
 settingsScrollChild.Data.StartInMinMode:SetArea(26, 26);
 settingsScrollChild.Data.StartInMinMode:SetLabel(L['MAZE_HELPER_SETTINGS_START_IN_MINMODE_LABEL']);
 settingsScrollChild.Data.StartInMinMode:SetTooltip(L['MAZE_HELPER_SETTINGS_START_IN_MINMODE_TOOLTIP']);
