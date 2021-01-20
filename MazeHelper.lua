@@ -461,10 +461,10 @@ PixelUtil.SetPoint(MazeHelper.frame.AnnounceButton, 'TOPLEFT', MazeHelper.frame,
 PixelUtil.SetSize(MazeHelper.frame.AnnounceButton, 18, 18);
 MazeHelper.frame.AnnounceButton:SetNormalTexture(M.Icons.TEXTURE);
 MazeHelper.frame.AnnounceButton:GetNormalTexture():SetTexCoord(unpack(M.Icons.COORDS.MEGAPHONE_WHITE));
-MazeHelper.frame.AnnounceButton:GetNormalTexture():SetVertexColor(0.7, 0.7, 0.7, 1);
+MazeHelper.frame.AnnounceButton:GetNormalTexture():SetVertexColor(1, 0.85, 0, 1);
 MazeHelper.frame.AnnounceButton:SetHighlightTexture(M.Icons.TEXTURE, 'BLEND');
 MazeHelper.frame.AnnounceButton:GetHighlightTexture():SetTexCoord(unpack(M.Icons.COORDS.MEGAPHONE_WHITE));
-MazeHelper.frame.AnnounceButton:GetHighlightTexture():SetVertexColor(1, 0.85, 0, 1);
+MazeHelper.frame.AnnounceButton:GetHighlightTexture():SetVertexColor(1, 1, 0, 1);
 MazeHelper.frame.AnnounceButton.Background = MazeHelper.frame.AnnounceButton:CreateTexture(nil, 'BACKGROUND');
 PixelUtil.SetPoint(MazeHelper.frame.AnnounceButton.Background, 'TOPLEFT', MazeHelper.frame.AnnounceButton, 'TOPLEFT', -26, 22);
 PixelUtil.SetPoint(MazeHelper.frame.AnnounceButton.Background, 'BOTTOMRIGHT', MazeHelper.frame.AnnounceButton, 'BOTTOMRIGHT', 26, -26);
