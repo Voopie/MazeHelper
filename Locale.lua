@@ -68,6 +68,8 @@ L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_LABEL'] = 'Show large symbol';
 L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = 'Show a large symbol at the top of the screen if there is a ready-made solution';
 L['MAZE_HELPER_SETTINGS_SCALE_LABEL'] = 'Scale';
 L['MAZE_HELPER_SETTINGS_SCALE_TOOLTIP'] = 'Set the scale of the main window';
+L['MAZE_HELPER_SETTINGS_ALLOW_MULTIPLE_SOLUTIONS_LABEL'] = 'Allow multiple solutions';
+L['MAZE_HELPER_SETTINGS_ALLOW_MULTIPLE_SOLUTIONS_TOOLTIP'] = 'Allow multiple solutions when selecting symbols|n|n|cffff6a00If there are 2 or more solutions, a random one will be chosen|r';
 L['MAZE_HELPER_PRACTICE_TITLE'] = 'Select a symbol that differs in one way from the others';
 L['MAZE_HELPER_PRACTICE_PLAY_AGAIN'] = 'Play again';
 L['MAZE_HELPER_PRACTICE_BUTTON_TOOLTIP'] = 'Practice';
@@ -125,6 +127,8 @@ if gameLocale == 'ruRU' then
     L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = 'Показывать большой символ вверху экрана при наличии решения';
     L['MAZE_HELPER_SETTINGS_SCALE_LABEL'] = 'Масштаб';
     L['MAZE_HELPER_SETTINGS_SCALE_TOOLTIP'] = 'Задать масштаб главного окна';
+    L['MAZE_HELPER_SETTINGS_ALLOW_MULTIPLE_SOLUTIONS_LABEL'] = 'Разрешить множественные решения';
+    L['MAZE_HELPER_SETTINGS_ALLOW_MULTIPLE_SOLUTIONS_TOOLTIP'] = 'Разрешить множественные решения при выборе символов|n|n|cffff6a00При наличии 2 и более решений будет выбираться случайный один|r';
     L['MAZE_HELPER_PRACTICE_TITLE'] = 'Выберите символ, отличающийся чем-то одним от других';
     L['MAZE_HELPER_PRACTICE_PLAY_AGAIN'] = 'Сыграть ещё';
     L['MAZE_HELPER_PRACTICE_BUTTON_TOOLTIP'] = 'Практика';
@@ -186,6 +190,8 @@ if gameLocale == 'deDE' then
     L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = 'Zeigen Sie oben auf dem Bildschirm ein großes Symbol an, wenn eine fertige Lösung vorhanden ist';
     L['MAZE_HELPER_SETTINGS_SCALE_LABEL'] = 'Rahmen';
     L['MAZE_HELPER_SETTINGS_SCALE_TOOLTIP'] = 'Stellen Sie den Maßstab des Hauptfensters ein';
+    L['MAZE_HELPER_SETTINGS_ALLOW_MULTIPLE_SOLUTIONS_LABEL'] = 'Erlaube mehrere Lösungen';
+    L['MAZE_HELPER_SETTINGS_ALLOW_MULTIPLE_SOLUTIONS_TOOLTIP'] = 'Ermöglichen Sie mehrere Lösungen bei der Auswahl von Symbolen|n|n|cffff6a00Wenn es zwei oder mehr Lösungen gibt, wird eine zufällige ausgewählt|r';
     L['MAZE_HELPER_PRACTICE_TITLE'] = 'Wählen Sie ein Symbol aus, das sich in einer Hinsicht von den anderen unterscheidet';
     L['MAZE_HELPER_PRACTICE_PLAY_AGAIN'] = 'Nochmal abspielen';
     L['MAZE_HELPER_PRACTICE_BUTTON_TOOLTIP'] = 'Trainieren';
@@ -246,6 +252,8 @@ if gameLocale == 'frFR' then -- Google Translate
     L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = 'Afficher un grand symbole en haut de l\'écran s\'il existe une solution toute faite';
     L['MAZE_HELPER_SETTINGS_SCALE_LABEL'] = 'Échelle';
     L['MAZE_HELPER_SETTINGS_SCALE_TOOLTIP'] = 'Réglez l\'échelle de la fenêtre principale';
+    L['MAZE_HELPER_SETTINGS_ALLOW_MULTIPLE_SOLUTIONS_LABEL'] = 'Autoriser plusieurs solutions';
+    L['MAZE_HELPER_SETTINGS_ALLOW_MULTIPLE_SOLUTIONS_TOOLTIP'] = 'Autoriser plusieurs solutions lors de la sélection de symboles|n|n|cffff6a00S\'il y a 2 ou plusieurs solutions, une aléatoire sera choisie|r';
     L['MAZE_HELPER_PRACTICE_TITLE'] = 'Sélectionnez un symbole qui diffère d\'une manière des autres';
     L['MAZE_HELPER_PRACTICE_PLAY_AGAIN'] = 'Rejouer';
     L['MAZE_HELPER_PRACTICE_BUTTON_TOOLTIP'] = 'La pratique';
@@ -306,6 +314,8 @@ if gameLocale == 'itIT' then -- Google Translate
     L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = 'Mostra un grande simbolo nella parte superiore dello schermo se c\'è una soluzione già pronta';
     L['MAZE_HELPER_SETTINGS_SCALE_LABEL'] = 'Scala';
     L['MAZE_HELPER_SETTINGS_SCALE_TOOLTIP'] = 'Imposta la scala della finestra principale';
+    L['MAZE_HELPER_SETTINGS_ALLOW_MULTIPLE_SOLUTIONS_LABEL'] = 'Consenti più soluzioni';
+    L['MAZE_HELPER_SETTINGS_ALLOW_MULTIPLE_SOLUTIONS_TOOLTIP'] = 'Consenti più soluzioni durante la selezione dei simboli|n|n|cffff6a00Se ci sono 2 o più soluzioni, verrà scelta una a caso|r';
     L['MAZE_HELPER_PRACTICE_TITLE'] = 'Seleziona un simbolo che differisce in un modo dagli altri';
     L['MAZE_HELPER_PRACTICE_PLAY_AGAIN'] = 'Gioca di nuovo';
     L['MAZE_HELPER_PRACTICE_BUTTON_TOOLTIP'] = 'Pratica';
@@ -366,6 +376,8 @@ if gameLocale == 'ptBR' then -- Brazilian Portuguese (Google Translate)
     L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = 'Mostra um grande símbolo no topo da tela se houver uma solução pronta';
     L['MAZE_HELPER_SETTINGS_SCALE_LABEL'] = 'Escala';
     L['MAZE_HELPER_SETTINGS_SCALE_TOOLTIP'] = 'Defina a escala da janela principal';
+    L['MAZE_HELPER_SETTINGS_ALLOW_MULTIPLE_SOLUTIONS_LABEL'] = 'Permitir várias soluções';
+    L['MAZE_HELPER_SETTINGS_ALLOW_MULTIPLE_SOLUTIONS_TOOLTIP'] = 'Permitir várias soluções ao selecionar símbolos|n|n|cffff6a00Se houver 2 ou mais soluções, uma aleatória será escolhida|r';
     L['MAZE_HELPER_PRACTICE_TITLE'] = 'Selecione um símbolo que difere de uma forma dos outros';
     L['MAZE_HELPER_PRACTICE_PLAY_AGAIN'] = 'Jogar de novo';
     L['MAZE_HELPER_PRACTICE_BUTTON_TOOLTIP'] = 'Prática';
@@ -426,6 +438,8 @@ if gameLocale == 'esES' then -- Spanish (Google Translate)
     L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = 'Muestre un símbolo grande en la parte superior de la pantalla si hay una solución preparada';
     L['MAZE_HELPER_SETTINGS_SCALE_LABEL'] = 'Escala';
     L['MAZE_HELPER_SETTINGS_SCALE_TOOLTIP'] = 'Establecer la escala de la ventana principal';
+    L['MAZE_HELPER_SETTINGS_ALLOW_MULTIPLE_SOLUTIONS_LABEL'] = 'Permitir múltiples soluciones';
+    L['MAZE_HELPER_SETTINGS_ALLOW_MULTIPLE_SOLUTIONS_TOOLTIP'] = 'Permitir múltiples soluciones al seleccionar símbolos|n|n|cffff6a00Si hay 2 o más soluciones, se elegirá una al azar|r';
     L['MAZE_HELPER_PRACTICE_TITLE'] = 'Seleccione un símbolo que difiera en un sentido de los demás';
     L['MAZE_HELPER_PRACTICE_PLAY_AGAIN'] = 'Juega de nuevo';
     L['MAZE_HELPER_PRACTICE_BUTTON_TOOLTIP'] = 'Práctica';
@@ -495,6 +509,8 @@ if gameLocale == 'zhTW' then -- BNS333 (https://www.curseforge.com/members/bns33
     L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = '如果有現成的解決方案，請在屏幕頂部顯示一個大符號';
     L['MAZE_HELPER_SETTINGS_SCALE_LABEL'] = '規模';
     L['MAZE_HELPER_SETTINGS_SCALE_TOOLTIP'] = '設置主窗口的比例';
+    L['MAZE_HELPER_SETTINGS_ALLOW_MULTIPLE_SOLUTIONS_LABEL'] = '允許多種解決方案';
+    L['MAZE_HELPER_SETTINGS_ALLOW_MULTIPLE_SOLUTIONS_TOOLTIP'] = '選擇符號時允許多種解決方案|n|n|cffff6a00如果有2個或更多解決方案，則將隨機選擇一個|r';
     L['MAZE_HELPER_PRACTICE_TITLE'] = '選擇一個符號與其他符號不同的符號';
     L['MAZE_HELPER_PRACTICE_PLAY_AGAIN'] = '再玩一次';
     L['MAZE_HELPER_PRACTICE_BUTTON_TOOLTIP'] = '實踐';
@@ -557,6 +573,8 @@ if gameLocale == 'zhCN' then
     L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = '如果有现成的解决方案，请在屏幕顶部显示一个大符号';
     L['MAZE_HELPER_SETTINGS_SCALE_LABEL'] = '规模';
     L['MAZE_HELPER_SETTINGS_SCALE_TOOLTIP'] = '设置主窗口的比例';
+    L['MAZE_HELPER_SETTINGS_ALLOW_MULTIPLE_SOLUTIONS_LABEL'] = '允许多种解决方案';
+    L['MAZE_HELPER_SETTINGS_ALLOW_MULTIPLE_SOLUTIONS_TOOLTIP'] = '选择符号时允许多种解决方案|n|n|cffff6a00如果有2个或更多解决方案，则将随机选择一个|r';
     L['MAZE_HELPER_PRACTICE_TITLE'] = '选择一个符号与其他符号不同的符号';
     L['MAZE_HELPER_PRACTICE_PLAY_AGAIN'] = '再玩一次';
     L['MAZE_HELPER_PRACTICE_BUTTON_TOOLTIP'] = '实践';
@@ -617,6 +635,8 @@ if gameLocale == 'koKR' then -- hinski (https://www.curseforge.com/members/hinsk
     L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = '기성 솔루션이있는 경우 화면 상단에 큰 기호 표시';
     L['MAZE_HELPER_SETTINGS_SCALE_LABEL'] = '규모';
     L['MAZE_HELPER_SETTINGS_SCALE_TOOLTIP'] = '기본 창의 배율 설정';
+    L['MAZE_HELPER_SETTINGS_ALLOW_MULTIPLE_SOLUTIONS_LABEL'] = '여러 솔루션 허용';
+    L['MAZE_HELPER_SETTINGS_ALLOW_MULTIPLE_SOLUTIONS_TOOLTIP'] = '기호를 선택할 때 여러 솔루션 허용|n|n|cffff6a002 개 이상의 솔루션이있는 경우 임의의 솔루션이 선택됩니다|r';
     L['MAZE_HELPER_PRACTICE_TITLE'] = '한면에서 다른 기호와 다른 기호를 선택하십시오';
     L['MAZE_HELPER_PRACTICE_PLAY_AGAIN'] = '다시 플레이';
     L['MAZE_HELPER_PRACTICE_BUTTON_TOOLTIP'] = '연습';

@@ -531,8 +531,18 @@ settingsScrollChild.Data.SyncEnabled:SetScript('OnClick', function(self)
     end
 end);
 
+settingsScrollChild.Data.AllowMultipleSolutions = E.CreateRoundedCheckButton(settingsScrollChild);
+settingsScrollChild.Data.AllowMultipleSolutions:SetPosition('TOPLEFT', settingsScrollChild.Data.SyncEnabled, 'BOTTOMLEFT', 0, 0);
+settingsScrollChild.Data.AllowMultipleSolutions:SetArea(26, 26);
+settingsScrollChild.Data.AllowMultipleSolutions:SetLabel(L['MAZE_HELPER_SETTINGS_ALLOW_MULTIPLE_SOLUTIONS_LABEL']);
+settingsScrollChild.Data.AllowMultipleSolutions:SetTooltip(L['MAZE_HELPER_SETTINGS_ALLOW_MULTIPLE_SOLUTIONS_TOOLTIP']);
+settingsScrollChild.Data.AllowMultipleSolutions:SetScript('OnClick', function(self)
+    MHMOTSConfig.AllowMultipleSolutions = self:GetChecked();
+    ResetAll();
+end);
+
 settingsScrollChild.Data.PredictSolution = E.CreateRoundedCheckButton(settingsScrollChild);
-settingsScrollChild.Data.PredictSolution:SetPosition('TOPLEFT', settingsScrollChild.Data.SyncEnabled, 'BOTTOMLEFT', 0, 0);
+settingsScrollChild.Data.PredictSolution:SetPosition('TOPLEFT', settingsScrollChild.Data.AllowMultipleSolutions, 'BOTTOMLEFT', 0, 0);
 settingsScrollChild.Data.PredictSolution:SetArea(26, 26);
 settingsScrollChild.Data.PredictSolution:SetLabel(L['MAZE_HELPER_SETTINGS_PREDICT_SOLUTION_LABEL']);
 settingsScrollChild.Data.PredictSolution:SetTooltip(L['MAZE_HELPER_SETTINGS_PREDICT_SOLUTION_TOOLTIP']);
@@ -714,7 +724,7 @@ local function Button_SetUnactive(button, send, sender)
     if NUM_ACTIVE_BUTTONS < MAX_ACTIVE_BUTTONS then
         MazeHelper.frame.SolutionText:SetText(L['MAZE_HELPER_CHOOSE_SYMBOLS_' .. (MAX_ACTIVE_BUTTONS - NUM_ACTIVE_BUTTONS)]);
 
-        if SOLUTION_BUTTON_ID ~= nil then
+        if SOLUTION_BUTTON_ID then
             buttons[SOLUTION_BUTTON_ID]:SetUnactive();
         end
 
@@ -987,6 +997,14 @@ local GetSolution do
             circle = false;
         elseif circleSum == 1 then
             circle = true;
+        end
+
+        if not MHMOTSConfig.AllowMultipleSolutions then
+            if (fillSum == 3 and circleSum == 3) or (fillSum == 3 and flowerSum == 3) or (fillSum == 3 and leafSum == 3)
+                or (circleSum == 3 and flowerSum == 3) or (circleSum == 3 and leafSum == 3)
+                or (flowerSum == 3 and leafSum == 3) then
+                return; -- multiple solutions
+            end
         end
 
         return fill, flower, leaf, circle;
@@ -1400,6 +1418,7 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     MHMOTSConfig.UseColoredSymbols       = MHMOTSConfig.UseColoredSymbols == nil and true or MHMOTSConfig.UseColoredSymbols;
     MHMOTSConfig.ShowSequenceNumbers     = MHMOTSConfig.ShowSequenceNumbers == nil and true or MHMOTSConfig.ShowSequenceNumbers;
     MHMOTSConfig.ShowLargeSymbol         = MHMOTSConfig.ShowLargeSymbol == nil and true or MHMOTSConfig.ShowLargeSymbol;
+    MHMOTSConfig.AllowMultipleSolutions  = MHMOTSConfig.AllowMultipleSolutions == nil and false or MHMOTSConfig.AllowMultipleSolutions;
 
     MHMOTSConfig.AutoAnnouncer              = MHMOTSConfig.AutoAnnouncer == nil and false or MHMOTSConfig.AutoAnnouncer;
     MHMOTSConfig.AutoAnnouncerAsPartyLeader = MHMOTSConfig.AutoAnnouncerAsPartyLeader == nil and true or MHMOTSConfig.AutoAnnouncerAsPartyLeader;
@@ -1417,6 +1436,7 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     settingsScrollChild.Data.ShowAtBoss:SetChecked(MHMOTSConfig.ShowAtBoss);
     settingsScrollChild.Data.ShowLargeSymbol:SetChecked(MHMOTSConfig.ShowLargeSymbol);
     settingsScrollChild.Data.StartInMinMode:SetChecked(MHMOTSConfig.StartInMinMode);
+    settingsScrollChild.Data.AllowMultipleSolutions:SetChecked(MHMOTSConfig.AllowMultipleSolutions);
 
     settingsScrollChild.Data.AutoAnnouncer:SetChecked(MHMOTSConfig.AutoAnnouncer);
     settingsScrollChild.Data.AutoAnnouncerAsPartyLeader:SetChecked(MHMOTSConfig.AutoAnnouncerAsPartyLeader);
