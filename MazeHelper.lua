@@ -339,7 +339,30 @@ MazeHelper.LargeSymbol = CreateFrame('Frame', nil, MazeHelper.frame);
 PixelUtil.SetPoint(MazeHelper.LargeSymbol, 'TOP', UIParent, 'TOP', 0, -32);
 PixelUtil.SetSize(MazeHelper.LargeSymbol, 64, 64)
 MazeHelper.LargeSymbol:SetIgnoreParentScale(true);
-MazeHelper.LargeSymbol:SetScale(UIParent:GetEffectiveScale());
+MazeHelper.LargeSymbol:EnableMouse(true);
+MazeHelper.LargeSymbol:SetMovable(true);
+MazeHelper.LargeSymbol:SetClampedToScreen(true);
+MazeHelper.LargeSymbol:RegisterForDrag('LeftButton');
+MazeHelper.LargeSymbol:SetScript('OnDragStart', function(self)
+    if self:IsMovable() then
+        self:StartMoving();
+    end
+end);
+MazeHelper.LargeSymbol:SetScript('OnDragStop', function(self)
+    local point, relativeTo, relativePoint, xOfs, yOfs = self:GetPoint();
+
+    MHMOTSConfig.SavedPositionLargeSymbol[1] = point;
+    MHMOTSConfig.SavedPositionLargeSymbol[2] = relativeTo
+    MHMOTSConfig.SavedPositionLargeSymbol[3] = relativePoint;
+    MHMOTSConfig.SavedPositionLargeSymbol[4] = xOfs;
+    MHMOTSConfig.SavedPositionLargeSymbol[5] = yOfs;
+
+    self:StopMovingOrSizing();
+
+    self:ClearAllPoints();
+    PixelUtil.SetPoint(self, point, relativeTo or UIParent, relativePoint, xOfs, yOfs);
+    self:SetUserPlaced(true);
+end);
 MazeHelper.LargeSymbol.Icon = MazeHelper.LargeSymbol:CreateTexture(nil, 'ARTWORK');
 MazeHelper.LargeSymbol.Icon:SetAllPoints();
 MazeHelper.LargeSymbol.Icon:SetTexture(M.Symbols.TEXTURE);
@@ -664,13 +687,23 @@ settingsScrollChild.Data.AutoAnnouncerAsHealer:SetScript('OnClick', function(sel
 end);
 
 settingsScrollChild.Data.Scale = E.CreateSlider('Scale', settingsScrollChild);
-settingsScrollChild.Data.Scale:SetPosition('TOPLEFT', settingsScrollChild.Data.AutoAnnouncer, 'BOTTOMLEFT', 4, -40);
+settingsScrollChild.Data.Scale:SetPosition('TOPLEFT', settingsScrollChild.Data.AutoAnnouncer, 'BOTTOMLEFT', 4, -42);
 settingsScrollChild.Data.Scale:SetLabel(L['MAZE_HELPER_SETTINGS_SCALE_LABEL']);
 settingsScrollChild.Data.Scale:SetTooltip(L['MAZE_HELPER_SETTINGS_SCALE_TOOLTIP']);
 settingsScrollChild.Data.Scale:SetValues(1, 0.25, 3, 0.05);
 settingsScrollChild.Data.Scale.Callback = function(_, value)
     MHMOTSConfig.SavedScale = tonumber(value);
     MazeHelper.frame:SetScale(MHMOTSConfig.SavedScale);
+end
+
+settingsScrollChild.Data.ScaleLargeSymbol = E.CreateSlider('Scale', settingsScrollChild);
+settingsScrollChild.Data.ScaleLargeSymbol:SetPosition('TOPLEFT', settingsScrollChild.Data.Scale, 'BOTTOMLEFT', 0, -42);
+settingsScrollChild.Data.ScaleLargeSymbol:SetLabel(L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_LABEL']);
+settingsScrollChild.Data.ScaleLargeSymbol:SetTooltip(L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_TOOLTIP']);
+settingsScrollChild.Data.ScaleLargeSymbol:SetValues(1, 0.25, 3, 0.05);
+settingsScrollChild.Data.ScaleLargeSymbol.Callback = function(_, value)
+    MHMOTSConfig.SavedScaleLargeSymbol = tonumber(value);
+    MazeHelper.LargeSymbol:SetScale(PixelUtil.GetPixelToUIUnitFactor() * MHMOTSConfig.SavedScaleLargeSymbol);
 end
 
 MazeHelper.frame.Settings.VersionText = MazeHelper.frame.Settings:CreateFontString(nil, 'ARTWORK', 'GameFontDisable');
@@ -1283,6 +1316,12 @@ function MazeHelper.frame:PLAYER_LOGIN()
         self:ClearAllPoints();
         PixelUtil.SetPoint(self, MHMOTSConfig.SavedPosition[1], MHMOTSConfig.SavedPosition[2] or UIParent, MHMOTSConfig.SavedPosition[3], MHMOTSConfig.SavedPosition[4], MHMOTSConfig.SavedPosition[5]);
         self:SetUserPlaced(true);
+    end
+
+    if MHMOTSConfig.SavedPositionLargeSymbol and #MHMOTSConfig.SavedPositionLargeSymbol > 1 then
+        self.LargeSymbol:ClearAllPoints();
+        PixelUtil.SetPoint(self.LargeSymbol, MHMOTSConfig.SavedPositionLargeSymbol[1], MHMOTSConfig.SavedPositionLargeSymbol[2] or UIParent, MHMOTSConfig.SavedPositionLargeSymbol[3], MHMOTSConfig.SavedPositionLargeSymbol[4], MHMOTSConfig.SavedPositionLargeSymbol[5]);
+        self.LargeSymbol:SetUserPlaced(true);
 	end
 
     UpdateData(self);
@@ -1378,8 +1417,10 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
 
     MHMOTSConfig = MHMOTSConfig or {};
 
-    MHMOTSConfig.SavedPosition = MHMOTSConfig.SavedPosition or {};
-    MHMOTSConfig.SavedScale    = MHMOTSConfig.SavedScale or 1;
+    MHMOTSConfig.SavedPosition            = MHMOTSConfig.SavedPosition or {};
+    MHMOTSConfig.SavedPositionLargeSymbol = MHMOTSConfig.SavedPositionLargeSymbol or {};
+    MHMOTSConfig.SavedScale               = MHMOTSConfig.SavedScale or 1;
+    MHMOTSConfig.SavedScaleLargeSymbol    = MHMOTSConfig.SavedScaleLargeSymbol or PixelUtil.GetPixelToUIUnitFactor();
 
     MHMOTSConfig.SyncEnabled             = MHMOTSConfig.SyncEnabled == nil and true or MHMOTSConfig.SyncEnabled;
     MHMOTSConfig.PredictSolution         = MHMOTSConfig.PredictSolution == nil and false or MHMOTSConfig.PredictSolution;
@@ -1421,11 +1462,13 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     settingsScrollChild.Data.AutoAnnouncerAsHealer:SetEnabled(MHMOTSConfig.AutoAnnouncer);
 
     settingsScrollChild.Data.Scale:SetValues(MHMOTSConfig.SavedScale, 0.25, 3, 0.05);
+    settingsScrollChild.Data.ScaleLargeSymbol:SetValues(MHMOTSConfig.SavedScaleLargeSymbol, 0.25, 3, 0.05);
 
     MazeHelper.PracticeFrame.NoSoundButton:SetChecked(MHMOTSConfig.PracticeNoSound);
     MazeHelper.PracticeFrame.NoSoundButton:SetTurned(not MHMOTSConfig.PracticeNoSound);
 
     MazeHelper.frame:SetScale(MHMOTSConfig.SavedScale);
+    MazeHelper.LargeSymbol:SetScale(PixelUtil.GetPixelToUIUnitFactor() * MHMOTSConfig.SavedScaleLargeSymbol);
 
     MazeHelper:CreateButtons();
 
