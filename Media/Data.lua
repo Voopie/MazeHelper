@@ -16,11 +16,12 @@ M.BACKGROUND_WHITE = MEDIA_PATH .. 'background-white.blp';
 M.SLIDER_BORDER    = MEDIA_PATH .. 'slider-border.blp';
 
 M.Rings = {
-    TEXTURE = MEDIA_PATH .. 'rings.blp', -- 256x128
+    TEXTURE = MEDIA_PATH .. 'rings.blp', -- 256x256
 
     COORDS = {
-        BLUE  = {  0, 1/2, 0, 1},
-        GREEN = {1/2,   1, 0, 1},
+        BLUE   = {  0, 1/2,   0, 1/2},
+        GREEN  = {1/2, 2/2,   0, 1/2},
+        VIOLET = {  0, 1/2, 1/2, 2/2},
     },
 };
 
