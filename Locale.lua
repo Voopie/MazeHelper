@@ -69,7 +69,7 @@ L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = 'Show a large symbol at th
 L['MAZE_HELPER_SETTINGS_SCALE_LABEL'] = 'Scale';
 L['MAZE_HELPER_SETTINGS_SCALE_TOOLTIP'] = 'Set the scale of the main window';
 L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_LABEL'] = 'Scale of large symbol';
-L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_TOOLTIP'] = '';
+L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_TOOLTIP'] = 'Set the scale of the large symbol';
 L['MAZE_HELPER_PRACTICE_TITLE'] = 'Select a symbol that differs in one way from the others';
 L['MAZE_HELPER_PRACTICE_PLAY_AGAIN'] = 'Play again';
 L['MAZE_HELPER_PRACTICE_BUTTON_TOOLTIP'] = 'Practice';
@@ -127,6 +127,8 @@ if gameLocale == 'ruRU' then
     L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = 'Показывать большой символ вверху экрана при наличии решения';
     L['MAZE_HELPER_SETTINGS_SCALE_LABEL'] = 'Масштаб';
     L['MAZE_HELPER_SETTINGS_SCALE_TOOLTIP'] = 'Задать масштаб главного окна';
+    L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_LABEL'] = 'Масштаб большого символа';
+    L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_TOOLTIP'] = 'Задать масштаб большого символа';
     L['MAZE_HELPER_PRACTICE_TITLE'] = 'Выберите символ, отличающийся чем-то одним от других';
     L['MAZE_HELPER_PRACTICE_PLAY_AGAIN'] = 'Сыграть ещё';
     L['MAZE_HELPER_PRACTICE_BUTTON_TOOLTIP'] = 'Практика';
@@ -188,6 +190,8 @@ if gameLocale == 'deDE' then
     L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = 'Zeigen Sie oben auf dem Bildschirm ein großes Symbol an, wenn eine fertige Lösung vorhanden ist';
     L['MAZE_HELPER_SETTINGS_SCALE_LABEL'] = 'Rahmen';
     L['MAZE_HELPER_SETTINGS_SCALE_TOOLTIP'] = 'Stellen Sie den Maßstab des Hauptfensters ein';
+    L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_LABEL'] = 'Skala des großen Symbols';
+    L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_TOOLTIP'] = 'Stellen Sie die Skalierung des großen Symbols ein';
     L['MAZE_HELPER_PRACTICE_TITLE'] = 'Wählen Sie ein Symbol aus, das sich in einer Hinsicht von den anderen unterscheidet';
     L['MAZE_HELPER_PRACTICE_PLAY_AGAIN'] = 'Nochmal abspielen';
     L['MAZE_HELPER_PRACTICE_BUTTON_TOOLTIP'] = 'Trainieren';
@@ -248,6 +252,8 @@ if gameLocale == 'frFR' then -- Google Translate
     L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = 'Afficher un grand symbole en haut de l\'écran s\'il existe une solution toute faite';
     L['MAZE_HELPER_SETTINGS_SCALE_LABEL'] = 'Échelle';
     L['MAZE_HELPER_SETTINGS_SCALE_TOOLTIP'] = 'Réglez l\'échelle de la fenêtre principale';
+    L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_LABEL'] = 'Échelle du grand symbole';
+    L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_TOOLTIP'] = 'Définir l\'échelle du grand symbole';
     L['MAZE_HELPER_PRACTICE_TITLE'] = 'Sélectionnez un symbole qui diffère d\'une manière des autres';
     L['MAZE_HELPER_PRACTICE_PLAY_AGAIN'] = 'Rejouer';
     L['MAZE_HELPER_PRACTICE_BUTTON_TOOLTIP'] = 'La pratique';
@@ -308,6 +314,8 @@ if gameLocale == 'itIT' then -- Google Translate
     L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = 'Mostra un grande simbolo nella parte superiore dello schermo se c\'è una soluzione già pronta';
     L['MAZE_HELPER_SETTINGS_SCALE_LABEL'] = 'Scala';
     L['MAZE_HELPER_SETTINGS_SCALE_TOOLTIP'] = 'Imposta la scala della finestra principale';
+    L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_LABEL'] = 'Scala di grande simbolo';
+    L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_TOOLTIP'] = 'Imposta la scala del simbolo grande';
     L['MAZE_HELPER_PRACTICE_TITLE'] = 'Seleziona un simbolo che differisce in un modo dagli altri';
     L['MAZE_HELPER_PRACTICE_PLAY_AGAIN'] = 'Gioca di nuovo';
     L['MAZE_HELPER_PRACTICE_BUTTON_TOOLTIP'] = 'Pratica';
@@ -368,6 +376,8 @@ if gameLocale == 'ptBR' then -- Brazilian Portuguese (Google Translate)
     L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = 'Mostra um grande símbolo no topo da tela se houver uma solução pronta';
     L['MAZE_HELPER_SETTINGS_SCALE_LABEL'] = 'Escala';
     L['MAZE_HELPER_SETTINGS_SCALE_TOOLTIP'] = 'Defina a escala da janela principal';
+    L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_LABEL'] = 'Escala de grande símbolo';
+    L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_TOOLTIP'] = 'Defina a escala do símbolo grande';
     L['MAZE_HELPER_PRACTICE_TITLE'] = 'Selecione um símbolo que difere de uma forma dos outros';
     L['MAZE_HELPER_PRACTICE_PLAY_AGAIN'] = 'Jogar de novo';
     L['MAZE_HELPER_PRACTICE_BUTTON_TOOLTIP'] = 'Prática';
@@ -428,6 +438,8 @@ if gameLocale == 'esES' then -- Spanish (Google Translate)
     L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = 'Muestre un símbolo grande en la parte superior de la pantalla si hay una solución preparada';
     L['MAZE_HELPER_SETTINGS_SCALE_LABEL'] = 'Escala';
     L['MAZE_HELPER_SETTINGS_SCALE_TOOLTIP'] = 'Establecer la escala de la ventana principal';
+    L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_LABEL'] = 'Escala de símbolo grande';
+    L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_TOOLTIP'] = 'Establecer la escala del símbolo grande';
     L['MAZE_HELPER_PRACTICE_TITLE'] = 'Seleccione un símbolo que difiera en un sentido de los demás';
     L['MAZE_HELPER_PRACTICE_PLAY_AGAIN'] = 'Juega de nuevo';
     L['MAZE_HELPER_PRACTICE_BUTTON_TOOLTIP'] = 'Práctica';
@@ -497,6 +509,8 @@ if gameLocale == 'zhTW' then -- BNS333 (https://www.curseforge.com/members/bns33
     L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = '如果有現成的解決方案，請在屏幕頂部顯示一個大符號';
     L['MAZE_HELPER_SETTINGS_SCALE_LABEL'] = '規模';
     L['MAZE_HELPER_SETTINGS_SCALE_TOOLTIP'] = '設置主窗口的比例';
+    L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_LABEL'] = '大符號的比例';
+    L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_TOOLTIP'] = '設置大符號的比例';
     L['MAZE_HELPER_PRACTICE_TITLE'] = '選擇一個符號與其他符號不同的符號';
     L['MAZE_HELPER_PRACTICE_PLAY_AGAIN'] = '再玩一次';
     L['MAZE_HELPER_PRACTICE_BUTTON_TOOLTIP'] = '實踐';
@@ -559,6 +573,8 @@ if gameLocale == 'zhCN' then
     L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = '如果有现成的解决方案，请在屏幕顶部显示一个大符号';
     L['MAZE_HELPER_SETTINGS_SCALE_LABEL'] = '规模';
     L['MAZE_HELPER_SETTINGS_SCALE_TOOLTIP'] = '设置主窗口的比例';
+    L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_LABEL'] = '大符号的比例';
+    L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_TOOLTIP'] = '设置大符号的比例';
     L['MAZE_HELPER_PRACTICE_TITLE'] = '选择一个符号与其他符号不同的符号';
     L['MAZE_HELPER_PRACTICE_PLAY_AGAIN'] = '再玩一次';
     L['MAZE_HELPER_PRACTICE_BUTTON_TOOLTIP'] = '实践';
@@ -619,6 +635,8 @@ if gameLocale == 'koKR' then -- hinski (https://www.curseforge.com/members/hinsk
     L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = '기성 솔루션이있는 경우 화면 상단에 큰 기호 표시';
     L['MAZE_HELPER_SETTINGS_SCALE_LABEL'] = '규모';
     L['MAZE_HELPER_SETTINGS_SCALE_TOOLTIP'] = '기본 창의 배율 설정';
+    L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_LABEL'] = '큰 심볼의 스케일';
+    L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_TOOLTIP'] = '큰 기호의 배율 설정';
     L['MAZE_HELPER_PRACTICE_TITLE'] = '한면에서 다른 기호와 다른 기호를 선택하십시오';
     L['MAZE_HELPER_PRACTICE_PLAY_AGAIN'] = '다시 플레이';
     L['MAZE_HELPER_PRACTICE_BUTTON_TOOLTIP'] = '연습';
