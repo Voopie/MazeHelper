@@ -971,7 +971,7 @@ local GetSolution do
         return fillSum, flowerSum, leafSum, circleSum;
     end
 
-    -- return values can be nil
+    -- returned values can be nil
     local function GetOddCharacteristics(fillSum, flowerSum, leafSum, circleSum)
         local fill, flower, leaf, circle;
 
@@ -1426,7 +1426,7 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     MHMOTSConfig = MHMOTSConfig or {};
 
     MHMOTSConfig.SavedPosition = MHMOTSConfig.SavedPosition or {};
-    MHMOTSConfig.SavedScale = MHMOTSConfig.SavedScale or 1;
+    MHMOTSConfig.SavedScale    = MHMOTSConfig.SavedScale or 1;
 
     MHMOTSConfig.SyncEnabled             = MHMOTSConfig.SyncEnabled == nil and true or MHMOTSConfig.SyncEnabled;
     MHMOTSConfig.PredictSolution         = MHMOTSConfig.PredictSolution == nil and false or MHMOTSConfig.PredictSolution;
