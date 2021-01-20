@@ -1000,28 +1000,37 @@ local GetSolution do
         end
 
         if not MHMOTSConfig.AllowMultipleSolutions then
-            if fillSum == 3 then
-                if circleSum == 3 or flowerSum == 3 or leafSum == 3 then
-                    return;
+            local multipleFound = 1;
+
+            for i = 1, MAX_BUTTONS do
+                if buttons[i].state then
+                    if (circleSum == 1 and buttons[i].data.circle) or (circleSum == 3 and not buttons[i].data.circle) then
+                        multipleFound = multipleFound + 1;
+                        break;
+                    end
                 end
             end
 
-            if circleSum == 3 then
-                if fillSum == 3 or flowerSum == 3 or leafSum == 3 then
-                    return;
+            for i = 1, MAX_BUTTONS do
+                if buttons[i].state then
+                    if (fillSum == 1 and buttons[i].data.fill) or (fillSum == 3 and not buttons[i].data.fill) then
+                        multipleFound = multipleFound + 1;
+                        break;
+                    end
                 end
             end
 
-            if flowerSum == 3 then
-                if circleSum == 3 or fillSum == 3 or leafSum == 3 then
-                    return;
+            for i = 1, MAX_BUTTONS do
+                if buttons[i].state then
+                    if (leafSum == 1 and buttons[i].data.leaf) or (leafSum == 3 and not buttons[i].data.leaf) then
+                        multipleFound = multipleFound + 1;
+                        break;
+                    end
                 end
             end
 
-            if leafSum == 3 then
-                if circleSum == 3 or fillSum == 3 or flowerSum == 3 then
-                    return;
-                end
+            if multipleFound > 2 then
+                return;
             end
         end
 
