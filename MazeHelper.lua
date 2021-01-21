@@ -335,20 +335,20 @@ MazeHelper.frame.MainHolder = CreateFrame('Frame', nil, MazeHelper.frame);
 MazeHelper.frame.MainHolder:SetAllPoints();
 
 -- Large Solution Symbol
-MazeHelper.LargeSymbol = CreateFrame('Frame', nil, MazeHelper.frame);
-PixelUtil.SetPoint(MazeHelper.LargeSymbol, 'TOP', UIParent, 'TOP', 0, -32);
-PixelUtil.SetSize(MazeHelper.LargeSymbol, 64, 64)
-MazeHelper.LargeSymbol:SetIgnoreParentScale(true);
-MazeHelper.LargeSymbol:EnableMouse(true);
-MazeHelper.LargeSymbol:SetMovable(true);
-MazeHelper.LargeSymbol:SetClampedToScreen(true);
-MazeHelper.LargeSymbol:RegisterForDrag('LeftButton');
-MazeHelper.LargeSymbol:SetScript('OnDragStart', function(self)
+MazeHelper.frame.LargeSymbol = CreateFrame('Frame', nil, MazeHelper.frame);
+PixelUtil.SetPoint(MazeHelper.frame.LargeSymbol, 'TOP', UIParent, 'TOP', 0, -32);
+PixelUtil.SetSize(MazeHelper.frame.LargeSymbol, 64, 64)
+MazeHelper.frame.LargeSymbol:SetIgnoreParentScale(true);
+MazeHelper.frame.LargeSymbol:EnableMouse(true);
+MazeHelper.frame.LargeSymbol:SetMovable(true);
+MazeHelper.frame.LargeSymbol:SetClampedToScreen(true);
+MazeHelper.frame.LargeSymbol:RegisterForDrag('LeftButton');
+MazeHelper.frame.LargeSymbol:SetScript('OnDragStart', function(self)
     if self:IsMovable() then
         self:StartMoving();
     end
 end);
-MazeHelper.LargeSymbol:SetScript('OnDragStop', function(self)
+MazeHelper.frame.LargeSymbol:SetScript('OnDragStop', function(self)
     local point, relativeTo, relativePoint, xOfs, yOfs = self:GetPoint();
 
     MHMOTSConfig.SavedPositionLargeSymbol[1] = point;
@@ -363,20 +363,20 @@ MazeHelper.LargeSymbol:SetScript('OnDragStop', function(self)
     PixelUtil.SetPoint(self, point, relativeTo or UIParent, relativePoint, xOfs, yOfs);
     self:SetUserPlaced(true);
 end);
-MazeHelper.LargeSymbol.Icon = MazeHelper.LargeSymbol:CreateTexture(nil, 'ARTWORK');
-MazeHelper.LargeSymbol.Icon:SetAllPoints();
-MazeHelper.LargeSymbol.Icon:SetTexture(M.Symbols.TEXTURE);
-MazeHelper.LargeSymbol.Background = MazeHelper.LargeSymbol:CreateTexture(nil, 'BACKGROUND');
-PixelUtil.SetPoint(MazeHelper.LargeSymbol.Background, 'TOPLEFT', MazeHelper.LargeSymbol, 'TOPLEFT', -64, 64);
-PixelUtil.SetPoint(MazeHelper.LargeSymbol.Background, 'BOTTOMRIGHT', MazeHelper.LargeSymbol, 'BOTTOMRIGHT', 64, -64);
-MazeHelper.LargeSymbol.Background:SetTexture(M.Rings.TEXTURE);
-MazeHelper.LargeSymbol.Background:SetTexCoord(unpack(M.Rings.COORDS.GREEN));
-MazeHelper.LargeSymbol.Background:SetAlpha(0.8);
-MazeHelper.LargeSymbol:SetShown(false);
-MazeHelper.LargeSymbol:HookScript('OnShow', function()
+MazeHelper.frame.LargeSymbol.Icon = MazeHelper.frame.LargeSymbol:CreateTexture(nil, 'ARTWORK');
+MazeHelper.frame.LargeSymbol.Icon:SetAllPoints();
+MazeHelper.frame.LargeSymbol.Icon:SetTexture(M.Symbols.TEXTURE);
+MazeHelper.frame.LargeSymbol.Background = MazeHelper.frame.LargeSymbol:CreateTexture(nil, 'BACKGROUND');
+PixelUtil.SetPoint(MazeHelper.frame.LargeSymbol.Background, 'TOPLEFT', MazeHelper.frame.LargeSymbol, 'TOPLEFT', -64, 64);
+PixelUtil.SetPoint(MazeHelper.frame.LargeSymbol.Background, 'BOTTOMRIGHT', MazeHelper.frame.LargeSymbol, 'BOTTOMRIGHT', 64, -64);
+MazeHelper.frame.LargeSymbol.Background:SetTexture(M.Rings.TEXTURE);
+MazeHelper.frame.LargeSymbol.Background:SetTexCoord(unpack(M.Rings.COORDS.GREEN));
+MazeHelper.frame.LargeSymbol.Background:SetAlpha(0.8);
+MazeHelper.frame.LargeSymbol:SetShown(false);
+MazeHelper.frame.LargeSymbol:HookScript('OnShow', function()
     PlaySoundFile(M.Sounds.Notification, 'SFX');
 end);
-E.CreateAnimation(MazeHelper.LargeSymbol, 'FadeInOut');
+E.CreateAnimation(MazeHelper.frame.LargeSymbol, 'FadeInOut');
 
 -- Solution Text
 MazeHelper.frame.SolutionText = MazeHelper.frame.MainHolder:CreateFontString(nil, 'ARTWORK', 'GameFontNormalLarge');
@@ -408,7 +408,7 @@ local function ResetAll()
     MazeHelper.frame.AnnounceButton:SetShown(false);
     MazeHelper.frame.AnnounceButton.clicked = false;
 
-    MazeHelper.LargeSymbol:SetShown(false);
+    MazeHelper.frame.LargeSymbol:SetShown(false);
     MazeHelper.frame.MiniSolution:SetShown(false);
     MazeHelper.frame.PassedCounter:SetShown(true);
 
@@ -582,7 +582,7 @@ settingsScrollChild.Data.ShowLargeSymbol:SetScript('OnClick', function(self)
     MHMOTSConfig.ShowLargeSymbol = self:GetChecked();
 
     if SOLUTION_BUTTON_ID then
-        MazeHelper.LargeSymbol:SetShown(MHMOTSConfig.ShowLargeSymbol);
+        MazeHelper.frame.LargeSymbol:SetShown(MHMOTSConfig.ShowLargeSymbol);
     end
 end);
 
@@ -693,7 +693,7 @@ settingsScrollChild.Data.ScaleLargeSymbol:SetLabel(L['MAZE_HELPER_SETTINGS_SCALE
 settingsScrollChild.Data.ScaleLargeSymbol:SetTooltip(L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_TOOLTIP']);
 settingsScrollChild.Data.ScaleLargeSymbol.Callback = function(_, value)
     MHMOTSConfig.SavedScaleLargeSymbol = tonumber(value);
-    MazeHelper.LargeSymbol:SetScale(PixelUtil.GetPixelToUIUnitFactor() * MHMOTSConfig.SavedScaleLargeSymbol);
+    MazeHelper.frame.LargeSymbol:SetScale(PixelUtil.GetPixelToUIUnitFactor() * MHMOTSConfig.SavedScaleLargeSymbol);
 end
 
 MazeHelper.frame.Settings.VersionText = MazeHelper.frame.Settings:CreateFontString(nil, 'ARTWORK', 'GameFontDisable');
@@ -969,7 +969,7 @@ end
 
 local GetSolution do
     local function GetSumCharacteristics()
-        local fillSum,  leafSum, circleSum = 0, 0, 0, 0;
+        local fillSum, leafSum, circleSum = 0, 0, 0;
 
         for i = 1, MAX_BUTTONS do
             if buttons[i].state then
@@ -993,13 +993,13 @@ local GetSolution do
     function GetSolution()
         local fillSum, leafSum, circleSum = GetSumCharacteristics();
         local solutionButtonId;
-        local multipleFound = 0;
+        local solutionFoundCount = 0;
 
         for i = 1, MAX_BUTTONS do
             if buttons[i].state then
                 if (fillSum == 1 and buttons[i].data.fill) or (fillSum == 3 and not buttons[i].data.fill) then
                     solutionButtonId = i;
-                    multipleFound = multipleFound + 1;
+                    solutionFoundCount = solutionFoundCount + 1;
                     break;
                 end
             end
@@ -1009,7 +1009,7 @@ local GetSolution do
             if buttons[i].state then
                 if (leafSum == 1 and buttons[i].data.leaf) or (leafSum == 3 and not buttons[i].data.leaf) then
                     solutionButtonId = i;
-                    multipleFound = multipleFound + 1;
+                    solutionFoundCount = solutionFoundCount + 1;
                     break;
                 end
             end
@@ -1019,13 +1019,13 @@ local GetSolution do
             if buttons[i].state then
                 if (circleSum == 1 and buttons[i].data.circle) or (circleSum == 3 and not buttons[i].data.circle) then
                     solutionButtonId = i;
-                    multipleFound = multipleFound + 1;
+                    solutionFoundCount = solutionFoundCount + 1;
                     break;
                 end
             end
         end
 
-        if multipleFound > 1 then
+        if solutionFoundCount > 1 then
             return;
         end
 
@@ -1074,8 +1074,8 @@ function MazeHelper:UpdateSolution()
             buttons[SOLUTION_BUTTON_ID]:SetSolution();
         end
 
-        MazeHelper.LargeSymbol.Icon:SetTexCoord(unpack(MHMOTSConfig.UseColoredSymbols and buttonsData[SOLUTION_BUTTON_ID].coords or buttonsData[SOLUTION_BUTTON_ID].coords_white));
-        MazeHelper.LargeSymbol:SetShown(MHMOTSConfig.ShowLargeSymbol);
+        MazeHelper.frame.LargeSymbol.Icon:SetTexCoord(unpack(MHMOTSConfig.UseColoredSymbols and buttonsData[SOLUTION_BUTTON_ID].coords or buttonsData[SOLUTION_BUTTON_ID].coords_white));
+        MazeHelper.frame.LargeSymbol:SetShown(MHMOTSConfig.ShowLargeSymbol);
 
         MazeHelper.frame.MiniSolution.Icon:SetTexCoord(unpack(MHMOTSConfig.UseColoredSymbols and buttonsData[SOLUTION_BUTTON_ID].coords or buttonsData[SOLUTION_BUTTON_ID].coords_white));
 
@@ -1106,7 +1106,7 @@ function MazeHelper:UpdateSolution()
             end
         end
     else
-        MazeHelper.LargeSymbol:SetShown(false);
+        MazeHelper.frame.LargeSymbol:SetShown(false);
         MazeHelper.frame.MiniSolution:SetShown(false);
         MazeHelper.frame.PassedCounter:SetShown(true);
         MazeHelper.frame.AnnounceButton:SetShown(false);
@@ -1309,9 +1309,9 @@ function MazeHelper.frame:PLAYER_LOGIN()
     end
 
     if MHMOTSConfig.SavedPositionLargeSymbol and #MHMOTSConfig.SavedPositionLargeSymbol > 1 then
-        MazeHelper.LargeSymbol:ClearAllPoints();
-        PixelUtil.SetPoint(MazeHelper.LargeSymbol, MHMOTSConfig.SavedPositionLargeSymbol[1], MHMOTSConfig.SavedPositionLargeSymbol[2] or UIParent, MHMOTSConfig.SavedPositionLargeSymbol[3], MHMOTSConfig.SavedPositionLargeSymbol[4], MHMOTSConfig.SavedPositionLargeSymbol[5]);
-        MazeHelper.LargeSymbol:SetUserPlaced(true);
+        self.LargeSymbol:ClearAllPoints();
+        PixelUtil.SetPoint(self.LargeSymbol, MHMOTSConfig.SavedPositionLargeSymbol[1], MHMOTSConfig.SavedPositionLargeSymbol[2] or UIParent, MHMOTSConfig.SavedPositionLargeSymbol[3], MHMOTSConfig.SavedPositionLargeSymbol[4], MHMOTSConfig.SavedPositionLargeSymbol[5]);
+        self.LargeSymbol:SetUserPlaced(true);
 	end
 
     UpdateData(self);
@@ -1456,7 +1456,7 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     MazeHelper.PracticeFrame.NoSoundButton:SetTurned(not MHMOTSConfig.PracticeNoSound);
 
     MazeHelper.frame:SetScale(MHMOTSConfig.SavedScale);
-    MazeHelper.LargeSymbol:SetScale(PixelUtil.GetPixelToUIUnitFactor() * MHMOTSConfig.SavedScaleLargeSymbol);
+    MazeHelper.frame.LargeSymbol:SetScale(PixelUtil.GetPixelToUIUnitFactor() * MHMOTSConfig.SavedScaleLargeSymbol);
 
     MazeHelper:CreateButtons();
 
