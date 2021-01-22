@@ -1586,6 +1586,7 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     settingsScrollChild.Data.ShowAtBoss:SetChecked(MHMOTSConfig.ShowAtBoss);
     settingsScrollChild.Data.ShowLargeSymbol:SetChecked(MHMOTSConfig.ShowLargeSymbol);
     settingsScrollChild.Data.StartInMinMode:SetChecked(MHMOTSConfig.StartInMinMode);
+    settingsScrollChild.Data.UseCloneAutoMarker:SetChecked(MHMOTSConfig.UseCloneAutoMarker);
 
     settingsScrollChild.Data.AutoAnnouncer:SetChecked(MHMOTSConfig.AutoAnnouncer);
     settingsScrollChild.Data.AutoAnnouncerAsPartyLeader:SetChecked(MHMOTSConfig.AutoAnnouncerAsPartyLeader);
