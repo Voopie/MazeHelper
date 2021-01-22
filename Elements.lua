@@ -385,7 +385,7 @@ E.CreateSlider = function(name, parent)
             return;
         end
 
-        GameTooltip:SetOwner(self, 'ANCHOR_RIGHT');
+        GameTooltip:SetOwner(self:GetParent(), 'ANCHOR_RIGHT');
         GameTooltip:AddLine(self:GetParent().tooltipText, 1, 0.85, 0, true);
         GameTooltip:Show();
     end);
