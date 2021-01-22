@@ -281,7 +281,7 @@ MazeHelper.PracticeFrame.NoSoundButton:SetScript('OnClick', function(self)
     self:SetTurned(not MHMOTSConfig.PracticeNoSound);
 
     if GameTooltip:IsOwned(self) then
-        GameTooltip_NoSoundButton_Show(self)
+        GameTooltip_NoSoundButton_Show(self);
     end
 end);
 MazeHelper.PracticeFrame.NoSoundButton:HookScript('OnEnter', GameTooltip_NoSoundButton_Show);
