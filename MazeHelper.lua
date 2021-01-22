@@ -1566,7 +1566,7 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     MHMOTSConfig.UseColoredSymbols       = MHMOTSConfig.UseColoredSymbols == nil and true or MHMOTSConfig.UseColoredSymbols;
     MHMOTSConfig.ShowSequenceNumbers     = MHMOTSConfig.ShowSequenceNumbers == nil and true or MHMOTSConfig.ShowSequenceNumbers;
     MHMOTSConfig.ShowLargeSymbol         = MHMOTSConfig.ShowLargeSymbol == nil and true or MHMOTSConfig.ShowLargeSymbol;
-    MHMOTSConfig.UseCloneAutoMarker      = MHMOTSConfig.UseCloneAutoMarker == nil and false or MHMOTSConfig.UseCloneAutoMarker;
+    MHMOTSConfig.UseCloneAutoMarker      = MHMOTSConfig.UseCloneAutoMarker == nil and true or MHMOTSConfig.UseCloneAutoMarker;
 
     MHMOTSConfig.AutoAnnouncer              = MHMOTSConfig.AutoAnnouncer == nil and false or MHMOTSConfig.AutoAnnouncer;
     MHMOTSConfig.AutoAnnouncerAsPartyLeader = MHMOTSConfig.AutoAnnouncerAsPartyLeader == nil and true or MHMOTSConfig.AutoAnnouncerAsPartyLeader;
