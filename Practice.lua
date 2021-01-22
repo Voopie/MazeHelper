@@ -240,7 +240,7 @@ MazeHelper.PracticeFrame.Background:SetAlpha(0.85);
 
 MazeHelper.PracticeFrame.TitleText = MazeHelper.PracticeFrame:CreateFontString(nil, 'ARTWORK', 'GameFontNormal');
 PixelUtil.SetPoint(MazeHelper.PracticeFrame.TitleText, 'BOTTOM', MazeHelper.PracticeFrame, 'TOP', 0, 4);
-MazeHelper.PracticeFrame.TitleText:SetText(L['MAZE_HELPER_PRACTICE_TITLE']);
+MazeHelper.PracticeFrame.TitleText:SetText(L['PRACTICE_TITLE']);
 
 MazeHelper.PracticeFrame.CloseButton = CreateFrame('Button', nil, MazeHelper.PracticeFrame);
 PixelUtil.SetPoint(MazeHelper.PracticeFrame.CloseButton, 'TOPRIGHT', MazeHelper.PracticeFrame, 'TOPRIGHT', -8, -4);
@@ -289,7 +289,7 @@ MazeHelper.PracticeFrame.NoSoundButton:HookScript('OnLeave', GameTooltip_Hide);
 
 MazeHelper.PracticeFrame.PlayAgainButton = CreateFrame('Button', nil, MazeHelper.PracticeFrame, 'SharedButtonSmallTemplate');
 PixelUtil.SetPoint(MazeHelper.PracticeFrame.PlayAgainButton, 'TOP', MazeHelper.PracticeFrame, 'BOTTOM', 0, -4);
-MazeHelper.PracticeFrame.PlayAgainButton:SetText(L['MAZE_HELPER_PRACTICE_PLAY_AGAIN']);
+MazeHelper.PracticeFrame.PlayAgainButton:SetText(L['PRACTICE_PLAY_AGAIN']);
 PixelUtil.SetSize(MazeHelper.PracticeFrame.PlayAgainButton, tonumber(MazeHelper.PracticeFrame.PlayAgainButton:GetTextWidth()) + 20, 22);
 MazeHelper.PracticeFrame.PlayAgainButton:SetShown(false);
 MazeHelper.PracticeFrame.PlayAgainButton:SetScript('OnClick', UpdateButtons);

@@ -78,8 +78,8 @@ local EVENTS_AUTOMARKER = {
 local buttons = {}
 local buttonsData = {
     [1] = {
-        name = L['MAZE_HELPER_LEAF_FULL_CIRCLE'],
-        aname = L['MAZE_HELPER_ANNOUNCE_LEAF_FULL_CIRCLE'],
+        name = L['LEAF_FULL_CIRCLE'],
+        aname = L['ANNOUNCE_LEAF_FULL_CIRCLE'],
         coords = M.Symbols.COORDS_COLOR.LEAF_CIRCLE_FILL,
         coords_white = M.Symbols.COORDS_WHITE.LEAF_CIRCLE_FILL,
         leaf = true,
@@ -88,8 +88,8 @@ local buttonsData = {
         fill = true,
     },
     [2] = {
-        name = L['MAZE_HELPER_LEAF_NOFULL_CIRCLE'],
-        aname = L['MAZE_HELPER_ANNOUNCE_LEAF_NOFULL_CIRCLE'],
+        name = L['LEAF_NOFULL_CIRCLE'],
+        aname = L['ANNOUNCE_LEAF_NOFULL_CIRCLE'],
         coords = M.Symbols.COORDS_COLOR.LEAF_CIRCLE_NOFILL,
         coords_white = M.Symbols.COORDS_WHITE.LEAF_CIRCLE_NOFILL,
         leaf = true,
@@ -98,8 +98,8 @@ local buttonsData = {
         fill = false,
     },
     [3] = {
-        name = L['MAZE_HELPER_FLOWER_FULL_CIRCLE'],
-        aname = L['MAZE_HELPER_ANNOUNCE_FLOWER_FULL_CIRCLE'],
+        name = L['FLOWER_FULL_CIRCLE'],
+        aname = L['ANNOUNCE_FLOWER_FULL_CIRCLE'],
         coords = M.Symbols.COORDS_COLOR.FLOWER_CIRCLE_FILL,
         coords_white = M.Symbols.COORDS_WHITE.FLOWER_CIRCLE_FILL,
         leaf = false,
@@ -108,8 +108,8 @@ local buttonsData = {
         fill = true,
     },
     [4] = {
-        name = L['MAZE_HELPER_FLOWER_NOFULL_CIRCLE'],
-        aname = L['MAZE_HELPER_ANNOUNCE_FLOWER_NOFULL_CIRCLE'],
+        name = L['FLOWER_NOFULL_CIRCLE'],
+        aname = L['ANNOUNCE_FLOWER_NOFULL_CIRCLE'],
         coords = M.Symbols.COORDS_COLOR.FLOWER_CIRCLE_NOFILL,
         coords_white = M.Symbols.COORDS_WHITE.FLOWER_CIRCLE_NOFILL,
         leaf = false,
@@ -118,8 +118,8 @@ local buttonsData = {
         fill = false,
     },
     [5] = {
-        name = L['MAZE_HELPER_LEAF_FULL_NOCIRCLE'],
-        aname = L['MAZE_HELPER_ANNOUNCE_LEAF_FULL_NOCIRCLE'],
+        name = L['LEAF_FULL_NOCIRCLE'],
+        aname = L['ANNOUNCE_LEAF_FULL_NOCIRCLE'],
         coords = M.Symbols.COORDS_COLOR.LEAF_NOCIRCLE_FILL,
         coords_white = M.Symbols.COORDS_WHITE.LEAF_NOCIRCLE_FILL,
         leaf = true,
@@ -128,8 +128,8 @@ local buttonsData = {
         fill = true,
     },
     [6] = {
-        name = L['MAZE_HELPER_LEAF_NOFULL_NOCIRCLE'],
-        aname = L['MAZE_HELPER_ANNOUNCE_LEAF_NOFULL_NOCIRCLE'],
+        name = L['LEAF_NOFULL_NOCIRCLE'],
+        aname = L['ANNOUNCE_LEAF_NOFULL_NOCIRCLE'],
         coords = M.Symbols.COORDS_COLOR.LEAF_NOCIRCLE_NOFILL,
         coords_white = M.Symbols.COORDS_WHITE.LEAF_NOCIRCLE_NOFILL,
         leaf = true,
@@ -138,8 +138,8 @@ local buttonsData = {
         fill = false,
     },
     [7] = {
-        name = L['MAZE_HELPER_FLOWER_FULL_NOCIRCLE'],
-        aname = L['MAZE_HELPER_ANNOUNCE_FLOWER_FULL_NOCIRCLE'],
+        name = L['FLOWER_FULL_NOCIRCLE'],
+        aname = L['ANNOUNCE_FLOWER_FULL_NOCIRCLE'],
         coords = M.Symbols.COORDS_COLOR.FLOWER_NOCIRCLE_FILL,
         coords_white = M.Symbols.COORDS_WHITE.FLOWER_NOCIRCLE_FILL,
         leaf = false,
@@ -148,8 +148,8 @@ local buttonsData = {
         fill = true,
     },
     [8] = {
-        name = L['MAZE_HELPER_FLOWER_NOFULL_NOCIRCLE'],
-        aname = L['MAZE_HELPER_ANNOUNCE_FLOWER_NOFULL_NOCIRCLE'],
+        name = L['FLOWER_NOFULL_NOCIRCLE'],
+        aname = L['ANNOUNCE_FLOWER_NOFULL_NOCIRCLE'],
         coords = M.Symbols.COORDS_COLOR.FLOWER_NOCIRCLE_NOFILL,
         coords_white = M.Symbols.COORDS_WHITE.FLOWER_NOCIRCLE_NOFILL,
         leaf = false,
@@ -412,7 +412,7 @@ MazeHelper.frame.SolutionText = MazeHelper.frame.MainHolder:CreateFontString(nil
 PixelUtil.SetPoint(MazeHelper.frame.SolutionText, 'LEFT', MazeHelper.frame, 'LEFT', 2, -54);
 PixelUtil.SetPoint(MazeHelper.frame.SolutionText, 'RIGHT', MazeHelper.frame, 'RIGHT', -2, 0);
 MazeHelper.frame.SolutionText:SetShadowColor(0.15, 0.15, 0.15);
-MazeHelper.frame.SolutionText:SetText(L['MAZE_HELPER_CHOOSE_SYMBOLS_4']);
+MazeHelper.frame.SolutionText:SetText(L['CHOOSE_SYMBOLS_4']);
 
 local function ResetAll()
     NUM_ACTIVE_BUTTONS = 0;
@@ -432,7 +432,7 @@ local function ResetAll()
         buttons[i].sequence = nil;
     end
 
-    MazeHelper.frame.SolutionText:SetText(L['MAZE_HELPER_CHOOSE_SYMBOLS_4']);
+    MazeHelper.frame.SolutionText:SetText(L['CHOOSE_SYMBOLS_4']);
     MazeHelper.frame.PassedButton:SetEnabled(false);
     MazeHelper.frame.AnnounceButton:SetShown(false);
     MazeHelper.frame.AnnounceButton.clicked = false;
@@ -451,7 +451,7 @@ PixelUtil.SetSize(MazeHelper.frame.BottomButtonsHolder, MazeHelper.frame.MainHol
 -- Reset Button
 MazeHelper.frame.ResetButton = CreateFrame('Button', nil, MazeHelper.frame.BottomButtonsHolder, 'SharedButtonSmallTemplate');
 PixelUtil.SetPoint(MazeHelper.frame.ResetButton, 'RIGHT', MazeHelper.frame.BottomButtonsHolder, 'RIGHT', 0, 0);
-MazeHelper.frame.ResetButton:SetText(L['MAZE_HELPER_RESET']);
+MazeHelper.frame.ResetButton:SetText(L['RESET']);
 PixelUtil.SetSize(MazeHelper.frame.ResetButton, tonumber(MazeHelper.frame.ResetButton:GetTextWidth()) + 20, 22);
 MazeHelper.frame.ResetButton:SetScript('OnClick', function()
     if NUM_ACTIVE_BUTTONS == 0 then
@@ -466,7 +466,7 @@ MazeHelper.frame.ResetButton:SetEnabled(false);
 -- Passed Button
 MazeHelper.frame.PassedButton = CreateFrame('Button', nil, MazeHelper.frame.BottomButtonsHolder, 'SharedButtonSmallTemplate');
 PixelUtil.SetPoint(MazeHelper.frame.PassedButton, 'RIGHT', MazeHelper.frame.ResetButton, 'LEFT', -8, 0);
-MazeHelper.frame.PassedButton:SetText(L['MAZE_HELPER_PASSED']);
+MazeHelper.frame.PassedButton:SetText(L['PASSED']);
 PixelUtil.SetSize(MazeHelper.frame.PassedButton, tonumber(MazeHelper.frame.PassedButton:GetTextWidth()) + 20, 22);
 MazeHelper.frame.PassedButton:SetScript('OnClick', function()
     PASSED_COUNTER = PASSED_COUNTER + 1;
@@ -529,7 +529,7 @@ MazeHelper.frame.AnnounceButton:SetScript('OnClick', function(self)
 
     local partyChatType = GetPartyChatType();
     if partyChatType then
-        SendChatMessage(string.format(L['MAZE_HELPER_ANNOUNCE_SOLUTION'], buttons[SOLUTION_BUTTON_ID].data.aname), partyChatType);
+        SendChatMessage(string.format(L['ANNOUNCE_SOLUTION'], buttons[SOLUTION_BUTTON_ID].data.aname), partyChatType);
     end
 
     self.clicked = true;
@@ -556,7 +556,7 @@ MazeHelper.frame.PracticeModeButton:SetScript('OnClick', function()
 end);
 MazeHelper.frame.PracticeModeButton:HookScript('OnEnter', function(self)
     GameTooltip:SetOwner(self, 'ANCHOR_RIGHT');
-    GameTooltip:AddLine(L['MAZE_HELPER_PRACTICE_BUTTON_TOOLTIP'], 1, 0.85, 0, true);
+    GameTooltip:AddLine(L['PRACTICE_BUTTON_TOOLTIP'], 1, 0.85, 0, true);
     GameTooltip:Show();
 end);
 MazeHelper.frame.PracticeModeButton:HookScript('OnLeave', GameTooltip_Hide);
@@ -571,8 +571,8 @@ local settingsScrollChild = E.CreateScrollFrame(MazeHelper.frame.Settings, 26);
 settingsScrollChild.Data.SyncEnabled = E.CreateRoundedCheckButton(settingsScrollChild);
 settingsScrollChild.Data.SyncEnabled:SetPosition('TOPLEFT', settingsScrollChild, 'TOPLEFT', 12, 0);
 settingsScrollChild.Data.SyncEnabled:SetArea(26, 26);
-settingsScrollChild.Data.SyncEnabled:SetLabel(L['MAZE_HELPER_SETTINGS_SYNC_ENABLED_LABEL']);
-settingsScrollChild.Data.SyncEnabled:SetTooltip(L['MAZE_HELPER_SETTINGS_SYNC_ENABLED_TOOLTIP']);
+settingsScrollChild.Data.SyncEnabled:SetLabel(L['SETTINGS_SYNC_ENABLED_LABEL']);
+settingsScrollChild.Data.SyncEnabled:SetTooltip(L['SETTINGS_SYNC_ENABLED_TOOLTIP']);
 settingsScrollChild.Data.SyncEnabled:SetScript('OnClick', function(self)
     MHMOTSConfig.SyncEnabled = self:GetChecked();
 
@@ -586,8 +586,8 @@ end);
 settingsScrollChild.Data.ShowAtBoss = E.CreateRoundedCheckButton(settingsScrollChild);
 settingsScrollChild.Data.ShowAtBoss:SetPosition('TOPLEFT', settingsScrollChild.Data.SyncEnabled, 'BOTTOMLEFT', 0, 0);
 settingsScrollChild.Data.ShowAtBoss:SetArea(26, 26);
-settingsScrollChild.Data.ShowAtBoss:SetLabel(L['MAZE_HELPER_SETTINGS_SHOW_AT_BOSS_LABEL']);
-settingsScrollChild.Data.ShowAtBoss:SetTooltip(L['MAZE_HELPER_SETTINGS_SHOW_AT_BOSS_TOOLTIP']);
+settingsScrollChild.Data.ShowAtBoss:SetLabel(L['SETTINGS_SHOW_AT_BOSS_LABEL']);
+settingsScrollChild.Data.ShowAtBoss:SetTooltip(L['SETTINGS_SHOW_AT_BOSS_TOOLTIP']);
 settingsScrollChild.Data.ShowAtBoss:SetScript('OnClick', function(self)
     MHMOTSConfig.ShowAtBoss = self:GetChecked();
 end);
@@ -595,8 +595,8 @@ end);
 settingsScrollChild.Data.PredictSolution = E.CreateRoundedCheckButton(settingsScrollChild);
 settingsScrollChild.Data.PredictSolution:SetPosition('TOPLEFT', settingsScrollChild.Data.ShowAtBoss, 'BOTTOMLEFT', 0, 0);
 settingsScrollChild.Data.PredictSolution:SetArea(26, 26);
-settingsScrollChild.Data.PredictSolution:SetLabel(L['MAZE_HELPER_SETTINGS_PREDICT_SOLUTION_LABEL']);
-settingsScrollChild.Data.PredictSolution:SetTooltip(L['MAZE_HELPER_SETTINGS_PREDICT_SOLUTION_TOOLTIP']);
+settingsScrollChild.Data.PredictSolution:SetLabel(L['SETTINGS_PREDICT_SOLUTION_LABEL']);
+settingsScrollChild.Data.PredictSolution:SetTooltip(L['SETTINGS_PREDICT_SOLUTION_TOOLTIP']);
 settingsScrollChild.Data.PredictSolution:SetScript('OnClick', function(self)
     MHMOTSConfig.PredictSolution = self:GetChecked();
     ResetAll();
@@ -605,8 +605,8 @@ end);
 settingsScrollChild.Data.ShowLargeSymbol = E.CreateRoundedCheckButton(settingsScrollChild);
 settingsScrollChild.Data.ShowLargeSymbol:SetPosition('TOPLEFT', settingsScrollChild.Data.PredictSolution, 'BOTTOMLEFT', 0, 0);
 settingsScrollChild.Data.ShowLargeSymbol:SetArea(26, 26);
-settingsScrollChild.Data.ShowLargeSymbol:SetLabel(L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_LABEL']);
-settingsScrollChild.Data.ShowLargeSymbol:SetTooltip(L['MAZE_HELPER_SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP']);
+settingsScrollChild.Data.ShowLargeSymbol:SetLabel(L['SETTINGS_SHOW_LARGE_SYMBOL_LABEL']);
+settingsScrollChild.Data.ShowLargeSymbol:SetTooltip(L['SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP']);
 settingsScrollChild.Data.ShowLargeSymbol:SetScript('OnClick', function(self)
     MHMOTSConfig.ShowLargeSymbol = self:GetChecked();
 
@@ -618,8 +618,8 @@ end);
 settingsScrollChild.Data.UseCloneAutoMarker = E.CreateRoundedCheckButton(settingsScrollChild);
 settingsScrollChild.Data.UseCloneAutoMarker:SetPosition('TOPLEFT', settingsScrollChild.Data.ShowLargeSymbol, 'BOTTOMLEFT', 0, 0);
 settingsScrollChild.Data.UseCloneAutoMarker:SetArea(26, 26);
-settingsScrollChild.Data.UseCloneAutoMarker:SetLabel(L['MAZE_HELPER_SETTINGS_USE_CLONE_AUTOMARKER_LABEL']);
-settingsScrollChild.Data.UseCloneAutoMarker:SetTooltip(L['MAZE_HELPER_SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP']);
+settingsScrollChild.Data.UseCloneAutoMarker:SetLabel(L['SETTINGS_USE_CLONE_AUTOMARKER_LABEL']);
+settingsScrollChild.Data.UseCloneAutoMarker:SetTooltip(L['SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP']);
 settingsScrollChild.Data.UseCloneAutoMarker:SetScript('OnClick', function(self)
     MHMOTSConfig.UseCloneAutoMarker = self:GetChecked();
 
@@ -646,8 +646,8 @@ end);
 settingsScrollChild.Data.UseColoredSymbols = E.CreateRoundedCheckButton(settingsScrollChild);
 settingsScrollChild.Data.UseColoredSymbols:SetPosition('TOPLEFT', settingsScrollChild.Data.UseCloneAutoMarker, 'BOTTOMLEFT', 0, 0);
 settingsScrollChild.Data.UseColoredSymbols:SetArea(26, 26);
-settingsScrollChild.Data.UseColoredSymbols:SetLabel(L['MAZE_HELPER_SETTINGS_USE_COLORED_SYMBOLS_LABEL']);
-settingsScrollChild.Data.UseColoredSymbols:SetTooltip(L['MAZE_HELPER_SETTINGS_USE_COLORED_SYMBOLS_TOOLTIP']);
+settingsScrollChild.Data.UseColoredSymbols:SetLabel(L['SETTINGS_USE_COLORED_SYMBOLS_LABEL']);
+settingsScrollChild.Data.UseColoredSymbols:SetTooltip(L['SETTINGS_USE_COLORED_SYMBOLS_TOOLTIP']);
 settingsScrollChild.Data.UseColoredSymbols:SetScript('OnClick', function(self)
     MHMOTSConfig.UseColoredSymbols = self:GetChecked();
 
@@ -659,8 +659,8 @@ end);
 settingsScrollChild.Data.ShowSequenceNumbers = E.CreateRoundedCheckButton(settingsScrollChild);
 settingsScrollChild.Data.ShowSequenceNumbers:SetPosition('TOPLEFT', settingsScrollChild.Data.UseColoredSymbols, 'BOTTOMLEFT', 0, 0);
 settingsScrollChild.Data.ShowSequenceNumbers:SetArea(26, 26);
-settingsScrollChild.Data.ShowSequenceNumbers:SetLabel(L['MAZE_HELPER_SETTINGS_SHOW_SEQUENCE_NUMBERS_LABEL']);
-settingsScrollChild.Data.ShowSequenceNumbers:SetTooltip(L['MAZE_HELPER_SETTINGS_SHOW_SEQUENCE_NUMBERS_TOOLTIP']);
+settingsScrollChild.Data.ShowSequenceNumbers:SetLabel(L['SETTINGS_SHOW_SEQUENCE_NUMBERS_LABEL']);
+settingsScrollChild.Data.ShowSequenceNumbers:SetTooltip(L['SETTINGS_SHOW_SEQUENCE_NUMBERS_TOOLTIP']);
 settingsScrollChild.Data.ShowSequenceNumbers:SetScript('OnClick', function(self)
     MHMOTSConfig.ShowSequenceNumbers = self:GetChecked();
 
@@ -672,8 +672,8 @@ end);
 settingsScrollChild.Data.PrintResettedPlayerName = E.CreateRoundedCheckButton(settingsScrollChild);
 settingsScrollChild.Data.PrintResettedPlayerName:SetPosition('TOPLEFT', settingsScrollChild.Data.ShowSequenceNumbers, 'BOTTOMLEFT', 0, 0);
 settingsScrollChild.Data.PrintResettedPlayerName:SetArea(26, 26);
-settingsScrollChild.Data.PrintResettedPlayerName:SetLabel(L['MAZE_HELPER_SETTINGS_REVEAL_RESETTER_LABEL']);
-settingsScrollChild.Data.PrintResettedPlayerName:SetTooltip(L['MAZE_HELPER_SETTINGS_REVEAL_RESETTER_TOOLTIP']);
+settingsScrollChild.Data.PrintResettedPlayerName:SetLabel(L['SETTINGS_REVEAL_RESETTER_LABEL']);
+settingsScrollChild.Data.PrintResettedPlayerName:SetTooltip(L['SETTINGS_REVEAL_RESETTER_TOOLTIP']);
 settingsScrollChild.Data.PrintResettedPlayerName:SetScript('OnClick', function(self)
     MHMOTSConfig.PrintResettedPlayerName = self:GetChecked();
 end);
@@ -681,8 +681,8 @@ end);
 settingsScrollChild.Data.StartInMinMode = E.CreateRoundedCheckButton(settingsScrollChild);
 settingsScrollChild.Data.StartInMinMode:SetPosition('TOPLEFT', settingsScrollChild.Data.PrintResettedPlayerName, 'BOTTOMLEFT', 0, 0);
 settingsScrollChild.Data.StartInMinMode:SetArea(26, 26);
-settingsScrollChild.Data.StartInMinMode:SetLabel(L['MAZE_HELPER_SETTINGS_START_IN_MINMODE_LABEL']);
-settingsScrollChild.Data.StartInMinMode:SetTooltip(L['MAZE_HELPER_SETTINGS_START_IN_MINMODE_TOOLTIP']);
+settingsScrollChild.Data.StartInMinMode:SetLabel(L['SETTINGS_START_IN_MINMODE_LABEL']);
+settingsScrollChild.Data.StartInMinMode:SetTooltip(L['SETTINGS_START_IN_MINMODE_TOOLTIP']);
 settingsScrollChild.Data.StartInMinMode:SetScript('OnClick', function(self)
     MHMOTSConfig.StartInMinMode = self:GetChecked();
 end);
@@ -690,8 +690,8 @@ end);
 settingsScrollChild.Data.AutoAnnouncer = E.CreateRoundedCheckButton(settingsScrollChild);
 settingsScrollChild.Data.AutoAnnouncer:SetPosition('TOPLEFT', settingsScrollChild.Data.StartInMinMode, 'BOTTOMLEFT', 0, 0);
 settingsScrollChild.Data.AutoAnnouncer:SetArea(26, 26);
-settingsScrollChild.Data.AutoAnnouncer:SetLabel(L['MAZE_HELPER_SETTINGS_AUTOANNOUNCER_LABEL']);
-settingsScrollChild.Data.AutoAnnouncer:SetTooltip(L['MAZE_HELPER_SETTINGS_AUTOANNOUNCER_TOOLTIP']);
+settingsScrollChild.Data.AutoAnnouncer:SetLabel(L['SETTINGS_AUTOANNOUNCER_LABEL']);
+settingsScrollChild.Data.AutoAnnouncer:SetTooltip(L['SETTINGS_AUTOANNOUNCER_TOOLTIP']);
 settingsScrollChild.Data.AutoAnnouncer:SetScript('OnClick', function(self)
     MHMOTSConfig.AutoAnnouncer = self:GetChecked();
 
@@ -704,7 +704,7 @@ end);
 settingsScrollChild.Data.AutoAnnouncerAsPartyLeader = E.CreateCheckButton('MazeHelper_Settings_AutoAnnouncerAsPartyLeader_CheckButton', settingsScrollChild);
 settingsScrollChild.Data.AutoAnnouncerAsPartyLeader:SetPosition('TOPLEFT', settingsScrollChild.Data.AutoAnnouncer, 'BOTTOMRIGHT', 0, 2);
 settingsScrollChild.Data.AutoAnnouncerAsPartyLeader:SetLabel(M.INLINE_LEADER_ICON);
-settingsScrollChild.Data.AutoAnnouncerAsPartyLeader:SetTooltip(L['MAZE_HELPER_SETTINGS_AA_PARTY_LEADER']);
+settingsScrollChild.Data.AutoAnnouncerAsPartyLeader:SetTooltip(L['SETTINGS_AA_PARTY_LEADER']);
 settingsScrollChild.Data.AutoAnnouncerAsPartyLeader:SetScript('OnClick', function(self)
     MHMOTSConfig.AutoAnnouncerAsPartyLeader = self:GetChecked();
 end);
@@ -712,7 +712,7 @@ end);
 settingsScrollChild.Data.AutoAnnouncerAsAlways = E.CreateCheckButton('MazeHelper_Settings_AutoAnnouncerAsAlways_CheckButton', settingsScrollChild);
 settingsScrollChild.Data.AutoAnnouncerAsAlways:SetPosition('LEFT', settingsScrollChild.Data.AutoAnnouncerAsPartyLeader.Label, 'RIGHT', 12, 0);
 settingsScrollChild.Data.AutoAnnouncerAsAlways:SetLabel(M.INLINE_INFINITY_ICON);
-settingsScrollChild.Data.AutoAnnouncerAsAlways:SetTooltip(L['MAZE_HELPER_SETTINGS_AA_ALWAYS']);
+settingsScrollChild.Data.AutoAnnouncerAsAlways:SetTooltip(L['SETTINGS_AA_ALWAYS']);
 settingsScrollChild.Data.AutoAnnouncerAsAlways:SetScript('OnClick', function(self)
     MHMOTSConfig.AutoAnnouncerAsAlways = self:GetChecked();
 end);
@@ -720,7 +720,7 @@ end);
 settingsScrollChild.Data.AutoAnnouncerAsTank = E.CreateCheckButton('MazeHelper_Settings_AutoAnnouncerAsTank_CheckButton', settingsScrollChild);
 settingsScrollChild.Data.AutoAnnouncerAsTank:SetPosition('LEFT', settingsScrollChild.Data.AutoAnnouncerAsAlways.Label, 'RIGHT', 12, 0);
 settingsScrollChild.Data.AutoAnnouncerAsTank:SetLabel(M.INLINE_TANK_ICON);
-settingsScrollChild.Data.AutoAnnouncerAsTank:SetTooltip(L['MAZE_HELPER_SETTINGS_AA_TANK']);
+settingsScrollChild.Data.AutoAnnouncerAsTank:SetTooltip(L['SETTINGS_AA_TANK']);
 settingsScrollChild.Data.AutoAnnouncerAsTank:SetScript('OnClick', function(self)
     MHMOTSConfig.AutoAnnouncerAsTank = self:GetChecked();
 end);
@@ -728,7 +728,7 @@ end);
 settingsScrollChild.Data.AutoAnnouncerAsHealer = E.CreateCheckButton('MazeHelper_Settings_AutoAnnouncerAsHealer_CheckButton', settingsScrollChild);
 settingsScrollChild.Data.AutoAnnouncerAsHealer:SetPosition('LEFT', settingsScrollChild.Data.AutoAnnouncerAsTank.Label, 'RIGHT', 12, 0);
 settingsScrollChild.Data.AutoAnnouncerAsHealer:SetLabel(M.INLINE_HEALER_ICON);
-settingsScrollChild.Data.AutoAnnouncerAsHealer:SetTooltip(L['MAZE_HELPER_SETTINGS_AA_HEALER']);
+settingsScrollChild.Data.AutoAnnouncerAsHealer:SetTooltip(L['SETTINGS_AA_HEALER']);
 settingsScrollChild.Data.AutoAnnouncerAsHealer:SetScript('OnClick', function(self)
     MHMOTSConfig.AutoAnnouncerAsHealer = self:GetChecked();
 end);
@@ -736,8 +736,8 @@ end);
 settingsScrollChild.Data.Scale = E.CreateSlider('Scale', settingsScrollChild);
 settingsScrollChild.Data.Scale:SetPosition('TOPLEFT', settingsScrollChild.Data.AutoAnnouncer, 'BOTTOMLEFT', 4, -42);
 PixelUtil.SetWidth(settingsScrollChild.Data.Scale, FRAME_SIZE + X_OFFSET * (MAX_ACTIVE_BUTTONS - 1) - 50);
-settingsScrollChild.Data.Scale:SetLabel(L['MAZE_HELPER_SETTINGS_SCALE_LABEL']);
-settingsScrollChild.Data.Scale:SetTooltip(L['MAZE_HELPER_SETTINGS_SCALE_TOOLTIP']);
+settingsScrollChild.Data.Scale:SetLabel(L['SETTINGS_SCALE_LABEL']);
+settingsScrollChild.Data.Scale:SetTooltip(L['SETTINGS_SCALE_TOOLTIP']);
 settingsScrollChild.Data.Scale.Callback = function(_, value)
     MHMOTSConfig.SavedScale = tonumber(value);
     MazeHelper.frame:SetScale(MHMOTSConfig.SavedScale);
@@ -746,8 +746,8 @@ end
 settingsScrollChild.Data.ScaleLargeSymbol = E.CreateSlider('Scale', settingsScrollChild);
 settingsScrollChild.Data.ScaleLargeSymbol:SetPosition('TOPLEFT', settingsScrollChild.Data.Scale, 'BOTTOMLEFT', 0, -42);
 PixelUtil.SetWidth(settingsScrollChild.Data.ScaleLargeSymbol, FRAME_SIZE + X_OFFSET * (MAX_ACTIVE_BUTTONS - 1) - 50);
-settingsScrollChild.Data.ScaleLargeSymbol:SetLabel(L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_LABEL']);
-settingsScrollChild.Data.ScaleLargeSymbol:SetTooltip(L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_TOOLTIP']);
+settingsScrollChild.Data.ScaleLargeSymbol:SetLabel(L['SETTINGS_SCALE_LARGE_SYMBOL_LABEL']);
+settingsScrollChild.Data.ScaleLargeSymbol:SetTooltip(L['SETTINGS_SCALE_LARGE_SYMBOL_TOOLTIP']);
 settingsScrollChild.Data.ScaleLargeSymbol.Callback = function(_, value)
     MHMOTSConfig.SavedScaleLargeSymbol = tonumber(value);
     MazeHelper.frame.LargeSymbol:SetScale(PixelUtil.GetPixelToUIUnitFactor() * MHMOTSConfig.SavedScaleLargeSymbol);
@@ -778,7 +778,7 @@ local function Button_SetActive(button, send, sender)
 
     button:UpdateSequence();
 
-    MazeHelper.frame.SolutionText:SetText(L['MAZE_HELPER_CHOOSE_SYMBOLS_' .. (MAX_ACTIVE_BUTTONS - NUM_ACTIVE_BUTTONS)]);
+    MazeHelper.frame.SolutionText:SetText(L['CHOOSE_SYMBOLS_' .. (MAX_ACTIVE_BUTTONS - NUM_ACTIVE_BUTTONS)]);
 
     if send then
         MazeHelper:SendButtonID(button.id, 'ACTIVE');
@@ -802,7 +802,7 @@ local function Button_SetUnactive(button, send, sender)
     button:ResetSequence();
 
     if NUM_ACTIVE_BUTTONS < MAX_ACTIVE_BUTTONS then
-        MazeHelper.frame.SolutionText:SetText(L['MAZE_HELPER_CHOOSE_SYMBOLS_' .. (MAX_ACTIVE_BUTTONS - NUM_ACTIVE_BUTTONS)]);
+        MazeHelper.frame.SolutionText:SetText(L['CHOOSE_SYMBOLS_' .. (MAX_ACTIVE_BUTTONS - NUM_ACTIVE_BUTTONS)]);
 
         if SOLUTION_BUTTON_ID then
             buttons[SOLUTION_BUTTON_ID]:SetUnactive();
@@ -924,7 +924,7 @@ function MazeHelper:CreateButton(index)
         end
 
         GameTooltip:SetOwner(self, 'ANCHOR_RIGHT');
-        GameTooltip:AddLine(self.state and string.format(L['MAZE_HELPER_SENDED_BY'], self.sender) or string.format(L['MAZE_HELPER_CLEARED_BY'], self.sender), 1, 0.85, 0, true);
+        GameTooltip:AddLine(self.state and string.format(L['SENDED_BY'], self.sender) or string.format(L['CLEARED_BY'], self.sender), 1, 0.85, 0, true);
         GameTooltip:Show();
     end);
     button:SetScript('OnLeave', GameTooltip_Hide);
@@ -1138,7 +1138,7 @@ function MazeHelper:UpdateSolution()
 
         MazeHelper.frame.AnnounceButton:SetShown((not isMinimized and partyChatType and not MHMOTSConfig.AutoAnnouncer) and true or false);
         MazeHelper.frame.PassedButton:SetEnabled(true);
-        MazeHelper.frame.SolutionText:SetText(string.format(L['MAZE_HELPER_SOLUTION'], buttons[SOLUTION_BUTTON_ID].data.name));
+        MazeHelper.frame.SolutionText:SetText(string.format(L['SOLUTION'], buttons[SOLUTION_BUTTON_ID].data.name));
 
         if isMinimized then
             MazeHelper.frame.MiniSolution:SetShown(true);
@@ -1159,7 +1159,7 @@ function MazeHelper:UpdateSolution()
             end
 
             if announce then
-                SendChatMessage(string.format(L['MAZE_HELPER_ANNOUNCE_SOLUTION'], buttons[SOLUTION_BUTTON_ID].data.aname), partyChatType);
+                SendChatMessage(string.format(L['ANNOUNCE_SOLUTION'], buttons[SOLUTION_BUTTON_ID].data.aname), partyChatType);
             end
         end
     else
@@ -1183,7 +1183,7 @@ function MazeHelper:UpdateSolution()
                 end
             end
 
-            MazeHelper.frame.SolutionText:SetText(L['MAZE_HELPER_SOLUTION_NA']);
+            MazeHelper.frame.SolutionText:SetText(L['SOLUTION_NA']);
         end
     end
 end
@@ -1294,9 +1294,9 @@ end
 
 local function UpdateShown()
     if MHMOTSConfig.ShowAtBoss then
-        MazeHelper.frame:SetShown((not bossKilled and inInstance and GetMinimapZoneText() == L['MAZE_HELPER_ZONE_NAME']));
+        MazeHelper.frame:SetShown((not bossKilled and inInstance and GetMinimapZoneText() == L['ZONE_NAME']));
     else
-        MazeHelper.frame:SetShown((not inEncounter and inInstance and GetMinimapZoneText() == L['MAZE_HELPER_ZONE_NAME']));
+        MazeHelper.frame:SetShown((not inEncounter and inInstance and GetMinimapZoneText() == L['ZONE_NAME']));
     end
 
     if MazeHelper.frame:IsShown() then
@@ -1522,13 +1522,13 @@ function MazeHelper.frame:CHAT_MSG_ADDON(prefix, message, _, sender)
             MazeHelper:ReceivePassedCommand(tonumber(buttonID));
 
             if MHMOTSConfig.PrintResettedPlayerName then
-                print(string.format(L['MAZE_HELPER_PASSED_PLAYER'], sender));
+                print(string.format(L['PASSED_PLAYER'], sender));
             end
         elseif p == 'SendReset' then
             MazeHelper:ReceiveResetCommand();
 
             if MHMOTSConfig.PrintResettedPlayerName then
-                print(string.format(L['MAZE_HELPER_RESETED_PLAYER'], sender));
+                print(string.format(L['RESETED_PLAYER'], sender));
             end
         elseif p == 'REQPC' then
             MazeHelper:SendPassedCounter();
