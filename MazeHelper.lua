@@ -31,11 +31,33 @@ local RESERVED_BUTTONS_SEQUENCE = {
     [4] = false,
 };
 
+local USED_MARKERS = {
+    [1] = false,
+    [2] = false,
+    [3] = false,
+    [4] = false,
+    [5] = false,
+    [6] = false,
+    [7] = false,
+    [8] = false,
+};
+
+local UNITS = {
+    'player',
+    'party1',
+    'party2',
+    'party3',
+    'party4',
+    'boss1',
+};
+
 local PASSED_COUNTER = 1;
 local SOLUTION_BUTTON_ID;
 local PREDICTED_SOLUTION_BUTTON_ID;
 
+local MOTS_INSTANCE_ID = 2290;
 local MISTCALLER_ENCOUNTER_ID = 2392;
+local ILLUSIONARY_CLONE_ID = 165108;
 
 local EVENTS_INSTANCE = {
     'ZONE_CHANGED',
@@ -44,6 +66,11 @@ local EVENTS_INSTANCE = {
     'ENCOUNTER_START',
     'ENCOUNTER_END',
     'BOSS_KILL',
+};
+
+local EVENTS_AUTOMARKER = {
+    'NAME_PLATE_UNIT_ADDED',
+    'NAME_PLATE_UNIT_REMOVED',
 };
 
 local buttons = {}
@@ -586,8 +613,36 @@ settingsScrollChild.Data.ShowLargeSymbol:SetScript('OnClick', function(self)
     end
 end);
 
+settingsScrollChild.Data.UseCloneAutoMarker = E.CreateRoundedCheckButton(settingsScrollChild);
+settingsScrollChild.Data.UseCloneAutoMarker:SetPosition('TOPLEFT', settingsScrollChild.Data.ShowLargeSymbol, 'BOTTOMLEFT', 0, 0);
+settingsScrollChild.Data.UseCloneAutoMarker:SetArea(26, 26);
+settingsScrollChild.Data.UseCloneAutoMarker:SetLabel(L['MAZE_HELPER_SETTINGS_USE_CLONE_AUTOMARKER_LABEL']);
+settingsScrollChild.Data.UseCloneAutoMarker:SetTooltip(L['MAZE_HELPER_SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP']);
+settingsScrollChild.Data.UseCloneAutoMarker:SetScript('OnClick', function(self)
+    MHMOTSConfig.UseCloneAutoMarker = self:GetChecked();
+
+    if MHMOTSConfig.UseCloneAutoMarker then
+        if IsInInstance() then
+            local instanceId = select(8, GetInstanceInfo());
+            if instanceId == MOTS_INSTANCE_ID then
+                for _, event in ipairs(EVENTS_AUTOMARKER) do
+                    MazeHelper.frame:RegisterEvent(event);
+                end
+            end
+        else
+            for _, event in ipairs(EVENTS_AUTOMARKER) do
+                MazeHelper.frame:UnregisterEvent(event);
+            end
+        end
+    else
+        for _, event in ipairs(EVENTS_AUTOMARKER) do
+            MazeHelper.frame:UnregisterEvent(event);
+        end
+    end
+end);
+
 settingsScrollChild.Data.UseColoredSymbols = E.CreateRoundedCheckButton(settingsScrollChild);
-settingsScrollChild.Data.UseColoredSymbols:SetPosition('TOPLEFT', settingsScrollChild.Data.ShowLargeSymbol, 'BOTTOMLEFT', 0, 0);
+settingsScrollChild.Data.UseColoredSymbols:SetPosition('TOPLEFT', settingsScrollChild.Data.UseCloneAutoMarker, 'BOTTOMLEFT', 0, 0);
 settingsScrollChild.Data.UseColoredSymbols:SetArea(26, 26);
 settingsScrollChild.Data.UseColoredSymbols:SetLabel(L['MAZE_HELPER_SETTINGS_USE_COLORED_SYMBOLS_LABEL']);
 settingsScrollChild.Data.UseColoredSymbols:SetTooltip(L['MAZE_HELPER_SETTINGS_USE_COLORED_SYMBOLS_TOOLTIP']);
@@ -1272,7 +1327,83 @@ MazeHelper.frame:SetScript('OnEvent', function(self, event, ...)
     end
 end);
 
-local function UpdateData(frame) -- Not good name, i know...
+local function GetFreeMarkerIndex()
+    for i = 1, 8 do
+        if USED_MARKERS[i] == false then
+            return i;
+        end
+    end
+
+    return false;
+end
+
+local function SetFreeMarkerIndex(index)
+    USED_MARKERS[index] = false;
+end
+
+local function SetUnfreeMarkerIndex(index)
+    USED_MARKERS[index] = true;
+end
+
+local function UpdateUsedMarkers()
+    for i = 1, 8 do
+        SetFreeMarkerIndex(i);
+    end
+
+    local index;
+
+    for _, unit in ipairs(UNITS) do
+        index = GetRaidTargetIndex(unit);
+        if index then
+            SetUnfreeMarkerIndex(index);
+        end
+    end
+
+    for _, frame in pairs(C_NamePlate.GetNamePlates()) do
+        index = GetRaidTargetIndex(frame.namePlateUnitToken);
+        if index then
+            SetUnfreeMarkerIndex(index);
+        end
+    end
+end
+
+local nameplates = {};
+
+function MazeHelper.frame:NAME_PLATE_UNIT_ADDED(unit)
+    if not inEncounter then
+        return;
+    end
+
+    local npcId = select(6, strsplit('-', UnitGUID(unit)));
+    npcId = tonumber(npcId);
+
+    if not npcId or npcId ~= ILLUSIONARY_CLONE_ID then
+        return;
+    end
+
+    if not GetRaidTargetIndex(unit) then
+        local index = GetFreeMarkerIndex();
+        if index then
+            SetRaidTarget(unit, index);
+            SetUnfreeMarkerIndex(index);
+            nameplates[unit] = index;
+        end
+    end
+end
+
+function MazeHelper.frame:NAME_PLATE_UNIT_REMOVED(unit)
+    if not inEncounter then
+        return;
+    end
+
+    if not nameplates[unit] then
+        return;
+    end
+
+    SetFreeMarkerIndex(nameplates[unit]);
+end
+
+local function UpdateState(frame)
     local playerName, playerShortenedRealm = UnitFullName('player');
     playerNameWithRealm = playerName .. '-' .. playerShortenedRealm;
 
@@ -1289,15 +1420,29 @@ local function UpdateData(frame) -- Not good name, i know...
     startedInMinMode = false;
 
     if inInstance then
-        for _, event in ipairs(EVENTS_INSTANCE) do
-            frame:RegisterEvent(event);
+        local instanceId = select(8, GetInstanceInfo());
+        if instanceId == MOTS_INSTANCE_ID then
+            for _, event in ipairs(EVENTS_INSTANCE) do
+                frame:RegisterEvent(event);
+            end
+
+            if MHMOTSConfig.UseCloneAutoMarker then
+                for _, event in ipairs(EVENTS_AUTOMARKER) do
+                    frame:RegisterEvent(event);
+                end
+            end
         end
     else
         for _, event in ipairs(EVENTS_INSTANCE) do
             frame:UnregisterEvent(event);
         end
+
+        for _, event in ipairs(EVENTS_AUTOMARKER) do
+            frame:UnregisterEvent(event);
+        end
     end
 
+    UpdateUsedMarkers();
     UpdateShown();
 end
 
@@ -1314,11 +1459,11 @@ function MazeHelper.frame:PLAYER_LOGIN()
         self.LargeSymbol:SetUserPlaced(true);
 	end
 
-    UpdateData(self);
+    UpdateState(self);
 end
 
 function MazeHelper.frame:PLAYER_ENTERING_WORLD()
-    UpdateData(self);
+    UpdateState(self);
 end
 
 function MazeHelper.frame:ZONE_CHANGED()
@@ -1341,6 +1486,7 @@ local function UpdateBossState(encounterID, inFight, killed)
     inEncounter = inFight;
     bossKilled  = killed;
 
+    UpdateUsedMarkers();
     ResetAll();
     UpdateShown();
 end
@@ -1410,7 +1556,7 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     MHMOTSConfig.SavedPosition            = MHMOTSConfig.SavedPosition or {};
     MHMOTSConfig.SavedPositionLargeSymbol = MHMOTSConfig.SavedPositionLargeSymbol or {};
     MHMOTSConfig.SavedScale               = MHMOTSConfig.SavedScale or 1;
-    MHMOTSConfig.SavedScaleLargeSymbol    = MHMOTSConfig.SavedScaleLargeSymbol or PixelUtil.GetPixelToUIUnitFactor();
+    MHMOTSConfig.SavedScaleLargeSymbol    = MHMOTSConfig.SavedScaleLargeSymbol or 1;
 
     MHMOTSConfig.SyncEnabled             = MHMOTSConfig.SyncEnabled == nil and true or MHMOTSConfig.SyncEnabled;
     MHMOTSConfig.PredictSolution         = MHMOTSConfig.PredictSolution == nil and false or MHMOTSConfig.PredictSolution;
@@ -1420,6 +1566,7 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     MHMOTSConfig.UseColoredSymbols       = MHMOTSConfig.UseColoredSymbols == nil and true or MHMOTSConfig.UseColoredSymbols;
     MHMOTSConfig.ShowSequenceNumbers     = MHMOTSConfig.ShowSequenceNumbers == nil and true or MHMOTSConfig.ShowSequenceNumbers;
     MHMOTSConfig.ShowLargeSymbol         = MHMOTSConfig.ShowLargeSymbol == nil and true or MHMOTSConfig.ShowLargeSymbol;
+    MHMOTSConfig.UseCloneAutoMarker      = MHMOTSConfig.UseCloneAutoMarker == nil and false or MHMOTSConfig.UseCloneAutoMarker;
 
     MHMOTSConfig.AutoAnnouncer              = MHMOTSConfig.AutoAnnouncer == nil and false or MHMOTSConfig.AutoAnnouncer;
     MHMOTSConfig.AutoAnnouncerAsPartyLeader = MHMOTSConfig.AutoAnnouncerAsPartyLeader == nil and true or MHMOTSConfig.AutoAnnouncerAsPartyLeader;

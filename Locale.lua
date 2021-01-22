@@ -70,6 +70,8 @@ L['MAZE_HELPER_SETTINGS_SCALE_LABEL'] = 'Scale';
 L['MAZE_HELPER_SETTINGS_SCALE_TOOLTIP'] = 'Set the scale of the main window';
 L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_LABEL'] = 'Scale of large symbol';
 L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_TOOLTIP'] = 'Set the scale of the large symbol';
+L['MAZE_HELPER_SETTINGS_USE_CLONE_AUTOMARKER_LABEL'] = 'Auto marker';
+L['MAZE_HELPER_SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = 'Automatically put markers on Illusionary Clones in a boss fight';
 L['MAZE_HELPER_PRACTICE_TITLE'] = 'Select a symbol that differs in one way from the others';
 L['MAZE_HELPER_PRACTICE_PLAY_AGAIN'] = 'Play again';
 L['MAZE_HELPER_PRACTICE_BUTTON_TOOLTIP'] = 'Practice';
@@ -129,6 +131,8 @@ if gameLocale == 'ruRU' then
     L['MAZE_HELPER_SETTINGS_SCALE_TOOLTIP'] = 'Задать масштаб главного окна';
     L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_LABEL'] = 'Масштаб большого символа';
     L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_TOOLTIP'] = 'Задать масштаб большого символа';
+    L['MAZE_HELPER_SETTINGS_USE_CLONE_AUTOMARKER_LABEL'] = 'Авто-метка';
+    L['MAZE_HELPER_SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = 'Автоматически ставить метки на Иллюзорных клонов в бою с боссом';
     L['MAZE_HELPER_PRACTICE_TITLE'] = 'Выберите символ, отличающийся чем-то одним от других';
     L['MAZE_HELPER_PRACTICE_PLAY_AGAIN'] = 'Сыграть ещё';
     L['MAZE_HELPER_PRACTICE_BUTTON_TOOLTIP'] = 'Практика';
@@ -192,6 +196,8 @@ if gameLocale == 'deDE' then
     L['MAZE_HELPER_SETTINGS_SCALE_TOOLTIP'] = 'Stellen Sie den Maßstab des Hauptfensters ein';
     L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_LABEL'] = 'Skala des großen Symbols';
     L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_TOOLTIP'] = 'Stellen Sie die Skalierung des großen Symbols ein';
+    L['MAZE_HELPER_SETTINGS_USE_CLONE_AUTOMARKER_LABEL'] = 'Automatische Markierung';
+    L['MAZE_HELPER_SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = 'Setze in einem Bosskampf automatisch Marker auf Illusionärer Klon';
     L['MAZE_HELPER_PRACTICE_TITLE'] = 'Wählen Sie ein Symbol aus, das sich in einer Hinsicht von den anderen unterscheidet';
     L['MAZE_HELPER_PRACTICE_PLAY_AGAIN'] = 'Nochmal abspielen';
     L['MAZE_HELPER_PRACTICE_BUTTON_TOOLTIP'] = 'Trainieren';
@@ -254,6 +260,8 @@ if gameLocale == 'frFR' then -- Google Translate
     L['MAZE_HELPER_SETTINGS_SCALE_TOOLTIP'] = 'Réglez l\'échelle de la fenêtre principale';
     L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_LABEL'] = 'Échelle du grand symbole';
     L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_TOOLTIP'] = 'Définir l\'échelle du grand symbole';
+    L['MAZE_HELPER_SETTINGS_USE_CLONE_AUTOMARKER_LABEL'] = 'Marqueur automatique';
+    L['MAZE_HELPER_SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = 'Mettre automatiquement des marqueurs sur les Clones illusoires dans un combat de boss';
     L['MAZE_HELPER_PRACTICE_TITLE'] = 'Sélectionnez un symbole qui diffère d\'une manière des autres';
     L['MAZE_HELPER_PRACTICE_PLAY_AGAIN'] = 'Rejouer';
     L['MAZE_HELPER_PRACTICE_BUTTON_TOOLTIP'] = 'La pratique';
@@ -316,6 +324,8 @@ if gameLocale == 'itIT' then -- Google Translate
     L['MAZE_HELPER_SETTINGS_SCALE_TOOLTIP'] = 'Imposta la scala della finestra principale';
     L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_LABEL'] = 'Scala di grande simbolo';
     L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_TOOLTIP'] = 'Imposta la scala del simbolo grande';
+    L['MAZE_HELPER_SETTINGS_USE_CLONE_AUTOMARKER_LABEL'] = 'Marcatore automatico';
+    L['MAZE_HELPER_SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = 'Metti automaticamente i segnalini sui Clone Illusorio in una lotta con un boss';
     L['MAZE_HELPER_PRACTICE_TITLE'] = 'Seleziona un simbolo che differisce in un modo dagli altri';
     L['MAZE_HELPER_PRACTICE_PLAY_AGAIN'] = 'Gioca di nuovo';
     L['MAZE_HELPER_PRACTICE_BUTTON_TOOLTIP'] = 'Pratica';
@@ -378,6 +388,8 @@ if gameLocale == 'ptBR' then -- Brazilian Portuguese (Google Translate)
     L['MAZE_HELPER_SETTINGS_SCALE_TOOLTIP'] = 'Defina a escala da janela principal';
     L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_LABEL'] = 'Escala de grande símbolo';
     L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_TOOLTIP'] = 'Defina a escala do símbolo grande';
+    L['MAZE_HELPER_SETTINGS_USE_CLONE_AUTOMARKER_LABEL'] = 'Marcador automático';
+    L['MAZE_HELPER_SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = 'Colocar marcadores automaticamente em Clones Ilusórios em uma luta de chefe';
     L['MAZE_HELPER_PRACTICE_TITLE'] = 'Selecione um símbolo que difere de uma forma dos outros';
     L['MAZE_HELPER_PRACTICE_PLAY_AGAIN'] = 'Jogar de novo';
     L['MAZE_HELPER_PRACTICE_BUTTON_TOOLTIP'] = 'Prática';
@@ -440,6 +452,8 @@ if gameLocale == 'esES' then -- Spanish (Google Translate)
     L['MAZE_HELPER_SETTINGS_SCALE_TOOLTIP'] = 'Establecer la escala de la ventana principal';
     L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_LABEL'] = 'Escala de símbolo grande';
     L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_TOOLTIP'] = 'Establecer la escala del símbolo grande';
+    L['MAZE_HELPER_SETTINGS_USE_CLONE_AUTOMARKER_LABEL'] = 'Marcador automático';
+    L['MAZE_HELPER_SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = 'Coloca marcadores automáticamente en Clones ilusorios en una pelea de jefes';
     L['MAZE_HELPER_PRACTICE_TITLE'] = 'Seleccione un símbolo que difiera en un sentido de los demás';
     L['MAZE_HELPER_PRACTICE_PLAY_AGAIN'] = 'Juega de nuevo';
     L['MAZE_HELPER_PRACTICE_BUTTON_TOOLTIP'] = 'Práctica';
@@ -511,6 +525,8 @@ if gameLocale == 'zhTW' then -- BNS333 (https://www.curseforge.com/members/bns33
     L['MAZE_HELPER_SETTINGS_SCALE_TOOLTIP'] = '設置主窗口的比例';
     L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_LABEL'] = '大符號的比例';
     L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_TOOLTIP'] = '設置大符號的比例';
+    L['MAZE_HELPER_SETTINGS_USE_CLONE_AUTOMARKER_LABEL'] = '自動標記';
+    L['MAZE_HELPER_SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = '在老闆戰鬥中自動在幻影克隆上放置標記';
     L['MAZE_HELPER_PRACTICE_TITLE'] = '選擇一個符號與其他符號不同的符號';
     L['MAZE_HELPER_PRACTICE_PLAY_AGAIN'] = '再玩一次';
     L['MAZE_HELPER_PRACTICE_BUTTON_TOOLTIP'] = '實踐';
@@ -575,6 +591,8 @@ if gameLocale == 'zhCN' then
     L['MAZE_HELPER_SETTINGS_SCALE_TOOLTIP'] = '设置主窗口的比例';
     L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_LABEL'] = '大符号的比例';
     L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_TOOLTIP'] = '设置大符号的比例';
+    L['MAZE_HELPER_SETTINGS_USE_CLONE_AUTOMARKER_LABEL'] = '自动标记';
+    L['MAZE_HELPER_SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = '在老板战斗中自动在幻影克隆上放置标记';
     L['MAZE_HELPER_PRACTICE_TITLE'] = '选择一个符号与其他符号不同的符号';
     L['MAZE_HELPER_PRACTICE_PLAY_AGAIN'] = '再玩一次';
     L['MAZE_HELPER_PRACTICE_BUTTON_TOOLTIP'] = '实践';
@@ -637,6 +655,8 @@ if gameLocale == 'koKR' then -- hinski (https://www.curseforge.com/members/hinsk
     L['MAZE_HELPER_SETTINGS_SCALE_TOOLTIP'] = '기본 창의 배율 설정';
     L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_LABEL'] = '큰 심볼의 스케일';
     L['MAZE_HELPER_SETTINGS_SCALE_LARGE_SYMBOL_TOOLTIP'] = '큰 기호의 배율 설정';
+    L['MAZE_HELPER_SETTINGS_USE_CLONE_AUTOMARKER_LABEL'] = '자동 마커';
+    L['MAZE_HELPER_SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = '보스 전에서 일 루저 너리 클론에 마커를 자동으로 배치';
     L['MAZE_HELPER_PRACTICE_TITLE'] = '한면에서 다른 기호와 다른 기호를 선택하십시오';
     L['MAZE_HELPER_PRACTICE_PLAY_AGAIN'] = '다시 플레이';
     L['MAZE_HELPER_PRACTICE_BUTTON_TOOLTIP'] = '연습';
