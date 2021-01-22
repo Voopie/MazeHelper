@@ -175,15 +175,15 @@ local function GetSoundRandomIndex(m, n)
     return randomIndex;
 end
 
-local lastIndex = 0;
+local lastMegaIndex = 0;
 local function GetMegaRandomIndex(m, n)
     local randomIndex = math.random(m, n);
 
-    if randomIndex == lastIndex then
+    if randomIndex == lastMegaIndex then
         return GetMegaRandomIndex(m, n);
     end
 
-    lastIndex = randomIndex;
+    lastMegaIndex = randomIndex;
 
     return randomIndex;
 end
