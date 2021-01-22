@@ -44,7 +44,7 @@ local USED_MARKERS = {
     [8] = false,
 };
 
-local UNITS = {
+local MARKER_UNITS = {
     'player',
     'party1',
     'party2',
@@ -1354,7 +1354,7 @@ local function UpdateUsedMarkers()
 
     local index;
 
-    for _, unit in ipairs(UNITS) do
+    for _, unit in ipairs(MARKER_UNITS) do
         index = GetRaidTargetIndex(unit);
         if index then
             SetUnfreeMarkerIndex(index);
