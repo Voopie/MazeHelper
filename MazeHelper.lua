@@ -18,7 +18,9 @@ local X_OFFSET = 2;
 local Y_OFFSET = -2;
 local BUTTON_SIZE = 64;
 
-local EMPTY_STRING = ''; -- NANO-OPTIMIZATION!
+-- NANO-OPTIMIZATIONS!
+local EMPTY_STRING = '';
+local PLAYER_STRING = 'player';
 
 local MAX_BUTTONS = 8;
 local MAX_ACTIVE_BUTTONS = 4;
@@ -1148,7 +1150,7 @@ function MazeHelper:UpdateSolution()
 
             if MHMOTSConfig.AutoAnnouncerAsAlways then
                 announce = true;
-            elseif MHMOTSConfig.AutoAnnouncerAsPartyLeader and UnitIsGroupLeader('player') then
+            elseif MHMOTSConfig.AutoAnnouncerAsPartyLeader and UnitIsGroupLeader(PLAYER_STRING) then
                 announce = true;
             elseif MHMOTSConfig.AutoAnnouncerAsTank and playerRole == 'TANK' then
                 announce = true;
@@ -1404,7 +1406,7 @@ function MazeHelper.frame:NAME_PLATE_UNIT_REMOVED(unit)
 end
 
 local function UpdateState(frame)
-    local playerName, playerShortenedRealm = UnitFullName('player');
+    local playerName, playerShortenedRealm = UnitFullName(PLAYER_STRING);
     playerNameWithRealm = playerName .. '-' .. playerShortenedRealm;
 
     inInstance = IsInInstance();
@@ -1537,7 +1539,7 @@ function MazeHelper.frame:CHAT_MSG_ADDON(prefix, message, _, sender)
 end
 
 function MazeHelper.frame:PLAYER_SPECIALIZATION_CHANGED(unit)
-    if unit ~= 'player' then
+    if unit ~= PLAYER_STRING then
         return;
     end
 
