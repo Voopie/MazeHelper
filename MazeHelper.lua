@@ -381,7 +381,7 @@ MazeHelper.frame.LargeSymbol:SetScript('OnDragStop', function(self)
     local point, relativeTo, relativePoint, xOfs, yOfs = self:GetPoint();
 
     MHMOTSConfig.SavedPositionLargeSymbol[1] = point;
-    MHMOTSConfig.SavedPositionLargeSymbol[2] = relativeTo
+    MHMOTSConfig.SavedPositionLargeSymbol[2] = relativeTo;
     MHMOTSConfig.SavedPositionLargeSymbol[3] = relativePoint;
     MHMOTSConfig.SavedPositionLargeSymbol[4] = xOfs;
     MHMOTSConfig.SavedPositionLargeSymbol[5] = yOfs;
@@ -740,7 +740,23 @@ settingsScrollChild.Data.Scale:SetLabel(L['SETTINGS_SCALE_LABEL']);
 settingsScrollChild.Data.Scale:SetTooltip(L['SETTINGS_SCALE_TOOLTIP']);
 settingsScrollChild.Data.Scale.Callback = function(_, value)
     MHMOTSConfig.SavedScale = tonumber(value);
+
+    local point, relativeTo, relativePoint, xOfs, yOfs = MazeHelper.frame:GetPoint();
+    local s = MazeHelper.frame:GetScale();
+
+    MHMOTSConfig.SavedPosition[1] = point;
+    MHMOTSConfig.SavedPosition[2] = relativeTo
+    MHMOTSConfig.SavedPosition[3] = relativePoint;
+    MHMOTSConfig.SavedPosition[4] = xOfs;
+    MHMOTSConfig.SavedPosition[5] = yOfs;
+
+    s = MHMOTSConfig.SavedScale / s;
+
     MazeHelper.frame:SetScale(MHMOTSConfig.SavedScale);
+
+    MazeHelper.frame:ClearAllPoints();
+    PixelUtil.SetPoint(MazeHelper.frame, point, relativeTo, relativePoint, xOfs / s, yOfs / s);
+    MazeHelper.frame:SetUserPlaced(true);
 end
 
 settingsScrollChild.Data.ScaleLargeSymbol = E.CreateSlider('Scale', settingsScrollChild);
@@ -750,7 +766,23 @@ settingsScrollChild.Data.ScaleLargeSymbol:SetLabel(L['SETTINGS_SCALE_LARGE_SYMBO
 settingsScrollChild.Data.ScaleLargeSymbol:SetTooltip(L['SETTINGS_SCALE_LARGE_SYMBOL_TOOLTIP']);
 settingsScrollChild.Data.ScaleLargeSymbol.Callback = function(_, value)
     MHMOTSConfig.SavedScaleLargeSymbol = tonumber(value);
+
+    local point, relativeTo, relativePoint, xOfs, yOfs = MazeHelper.frame.LargeSymbol:GetPoint();
+    local s = MazeHelper.frame.LargeSymbol:GetScale();
+
+    MHMOTSConfig.SavedPositionLargeSymbol[1] = point;
+    MHMOTSConfig.SavedPositionLargeSymbol[2] = relativeTo;
+    MHMOTSConfig.SavedPositionLargeSymbol[3] = relativePoint;
+    MHMOTSConfig.SavedPositionLargeSymbol[4] = xOfs;
+    MHMOTSConfig.SavedPositionLargeSymbol[5] = yOfs;
+
+    s = PixelUtil.GetPixelToUIUnitFactor() * MHMOTSConfig.SavedScaleLargeSymbol / s;
+
     MazeHelper.frame.LargeSymbol:SetScale(PixelUtil.GetPixelToUIUnitFactor() * MHMOTSConfig.SavedScaleLargeSymbol);
+
+    MazeHelper.frame.LargeSymbol:ClearAllPoints();
+    PixelUtil.SetPoint(MazeHelper.frame.LargeSymbol, point, relativeTo, relativePoint, xOfs / s, yOfs / s);
+    MazeHelper.frame.LargeSymbol:SetUserPlaced(true);
 end
 
 MazeHelper.frame.Settings.VersionText = MazeHelper.frame.Settings:CreateFontString(nil, 'ARTWORK', 'GameFontDisable');
