@@ -1647,7 +1647,23 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
             scale = math.max(scale, 0.25);
 
             MHMOTSConfig.SavedScale = scale;
+
+            local point, relativeTo, relativePoint, xOfs, yOfs = MazeHelper.frame:GetPoint();
+            local s = MazeHelper.frame:GetScale();
+            s = MHMOTSConfig.SavedScale / s;
+
+            MHMOTSConfig.SavedPosition[1] = point;
+            MHMOTSConfig.SavedPosition[2] = relativeTo;
+            MHMOTSConfig.SavedPosition[3] = relativePoint;
+            MHMOTSConfig.SavedPosition[4] = xOfs / s;
+            MHMOTSConfig.SavedPosition[5] = yOfs / s;
+
             MazeHelper.frame:SetScale(MHMOTSConfig.SavedScale);
+
+            MazeHelper.frame:ClearAllPoints();
+            PixelUtil.SetPoint(MazeHelper.frame, point, UIParent, relativePoint, xOfs / s, yOfs / s);
+            MazeHelper.frame:SetUserPlaced(true);
+
             settingsScrollChild.Data.Scale:SetValue(MHMOTSConfig.SavedScale);
 
             return;
