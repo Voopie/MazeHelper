@@ -743,19 +743,18 @@ settingsScrollChild.Data.Scale.Callback = function(_, value)
 
     local point, relativeTo, relativePoint, xOfs, yOfs = MazeHelper.frame:GetPoint();
     local s = MazeHelper.frame:GetScale();
+    s = MHMOTSConfig.SavedScale / s;
 
     MHMOTSConfig.SavedPosition[1] = point;
-    MHMOTSConfig.SavedPosition[2] = relativeTo
+    MHMOTSConfig.SavedPosition[2] = relativeTo;
     MHMOTSConfig.SavedPosition[3] = relativePoint;
-    MHMOTSConfig.SavedPosition[4] = xOfs;
-    MHMOTSConfig.SavedPosition[5] = yOfs;
-
-    s = MHMOTSConfig.SavedScale / s;
+    MHMOTSConfig.SavedPosition[4] = xOfs / s;
+    MHMOTSConfig.SavedPosition[5] = yOfs / s;
 
     MazeHelper.frame:SetScale(MHMOTSConfig.SavedScale);
 
     MazeHelper.frame:ClearAllPoints();
-    PixelUtil.SetPoint(MazeHelper.frame, point, relativeTo, relativePoint, xOfs / s, yOfs / s);
+    PixelUtil.SetPoint(MazeHelper.frame, point, relativeTo or UIParent, relativePoint, xOfs / s, yOfs / s);
     MazeHelper.frame:SetUserPlaced(true);
 end
 
@@ -769,19 +768,18 @@ settingsScrollChild.Data.ScaleLargeSymbol.Callback = function(_, value)
 
     local point, relativeTo, relativePoint, xOfs, yOfs = MazeHelper.frame.LargeSymbol:GetPoint();
     local s = MazeHelper.frame.LargeSymbol:GetScale();
+    s = PixelUtil.GetPixelToUIUnitFactor() * MHMOTSConfig.SavedScaleLargeSymbol / s;
 
     MHMOTSConfig.SavedPositionLargeSymbol[1] = point;
     MHMOTSConfig.SavedPositionLargeSymbol[2] = relativeTo;
     MHMOTSConfig.SavedPositionLargeSymbol[3] = relativePoint;
-    MHMOTSConfig.SavedPositionLargeSymbol[4] = xOfs;
-    MHMOTSConfig.SavedPositionLargeSymbol[5] = yOfs;
-
-    s = PixelUtil.GetPixelToUIUnitFactor() * MHMOTSConfig.SavedScaleLargeSymbol / s;
+    MHMOTSConfig.SavedPositionLargeSymbol[4] = xOfs / s;
+    MHMOTSConfig.SavedPositionLargeSymbol[5] = yOfs / s;
 
     MazeHelper.frame.LargeSymbol:SetScale(PixelUtil.GetPixelToUIUnitFactor() * MHMOTSConfig.SavedScaleLargeSymbol);
 
     MazeHelper.frame.LargeSymbol:ClearAllPoints();
-    PixelUtil.SetPoint(MazeHelper.frame.LargeSymbol, point, relativeTo, relativePoint, xOfs / s, yOfs / s);
+    PixelUtil.SetPoint(MazeHelper.frame.LargeSymbol, point, relativeTo or UIParent, relativePoint, xOfs / s, yOfs / s);
     MazeHelper.frame.LargeSymbol:SetUserPlaced(true);
 end
 
