@@ -1047,40 +1047,26 @@ local GetSolution do
         return fillSum, leafSum, circleSum;
     end
 
+    local function GetStagedSolution(sum, kind, count, buttonId)
+        for i = 1, MAX_BUTTONS do
+            if buttons[i].state then
+                if (sum == 1 and buttons[i].data[kind]) or (sum == 3 and not buttons[i].data[kind]) then
+                    return i, count + 1;
+                end
+            end
+        end
+
+        return buttonId, count;
+    end
+
     function GetSolution()
         local fillSum, leafSum, circleSum = GetSumCharacteristics();
         local solutionButtonId;
         local solutionFoundCount = 0;
 
-        for i = 1, MAX_BUTTONS do
-            if buttons[i].state then
-                if (fillSum == 1 and buttons[i].data.fill) or (fillSum == 3 and not buttons[i].data.fill) then
-                    solutionButtonId = i;
-                    solutionFoundCount = solutionFoundCount + 1;
-                    break;
-                end
-            end
-        end
-
-        for i = 1, MAX_BUTTONS do
-            if buttons[i].state then
-                if (leafSum == 1 and buttons[i].data.leaf) or (leafSum == 3 and not buttons[i].data.leaf) then
-                    solutionButtonId = i;
-                    solutionFoundCount = solutionFoundCount + 1;
-                    break;
-                end
-            end
-        end
-
-        for i = 1, MAX_BUTTONS do
-            if buttons[i].state then
-                if (circleSum == 1 and buttons[i].data.circle) or (circleSum == 3 and not buttons[i].data.circle) then
-                    solutionButtonId = i;
-                    solutionFoundCount = solutionFoundCount + 1;
-                    break;
-                end
-            end
-        end
+        solutionButtonId, solutionFoundCount = GetStagedSolution(fillSum, 'fill', solutionFoundCount, solutionButtonId);
+        solutionButtonId, solutionFoundCount = GetStagedSolution(leafSum, 'leaf', solutionFoundCount, solutionButtonId);
+        solutionButtonId, solutionFoundCount = GetStagedSolution(circleSum, 'circle', solutionFoundCount, solutionButtonId);
 
         if solutionFoundCount > 1 then
             return;
