@@ -754,7 +754,7 @@ settingsScrollChild.Data.Scale.Callback = function(_, value)
     MazeHelper.frame:SetScale(MHMOTSConfig.SavedScale);
 
     MazeHelper.frame:ClearAllPoints();
-    PixelUtil.SetPoint(MazeHelper.frame, point, relativeTo or UIParent, relativePoint, xOfs / s, yOfs / s);
+    PixelUtil.SetPoint(MazeHelper.frame, point, UIParent, relativePoint, xOfs / s, yOfs / s);
     MazeHelper.frame:SetUserPlaced(true);
 end
 
@@ -779,7 +779,7 @@ settingsScrollChild.Data.ScaleLargeSymbol.Callback = function(_, value)
     MazeHelper.frame.LargeSymbol:SetScale(PixelUtil.GetPixelToUIUnitFactor() * MHMOTSConfig.SavedScaleLargeSymbol);
 
     MazeHelper.frame.LargeSymbol:ClearAllPoints();
-    PixelUtil.SetPoint(MazeHelper.frame.LargeSymbol, point, relativeTo or UIParent, relativePoint, xOfs / s, yOfs / s);
+    PixelUtil.SetPoint(MazeHelper.frame.LargeSymbol, point, UIParent, relativePoint, xOfs / s, yOfs / s);
     MazeHelper.frame.LargeSymbol:SetUserPlaced(true);
 end
 
@@ -1467,13 +1467,13 @@ end
 function MazeHelper.frame:PLAYER_LOGIN()
     if MHMOTSConfig.SavedPosition and #MHMOTSConfig.SavedPosition > 1 then
         self:ClearAllPoints();
-        PixelUtil.SetPoint(self, MHMOTSConfig.SavedPosition[1], MHMOTSConfig.SavedPosition[2] or UIParent, MHMOTSConfig.SavedPosition[3], MHMOTSConfig.SavedPosition[4], MHMOTSConfig.SavedPosition[5]);
+        PixelUtil.SetPoint(self, MHMOTSConfig.SavedPosition[1], UIParent, MHMOTSConfig.SavedPosition[3], MHMOTSConfig.SavedPosition[4], MHMOTSConfig.SavedPosition[5]);
         self:SetUserPlaced(true);
     end
 
     if MHMOTSConfig.SavedPositionLargeSymbol and #MHMOTSConfig.SavedPositionLargeSymbol > 1 then
         self.LargeSymbol:ClearAllPoints();
-        PixelUtil.SetPoint(self.LargeSymbol, MHMOTSConfig.SavedPositionLargeSymbol[1], MHMOTSConfig.SavedPositionLargeSymbol[2] or UIParent, MHMOTSConfig.SavedPositionLargeSymbol[3], MHMOTSConfig.SavedPositionLargeSymbol[4], MHMOTSConfig.SavedPositionLargeSymbol[5]);
+        PixelUtil.SetPoint(self.LargeSymbol, MHMOTSConfig.SavedPositionLargeSymbol[1], UIParent, MHMOTSConfig.SavedPositionLargeSymbol[3], MHMOTSConfig.SavedPositionLargeSymbol[4], MHMOTSConfig.SavedPositionLargeSymbol[5]);
         self.LargeSymbol:SetUserPlaced(true);
 	end
 
