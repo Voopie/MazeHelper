@@ -111,7 +111,7 @@ E.CreateScrollFrame = function(parent, scrollStep)
 
     scrollArea:SetScrollChild(scrollChild);
 
-    PixelUtil.SetSize(scrollChild, scrollArea:GetWidth(),  scrollArea:GetHeight() - scrollStep);
+    PixelUtil.SetSize(scrollChild, scrollArea:GetWidth(), scrollArea:GetHeight() - scrollStep);
 
     scrollArea.scrollBarHideable = true;
     scrollArea.noScrollThumb     = false;
@@ -188,7 +188,7 @@ E.CreateScrollFrame = function(parent, scrollStep)
     return scrollChild, scrollArea;
 end
 
-E.CreateAnimation = function(frame, mode)
+E.CreateAnimation = function(frame)
     if not frame then
         return;
     end
@@ -340,7 +340,7 @@ E.CreateSlider = function(name, parent)
         bgFile   = 'Interface\\Buttons\\WHITE8x8',
         insets   = { top = 1, left = 1, bottom = 1, right = 1 },
         edgeFile = 'Interface\\Buttons\\WHITE8x8',
-        edgeSize = 1
+        edgeSize = 1,
     });
 
     editbox.Background:SetBackdropColor(0.05, 0.05, 0.05, 1);
