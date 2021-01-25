@@ -1091,18 +1091,18 @@ local TryFullSolution do
 
     function TryFullSolution()
         local fillSum, leafSum, circleSum = GetSumCharacteristics();
-        local solutionButtonId;
-        local solutionFoundCount = 0;
+        local sButtonId;
+        local sFoundCount = 0;
 
-        solutionButtonId, solutionFoundCount = GetStagedSolution(fillSum, 'fill', solutionFoundCount, solutionButtonId);
-        solutionButtonId, solutionFoundCount = GetStagedSolution(leafSum, 'leaf', solutionFoundCount, solutionButtonId);
-        solutionButtonId, solutionFoundCount = GetStagedSolution(circleSum, 'circle', solutionFoundCount, solutionButtonId);
+        sButtonId, sFoundCount = GetStagedSolution(fillSum, 'fill', sFoundCount, sButtonId);
+        sButtonId, sFoundCount = GetStagedSolution(leafSum, 'leaf', sFoundCount, sButtonId);
+        sButtonId, sFoundCount = GetStagedSolution(circleSum, 'circle', sFoundCount, sButtonId);
 
-        if solutionFoundCount > 1 then
+        if sFoundCount > 1 then
             return;
         end
 
-        return solutionButtonId;
+        return sButtonId;
     end
 end
 
