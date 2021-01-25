@@ -7,6 +7,8 @@ local convert = {
 };
 local gameLocale = convert[locale] or locale or 'enUS';
 
+MazeHelper.currentLocale = gameLocale;
+
 MazeHelper.L = {};
 local L = MazeHelper.L;
 
@@ -14,6 +16,17 @@ local L = MazeHelper.L;
 L['EXCLAMATION_MARK'] = '|TInterface\\OptionsFrame\\UI-OptionsFrame-NewFeatureIcon:0:0:0:0|t ';
 L['SOLUTION'] = '|cff33cc66%s|r';
 L['ANNOUNCE_SOLUTION'] = '%s';
+L['ANNOUNCE_SOLUTION_WITH_ENGLISH'] = '%s / %s';
+
+-- English announce solution
+L['ENGLISH_LEAF_FULL_CIRCLE'] = 'Filled leaf in a circle';
+L['ENGLISH_LEAF_FULL_NOCIRCLE'] = 'Filled leaf without a circle';
+L['ENGLISH_LEAF_NOFULL_CIRCLE'] = 'Empty leaf in a circle';
+L['ENGLISH_LEAF_NOFULL_NOCIRCLE'] = 'Empty leaf without a circle';
+L['ENGLISH_FLOWER_FULL_CIRCLE'] = 'Filled flower in a circle';
+L['ENGLISH_FLOWER_FULL_NOCIRCLE'] = 'Filled flower without a circle';
+L['ENGLISH_FLOWER_NOFULL_CIRCLE'] = 'Empty flower in a circle';
+L['ENGLISH_FLOWER_NOFULL_NOCIRCLE'] = 'Empty flower without a circle';
 
 -- Default to enUS
 L['ZONE_NAME'] = 'Mistveil Tangle';
@@ -36,20 +49,14 @@ L['CLEARED_BY'] = 'Cleared by %s';
 L['PASSED'] = 'Passed';
 L['RESETED_PLAYER'] = '|cffffb833MH:|r %s |cffff0537resetted|r this mini-game';
 L['PASSED_PLAYER'] = '|cffffb833MH:|r %s clicked on «|cff66ff6ePassed|r» button';
-L['ANNOUNCE_LEAF_FULL_CIRCLE'] = 'Filled leaf in a circle';
-L['ANNOUNCE_LEAF_FULL_NOCIRCLE'] = 'Filled leaf without a circle';
-L['ANNOUNCE_LEAF_NOFULL_CIRCLE'] = 'Empty leaf in a circle';
-L['ANNOUNCE_LEAF_NOFULL_NOCIRCLE'] = 'Empty leaf without a circle';
-L['ANNOUNCE_FLOWER_FULL_CIRCLE'] = 'Filled flower in a circle';
-L['ANNOUNCE_FLOWER_FULL_NOCIRCLE'] = 'Filled flower without a circle';
-L['ANNOUNCE_FLOWER_NOFULL_CIRCLE'] = 'Empty flower in a circle';
-L['ANNOUNCE_FLOWER_NOFULL_NOCIRCLE'] = 'Empty flower without a circle';
 L['SETTINGS_REVEAL_RESETTER_LABEL'] = 'Reveal resetter of the mini-game';
 L['SETTINGS_REVEAL_RESETTER_TOOLTIP'] = 'Type in the chat the name of the player who did click on the «Reset» or «Passed» button (only for yourself)';
 L['SETTINGS_AUTOANNOUNCER_LABEL'] = 'Enable auto announcer';
 L['SETTINGS_AUTOANNOUNCER_TOOLTIP'] = 'Automatically send a ready-made solution to the group chat';
 L['SETTINGS_START_IN_MINMODE_LABEL'] = 'Start in minimized mode';
 L['SETTINGS_START_IN_MINMODE_TOOLTIP'] = 'The first appearance will occur in minimized mode';
+L['SETTINGS_AA_WITH_ENGLISH_LABEL'] = 'With English';
+L['SETTINGS_AA_WITH_ENGLISH_TOOLTIP'] = 'Send the solution to the chat along with English phrases, for example, «Empty flower without a circle / Empty flower without a circle»|n|nHa-ha! Nevermind, it\'s only for non enUS/enGB locales';
 L['SETTINGS_AA_PARTY_LEADER'] = 'Party leader';
 L['SETTINGS_AA_ALWAYS'] = 'Always';
 L['SETTINGS_AA_TANK'] = 'Tank';
@@ -97,20 +104,14 @@ if gameLocale == 'ruRU' then
     L['PASSED'] = 'Прошли';
     L['RESETED_PLAYER'] = '|cffffb833MH:|r %s |cffff0537сбросил|r мини-игру';
     L['PASSED_PLAYER'] = '|cffffb833MH:|r %s кликнул на кнопку «|cff66ff6eПрошли|r»';
-    L['ANNOUNCE_LEAF_FULL_CIRCLE'] = 'Полный листок в круге / Filled leaf in a circle';
-    L['ANNOUNCE_LEAF_FULL_NOCIRCLE'] = 'Полный листок без круга / Filled leaf without a circle';
-    L['ANNOUNCE_LEAF_NOFULL_CIRCLE'] = 'Пустой листок в круге / Empty leaf in a circle';
-    L['ANNOUNCE_LEAF_NOFULL_NOCIRCLE'] = 'Пустой листок без круга / Empty leaf without a circle';
-    L['ANNOUNCE_FLOWER_FULL_CIRCLE'] = 'Полный цветок в круге / Filled flower in a circle';
-    L['ANNOUNCE_FLOWER_FULL_NOCIRCLE'] = 'Полный цветок без круга / Filled flower without a circle';
-    L['ANNOUNCE_FLOWER_NOFULL_CIRCLE'] = 'Пустой цветок в круге / Empty flower in a circle';
-    L['ANNOUNCE_FLOWER_NOFULL_NOCIRCLE'] = 'Пустой цветок без круга / Empty flower without a circle';
     L['SETTINGS_REVEAL_RESETTER_LABEL'] = 'Имя игрока, сбросившего мини-игру';
     L['SETTINGS_REVEAL_RESETTER_TOOLTIP'] = 'Писать в чате имя игрока, который нажал на кнопку «Сброс» или «Прошли» (будет видно только Вам)';
     L['SETTINGS_AUTOANNOUNCER_LABEL'] = 'Включить авто-оповещатель';
     L['SETTINGS_AUTOANNOUNCER_TOOLTIP'] = 'Автоматически отправлять в чат группы готовое решение';
     L['SETTINGS_START_IN_MINMODE_LABEL'] = 'Запускать в свернутом режиме';
     L['SETTINGS_START_IN_MINMODE_TOOLTIP'] = 'Первое появление будет происходить в свернутом режиме';
+    L['SETTINGS_AA_WITH_ENGLISH_LABEL'] = 'Дублировать на английском';
+    L['SETTINGS_AA_WITH_ENGLISH_TOOLTIP'] = 'Отправлять решение в чат вместе английскими фразами, например, «Пустой цветок без круга / Empty flower without a circle»';
     L['SETTINGS_AA_PARTY_LEADER'] = 'Лидер группы';
     L['SETTINGS_AA_ALWAYS'] = 'Всегда';
     L['SETTINGS_AA_TANK'] = 'Танк';
@@ -162,14 +163,6 @@ if gameLocale == 'deDE' then
     L['PASSED'] = 'Übergeben';
     L['RESETED_PLAYER'] = '|cffffb833MH:|r %s hat dieses Minispiel |cffff0537zurückgesetzt|r';
     L['PASSED_PLAYER'] = '|cffffb833MH:|r %s klickte auf «|cff66ff6eBestanden|r»';
-    L['ANNOUNCE_LEAF_FULL_CIRCLE'] = 'Gefülltes Blatt im Kreis / Filled leaf in a circle';
-    L['ANNOUNCE_LEAF_FULL_NOCIRCLE'] = 'Gefülltes Blatt ohne Kreis / Filled leaf without a circle';
-    L['ANNOUNCE_LEAF_NOFULL_CIRCLE'] = 'Leeres Blatt im Kreis / Empty leaf in a circle';
-    L['ANNOUNCE_LEAF_NOFULL_NOCIRCLE'] = 'Leeres Blatt ohne Kreis / Empty leaf without a circle';
-    L['ANNOUNCE_FLOWER_FULL_CIRCLE'] = 'Gefüllte Blume im Kreis / Filled flower in a circle';
-    L['ANNOUNCE_FLOWER_FULL_NOCIRCLE'] = 'Gefüllte Blume ohne Kreis / Filled flower without a circle';
-    L['ANNOUNCE_FLOWER_NOFULL_CIRCLE'] = 'Leere Blume im Kreis / Empty flower in a circle';
-    L['ANNOUNCE_FLOWER_NOFULL_NOCIRCLE'] = 'Leere Blume ohne Kreis / Empty flower without a circle';
     L['SETTINGS_REVEAL_RESETTER_LABEL'] = 'Verrate den Resetter des Minispiels';
     L['SETTINGS_REVEAL_RESETTER_TOOLTIP'] = 'Geben Sie im Chat den Namen des Spielers ein, der auf die Schaltfläche «Zurücksetzen» oder «Bestanden» geklickt hat (nur für Sie selbst)';
     L['SETTINGS_AUTOANNOUNCER_LABEL'] = 'Aktivieren Sie die automatische Ansage';
@@ -226,14 +219,6 @@ if gameLocale == 'frFR' then -- Google Translate
     L['PASSED'] = 'Passer';
     L['RESETED_PLAYER'] = '|cffffb833MH:|r %s a |cffff0537réinitialisé|r ce mini-jeu';
     L['PASSED_PLAYER'] = '|cffffb833MH:|r %s a cliqué sur le bouton «|cff66ff6ePasser|r»';
-    L['ANNOUNCE_LEAF_FULL_CIRCLE'] = 'Feuille remplie dans un cercle / Filled leaf in a circle';
-    L['ANNOUNCE_LEAF_FULL_NOCIRCLE'] = 'Feuille remplie sans cercle / Filled leaf without a circle';
-    L['ANNOUNCE_LEAF_NOFULL_CIRCLE'] = 'Feuille vide dans un cercle / Empty leaf in a circle';
-    L['ANNOUNCE_LEAF_NOFULL_NOCIRCLE'] = 'Feuille vide sans cercle / Empty leaf without a circle';
-    L['ANNOUNCE_FLOWER_FULL_CIRCLE'] = 'Fleur remplie dans un cercle / Filled flower in a circle';
-    L['ANNOUNCE_FLOWER_FULL_NOCIRCLE'] = 'Fleur remplie sans cercle / Filled flower without a circle';
-    L['ANNOUNCE_FLOWER_NOFULL_CIRCLE'] = 'Fleur vide dans un cercle / Empty flower in a circle';
-    L['ANNOUNCE_FLOWER_NOFULL_NOCIRCLE'] = 'Fleur vide sans cercle / Empty flower without a circle';
     L['SETTINGS_REVEAL_RESETTER_LABEL'] = 'Reveal resetter du mini-jeu';
     L['SETTINGS_REVEAL_RESETTER_TOOLTIP'] = 'Tapez dans le chat le nom du joueur qui a cliqué sur le bouton «Réinitialiser» ou «Passé» (uniquement pour vous)';
     L['SETTINGS_AUTOANNOUNCER_LABEL'] = 'Activer l\'annonceur automatique';
@@ -290,14 +275,6 @@ if gameLocale == 'itIT' then -- Google Translate
     L['PASSED'] = 'Passato';
     L['RESETED_PLAYER'] = '|cffffb833MH:|r %s |cffff0537ha ripristinato|r questo minigioco';
     L['PASSED_PLAYER'] = '|cffffb833MH:|r %s ha fatto clic sul pulsante «|cff66ff6ePassato|r»';
-    L['ANNOUNCE_LEAF_FULL_CIRCLE'] = 'Foglia piena in un cerchio / Filled leaf in a circle';
-    L['ANNOUNCE_LEAF_FULL_NOCIRCLE'] = 'Foglia piena senza cerchio / Filled leaf without a circle';
-    L['ANNOUNCE_LEAF_NOFULL_CIRCLE'] = 'Foglia vuota in un cerchio / Empty leaf in a circle';
-    L['ANNOUNCE_LEAF_NOFULL_NOCIRCLE'] = 'Foglia vuota senza cerchio / Empty leaf without a circle';
-    L['ANNOUNCE_FLOWER_FULL_CIRCLE'] = 'Fiore pieno in un cerchio / Filled flower in a circle';
-    L['ANNOUNCE_FLOWER_FULL_NOCIRCLE'] = 'Fiore pieno senza cerchio / Filled flower without a circle';
-    L['ANNOUNCE_FLOWER_NOFULL_CIRCLE'] = 'Fiore vuoto in un cerchio / Empty flower in a circle';
-    L['ANNOUNCE_FLOWER_NOFULL_NOCIRCLE'] = 'Fiore vuoto senza cerchio / Empty flower without a circle';
     L['SETTINGS_REVEAL_RESETTER_LABEL'] = 'Rivela il resetter del mini-gioco';
     L['SETTINGS_REVEAL_RESETTER_TOOLTIP'] = 'Digita nella chat il nome del giocatore che ha fatto clic sul pulsante «Ripristina» o «Passato» (solo per te)';
     L['SETTINGS_AUTOANNOUNCER_LABEL'] = 'Abilita annunciatore automatico';
@@ -354,14 +331,6 @@ if gameLocale == 'ptBR' then -- Brazilian Portuguese (Google Translate)
     L['PASSED'] = 'Passado';
     L['RESETED_PLAYER'] = '|cffffb833MH:|r %s |cffff0537redefiniu|r este minijogo';
     L['PASSED_PLAYER'] = '|cffffb833MH:|r %s clicou no botão «|cff66ff6ePassado|r»';
-    L['ANNOUNCE_LEAF_FULL_CIRCLE'] = 'Folha preenchida em um círculo / Filled leaf in a circle';
-    L['ANNOUNCE_LEAF_FULL_NOCIRCLE'] = 'Folha preenchida sem círculo / Filled leaf without a circle';
-    L['ANNOUNCE_LEAF_NOFULL_CIRCLE'] = 'Folha vazia em um círculo / Empty leaf in a circle';
-    L['ANNOUNCE_LEAF_NOFULL_NOCIRCLE'] = 'Folha vazia sem círculo / Empty leaf without a circle';
-    L['ANNOUNCE_FLOWER_FULL_CIRCLE'] = 'Flor cheia em um círculo / Filled flower in a circle';
-    L['ANNOUNCE_FLOWER_FULL_NOCIRCLE'] = 'Flor cheia sem círculo / Filled flower without a circle';
-    L['ANNOUNCE_FLOWER_NOFULL_CIRCLE'] = 'Flor vazia em um círculo / Empty flower in a circle';
-    L['ANNOUNCE_FLOWER_NOFULL_NOCIRCLE'] = 'Flor vazia sem círculo / Empty flower without a circle';
     L['SETTINGS_REVEAL_RESETTER_LABEL'] = 'Revelar a reinicialização do minijogo';
     L['SETTINGS_REVEAL_RESETTER_TOOLTIP'] = 'Digite no chat o nome do jogador que clicou no botão «Redefinir» ou «Passado» (apenas para você)';
     L['SETTINGS_AUTOANNOUNCER_LABEL'] = 'Ativar locutor automático';
@@ -418,14 +387,6 @@ if gameLocale == 'esES' then -- Spanish (Google Translate)
     L['PASSED'] = 'Aprobado';
     L['RESETED_PLAYER'] = '|cffffb833MH:|r %s |cffff0537resetted|r este minijuego';
     L['PASSED_PLAYER'] = '|cffffb833MH:|r %s hizo clic en el botón «|cff66ff6eAprobado|r»';
-    L['ANNOUNCE_LEAF_FULL_CIRCLE'] = 'Hoja llena en un círcul / Filled leaf in a circle';
-    L['ANNOUNCE_LEAF_FULL_NOCIRCLE'] = 'Hoja llena sin círculo / Filled leaf without a circle';
-    L['ANNOUNCE_LEAF_NOFULL_CIRCLE'] = 'Hoja vacía en un círculo / Empty leaf in a circle';
-    L['ANNOUNCE_LEAF_NOFULL_NOCIRCLE'] = 'Hoja vacía sin círculo / Empty leaf without a circle';
-    L['ANNOUNCE_FLOWER_FULL_CIRCLE'] = 'Flor llena en un círculo / Filled flower in a circle';
-    L['ANNOUNCE_FLOWER_FULL_NOCIRCLE'] = 'Flor llena sin círculo / Filled flower without a circle';
-    L['ANNOUNCE_FLOWER_NOFULL_CIRCLE'] = 'Flor vacía en un círculo / Empty flower in a circle';
-    L['ANNOUNCE_FLOWER_NOFULL_NOCIRCLE'] = 'Flor vacía sin círculo / Empty flower without a circle';
     L['SETTINGS_REVEAL_RESETTER_LABEL'] = 'Revelar reiniciador del minijuego';
     L['SETTINGS_REVEAL_RESETTER_TOOLTIP'] = 'Escribe en el chat el nombre del jugador que hizo clic en el botón «Reiniciar» o «Aprobado» (solo para ti)';
     L['SETTINGS_AUTOANNOUNCER_LABEL'] = 'Habilitar auto locutor';
@@ -472,14 +433,6 @@ end
 
 if gameLocale == 'zhTW' then -- BNS333 (https://www.curseforge.com/members/bns333) -- Traditional
     L['ZONE_NAME'] = '霧紗密林';
-    L['ANNOUNCE_FLOWER_FULL_CIRCLE'] = '有外環實心的花';
-    L['ANNOUNCE_FLOWER_FULL_NOCIRCLE'] = '無外環實心的花';
-    L['ANNOUNCE_FLOWER_NOFULL_CIRCLE'] = '有外環空心的花';
-    L['ANNOUNCE_FLOWER_NOFULL_NOCIRCLE'] = '無外環空心的花';
-    L['ANNOUNCE_LEAF_FULL_CIRCLE'] = '有外環實心的葉';
-    L['ANNOUNCE_LEAF_FULL_NOCIRCLE'] = '無外環實心的葉';
-    L['ANNOUNCE_LEAF_NOFULL_CIRCLE'] = '有外環空心的葉';
-    L['ANNOUNCE_LEAF_NOFULL_NOCIRCLE'] = '無外環空心的葉';
     L['CHOOSE_SYMBOLS_1'] = '再點選一個標誌';
     L['CHOOSE_SYMBOLS_2'] = '再點選兩個標誌';
     L['CHOOSE_SYMBOLS_3'] = '再點選三個標誌';
@@ -538,14 +491,6 @@ end
 -- gjfLeo (https://github.com/gjfLeo)
 if gameLocale == 'zhCN' then
     L['ZONE_NAME'] = '纱雾迷结';
-    L['ANNOUNCE_FLOWER_FULL_CIRCLE'] = '有环 实心 花';
-    L['ANNOUNCE_FLOWER_FULL_NOCIRCLE'] = '无环 实心 花';
-    L['ANNOUNCE_FLOWER_NOFULL_CIRCLE'] = '有环 空心 花';
-    L['ANNOUNCE_FLOWER_NOFULL_NOCIRCLE'] = '无环 空心 花';
-    L['ANNOUNCE_LEAF_FULL_CIRCLE'] = '有环 实心 叶';
-    L['ANNOUNCE_LEAF_FULL_NOCIRCLE'] = '无环 实心 叶';
-    L['ANNOUNCE_LEAF_NOFULL_CIRCLE'] = '有环 空心 叶';
-    L['ANNOUNCE_LEAF_NOFULL_NOCIRCLE'] = '无环 空心 叶';
     L['CHOOSE_SYMBOLS_1'] = '再点一个标志';
     L['CHOOSE_SYMBOLS_2'] = '再点两个标志';
     L['CHOOSE_SYMBOLS_3'] = '再点三个标志';
@@ -602,14 +547,6 @@ end
 
 if gameLocale == 'koKR' then -- hinski (https://www.curseforge.com/members/hinski)
     L['ZONE_NAME'] = '안개장막 덩굴숲';
-    L['ANNOUNCE_FLOWER_FULL_CIRCLE'] = '원 안의 색칠한 꽃';
-    L['ANNOUNCE_FLOWER_FULL_NOCIRCLE'] = '원 없는 색칠한 꽃';
-    L['ANNOUNCE_FLOWER_NOFULL_CIRCLE'] = '원 안의 빈 꽃';
-    L['ANNOUNCE_FLOWER_NOFULL_NOCIRCLE'] = '원 없는 빈 꽃';
-    L['ANNOUNCE_LEAF_FULL_CIRCLE'] = '원 안의 색칠한 잎';
-    L['ANNOUNCE_LEAF_FULL_NOCIRCLE'] = '원 없는 색칠한 잎';
-    L['ANNOUNCE_LEAF_NOFULL_CIRCLE'] = '원 안의 빈 잎';
-    L['ANNOUNCE_LEAF_NOFULL_NOCIRCLE'] = '원 없는 빈 잎';
     L['CHOOSE_SYMBOLS_1'] = '1개의 모양을 더 고르세요';
     L['CHOOSE_SYMBOLS_2'] = '2개의 모양을 더 고르세요';
     L['CHOOSE_SYMBOLS_3'] = '3개의 모양을 더 고르세요';

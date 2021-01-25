@@ -79,7 +79,7 @@ local buttons = {}
 local buttonsData = {
     [1] = {
         name = L['LEAF_FULL_CIRCLE'],
-        aname = L['ANNOUNCE_LEAF_FULL_CIRCLE'],
+        ename = L['ENGLISH_LEAF_FULL_CIRCLE'],
         coords = M.Symbols.COORDS_COLOR.LEAF_CIRCLE_FILL,
         coords_white = M.Symbols.COORDS_WHITE.LEAF_CIRCLE_FILL,
         leaf = true,
@@ -89,7 +89,7 @@ local buttonsData = {
     },
     [2] = {
         name = L['LEAF_NOFULL_CIRCLE'],
-        aname = L['ANNOUNCE_LEAF_NOFULL_CIRCLE'],
+        ename = L['ENGLISH_LEAF_NOFULL_CIRCLE'],
         coords = M.Symbols.COORDS_COLOR.LEAF_CIRCLE_NOFILL,
         coords_white = M.Symbols.COORDS_WHITE.LEAF_CIRCLE_NOFILL,
         leaf = true,
@@ -99,7 +99,7 @@ local buttonsData = {
     },
     [3] = {
         name = L['FLOWER_FULL_CIRCLE'],
-        aname = L['ANNOUNCE_FLOWER_FULL_CIRCLE'],
+        ename = L['ENGLISH_FLOWER_FULL_CIRCLE'],
         coords = M.Symbols.COORDS_COLOR.FLOWER_CIRCLE_FILL,
         coords_white = M.Symbols.COORDS_WHITE.FLOWER_CIRCLE_FILL,
         leaf = false,
@@ -109,7 +109,7 @@ local buttonsData = {
     },
     [4] = {
         name = L['FLOWER_NOFULL_CIRCLE'],
-        aname = L['ANNOUNCE_FLOWER_NOFULL_CIRCLE'],
+        ename = L['ENGLISH_FLOWER_NOFULL_CIRCLE'],
         coords = M.Symbols.COORDS_COLOR.FLOWER_CIRCLE_NOFILL,
         coords_white = M.Symbols.COORDS_WHITE.FLOWER_CIRCLE_NOFILL,
         leaf = false,
@@ -119,7 +119,7 @@ local buttonsData = {
     },
     [5] = {
         name = L['LEAF_FULL_NOCIRCLE'],
-        aname = L['ANNOUNCE_LEAF_FULL_NOCIRCLE'],
+        ename = L['ENGLISH_LEAF_FULL_NOCIRCLE'],
         coords = M.Symbols.COORDS_COLOR.LEAF_NOCIRCLE_FILL,
         coords_white = M.Symbols.COORDS_WHITE.LEAF_NOCIRCLE_FILL,
         leaf = true,
@@ -129,7 +129,7 @@ local buttonsData = {
     },
     [6] = {
         name = L['LEAF_NOFULL_NOCIRCLE'],
-        aname = L['ANNOUNCE_LEAF_NOFULL_NOCIRCLE'],
+        ename = L['ENGLISH_LEAF_NOFULL_NOCIRCLE'],
         coords = M.Symbols.COORDS_COLOR.LEAF_NOCIRCLE_NOFILL,
         coords_white = M.Symbols.COORDS_WHITE.LEAF_NOCIRCLE_NOFILL,
         leaf = true,
@@ -139,7 +139,7 @@ local buttonsData = {
     },
     [7] = {
         name = L['FLOWER_FULL_NOCIRCLE'],
-        aname = L['ANNOUNCE_FLOWER_FULL_NOCIRCLE'],
+        ename = L['ENGLISH_FLOWER_FULL_NOCIRCLE'],
         coords = M.Symbols.COORDS_COLOR.FLOWER_NOCIRCLE_FILL,
         coords_white = M.Symbols.COORDS_WHITE.FLOWER_NOCIRCLE_FILL,
         leaf = false,
@@ -149,7 +149,7 @@ local buttonsData = {
     },
     [8] = {
         name = L['FLOWER_NOFULL_NOCIRCLE'],
-        aname = L['ANNOUNCE_FLOWER_NOFULL_NOCIRCLE'],
+        ename = L['ENGLISH_FLOWER_NOFULL_NOCIRCLE'],
         coords = M.Symbols.COORDS_COLOR.FLOWER_NOCIRCLE_NOFILL,
         coords_white = M.Symbols.COORDS_WHITE.FLOWER_NOCIRCLE_NOFILL,
         leaf = false,
@@ -167,6 +167,18 @@ local function GetPartyChatType()
     end
 
     return IsInGroup(LE_PARTY_CATEGORY_INSTANCE) and 'INSTANCE_CHAT' or (IsInGroup(LE_PARTY_CATEGORY_HOME) and 'PARTY' or false);
+end
+
+local function AnnounceInChat(partyChatType)
+    if not SOLUTION_BUTTON_ID or not partyChatType then
+        return;
+    end
+
+    if MHMOTSConfig.AutoAnnouncerWithEnglish and MazeHelper.currentLocale ~= 'enUS' then
+        SendChatMessage(string.format(L['ANNOUNCE_SOLUTION_WITH_ENGLISH'], buttons[SOLUTION_BUTTON_ID].data.name, buttons[SOLUTION_BUTTON_ID].data.ename), partyChatType);
+    else
+        SendChatMessage(string.format(L['ANNOUNCE_SOLUTION'], buttons[SOLUTION_BUTTON_ID].data.name), partyChatType);
+    end
 end
 
 local function BetterOnDragStop(frame)
@@ -527,10 +539,7 @@ MazeHelper.frame.AnnounceButton:SetScript('OnClick', function(self)
         return;
     end
 
-    local partyChatType = GetPartyChatType();
-    if partyChatType then
-        SendChatMessage(string.format(L['ANNOUNCE_SOLUTION'], buttons[SOLUTION_BUTTON_ID].data.aname), partyChatType);
-    end
+    AnnounceInChat(GetPartyChatType());
 
     self.clicked = true;
     self:SetShown(false);
@@ -570,7 +579,6 @@ local settingsScrollChild = E.CreateScrollFrame(MazeHelper.frame.Settings, 26);
 
 settingsScrollChild.Data.SyncEnabled = E.CreateRoundedCheckButton(settingsScrollChild);
 settingsScrollChild.Data.SyncEnabled:SetPosition('TOPLEFT', settingsScrollChild, 'TOPLEFT', 12, 0);
-settingsScrollChild.Data.SyncEnabled:SetArea(26, 26);
 settingsScrollChild.Data.SyncEnabled:SetLabel(L['SETTINGS_SYNC_ENABLED_LABEL']);
 settingsScrollChild.Data.SyncEnabled:SetTooltip(L['SETTINGS_SYNC_ENABLED_TOOLTIP']);
 settingsScrollChild.Data.SyncEnabled:SetScript('OnClick', function(self)
@@ -585,7 +593,6 @@ end);
 
 settingsScrollChild.Data.ShowAtBoss = E.CreateRoundedCheckButton(settingsScrollChild);
 settingsScrollChild.Data.ShowAtBoss:SetPosition('TOPLEFT', settingsScrollChild.Data.SyncEnabled, 'BOTTOMLEFT', 0, 0);
-settingsScrollChild.Data.ShowAtBoss:SetArea(26, 26);
 settingsScrollChild.Data.ShowAtBoss:SetLabel(L['SETTINGS_SHOW_AT_BOSS_LABEL']);
 settingsScrollChild.Data.ShowAtBoss:SetTooltip(L['SETTINGS_SHOW_AT_BOSS_TOOLTIP']);
 settingsScrollChild.Data.ShowAtBoss:SetScript('OnClick', function(self)
@@ -594,7 +601,6 @@ end);
 
 settingsScrollChild.Data.PredictSolution = E.CreateRoundedCheckButton(settingsScrollChild);
 settingsScrollChild.Data.PredictSolution:SetPosition('TOPLEFT', settingsScrollChild.Data.ShowAtBoss, 'BOTTOMLEFT', 0, 0);
-settingsScrollChild.Data.PredictSolution:SetArea(26, 26);
 settingsScrollChild.Data.PredictSolution:SetLabel(L['SETTINGS_PREDICT_SOLUTION_LABEL']);
 settingsScrollChild.Data.PredictSolution:SetTooltip(L['SETTINGS_PREDICT_SOLUTION_TOOLTIP']);
 settingsScrollChild.Data.PredictSolution:SetScript('OnClick', function(self)
@@ -604,7 +610,6 @@ end);
 
 settingsScrollChild.Data.ShowLargeSymbol = E.CreateRoundedCheckButton(settingsScrollChild);
 settingsScrollChild.Data.ShowLargeSymbol:SetPosition('TOPLEFT', settingsScrollChild.Data.PredictSolution, 'BOTTOMLEFT', 0, 0);
-settingsScrollChild.Data.ShowLargeSymbol:SetArea(26, 26);
 settingsScrollChild.Data.ShowLargeSymbol:SetLabel(L['SETTINGS_SHOW_LARGE_SYMBOL_LABEL']);
 settingsScrollChild.Data.ShowLargeSymbol:SetTooltip(L['SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP']);
 settingsScrollChild.Data.ShowLargeSymbol:SetScript('OnClick', function(self)
@@ -617,7 +622,6 @@ end);
 
 settingsScrollChild.Data.UseCloneAutoMarker = E.CreateRoundedCheckButton(settingsScrollChild);
 settingsScrollChild.Data.UseCloneAutoMarker:SetPosition('TOPLEFT', settingsScrollChild.Data.ShowLargeSymbol, 'BOTTOMLEFT', 0, 0);
-settingsScrollChild.Data.UseCloneAutoMarker:SetArea(26, 26);
 settingsScrollChild.Data.UseCloneAutoMarker:SetLabel(L['SETTINGS_USE_CLONE_AUTOMARKER_LABEL']);
 settingsScrollChild.Data.UseCloneAutoMarker:SetTooltip(L['SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP']);
 settingsScrollChild.Data.UseCloneAutoMarker:SetScript('OnClick', function(self)
@@ -645,7 +649,6 @@ end);
 
 settingsScrollChild.Data.UseColoredSymbols = E.CreateRoundedCheckButton(settingsScrollChild);
 settingsScrollChild.Data.UseColoredSymbols:SetPosition('TOPLEFT', settingsScrollChild.Data.UseCloneAutoMarker, 'BOTTOMLEFT', 0, 0);
-settingsScrollChild.Data.UseColoredSymbols:SetArea(26, 26);
 settingsScrollChild.Data.UseColoredSymbols:SetLabel(L['SETTINGS_USE_COLORED_SYMBOLS_LABEL']);
 settingsScrollChild.Data.UseColoredSymbols:SetTooltip(L['SETTINGS_USE_COLORED_SYMBOLS_TOOLTIP']);
 settingsScrollChild.Data.UseColoredSymbols:SetScript('OnClick', function(self)
@@ -658,7 +661,6 @@ end);
 
 settingsScrollChild.Data.ShowSequenceNumbers = E.CreateRoundedCheckButton(settingsScrollChild);
 settingsScrollChild.Data.ShowSequenceNumbers:SetPosition('TOPLEFT', settingsScrollChild.Data.UseColoredSymbols, 'BOTTOMLEFT', 0, 0);
-settingsScrollChild.Data.ShowSequenceNumbers:SetArea(26, 26);
 settingsScrollChild.Data.ShowSequenceNumbers:SetLabel(L['SETTINGS_SHOW_SEQUENCE_NUMBERS_LABEL']);
 settingsScrollChild.Data.ShowSequenceNumbers:SetTooltip(L['SETTINGS_SHOW_SEQUENCE_NUMBERS_TOOLTIP']);
 settingsScrollChild.Data.ShowSequenceNumbers:SetScript('OnClick', function(self)
@@ -671,7 +673,6 @@ end);
 
 settingsScrollChild.Data.PrintResettedPlayerName = E.CreateRoundedCheckButton(settingsScrollChild);
 settingsScrollChild.Data.PrintResettedPlayerName:SetPosition('TOPLEFT', settingsScrollChild.Data.ShowSequenceNumbers, 'BOTTOMLEFT', 0, 0);
-settingsScrollChild.Data.PrintResettedPlayerName:SetArea(26, 26);
 settingsScrollChild.Data.PrintResettedPlayerName:SetLabel(L['SETTINGS_REVEAL_RESETTER_LABEL']);
 settingsScrollChild.Data.PrintResettedPlayerName:SetTooltip(L['SETTINGS_REVEAL_RESETTER_TOOLTIP']);
 settingsScrollChild.Data.PrintResettedPlayerName:SetScript('OnClick', function(self)
@@ -680,7 +681,6 @@ end);
 
 settingsScrollChild.Data.StartInMinMode = E.CreateRoundedCheckButton(settingsScrollChild);
 settingsScrollChild.Data.StartInMinMode:SetPosition('TOPLEFT', settingsScrollChild.Data.PrintResettedPlayerName, 'BOTTOMLEFT', 0, 0);
-settingsScrollChild.Data.StartInMinMode:SetArea(26, 26);
 settingsScrollChild.Data.StartInMinMode:SetLabel(L['SETTINGS_START_IN_MINMODE_LABEL']);
 settingsScrollChild.Data.StartInMinMode:SetTooltip(L['SETTINGS_START_IN_MINMODE_TOOLTIP']);
 settingsScrollChild.Data.StartInMinMode:SetScript('OnClick', function(self)
@@ -689,20 +689,28 @@ end);
 
 settingsScrollChild.Data.AutoAnnouncer = E.CreateRoundedCheckButton(settingsScrollChild);
 settingsScrollChild.Data.AutoAnnouncer:SetPosition('TOPLEFT', settingsScrollChild.Data.StartInMinMode, 'BOTTOMLEFT', 0, 0);
-settingsScrollChild.Data.AutoAnnouncer:SetArea(26, 26);
 settingsScrollChild.Data.AutoAnnouncer:SetLabel(L['SETTINGS_AUTOANNOUNCER_LABEL']);
 settingsScrollChild.Data.AutoAnnouncer:SetTooltip(L['SETTINGS_AUTOANNOUNCER_TOOLTIP']);
 settingsScrollChild.Data.AutoAnnouncer:SetScript('OnClick', function(self)
     MHMOTSConfig.AutoAnnouncer = self:GetChecked();
 
+    settingsScrollChild.Data.AutoAnnouncerWithEnglish:SetEnabled(MHMOTSConfig.AutoAnnouncer);
     settingsScrollChild.Data.AutoAnnouncerAsPartyLeader:SetEnabled(MHMOTSConfig.AutoAnnouncer);
     settingsScrollChild.Data.AutoAnnouncerAsAlways:SetEnabled(MHMOTSConfig.AutoAnnouncer);
     settingsScrollChild.Data.AutoAnnouncerAsTank:SetEnabled(MHMOTSConfig.AutoAnnouncer);
     settingsScrollChild.Data.AutoAnnouncerAsHealer:SetEnabled(MHMOTSConfig.AutoAnnouncer);
 end);
 
+settingsScrollChild.Data.AutoAnnouncerWithEnglish = E.CreateCheckButton('MazeHelper_Settings_AutoAnnouncerWithEnglish_CheckButton', settingsScrollChild);
+settingsScrollChild.Data.AutoAnnouncerWithEnglish:SetPosition('TOPLEFT', settingsScrollChild.Data.AutoAnnouncer, 'BOTTOMRIGHT', 0, 2);
+settingsScrollChild.Data.AutoAnnouncerWithEnglish:SetLabel(L['SETTINGS_AA_WITH_ENGLISH_LABEL']);
+settingsScrollChild.Data.AutoAnnouncerWithEnglish:SetTooltip(L['SETTINGS_AA_WITH_ENGLISH_TOOLTIP']);
+settingsScrollChild.Data.AutoAnnouncerWithEnglish:SetScript('OnClick', function(self)
+    MHMOTSConfig.AutoAnnouncerWithEnglish = self:GetChecked();
+end);
+
 settingsScrollChild.Data.AutoAnnouncerAsPartyLeader = E.CreateCheckButton('MazeHelper_Settings_AutoAnnouncerAsPartyLeader_CheckButton', settingsScrollChild);
-settingsScrollChild.Data.AutoAnnouncerAsPartyLeader:SetPosition('TOPLEFT', settingsScrollChild.Data.AutoAnnouncer, 'BOTTOMRIGHT', 0, 2);
+settingsScrollChild.Data.AutoAnnouncerAsPartyLeader:SetPosition('TOPLEFT', settingsScrollChild.Data.AutoAnnouncerWithEnglish, 'BOTTOMLEFT', 0, 0);
 settingsScrollChild.Data.AutoAnnouncerAsPartyLeader:SetLabel(M.INLINE_LEADER_ICON);
 settingsScrollChild.Data.AutoAnnouncerAsPartyLeader:SetTooltip(L['SETTINGS_AA_PARTY_LEADER']);
 settingsScrollChild.Data.AutoAnnouncerAsPartyLeader:SetScript('OnClick', function(self)
@@ -734,7 +742,7 @@ settingsScrollChild.Data.AutoAnnouncerAsHealer:SetScript('OnClick', function(sel
 end);
 
 settingsScrollChild.Data.Scale = E.CreateSlider('Scale', settingsScrollChild);
-settingsScrollChild.Data.Scale:SetPosition('TOPLEFT', settingsScrollChild.Data.AutoAnnouncer, 'BOTTOMLEFT', 4, -42);
+settingsScrollChild.Data.Scale:SetPosition('TOPLEFT', settingsScrollChild.Data.AutoAnnouncer, 'BOTTOMLEFT', 4, -62);
 PixelUtil.SetWidth(settingsScrollChild.Data.Scale, FRAME_SIZE + X_OFFSET * (MAX_ACTIVE_BUTTONS - 1) - 50);
 settingsScrollChild.Data.Scale:SetLabel(L['SETTINGS_SCALE_LABEL']);
 settingsScrollChild.Data.Scale:SetTooltip(L['SETTINGS_SCALE_TOOLTIP']);
@@ -1175,7 +1183,7 @@ function MazeHelper:UpdateSolution()
             end
 
             if announce then
-                SendChatMessage(string.format(L['ANNOUNCE_SOLUTION'], buttons[SOLUTION_BUTTON_ID].data.aname), partyChatType);
+                AnnounceInChat(partyChatType);
             end
         end
     else
@@ -1587,6 +1595,7 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     MHMOTSConfig.UseCloneAutoMarker      = MHMOTSConfig.UseCloneAutoMarker == nil and true or MHMOTSConfig.UseCloneAutoMarker;
 
     MHMOTSConfig.AutoAnnouncer              = MHMOTSConfig.AutoAnnouncer == nil and false or MHMOTSConfig.AutoAnnouncer;
+    MHMOTSConfig.AutoAnnouncerWithEnglish   = MHMOTSConfig.AutoAnnouncerWithEnglish == nil and true or MHMOTSConfig.AutoAnnouncerWithEnglish;
     MHMOTSConfig.AutoAnnouncerAsPartyLeader = MHMOTSConfig.AutoAnnouncerAsPartyLeader == nil and true or MHMOTSConfig.AutoAnnouncerAsPartyLeader;
     MHMOTSConfig.AutoAnnouncerAsAlways      = MHMOTSConfig.AutoAnnouncerAsAlways == nil and false or MHMOTSConfig.AutoAnnouncerAsAlways;
     MHMOTSConfig.AutoAnnouncerAsTank        = MHMOTSConfig.AutoAnnouncerAsTank == nil and false or MHMOTSConfig.AutoAnnouncerAsTank;
@@ -1605,11 +1614,13 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     settingsScrollChild.Data.UseCloneAutoMarker:SetChecked(MHMOTSConfig.UseCloneAutoMarker);
 
     settingsScrollChild.Data.AutoAnnouncer:SetChecked(MHMOTSConfig.AutoAnnouncer);
+    settingsScrollChild.Data.AutoAnnouncerWithEnglish:SetChecked(MHMOTSConfig.AutoAnnouncerWithEnglish);
     settingsScrollChild.Data.AutoAnnouncerAsPartyLeader:SetChecked(MHMOTSConfig.AutoAnnouncerAsPartyLeader);
     settingsScrollChild.Data.AutoAnnouncerAsAlways:SetChecked(MHMOTSConfig.AutoAnnouncerAsAlways);
     settingsScrollChild.Data.AutoAnnouncerAsTank:SetChecked(MHMOTSConfig.AutoAnnouncerAsTank);
     settingsScrollChild.Data.AutoAnnouncerAsHealer:SetChecked(MHMOTSConfig.AutoAnnouncerAsHealer);
 
+    settingsScrollChild.Data.AutoAnnouncerWithEnglish:SetEnabled(MHMOTSConfig.AutoAnnouncer);
     settingsScrollChild.Data.AutoAnnouncerAsPartyLeader:SetEnabled(MHMOTSConfig.AutoAnnouncer);
     settingsScrollChild.Data.AutoAnnouncerAsAlways:SetEnabled(MHMOTSConfig.AutoAnnouncer);
     settingsScrollChild.Data.AutoAnnouncerAsTank:SetEnabled(MHMOTSConfig.AutoAnnouncer);
