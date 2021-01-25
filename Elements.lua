@@ -30,8 +30,7 @@ E.CreateRoundedCheckButton = function(parent)
         PixelUtil.SetPoint(self, point, relativeTo, relativePoint, offsetX, offsetY, minOffsetXPixels, minOffsetYPixels);
     end
 
-    -- Area - because i don't want to touch the original SetSize and it's just a synonym for Size and nothing else
-    b.SetArea = function(self, width, height)
+    b.SetSize = function(self, width, height)
         PixelUtil.SetSize(self, width, height);
     end
 
@@ -46,6 +45,8 @@ E.CreateRoundedCheckButton = function(parent)
     end);
 
     b:HookScript('OnLeave', GameTooltip_Hide);
+
+    b:SetSize(26, 26);
 
     return b;
 end
