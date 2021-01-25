@@ -77,7 +77,7 @@ L['SETTINGS_SCALE_LARGE_SYMBOL_LABEL'] = 'Scale of large symbol';
 L['SETTINGS_SCALE_LARGE_SYMBOL_TOOLTIP'] = 'Set the scale of the large symbol';
 L['SETTINGS_USE_CLONE_AUTOMARKER_LABEL'] = 'Auto marker';
 L['SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = 'Automatically put markers on Illusionary Clones in a boss fight';
-L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL'] = 'Send solution with English';
+L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL'] = 'Duplicate solution in English';
 L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP'] = 'Send the solution to the chat along with English phrases, for example, «Empty flower without a circle / Empty flower without a circle»|n|nHa-ha! Nevermind, it\'s only for non enUS/enGB locales';
 L['PRACTICE_TITLE'] = 'Select a symbol that differs in one way from the others';
 L['PRACTICE_PLAY_AGAIN'] = 'Play again';
@@ -191,6 +191,8 @@ if gameLocale == 'deDE' then
     L['SETTINGS_SCALE_LARGE_SYMBOL_TOOLTIP'] = 'Stellen Sie die Skalierung des großen Symbols ein';
     L['SETTINGS_USE_CLONE_AUTOMARKER_LABEL'] = 'Automatische Markierung';
     L['SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = 'Setze in einem Bosskampf automatisch Marker auf Illusionärer Klon';
+    L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL'] = 'Doppelte Lösung in Englisch';
+    L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP'] = 'Senden Sie die Lösung zusammen mit englischen Phrasen an den Chat, z. B. «Leere Blume ohne Kreis / Empty flower without a circle»';
     L['PRACTICE_TITLE'] = 'Wählen Sie ein Symbol aus, das sich in einer Hinsicht von den anderen unterscheidet';
     L['PRACTICE_PLAY_AGAIN'] = 'Nochmal abspielen';
     L['PRACTICE_BUTTON_TOOLTIP'] = 'Trainieren';
@@ -247,6 +249,8 @@ if gameLocale == 'frFR' then -- Google Translate
     L['SETTINGS_SCALE_LARGE_SYMBOL_TOOLTIP'] = 'Définir l\'échelle du grand symbole';
     L['SETTINGS_USE_CLONE_AUTOMARKER_LABEL'] = 'Marqueur automatique';
     L['SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = 'Mettre automatiquement des marqueurs sur les Clones illusoires dans un combat de boss';
+    L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL'] = 'Dupliquer la solution en anglais';
+    L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP'] = 'Envoyez la solution au chat avec des phrases en anglais, par exemple, «Fleur vide sans cercle / Empty flower without a circle»';
     L['PRACTICE_TITLE'] = 'Sélectionnez un symbole qui diffère d\'une manière des autres';
     L['PRACTICE_PLAY_AGAIN'] = 'Rejouer';
     L['PRACTICE_BUTTON_TOOLTIP'] = 'La pratique';
@@ -303,6 +307,8 @@ if gameLocale == 'itIT' then -- Google Translate
     L['SETTINGS_SCALE_LARGE_SYMBOL_TOOLTIP'] = 'Imposta la scala del simbolo grande';
     L['SETTINGS_USE_CLONE_AUTOMARKER_LABEL'] = 'Marcatore automatico';
     L['SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = 'Metti automaticamente i segnalini sui Clone Illusorio in una lotta con un boss';
+    L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL'] = 'Soluzione duplicata in inglese';
+    L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP'] = 'Invia la soluzione alla chat insieme a frasi in inglese, ad esempio, «Fiore vuoto senza cerchio / Empty flower without a circle»';
     L['PRACTICE_TITLE'] = 'Seleziona un simbolo che differisce in un modo dagli altri';
     L['PRACTICE_PLAY_AGAIN'] = 'Gioca di nuovo';
     L['PRACTICE_BUTTON_TOOLTIP'] = 'Pratica';
@@ -359,6 +365,8 @@ if gameLocale == 'ptBR' then -- Brazilian Portuguese (Google Translate)
     L['SETTINGS_SCALE_LARGE_SYMBOL_TOOLTIP'] = 'Defina a escala do símbolo grande';
     L['SETTINGS_USE_CLONE_AUTOMARKER_LABEL'] = 'Marcador automático';
     L['SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = 'Colocar marcadores automaticamente em Clones Ilusórios em uma luta de chefe';
+    L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL'] = 'Solução duplicada em inglês';
+    L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP'] = 'Envie a solução para o chat junto com frases em inglês, por exemplo, «Flor vazia sem círculo / Empty flower without a circle»';
     L['PRACTICE_TITLE'] = 'Selecione um símbolo que difere de uma forma dos outros';
     L['PRACTICE_PLAY_AGAIN'] = 'Jogar de novo';
     L['PRACTICE_BUTTON_TOOLTIP'] = 'Prática';
@@ -415,6 +423,8 @@ if gameLocale == 'esES' then -- Spanish (Google Translate)
     L['SETTINGS_SCALE_LARGE_SYMBOL_TOOLTIP'] = 'Establecer la escala del símbolo grande';
     L['SETTINGS_USE_CLONE_AUTOMARKER_LABEL'] = 'Marcador automático';
     L['SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = 'Coloca marcadores automáticamente en Clones ilusorios en una pelea de jefes';
+    L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL'] = 'Solución duplicada en inglés';
+    L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP'] = 'Envía la solución al chat junto con frases en inglés, por ejemplo, «Flor vacía sin círculo / Empty flower without a circle»';
     L['PRACTICE_TITLE'] = 'Seleccione un símbolo que difiera en un sentido de los demás';
     L['PRACTICE_PLAY_AGAIN'] = 'Juega de nuevo';
     L['PRACTICE_BUTTON_TOOLTIP'] = 'Práctica';
@@ -480,6 +490,8 @@ if gameLocale == 'zhTW' then -- BNS333 (https://www.curseforge.com/members/bns33
     L['SETTINGS_SCALE_LARGE_SYMBOL_TOOLTIP'] = '設置大符號的比例';
     L['SETTINGS_USE_CLONE_AUTOMARKER_LABEL'] = '自動標記';
     L['SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = '在老闆戰鬥中自動在幻影克隆上放置標記';
+    L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL'] = '英文重複解決方案';
+    L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP'] = '將解決方案與英語短語一起發送至聊天，例如，“無外環空心的花/Empty flower without a circle”';
     L['PRACTICE_TITLE'] = '選擇一個符號與其他符號不同的符號';
     L['PRACTICE_PLAY_AGAIN'] = '再玩一次';
     L['PRACTICE_BUTTON_TOOLTIP'] = '實踐';
@@ -538,6 +550,8 @@ if gameLocale == 'zhCN' then
     L['SETTINGS_SCALE_LARGE_SYMBOL_TOOLTIP'] = '设置大符号的比例';
     L['SETTINGS_USE_CLONE_AUTOMARKER_LABEL'] = '自动标记';
     L['SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = '在老板战斗中自动在幻影克隆上放置标记';
+    L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL'] = '英文重复解决方案';
+    L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP'] = '将解决方案与英语短语一起发送给聊天，例如，“无环 空心 花/Empty flower without a circle”';
     L['PRACTICE_TITLE'] = '选择一个符号与其他符号不同的符号';
     L['PRACTICE_PLAY_AGAIN'] = '再玩一次';
     L['PRACTICE_BUTTON_TOOLTIP'] = '实践';
@@ -594,6 +608,8 @@ if gameLocale == 'koKR' then -- hinski (https://www.curseforge.com/members/hinsk
     L['SETTINGS_SCALE_LARGE_SYMBOL_TOOLTIP'] = '큰 기호의 배율 설정';
     L['SETTINGS_USE_CLONE_AUTOMARKER_LABEL'] = '자동 마커';
     L['SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = '보스 전에서 일 루저 너리 클론에 마커를 자동으로 배치';
+    L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL'] = '영어로 된 중복 솔루션';
+    L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP'] = '예를 들어«원 없는 빈 꽃 / Empty flower without a circle»과 같이 영어 구문과 함께 솔루션을 채팅에 보냅니다.';
     L['PRACTICE_TITLE'] = '한면에서 다른 기호와 다른 기호를 선택하십시오';
     L['PRACTICE_PLAY_AGAIN'] = '다시 플레이';
     L['PRACTICE_BUTTON_TOOLTIP'] = '연습';
