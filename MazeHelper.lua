@@ -56,6 +56,7 @@ local MARKER_UNITS = {
 local PASSED_COUNTER = 1;
 local SOLUTION_BUTTON_ID;
 local PREDICTED_SOLUTION_BUTTON_ID;
+local ANNOUNCED_BUTTON_ID;
 
 local MOTS_INSTANCE_ID = 2290;
 local MISTCALLER_ENCOUNTER_ID = 2392;
@@ -430,6 +431,7 @@ local function ResetAll()
     NUM_ACTIVE_BUTTONS = 0;
     SOLUTION_BUTTON_ID = nil;
     PREDICTED_SOLUTION_BUTTON_ID = nil;
+    ANNOUNCED_BUTTON_ID = nil;
 
     for i = 1, #RESERVED_BUTTONS_SEQUENCE do
         RESERVED_BUTTONS_SEQUENCE[i] = false;
@@ -1181,7 +1183,8 @@ function MazeHelper:UpdateSolution()
                 announce = true;
             end
 
-            if announce then
+            if announce and ANNOUNCED_BUTTON_ID ~= SOLUTION_BUTTON_ID then
+                ANNOUNCED_BUTTON_ID = SOLUTION_BUTTON_ID;
                 AnnounceInChat(partyChatType);
             end
         end
