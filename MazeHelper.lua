@@ -1054,7 +1054,7 @@ local TryHeuristicSolution do
     end
 end
 
-local GetSolution do
+local TryFullSolution do
     local function GetSumCharacteristics()
         local fillSum, leafSum, circleSum = 0, 0, 0;
 
@@ -1077,19 +1077,19 @@ local GetSolution do
         return fillSum, leafSum, circleSum;
     end
 
-    local function GetStagedSolution(sum, kind, count, buttonId)
+    local function GetStagedSolution(kindSum, kind, sFoundCount, sButtonId)
         for i = 1, MAX_BUTTONS do
             if buttons[i].state then
-                if (sum == 1 and buttons[i].data[kind]) or (sum == 3 and not buttons[i].data[kind]) then
-                    return i, count + 1;
+                if (kindSum == 1 and buttons[i].data[kind]) or (kindSum == 3 and not buttons[i].data[kind]) then
+                    return i, sFoundCount + 1;
                 end
             end
         end
 
-        return buttonId, count;
+        return sButtonId, sFoundCount;
     end
 
-    function GetSolution()
+    function TryFullSolution()
         local fillSum, leafSum, circleSum = GetSumCharacteristics();
         local solutionButtonId;
         local solutionFoundCount = 0;
@@ -1129,7 +1129,7 @@ function MazeHelper:UpdateSolution()
             PREDICTED_SOLUTION_BUTTON_ID = nil;
         end
 
-        SOLUTION_BUTTON_ID = GetSolution();
+        SOLUTION_BUTTON_ID = TryFullSolution();
     end
 
     if SOLUTION_BUTTON_ID then
