@@ -1636,6 +1636,11 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     MazeHelper.frame:SetScale(MHMOTSConfig.SavedScale);
     MazeHelper.frame.LargeSymbol:SetScale(PixelUtil.GetPixelToUIUnitFactor() * MHMOTSConfig.SavedScaleLargeSymbol);
 
+    if MazeHelper.currentLocale == 'enUS' then
+        settingsScrollChild.Data.AnnounceWithEnglish:SetShown(false);
+        settingsScrollChild.Data.PrintResettedPlayerName:SetPosition('TOPLEFT', settingsScrollChild.Data.ShowSequenceNumbers, 'BOTTOMLEFT', 0, 0);
+    end
+
     MazeHelper:CreateButtons();
 
     self:RegisterEvent('PLAYER_LOGIN');
