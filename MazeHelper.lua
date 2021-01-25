@@ -204,6 +204,7 @@ PixelUtil.SetSize(MazeHelper.frame, FRAME_SIZE + X_OFFSET * (MAX_ACTIVE_BUTTONS 
 MazeHelper.frame:EnableMouse(true);
 MazeHelper.frame:SetMovable(true);
 MazeHelper.frame:SetClampedToScreen(true);
+MazeHelper.frame:SetClampRectInsets(-4, 4, 24, 0);
 MazeHelper.frame:RegisterForDrag('LeftButton');
 MazeHelper.frame:SetScript('OnDragStart', function(self)
     if self:IsMovable() then
@@ -311,6 +312,8 @@ MazeHelper.frame.MinButton:SetScript('OnClick', function()
     MazeHelper.frame.InvisibleMaxButton:SetShown(true);
 
     MazeHelper.frame.MinButton:SetShown(false);
+
+    MazeHelper.frame:SetClampRectInsets(-8, 4, 4, 0);
 end);
 MazeHelper.frame.MinButton:SetScript('OnEnter', function(self) self.icon:SetVertexColor(1, 0.85, 0, 1); end);
 MazeHelper.frame.MinButton:SetScript('OnLeave', function(self) self.icon:SetVertexColor(0.7, 0.7, 0.7, 1); end);
@@ -361,6 +364,8 @@ MazeHelper.frame.InvisibleMaxButton:SetScript('OnClick', function()
     MazeHelper.frame.InvisibleMaxButton:SetShown(false);
 
     MazeHelper.frame.MinButton:SetShown(true);
+
+    MazeHelper.frame:SetClampRectInsets(-4, 4, 24, 0);
 end);
 MazeHelper.frame.InvisibleMaxButton:RegisterForDrag('LeftButton');
 MazeHelper.frame.InvisibleMaxButton:SetScript('OnDragStart', function()
