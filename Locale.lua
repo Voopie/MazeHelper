@@ -132,7 +132,7 @@ if gameLocale == 'ruRU' then
     L['SETTINGS_SCALE_LARGE_SYMBOL_TOOLTIP'] = 'Задать масштаб большого символа';
     L['SETTINGS_USE_CLONE_AUTOMARKER_LABEL'] = 'Авто-метка';
     L['SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = 'Автоматически ставить метки на Иллюзорных клонов в бою с боссом';
-    L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL'] = 'Дублировать на английском';
+    L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL'] = 'Дублировать решение на английском';
     L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP'] = 'Отправлять решение в чат вместе английскими фразами, например, «Пустой цветок без круга / Empty flower without a circle»';
     L['PRACTICE_TITLE'] = 'Выберите символ, отличающийся чем-то одним от других';
     L['PRACTICE_PLAY_AGAIN'] = 'Сыграть ещё';
