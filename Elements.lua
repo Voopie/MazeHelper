@@ -366,12 +366,14 @@ E.CreateSlider = function(name, parent)
     end);
 
     editbox:SetScript('OnEditFocusGained', function(self)
+        self.isFocused = true;
         self.lastValue = tonumber(self:GetNumber());
         self:HighlightText();
         self.Background:SetBackdropBorderColor(0.8, 0.8, 0.8, 1);
     end);
 
     editbox:SetScript('OnEditFocusLost', function(self)
+        self.isFocused = false;
         if self.lastValue then
             self:SetText(SliderRound(self.lastValue, self:GetParent().minValue, self:GetParent().stepValue));
         end
@@ -381,6 +383,10 @@ E.CreateSlider = function(name, parent)
     end);
 
     editbox:HookScript('OnEnter', function(self)
+        if not self.isFocused then
+            self.Background:SetBackdropBorderColor(0.5, 0.5, 0.5, 1);
+        end
+
         if not self:GetParent().tooltipText then
             return;
         end
@@ -389,7 +395,14 @@ E.CreateSlider = function(name, parent)
         GameTooltip:AddLine(self:GetParent().tooltipText, 1, 0.85, 0, true);
         GameTooltip:Show();
     end);
-    editbox:HookScript('OnLeave', GameTooltip_Hide);
+
+    editbox:HookScript('OnLeave', function(self)
+        if not self.isFocused then
+            self.Background:SetBackdropBorderColor(0.3, 0.3, 0.3, 1);
+        end
+
+        GameTooltip_Hide();
+    end);
 
 
     slider.editbox = editbox;
