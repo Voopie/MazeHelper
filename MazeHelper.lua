@@ -11,7 +11,6 @@ local IsInRaid, IsInGroup, UnitIsGroupLeader, GetMinimapZoneText = IsInRaid, IsI
 local ADDON_COMM_PREFIX = 'MAZEHELPER';
 C_ChatInfo.RegisterAddonMessagePrefix(ADDON_COMM_PREFIX);
 
-local newVersionNotified = false;
 local VERSION_COLLECTOR_TABLE = {};
 
 local playerNameWithRealm, playerRole, inInstance, bossKilled, inEncounter, isMinimized;
@@ -1359,7 +1358,7 @@ function MazeHelper:ReceiveVersion(version)
     end);
 
     if VERSION_COLLECTOR_TABLE[1] and tonumber(VERSION_COLLECTOR_TABLE[1]) > tonumber(Version) then
-        newVersionNotified = true;
+        MazeHelper.frame:UnregisterEvent('GROUP_ROSTER_UPDATE');
         print(L['NEW_VERSION_AVAILABLE']);
     end
 end
@@ -1498,9 +1497,7 @@ MazeHelper.frame:SetScript('OnEvent', function(self, event, ...)
 end);
 
 function MazeHelper.frame:PLAYER_LOGIN()
-    newVersionNotified = false;
-
-    if MHMOTSConfig.SavedPosition and #MHMOTSConfig.SavedPosition > 1 then
+     if MHMOTSConfig.SavedPosition and #MHMOTSConfig.SavedPosition > 1 then
         self:ClearAllPoints();
         PixelUtil.SetPoint(self, MHMOTSConfig.SavedPosition[1], UIParent, MHMOTSConfig.SavedPosition[3], MHMOTSConfig.SavedPosition[4], MHMOTSConfig.SavedPosition[5]);
         self:SetUserPlaced(true);
@@ -1578,10 +1575,6 @@ function MazeHelper.frame:NAME_PLATE_UNIT_REMOVED(unit)
 end
 
 function MazeHelper.frame:GROUP_ROSTER_UPDATE()
-    if newVersionNotified then
-        return;
-    end
-
     MazeHelper:RequestVersionCheck();
 end
 
