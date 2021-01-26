@@ -607,20 +607,20 @@ if gameLocale == 'koKR' then -- hinski (https://www.curseforge.com/members/hinsk
     L['SETTINGS_SYNC_ENABLED_LABEL'] = '파티 동기화';
     L['SETTINGS_SYNC_ENABLED_TOOLTIP'] = '다른 파티원과 선택한 모양 공유 활성화|n|n|cffff6a00끄지 않는 것을 권장합니다|r';
     L['SETTINGS_USE_COLORED_SYMBOLS_LABEL'] = '색이 있는 모양 사용';
-    L['SETTINGS_USE_COLORED_SYMBOLS_TOOLTIP'] = '흑백 대신 유채색된 모양 사용';
+    L['SETTINGS_USE_COLORED_SYMBOLS_TOOLTIP'] = '흑백 대신 색칠된 모양 사용';
     L['SOLUTION_NA'] = '|cffffb833정답이 없습니다...|r';
     L['SETTINGS_SHOW_LARGE_SYMBOL_LABEL'] = '큰 기호 표시';
     L['SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = '기성 솔루션이있는 경우 화면 상단에 큰 기호 표시';
-    L['SETTINGS_SCALE_LABEL'] = '규모';
+    L['SETTINGS_SCALE_LABEL'] = '비율';
     L['SETTINGS_SCALE_TOOLTIP'] = '기본 창의 배율 설정';
     L['SETTINGS_SCALE_LARGE_SYMBOL_LABEL'] = '큰 심볼의 스케일';
     L['SETTINGS_SCALE_LARGE_SYMBOL_TOOLTIP'] = '큰 기호의 배율 설정';
-    L['SETTINGS_USE_CLONE_AUTOMARKER_LABEL'] = '자동 마커';
-    L['SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = '보스 전에서 일 루저 너리 클론에 마커를 자동으로 배치';
+    L['SETTINGS_USE_CLONE_AUTOMARKER_LABEL'] = '자동 징표';
+    L['SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = '보스전에서 환영 분신들에 징표를 자동으로 분배';
     L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL'] = '영어로 된 중복 솔루션';
     L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP'] = '예를 들어«원 없는 빈 꽃 / Empty flower without a circle»과 같이 영어 구문과 함께 솔루션을 채팅에 보냅니다.';
-    L['PRACTICE_TITLE'] = '한면에서 다른 기호와 다른 기호를 선택하십시오';
-    L['PRACTICE_PLAY_AGAIN'] = '다시 플레이';
+    L['PRACTICE_TITLE'] = '한 조건이 나머지와 다른 모양을 선택하십시오';
+    L['PRACTICE_PLAY_AGAIN'] = '다시 하기';
     L['PRACTICE_BUTTON_TOOLTIP'] = '연습';
     L['NEW_VERSION_AVAILABLE'] = '|cffffb833Maze Helper:|r Curse|cfff16336Forge|r에서 새 버전을 사용할 수 있습니다!';
 
