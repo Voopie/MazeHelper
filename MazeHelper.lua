@@ -1497,7 +1497,7 @@ MazeHelper.frame:SetScript('OnEvent', function(self, event, ...)
 end);
 
 function MazeHelper.frame:PLAYER_LOGIN()
-     if MHMOTSConfig.SavedPosition and #MHMOTSConfig.SavedPosition > 1 then
+    if MHMOTSConfig.SavedPosition and #MHMOTSConfig.SavedPosition > 1 then
         self:ClearAllPoints();
         PixelUtil.SetPoint(self, MHMOTSConfig.SavedPosition[1], UIParent, MHMOTSConfig.SavedPosition[3], MHMOTSConfig.SavedPosition[4], MHMOTSConfig.SavedPosition[5]);
         self:SetUserPlaced(true);
@@ -1572,6 +1572,7 @@ function MazeHelper.frame:NAME_PLATE_UNIT_REMOVED(unit)
     end
 
     SetFreeMarkerIndex(nameplatesMarkers[unit]);
+    nameplatesMarkers[unit] = nil;
 end
 
 function MazeHelper.frame:GROUP_ROSTER_UPDATE()
