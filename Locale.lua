@@ -47,8 +47,8 @@ L['FLOWER_NOFULL_NOCIRCLE'] = 'Empty flower without a circle';
 L['SENDED_BY'] = 'Sended by %s';
 L['CLEARED_BY'] = 'Cleared by %s';
 L['PASSED'] = 'Passed';
-L['RESETED_PLAYER'] = '|cffffb833MH:|r %s |cffff0537resetted|r this mini-game';
-L['PASSED_PLAYER'] = '|cffffb833MH:|r %s clicked on «|cff66ff6ePassed|r» button';
+L['RESETED_PLAYER'] = '|cffffb833Maze Helper:|r %s |cffff0537resetted|r this mini-game';
+L['PASSED_PLAYER'] = '|cffffb833Maze Helper:|r %s clicked on «|cff66ff6ePassed|r» button';
 L['SETTINGS_REVEAL_RESETTER_LABEL'] = 'Reveal resetter of the mini-game';
 L['SETTINGS_REVEAL_RESETTER_TOOLTIP'] = 'Type in the chat the name of the player who did click on the «Reset» or «Passed» button (only for yourself)';
 L['SETTINGS_AUTOANNOUNCER_LABEL'] = 'Enable auto announcer';
@@ -82,6 +82,7 @@ L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP'] = 'Send the solution to the chat alo
 L['PRACTICE_TITLE'] = 'Select a symbol that differs in one way from the others';
 L['PRACTICE_PLAY_AGAIN'] = 'Play again';
 L['PRACTICE_BUTTON_TOOLTIP'] = 'Practice';
+L['NEW_VERSION_AVAILABLE'] = '|cffffb833Maze Helper:|r New version is now available Curse|cfff16336Forge|r!';
 
 if gameLocale == 'ruRU' then
     L['ZONE_NAME'] = 'Туманная чащоба';
@@ -102,8 +103,8 @@ if gameLocale == 'ruRU' then
     L['SENDED_BY'] = 'Отправлено %s';
     L['CLEARED_BY'] = 'Очищено %s';
     L['PASSED'] = 'Прошли';
-    L['RESETED_PLAYER'] = '|cffffb833MH:|r %s |cffff0537сбросил|r мини-игру';
-    L['PASSED_PLAYER'] = '|cffffb833MH:|r %s кликнул на кнопку «|cff66ff6eПрошли|r»';
+    L['RESETED_PLAYER'] = '|cffffb833Maze Helper:|r %s |cffff0537сбросил|r мини-игру';
+    L['PASSED_PLAYER'] = '|cffffb833Maze Helper:|r %s кликнул на кнопку «|cff66ff6eПрошли|r»';
     L['SETTINGS_REVEAL_RESETTER_LABEL'] = 'Имя игрока, сбросившего мини-игру';
     L['SETTINGS_REVEAL_RESETTER_TOOLTIP'] = 'Писать в чате имя игрока, который нажал на кнопку «Сброс» или «Прошли» (будет видно только Вам)';
     L['SETTINGS_AUTOANNOUNCER_LABEL'] = 'Включить авто-оповещатель';
@@ -137,6 +138,7 @@ if gameLocale == 'ruRU' then
     L['PRACTICE_TITLE'] = 'Выберите символ, отличающийся чем-то одним от других';
     L['PRACTICE_PLAY_AGAIN'] = 'Сыграть ещё';
     L['PRACTICE_BUTTON_TOOLTIP'] = 'Практика';
+    L['NEW_VERSION_AVAILABLE'] = '|cffffb833Maze Helper:|r Новая версия доступна на Curse|cfff16336Forge|r!';
 
     return;
 end
@@ -161,8 +163,8 @@ if gameLocale == 'deDE' then
     L['SENDED_BY'] = 'Gesendet von %s';
     L['CLEARED_BY'] = 'Gelöscht von %s';
     L['PASSED'] = 'Übergeben';
-    L['RESETED_PLAYER'] = '|cffffb833MH:|r %s hat dieses Minispiel |cffff0537zurückgesetzt|r';
-    L['PASSED_PLAYER'] = '|cffffb833MH:|r %s klickte auf «|cff66ff6eBestanden|r»';
+    L['RESETED_PLAYER'] = '|cffffb833Maze Helper:|r %s hat dieses Minispiel |cffff0537zurückgesetzt|r';
+    L['PASSED_PLAYER'] = '|cffffb833Maze Helper:|r %s klickte auf «|cff66ff6eBestanden|r»';
     L['SETTINGS_REVEAL_RESETTER_LABEL'] = 'Verrate den Resetter des Minispiels';
     L['SETTINGS_REVEAL_RESETTER_TOOLTIP'] = 'Geben Sie im Chat den Namen des Spielers ein, der auf die Schaltfläche «Zurücksetzen» oder «Bestanden» geklickt hat (nur für Sie selbst)';
     L['SETTINGS_AUTOANNOUNCER_LABEL'] = 'Aktivieren Sie die automatische Ansage';
@@ -196,6 +198,7 @@ if gameLocale == 'deDE' then
     L['PRACTICE_TITLE'] = 'Wählen Sie ein Symbol aus, das sich in einer Hinsicht von den anderen unterscheidet';
     L['PRACTICE_PLAY_AGAIN'] = 'Nochmal abspielen';
     L['PRACTICE_BUTTON_TOOLTIP'] = 'Trainieren';
+    L['NEW_VERSION_AVAILABLE'] = '|cffffb833Maze Helper:|r Neue Version ist jetzt auf Curse|cfff16336Forge|r verfügbar!';
 
     return;
 end
@@ -219,8 +222,8 @@ if gameLocale == 'frFR' then -- Google Translate
     L['SENDED_BY'] = 'Envoyé par %s';
     L['CLEARED_BY'] = 'Innocenté par %s';
     L['PASSED'] = 'Passer';
-    L['RESETED_PLAYER'] = '|cffffb833MH:|r %s a |cffff0537réinitialisé|r ce mini-jeu';
-    L['PASSED_PLAYER'] = '|cffffb833MH:|r %s a cliqué sur le bouton «|cff66ff6ePasser|r»';
+    L['RESETED_PLAYER'] = '|cffffb833Maze Helper:|r %s a |cffff0537réinitialisé|r ce mini-jeu';
+    L['PASSED_PLAYER'] = '|cffffb833Maze Helper:|r %s a cliqué sur le bouton «|cff66ff6ePasser|r»';
     L['SETTINGS_REVEAL_RESETTER_LABEL'] = 'Reveal resetter du mini-jeu';
     L['SETTINGS_REVEAL_RESETTER_TOOLTIP'] = 'Tapez dans le chat le nom du joueur qui a cliqué sur le bouton «Réinitialiser» ou «Passé» (uniquement pour vous)';
     L['SETTINGS_AUTOANNOUNCER_LABEL'] = 'Activer l\'annonceur automatique';
@@ -254,6 +257,7 @@ if gameLocale == 'frFR' then -- Google Translate
     L['PRACTICE_TITLE'] = 'Sélectionnez un symbole qui diffère d\'une manière des autres';
     L['PRACTICE_PLAY_AGAIN'] = 'Rejouer';
     L['PRACTICE_BUTTON_TOOLTIP'] = 'La pratique';
+    L['NEW_VERSION_AVAILABLE'] = '|cffffb833Maze Helper:|r Une nouvelle version est maintenant disponible sur Curse|cfff16336Forge|r!';
 
     return;
 end
@@ -277,8 +281,8 @@ if gameLocale == 'itIT' then -- Google Translate
     L['SENDED_BY'] = 'Inviato da %s';
     L['CLEARED_BY'] = 'Cancellato da %s';
     L['PASSED'] = 'Passato';
-    L['RESETED_PLAYER'] = '|cffffb833MH:|r %s |cffff0537ha ripristinato|r questo minigioco';
-    L['PASSED_PLAYER'] = '|cffffb833MH:|r %s ha fatto clic sul pulsante «|cff66ff6ePassato|r»';
+    L['RESETED_PLAYER'] = '|cffffb833Maze Helper:|r %s |cffff0537ha ripristinato|r questo minigioco';
+    L['PASSED_PLAYER'] = '|cffffb833Maze Helper:|r %s ha fatto clic sul pulsante «|cff66ff6ePassato|r»';
     L['SETTINGS_REVEAL_RESETTER_LABEL'] = 'Rivela il resetter del mini-gioco';
     L['SETTINGS_REVEAL_RESETTER_TOOLTIP'] = 'Digita nella chat il nome del giocatore che ha fatto clic sul pulsante «Ripristina» o «Passato» (solo per te)';
     L['SETTINGS_AUTOANNOUNCER_LABEL'] = 'Abilita annunciatore automatico';
@@ -312,6 +316,7 @@ if gameLocale == 'itIT' then -- Google Translate
     L['PRACTICE_TITLE'] = 'Seleziona un simbolo che differisce in un modo dagli altri';
     L['PRACTICE_PLAY_AGAIN'] = 'Gioca di nuovo';
     L['PRACTICE_BUTTON_TOOLTIP'] = 'Pratica';
+    L['NEW_VERSION_AVAILABLE'] = '|cffffb833Maze Helper:|r La nuova versione è ora disponibile su Curse|cfff16336Forge|r!';
 
     return;
 end
@@ -335,8 +340,8 @@ if gameLocale == 'ptBR' then -- Brazilian Portuguese (Google Translate)
     L['SENDED_BY'] = 'Enviado por %s';
     L['CLEARED_BY'] = 'Apagado por %s';
     L['PASSED'] = 'Passado';
-    L['RESETED_PLAYER'] = '|cffffb833MH:|r %s |cffff0537redefiniu|r este minijogo';
-    L['PASSED_PLAYER'] = '|cffffb833MH:|r %s clicou no botão «|cff66ff6ePassado|r»';
+    L['RESETED_PLAYER'] = '|cffffb833Maze Helper:|r %s |cffff0537redefiniu|r este minijogo';
+    L['PASSED_PLAYER'] = '|cffffb833Maze Helper:|r %s clicou no botão «|cff66ff6ePassado|r»';
     L['SETTINGS_REVEAL_RESETTER_LABEL'] = 'Revelar a reinicialização do minijogo';
     L['SETTINGS_REVEAL_RESETTER_TOOLTIP'] = 'Digite no chat o nome do jogador que clicou no botão «Redefinir» ou «Passado» (apenas para você)';
     L['SETTINGS_AUTOANNOUNCER_LABEL'] = 'Ativar locutor automático';
@@ -370,6 +375,7 @@ if gameLocale == 'ptBR' then -- Brazilian Portuguese (Google Translate)
     L['PRACTICE_TITLE'] = 'Selecione um símbolo que difere de uma forma dos outros';
     L['PRACTICE_PLAY_AGAIN'] = 'Jogar de novo';
     L['PRACTICE_BUTTON_TOOLTIP'] = 'Prática';
+    L['NEW_VERSION_AVAILABLE'] = '|cffffb833Maze Helper:|r Nova versão já está disponível no Curse|cfff16336Forge|r!';
 
     return;
 end
@@ -393,8 +399,8 @@ if gameLocale == 'esES' then -- Spanish (Google Translate)
     L['SENDED_BY'] = 'Enviado por %s';
     L['CLEARED_BY'] = 'Despejado por %s';
     L['PASSED'] = 'Aprobado';
-    L['RESETED_PLAYER'] = '|cffffb833MH:|r %s |cffff0537resetted|r este minijuego';
-    L['PASSED_PLAYER'] = '|cffffb833MH:|r %s hizo clic en el botón «|cff66ff6eAprobado|r»';
+    L['RESETED_PLAYER'] = '|cffffb833Maze Helper:|r %s |cffff0537resetted|r este minijuego';
+    L['PASSED_PLAYER'] = '|cffffb833Maze Helper:|r %s hizo clic en el botón «|cff66ff6eAprobado|r»';
     L['SETTINGS_REVEAL_RESETTER_LABEL'] = 'Revelar reiniciador del minijuego';
     L['SETTINGS_REVEAL_RESETTER_TOOLTIP'] = 'Escribe en el chat el nombre del jugador que hizo clic en el botón «Reiniciar» o «Aprobado» (solo para ti)';
     L['SETTINGS_AUTOANNOUNCER_LABEL'] = 'Habilitar auto locutor';
@@ -428,6 +434,7 @@ if gameLocale == 'esES' then -- Spanish (Google Translate)
     L['PRACTICE_TITLE'] = 'Seleccione un símbolo que difiera en un sentido de los demás';
     L['PRACTICE_PLAY_AGAIN'] = 'Juega de nuevo';
     L['PRACTICE_BUTTON_TOOLTIP'] = 'Práctica';
+    L['NEW_VERSION_AVAILABLE'] = '|cffffb833Maze Helper:|r ¡La nueva versión ya está disponible en Curse|cfff16336Forge|r!';
 
     return;
 end
@@ -456,9 +463,9 @@ if gameLocale == 'zhTW' then -- BNS333 (https://www.curseforge.com/members/bns33
     L['LEAF_FULL_NOCIRCLE'] = '無外環實心的葉';
     L['LEAF_NOFULL_CIRCLE'] = '有外環空心的葉';
     L['LEAF_NOFULL_NOCIRCLE'] = '無外環空心的葉';
-    L['RESETED_PLAYER'] = '|cffffb833MH:|r %s |cffff0537已重置|r此小遊戲';
+    L['RESETED_PLAYER'] = '|cffffb833Maze Helper:|r %s |cffff0537已重置|r此小遊戲';
     L['PASSED'] = '已通過';
-    L['PASSED_PLAYER'] = '|cffffb833MH:|r %s 點擊了«|cff66ff6e已通過|r»按鈕';
+    L['PASSED_PLAYER'] = '|cffffb833Maze Helper:|r %s 點擊了«|cff66ff6e已通過|r»按鈕';
     L['RESET'] = '重置';
     L['SENDED_BY'] = '由 %s 發送';
     L['SETTINGS_AA_ALWAYS'] = '總是';
@@ -495,6 +502,7 @@ if gameLocale == 'zhTW' then -- BNS333 (https://www.curseforge.com/members/bns33
     L['PRACTICE_TITLE'] = '選擇一個符號與其他符號不同的符號';
     L['PRACTICE_PLAY_AGAIN'] = '再玩一次';
     L['PRACTICE_BUTTON_TOOLTIP'] = '實踐';
+    L['NEW_VERSION_AVAILABLE'] = '|cffffb833Maze Helper:|r 新版本現已在Curse|cfff16336Forge|r上可用！';
 
     return;
 end
@@ -517,9 +525,9 @@ if gameLocale == 'zhCN' then
     L['LEAF_NOFULL_CIRCLE'] = '有环 空心 叶';
     L['LEAF_NOFULL_NOCIRCLE'] = '无环 空心 叶';
     L['PASSED'] = '通过';
-    L['PASSED_PLAYER'] = '|cffffb833MH:|r %s 点击了«|cff66ff6e通过|r»按钮';
+    L['PASSED_PLAYER'] = '|cffffb833Maze Helper:|r %s 点击了«|cff66ff6e通过|r»按钮';
     L['RESET'] = '重置';
-    L['RESETED_PLAYER'] = '|cffffb833MH:|r %s |cffff0537已重置|r此小游戏';
+    L['RESETED_PLAYER'] = '|cffffb833Maze Helper:|r %s |cffff0537已重置|r此小游戏';
     L['SENDED_BY'] = '由 %s 发送';
     L['SETTINGS_AA_ALWAYS'] = '总是';
     L['SETTINGS_AA_HEALER'] = '治疗者';
@@ -555,6 +563,7 @@ if gameLocale == 'zhCN' then
     L['PRACTICE_TITLE'] = '选择一个符号与其他符号不同的符号';
     L['PRACTICE_PLAY_AGAIN'] = '再玩一次';
     L['PRACTICE_BUTTON_TOOLTIP'] = '实践';
+    L['NEW_VERSION_AVAILABLE'] = '|cffffb833Maze Helper:|r 现在可以在Curse|cfff16336Forge|r上使用新版本!';
 
     return;
 end
@@ -575,9 +584,9 @@ if gameLocale == 'koKR' then -- hinski (https://www.curseforge.com/members/hinsk
     L['LEAF_NOFULL_CIRCLE'] = '원 안의 빈 잎';
     L['LEAF_NOFULL_NOCIRCLE'] = '원 없는 빈 잎';
     L['PASSED'] = '통과';
-    L['PASSED_PLAYER'] = '|cffffb833MH:|r %s이(가) «|cff66ff6e통과|r» 버튼을 눌렀습니다';
+    L['PASSED_PLAYER'] = '|cffffb833Maze Helper:|r %s이(가) «|cff66ff6e통과|r» 버튼을 눌렀습니다';
     L['RESET'] = '초기화';
-    L['RESETED_PLAYER'] = '|cffffb833MH:|r %s이(가) 이 퍼즐을 |cffff0537초기화|r했습니다';
+    L['RESETED_PLAYER'] = '|cffffb833Maze Helper:|r %s이(가) 이 퍼즐을 |cffff0537초기화|r했습니다';
     L['SENDED_BY'] = '%s의 전송';
     L['SETTINGS_AA_ALWAYS'] = '항상';
     L['SETTINGS_AA_HEALER'] = '힐러';
@@ -613,6 +622,7 @@ if gameLocale == 'koKR' then -- hinski (https://www.curseforge.com/members/hinsk
     L['PRACTICE_TITLE'] = '한면에서 다른 기호와 다른 기호를 선택하십시오';
     L['PRACTICE_PLAY_AGAIN'] = '다시 플레이';
     L['PRACTICE_BUTTON_TOOLTIP'] = '연습';
+    L['NEW_VERSION_AVAILABLE'] = '|cffffb833Maze Helper:|r Curse|cfff16336Forge|r에서 새 버전을 사용할 수 있습니다!';
 
     return;
 end

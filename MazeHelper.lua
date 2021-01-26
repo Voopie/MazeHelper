@@ -1,5 +1,6 @@
 local ADDON_NAME, MazeHelper = ...;
 local L, E, M = MazeHelper.L, MazeHelper.E, MazeHelper.M;
+local Version = GetAddOnMetadata(ADDON_NAME, 'Version');
 
 -- Lua API
 local tonumber = tonumber;
@@ -9,6 +10,9 @@ local IsInRaid, IsInGroup, UnitIsGroupLeader, GetMinimapZoneText = IsInRaid, IsI
 
 local ADDON_COMM_PREFIX = 'MAZEHELPER';
 C_ChatInfo.RegisterAddonMessagePrefix(ADDON_COMM_PREFIX);
+
+local newVersionNotified = false;
+local VERSION_COLLECTOR_TABLE = {};
 
 local playerNameWithRealm, playerRole, inInstance, bossKilled, inEncounter, isMinimized;
 local startedInMinMode = false;
@@ -32,6 +36,8 @@ local RESERVED_BUTTONS_SEQUENCE = {
     [3] = false,
     [4] = false,
 };
+
+local nameplatesMarkers = {};
 
 local USED_MARKERS = {
     [1] = false,
@@ -590,12 +596,6 @@ settingsScrollChild.Data.SyncEnabled:SetLabel(L['SETTINGS_SYNC_ENABLED_LABEL']);
 settingsScrollChild.Data.SyncEnabled:SetTooltip(L['SETTINGS_SYNC_ENABLED_TOOLTIP']);
 settingsScrollChild.Data.SyncEnabled:SetScript('OnClick', function(self)
     MHMOTSConfig.SyncEnabled = self:GetChecked();
-
-    if MHMOTSConfig.SyncEnabled then
-        MazeHelper.frame:RegisterEvent('CHAT_MSG_ADDON');
-    else
-        MazeHelper.frame:UnregisterEvent('CHAT_MSG_ADDON');
-    end
 end);
 
 settingsScrollChild.Data.ShowAtBoss = E.CreateRoundedCheckButton(settingsScrollChild);
@@ -799,7 +799,7 @@ end
 
 MazeHelper.frame.Settings.VersionText = MazeHelper.frame.Settings:CreateFontString(nil, 'ARTWORK', 'GameFontDisable');
 PixelUtil.SetPoint(MazeHelper.frame.Settings.VersionText, 'TOP', MazeHelper.frame.Settings, 'BOTTOM', 0, 12);
-MazeHelper.frame.Settings.VersionText:SetText(GetAddOnMetadata(ADDON_NAME, 'Version'));
+MazeHelper.frame.Settings.VersionText:SetText(Version);
 
 -- send & sender can be nil
 local function Button_SetActive(button, send, sender)
@@ -1323,42 +1323,46 @@ function MazeHelper:ReceiveUnactiveButtonID(buttonID, sender)
     Button_SetUnactive(buttons[buttonID], false, sender);
 end
 
-local function UpdateShown()
-    if MHMOTSConfig.ShowAtBoss then
-        MazeHelper.frame:SetShown((not bossKilled and inInstance and GetMinimapZoneText() == L['ZONE_NAME']));
-    else
-        MazeHelper.frame:SetShown((not inEncounter and inInstance and GetMinimapZoneText() == L['ZONE_NAME']));
+function MazeHelper:RequestVersionCheck()
+    local partyChatType = GetPartyChatType();
+    if not partyChatType then
+        return;
     end
 
-    if MazeHelper.frame:IsShown() then
-        if MHMOTSConfig.StartInMinMode and not startedInMinMode then
-            MazeHelper.frame.MinButton:Click();
-            startedInMinMode = true;
-        end
-    end
-
-    if inEncounter then
-        PixelUtil.SetSize(MazeHelper.frame.BottomButtonsHolder, MazeHelper.frame.ResetButton:GetWidth(), 22);
-
-        MazeHelper.frame.PassedButton:Hide();
-        MazeHelper.frame.PassedCounter:Hide();
-    else
-        PixelUtil.SetSize(MazeHelper.frame.BottomButtonsHolder, MazeHelper.frame.ResetButton:GetWidth() + MazeHelper.frame.PassedButton:GetWidth() + 8, 22);
-
-        MazeHelper.frame.PassedButton:Show();
-        MazeHelper.frame.PassedCounter:Show();
-    end
+    C_ChatInfo.SendAddonMessage(ADDON_COMM_PREFIX, 'CHECKVERSION', partyChatType);
 end
 
-MazeHelper.frame.ResetAll    = ResetAll;
-MazeHelper.frame.UpdateShown = UpdateShown;
-
-MazeHelper.frame:RegisterEvent('ADDON_LOADED');
-MazeHelper.frame:SetScript('OnEvent', function(self, event, ...)
-    if self[event] then
-        return self[event](self, ...);
+function MazeHelper:SendCurrentVersion()
+    local partyChatType = GetPartyChatType();
+    if not partyChatType then
+        return;
     end
-end);
+
+    C_ChatInfo.SendAddonMessage(ADDON_COMM_PREFIX, string.format('%s|%s', 'SENDVERSION', Version), partyChatType);
+end
+
+function MazeHelper:ReceiveVersion(version)
+    table.insert(VERSION_COLLECTOR_TABLE, version);
+
+    table.sort(VERSION_COLLECTOR_TABLE, function(a, b)
+        local majorA, minorA = strsplit('.', a);
+        majorA, minorA = tonumber(majorA), tonumber(minorA);
+
+        local majorB, minorB = strsplit('.', b);
+        majorB, minorB = tonumber(majorB), tonumber(minorB);
+
+        if majorA ~= majorB then
+            return majorA > majorB;
+        else
+            return minorA > minorB;
+        end
+    end);
+
+    if VERSION_COLLECTOR_TABLE[1] and tonumber(VERSION_COLLECTOR_TABLE[1]) > tonumber(Version) then
+        newVersionNotified = true;
+        print(L['NEW_VERSION_AVAILABLE']);
+    end
+end
 
 local function GetFreeMarkerIndex()
     for i = 1, 8 do
@@ -1400,40 +1404,31 @@ local function UpdateUsedMarkers()
     end
 end
 
-local nameplates = {};
-
-function MazeHelper.frame:NAME_PLATE_UNIT_ADDED(unit)
-    if not inEncounter then
-        return;
+local function UpdateShown()
+    if MHMOTSConfig.ShowAtBoss then
+        MazeHelper.frame:SetShown((not bossKilled and inInstance and GetMinimapZoneText() == L['ZONE_NAME']));
+    else
+        MazeHelper.frame:SetShown((not inEncounter and inInstance and GetMinimapZoneText() == L['ZONE_NAME']));
     end
 
-    local npcId = select(6, strsplit('-', UnitGUID(unit)));
-    npcId = tonumber(npcId);
-
-    if not npcId or npcId ~= ILLUSIONARY_CLONE_ID then
-        return;
-    end
-
-    if not GetRaidTargetIndex(unit) then
-        local index = GetFreeMarkerIndex();
-        if index then
-            SetRaidTarget(unit, index);
-            SetUnfreeMarkerIndex(index);
-            nameplates[unit] = index;
+    if MazeHelper.frame:IsShown() then
+        if MHMOTSConfig.StartInMinMode and not startedInMinMode then
+            MazeHelper.frame.MinButton:Click();
+            startedInMinMode = true;
         end
     end
-end
 
-function MazeHelper.frame:NAME_PLATE_UNIT_REMOVED(unit)
-    if not inEncounter then
-        return;
+    if inEncounter then
+        PixelUtil.SetSize(MazeHelper.frame.BottomButtonsHolder, MazeHelper.frame.ResetButton:GetWidth(), 22);
+
+        MazeHelper.frame.PassedButton:Hide();
+        MazeHelper.frame.PassedCounter:Hide();
+    else
+        PixelUtil.SetSize(MazeHelper.frame.BottomButtonsHolder, MazeHelper.frame.ResetButton:GetWidth() + MazeHelper.frame.PassedButton:GetWidth() + 8, 22);
+
+        MazeHelper.frame.PassedButton:Show();
+        MazeHelper.frame.PassedCounter:Show();
     end
-
-    if not nameplates[unit] then
-        return;
-    end
-
-    SetFreeMarkerIndex(nameplates[unit]);
 end
 
 local function UpdateState(frame)
@@ -1479,7 +1474,33 @@ local function UpdateState(frame)
     UpdateShown();
 end
 
+local function UpdateBossState(encounterID, inFight, killed)
+    if encounterID ~= MISTCALLER_ENCOUNTER_ID then
+        return;
+    end
+
+    inEncounter = inFight;
+    bossKilled  = killed;
+
+    UpdateUsedMarkers();
+    ResetAll();
+    UpdateShown();
+end
+
+MazeHelper.frame.ResetAll    = ResetAll;
+MazeHelper.frame.UpdateShown = UpdateShown;
+
+MazeHelper.frame:RegisterEvent('ADDON_LOADED');
+MazeHelper.frame:SetScript('OnEvent', function(self, event, ...)
+    if self[event] then
+        return self[event](self, ...);
+    end
+end);
+
 function MazeHelper.frame:PLAYER_LOGIN()
+    wipe(VERSION_COLLECTOR_TABLE);
+    newVersionNotified = false;
+
     if MHMOTSConfig.SavedPosition and #MHMOTSConfig.SavedPosition > 1 then
         self:ClearAllPoints();
         PixelUtil.SetPoint(self, MHMOTSConfig.SavedPosition[1], UIParent, MHMOTSConfig.SavedPosition[3], MHMOTSConfig.SavedPosition[4], MHMOTSConfig.SavedPosition[5]);
@@ -1511,19 +1532,6 @@ function MazeHelper.frame:ZONE_CHANGED_NEW_AREA()
     UpdateShown();
 end
 
-local function UpdateBossState(encounterID, inFight, killed)
-    if encounterID ~= MISTCALLER_ENCOUNTER_ID then
-        return;
-    end
-
-    inEncounter = inFight;
-    bossKilled  = killed;
-
-    UpdateUsedMarkers();
-    ResetAll();
-    UpdateShown();
-end
-
 function MazeHelper.frame:ENCOUNTER_START(encounterID)
     UpdateBossState(encounterID, true, false);
 end
@@ -1536,35 +1544,88 @@ function MazeHelper.frame:BOSS_KILL(encounterID)
     UpdateBossState(encounterID, false, true);
 end
 
+function MazeHelper.frame:NAME_PLATE_UNIT_ADDED(unit)
+    if not inEncounter then
+        return;
+    end
+
+    local npcId = select(6, strsplit('-', UnitGUID(unit)));
+    npcId = tonumber(npcId);
+
+    if not npcId or npcId ~= ILLUSIONARY_CLONE_ID then
+        return;
+    end
+
+    if not GetRaidTargetIndex(unit) then
+        local index = GetFreeMarkerIndex();
+        if index then
+            SetRaidTarget(unit, index);
+            SetUnfreeMarkerIndex(index);
+            nameplatesMarkers[unit] = index;
+        end
+    end
+end
+
+function MazeHelper.frame:NAME_PLATE_UNIT_REMOVED(unit)
+    if not inEncounter then
+        return;
+    end
+
+    if not nameplatesMarkers[unit] then
+        return;
+    end
+
+    SetFreeMarkerIndex(nameplatesMarkers[unit]);
+end
+
+function MazeHelper.frame:GROUP_ROSTER_UPDATE()
+    if newVersionNotified then
+        return;
+    end
+
+    MazeHelper:RequestVersionCheck();
+end
+
 function MazeHelper.frame:CHAT_MSG_ADDON(prefix, message, _, sender)
     if sender == playerNameWithRealm then
         return;
     end
 
     if prefix == ADDON_COMM_PREFIX then
-        local p, buttonID, mode = strsplit('|', message);
-        if p == 'SendButtonID'  then
-            if mode == 'ACTIVE' then
-                MazeHelper:ReceiveActiveButtonID(tonumber(buttonID), sender);
-            elseif mode == 'UNACTIVE' then
-                MazeHelper:ReceiveUnactiveButtonID(tonumber(buttonID), sender);
-            end
-        elseif p == 'SendPassed' then
-            MazeHelper:ReceivePassedCommand(tonumber(buttonID));
+        local command, arg1, arg2 = strsplit('|', message);
 
-            if MHMOTSConfig.PrintResettedPlayerName then
-                print(string.format(L['PASSED_PLAYER'], sender));
-            end
-        elseif p == 'SendReset' then
-            MazeHelper:ReceiveResetCommand();
+        if MHMOTSConfig.SyncEnabled then
+            if command == 'SendButtonID'  then
+                local buttonId, buttonMode = arg1, arg2;
 
-            if MHMOTSConfig.PrintResettedPlayerName then
-                print(string.format(L['RESETED_PLAYER'], sender));
+                if buttonMode == 'ACTIVE' then
+                    MazeHelper:ReceiveActiveButtonID(tonumber(buttonId), sender);
+                elseif buttonMode == 'UNACTIVE' then
+                    MazeHelper:ReceiveUnactiveButtonID(tonumber(buttonId), sender);
+                end
+            elseif command == 'SendPassed' then
+                MazeHelper:ReceivePassedCommand(tonumber(arg1));
+
+                if MHMOTSConfig.PrintResettedPlayerName then
+                    print(string.format(L['PASSED_PLAYER'], sender));
+                end
+            elseif command == 'SendReset' then
+                MazeHelper:ReceiveResetCommand();
+
+                if MHMOTSConfig.PrintResettedPlayerName then
+                    print(string.format(L['RESETED_PLAYER'], sender));
+                end
+            elseif command == 'REQPC' then
+                MazeHelper:SendPassedCounter();
+            elseif command == 'RECPC' then
+                MazeHelper:ReceivePassedCounter(tonumber(arg1));
             end
-        elseif p == 'REQPC' then
-            MazeHelper:SendPassedCounter();
-        elseif p == 'RECPC' then
-            MazeHelper:ReceivePassedCounter(tonumber(buttonID));
+        end
+
+        if command == 'CHECKVERSION' then
+            MazeHelper:SendCurrentVersion();
+        elseif command == 'SENDVERSION' then
+            MazeHelper:ReceiveVersion(arg1);
         end
     end
 end
@@ -1651,10 +1712,8 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     self:RegisterEvent('PLAYER_LOGIN');
     self:RegisterEvent('PLAYER_ENTERING_WORLD');
     self:RegisterEvent('PLAYER_SPECIALIZATION_CHANGED');
-
-    if MHMOTSConfig.SyncEnabled then
-        self:RegisterEvent('CHAT_MSG_ADDON');
-    end
+    self:RegisterEvent('CHAT_MSG_ADDON');
+    self:RegisterEvent('GROUP_ROSTER_UPDATE');
 
     _G['SLASH_MAZEHELPER1'] = '/mh';
     SlashCmdList['MAZEHELPER'] = function(input)
