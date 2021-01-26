@@ -6,6 +6,7 @@ local Version = GetAddOnMetadata(ADDON_NAME, 'Version');
 local tonumber = tonumber;
 
 -- WoW API
+local SendAddonMessage = C_ChatInfo.SendAddonMessage;
 local IsInRaid, IsInGroup, UnitIsGroupLeader, GetMinimapZoneText = IsInRaid, IsInGroup, UnitIsGroupLeader, GetMinimapZoneText;
 
 local ADDON_COMM_PREFIX = 'MAZEHELPER';
@@ -1228,7 +1229,7 @@ function MazeHelper:SendResetCommand()
         return;
     end
 
-    C_ChatInfo.SendAddonMessage(ADDON_COMM_PREFIX, 'SendReset', partyChatType);
+    SendAddonMessage(ADDON_COMM_PREFIX, 'SendReset', partyChatType);
 end
 
 function MazeHelper:SendPassedCommand(step)
@@ -1241,7 +1242,7 @@ function MazeHelper:SendPassedCommand(step)
         return;
     end
 
-    C_ChatInfo.SendAddonMessage(ADDON_COMM_PREFIX, string.format('SendPassed|%s', step), partyChatType);
+    SendAddonMessage(ADDON_COMM_PREFIX, string.format('SendPassed|%s', step), partyChatType);
 end
 
 function MazeHelper:SendPassedCounter()
@@ -1254,7 +1255,7 @@ function MazeHelper:SendPassedCounter()
         return;
     end
 
-    C_ChatInfo.SendAddonMessage(ADDON_COMM_PREFIX, string.format('RECPC|%s', PASSED_COUNTER), partyChatType);
+    SendAddonMessage(ADDON_COMM_PREFIX, string.format('RECPC|%s', PASSED_COUNTER), partyChatType);
 end
 
 function MazeHelper:RequestPassedCounter()
@@ -1267,7 +1268,7 @@ function MazeHelper:RequestPassedCounter()
         return;
     end
 
-    C_ChatInfo.SendAddonMessage(ADDON_COMM_PREFIX, 'REQPC', partyChatType);
+    SendAddonMessage(ADDON_COMM_PREFIX, 'REQPC', partyChatType);
 end
 
 function MazeHelper:SendButtonID(buttonID, mode)
@@ -1280,7 +1281,7 @@ function MazeHelper:SendButtonID(buttonID, mode)
         return;
     end
 
-    C_ChatInfo.SendAddonMessage(ADDON_COMM_PREFIX, string.format('SendButtonID|%s|%s', buttonID, mode), partyChatType);
+    SendAddonMessage(ADDON_COMM_PREFIX, string.format('SendButtonID|%s|%s', buttonID, mode), partyChatType);
 end
 
 function MazeHelper:ReceiveResetCommand()
@@ -1324,21 +1325,21 @@ end
 
 function MazeHelper:RequestVersionCheck(onlyGroupChannel)
     if onlyGroupChannel then
-        local groupType = (IsInGroup(LE_PARTY_CATEGORY_INSTANCE) and 3) or (IsInRaid() and 2) or (IsInGroup() and 1);
+        local groupType = (IsInGroup(LE_PARTY_CATEGORY_INSTANCE) and 3) or (IsInRaid() and 2) or (IsInGroup(LE_PARTY_CATEGORY_HOME) and 1);
         if groupType then
-            C_ChatInfo.SendAddonMessage(ADDON_COMM_PREFIX, 'CHECKVERSION', groupType == 3 and 'INSTANCE_CHAT' or groupType == 2 and 'RAID' or 'PARTY');
+            SendAddonMessage(ADDON_COMM_PREFIX, 'CHECKVERSION', groupType == 3 and 'INSTANCE_CHAT' or groupType == 2 and 'RAID' or 'PARTY');
         end
 
         return;
     end
 
     if IsInGuild() then
-        C_ChatInfo.SendAddonMessage(ADDON_COMM_PREFIX, 'CHECKVERSION', 'GUILD');
+        SendAddonMessage(ADDON_COMM_PREFIX, 'CHECKVERSION', 'GUILD');
     end
 end
 
 function MazeHelper:SendCurrentVersion(channel)
-    C_ChatInfo.SendAddonMessage(ADDON_COMM_PREFIX, string.format('%s|%s', 'SENDVERSION', Version), channel);
+    SendAddonMessage(ADDON_COMM_PREFIX, string.format('%s|%s', 'SENDVERSION', Version), channel);
 end
 
 function MazeHelper:ReceiveVersion(version)
@@ -1361,6 +1362,7 @@ function MazeHelper:ReceiveVersion(version)
     if VERSION_COLLECTOR_TABLE[1] and tonumber(VERSION_COLLECTOR_TABLE[1]) > tonumber(Version) then
         MazeHelper.frame:UnregisterEvent('GROUP_ROSTER_UPDATE');
         MazeHelper.frame:UnregisterEvent('GUILD_ROSTER_UPDATE');
+
         print(L['NEW_VERSION_AVAILABLE']);
     end
 end
