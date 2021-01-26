@@ -441,9 +441,6 @@ end
 
 if gameLocale == 'esMX' then -- Latin American Spanish
     L['ZONE_NAME'] = 'Espesura Veloniebla';
-    -- L['RESET'] = 'Reiniciar';
-    -- L['SETTINGS_AA_TANK'] = 'Tanque';
-    -- L['SETTINGS_AA_HEALER'] = 'Sanador';
 
     return;
 end
