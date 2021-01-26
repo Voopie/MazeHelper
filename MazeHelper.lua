@@ -1322,22 +1322,23 @@ function MazeHelper:ReceiveUnactiveButtonID(buttonID, sender)
     Button_SetUnactive(buttons[buttonID], false, sender);
 end
 
-function MazeHelper:RequestVersionCheck()
-    local partyChatType = GetPartyChatType();
-    if not partyChatType then
+function MazeHelper:RequestVersionCheck(onlyGroupChannel)
+    if onlyGroupChannel then
+        local groupType = (IsInGroup(LE_PARTY_CATEGORY_INSTANCE) and 3) or (IsInRaid() and 2) or (IsInGroup() and 1);
+        if groupType then
+            C_ChatInfo.SendAddonMessage(ADDON_COMM_PREFIX, 'CHECKVERSION', groupType == 3 and 'INSTANCE_CHAT' or groupType == 2 and 'RAID' or 'PARTY');
+        end
+
         return;
     end
 
-    C_ChatInfo.SendAddonMessage(ADDON_COMM_PREFIX, 'CHECKVERSION', partyChatType);
+    if IsInGuild() then
+        C_ChatInfo.SendAddonMessage(ADDON_COMM_PREFIX, 'CHECKVERSION', 'GUILD');
+    end
 end
 
-function MazeHelper:SendCurrentVersion()
-    local partyChatType = GetPartyChatType();
-    if not partyChatType then
-        return;
-    end
-
-    C_ChatInfo.SendAddonMessage(ADDON_COMM_PREFIX, string.format('%s|%s', 'SENDVERSION', Version), partyChatType);
+function MazeHelper:SendCurrentVersion(channel)
+    C_ChatInfo.SendAddonMessage(ADDON_COMM_PREFIX, string.format('%s|%s', 'SENDVERSION', Version), channel);
 end
 
 function MazeHelper:ReceiveVersion(version)
@@ -1359,6 +1360,7 @@ function MazeHelper:ReceiveVersion(version)
 
     if VERSION_COLLECTOR_TABLE[1] and tonumber(VERSION_COLLECTOR_TABLE[1]) > tonumber(Version) then
         MazeHelper.frame:UnregisterEvent('GROUP_ROSTER_UPDATE');
+        MazeHelper.frame:UnregisterEvent('GUILD_ROSTER_UPDATE');
         print(L['NEW_VERSION_AVAILABLE']);
     end
 end
@@ -1510,6 +1512,8 @@ function MazeHelper.frame:PLAYER_LOGIN()
 	end
 
     UpdateState(self);
+
+    MazeHelper:RequestVersionCheck();
 end
 
 function MazeHelper.frame:PLAYER_ENTERING_WORLD()
@@ -1576,10 +1580,14 @@ function MazeHelper.frame:NAME_PLATE_UNIT_REMOVED(unit)
 end
 
 function MazeHelper.frame:GROUP_ROSTER_UPDATE()
+    MazeHelper:RequestVersionCheck(true);
+end
+
+function MazeHelper.frame:GUILD_ROSTER_UPDATE()
     MazeHelper:RequestVersionCheck();
 end
 
-function MazeHelper.frame:CHAT_MSG_ADDON(prefix, message, _, sender)
+function MazeHelper.frame:CHAT_MSG_ADDON(prefix, message, channel, sender)
     if sender == playerNameWithRealm then
         return;
     end
@@ -1616,7 +1624,7 @@ function MazeHelper.frame:CHAT_MSG_ADDON(prefix, message, _, sender)
         end
 
         if command == 'CHECKVERSION' then
-            MazeHelper:SendCurrentVersion();
+            MazeHelper:SendCurrentVersion(channel);
         elseif command == 'SENDVERSION' then
             MazeHelper:ReceiveVersion(arg1);
         end
@@ -1707,6 +1715,7 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     self:RegisterEvent('PLAYER_SPECIALIZATION_CHANGED');
     self:RegisterEvent('CHAT_MSG_ADDON');
     self:RegisterEvent('GROUP_ROSTER_UPDATE');
+    self:RegisterEvent('GUILD_ROSTER_UPDATE');
 
     _G['SLASH_MAZEHELPER1'] = '/mh';
     SlashCmdList['MAZEHELPER'] = function(input)
