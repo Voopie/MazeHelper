@@ -1498,7 +1498,6 @@ MazeHelper.frame:SetScript('OnEvent', function(self, event, ...)
 end);
 
 function MazeHelper.frame:PLAYER_LOGIN()
-    wipe(VERSION_COLLECTOR_TABLE);
     newVersionNotified = false;
 
     if MHMOTSConfig.SavedPosition and #MHMOTSConfig.SavedPosition > 1 then
