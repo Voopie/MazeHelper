@@ -855,7 +855,11 @@ local function Button_SetUnactive(button, send, sender)
 
         for i = 1, MAX_BUTTONS do
             if buttons[i].state then
-                buttons[i]:SetActive();
+                if buttons[i].sender then
+                    buttons[i]:SetReceived();
+                else
+                    buttons[i]:SetActive();
+                end
             end
         end
 
