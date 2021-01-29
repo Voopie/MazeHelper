@@ -13,7 +13,6 @@ MazeHelper.L = {};
 local L = MazeHelper.L;
 
 -- Common
-L['EXCLAMATION_MARK'] = '|TInterface\\OptionsFrame\\UI-OptionsFrame-NewFeatureIcon:0:0:0:0|t ';
 L['SOLUTION'] = '|cff33cc66%s|r';
 L['ANNOUNCE_SOLUTION'] = '%s';
 L['ANNOUNCE_SOLUTION_WITH_ENGLISH'] = '%s / %s';
@@ -79,6 +78,8 @@ L['SETTINGS_USE_CLONE_AUTOMARKER_LABEL'] = 'Auto marker';
 L['SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = 'Automatically put markers on Illusionary Clones in a boss fight';
 L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL'] = 'Duplicate solution in English';
 L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP'] = 'Send the solution to the chat along with English phrases, for example, «Empty flower without a circle / Empty flower without a circle»|n|n|cffff6a00Ha-ha! Nevermind, it\'s only for non enUS/enGB locales|r';
+L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_LABEL'] = 'Set marker on player';
+L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_TOOLTIP'] = 'Automatically set green marker on player if he clicked on symbol that became the solution';
 L['PRACTICE_TITLE'] = 'Select a symbol that differs in one way from the others';
 L['PRACTICE_PLAY_AGAIN'] = 'Play again';
 L['PRACTICE_BUTTON_TOOLTIP'] = 'Practice';
@@ -135,6 +136,8 @@ if gameLocale == 'ruRU' then
     L['SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = 'Автоматически ставить метки на Иллюзорных клонов в бою с боссом';
     L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL'] = 'Дублировать решение на английском';
     L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP'] = 'Отправлять решение в чат вместе английскими фразами, например, «Пустой цветок без круга / Empty flower without a circle»';
+    L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_LABEL'] = 'Ставить метку на игрока';
+    L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_TOOLTIP'] = 'Автоматически ставить метку на игрока, если он кликнул по символу, который стал решением';
     L['PRACTICE_TITLE'] = 'Выберите символ, отличающийся чем-то одним от других';
     L['PRACTICE_PLAY_AGAIN'] = 'Сыграть ещё';
     L['PRACTICE_BUTTON_TOOLTIP'] = 'Практика';

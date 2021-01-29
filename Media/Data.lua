@@ -11,6 +11,8 @@ M.INLINE_TANK_ICON     = _G.INLINE_TANK_ICON;
 M.INLINE_HEALER_ICON   = _G.INLINE_HEALER_ICON;
 M.INLINE_INFINITY_ICON = '|T' .. MEDIA_PATH .. 'icons32.blp:14:14:0:0:128:128:64:96:32:64|t';
 M.INLINE_ENTRANCE_ICON = '|T' .. MEDIA_PATH .. 'icons32.blp:12:12:-1:1:128:128:96:128:32:64|t';
+M.INLINE_NEW_ICON      = '|T' .. MEDIA_PATH .. 'icons32.blp:16:16:0:0:128:128:64:96:96:128|t ';
+M.INLINE_EXCLAMATION_MARK = '|TInterface\\OptionsFrame\\UI-OptionsFrame-NewFeatureIcon:0:0:0:0|t ';
 
 M.BACKGROUND_WHITE = MEDIA_PATH .. 'background-white.blp';
 M.SLIDER_BORDER    = MEDIA_PATH .. 'slider-border.blp';
@@ -38,6 +40,7 @@ M.Icons = {
         MUSIC_NOTE       = {  0, 1/4, 2/4, 3/4},
         MAZE_BRAIN       = {1/4, 2/4, 2/4, 3/4},
         CROSS_THIN_WHITE = {2/4, 3/4, 2/4, 3/4},
+        NEW              = {2/4, 3/4, 3/4, 4/4},
 
         CHECKBUTTON_CHECKED = {  0, 1/4, 1/4, 2/4},
         CHECKBUTTON_NORMAL  = {1/4, 2/4, 1/4, 2/4},

@@ -60,6 +60,8 @@ local MARKER_UNITS = {
     'boss1',
 };
 
+local SOLUTION_PLAYER_MARKER = 4;
+
 local PASSED_COUNTER = 1;
 local SOLUTION_BUTTON_ID;
 local PREDICTED_SOLUTION_BUTTON_ID;
@@ -468,6 +470,12 @@ local function ResetAll()
     MazeHelper.frame.PassedCounter:SetShown(true);
 
     MazeHelper.frame.ResetButton:SetEnabled(false);
+
+    if MHMOTSConfig.SetMarkerSolutionPlayer then
+        if GetRaidTargetIndex(PLAYER_STRING) == SOLUTION_PLAYER_MARKER then
+            SetRaidTarget(PLAYER_STRING, 0);
+        end
+    end
 end
 
 MazeHelper.frame.BottomButtonsHolder = CreateFrame('Frame', nil, MazeHelper.frame.MainHolder);
@@ -628,8 +636,22 @@ settingsScrollChild.Data.ShowLargeSymbol:SetScript('OnClick', function(self)
     end
 end);
 
+settingsScrollChild.Data.SetMarkerSolutionPlayer = E.CreateRoundedCheckButton(settingsScrollChild);
+settingsScrollChild.Data.SetMarkerSolutionPlayer:SetPosition('TOPLEFT', settingsScrollChild.Data.ShowLargeSymbol, 'BOTTOMLEFT', 0, 0);
+settingsScrollChild.Data.SetMarkerSolutionPlayer:SetLabel(M.INLINE_NEW_ICON .. L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_LABEL']);
+settingsScrollChild.Data.SetMarkerSolutionPlayer:SetTooltip(L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_TOOLTIP']);
+settingsScrollChild.Data.SetMarkerSolutionPlayer:SetScript('OnClick', function(self)
+    MHMOTSConfig.SetMarkerSolutionPlayer = self:GetChecked();
+
+    if not MHMOTSConfig.SetMarkerSolutionPlayer then
+        if GetRaidTargetIndex(PLAYER_STRING) == SOLUTION_PLAYER_MARKER then
+            SetRaidTarget(PLAYER_STRING, 0);
+        end
+    end
+end);
+
 settingsScrollChild.Data.UseCloneAutoMarker = E.CreateRoundedCheckButton(settingsScrollChild);
-settingsScrollChild.Data.UseCloneAutoMarker:SetPosition('TOPLEFT', settingsScrollChild.Data.ShowLargeSymbol, 'BOTTOMLEFT', 0, 0);
+settingsScrollChild.Data.UseCloneAutoMarker:SetPosition('TOPLEFT', settingsScrollChild.Data.SetMarkerSolutionPlayer, 'BOTTOMLEFT', 0, 0);
 settingsScrollChild.Data.UseCloneAutoMarker:SetLabel(L['SETTINGS_USE_CLONE_AUTOMARKER_LABEL']);
 settingsScrollChild.Data.UseCloneAutoMarker:SetTooltip(L['SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP']);
 settingsScrollChild.Data.UseCloneAutoMarker:SetScript('OnClick', function(self)
@@ -681,7 +703,7 @@ end);
 
 settingsScrollChild.Data.AnnounceWithEnglish = E.CreateRoundedCheckButton(settingsScrollChild);
 settingsScrollChild.Data.AnnounceWithEnglish:SetPosition('TOPLEFT', settingsScrollChild.Data.ShowSequenceNumbers, 'BOTTOMLEFT', 0, 0);
-settingsScrollChild.Data.AnnounceWithEnglish:SetLabel(L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL']);
+settingsScrollChild.Data.AnnounceWithEnglish:SetLabel(M.INLINE_NEW_ICON .. L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL']);
 settingsScrollChild.Data.AnnounceWithEnglish:SetTooltip(L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP']);
 settingsScrollChild.Data.AnnounceWithEnglish:SetScript('OnClick', function(self)
     MHMOTSConfig.AnnounceWithEnglish = self:GetChecked();
@@ -830,6 +852,14 @@ local function Button_SetActive(button, send, sender)
     end
 
     MazeHelper:UpdateSolution();
+
+    if MHMOTSConfig.SetMarkerSolutionPlayer then
+        if not inEncounter and not sender and SOLUTION_BUTTON_ID and not PREDICTED_SOLUTION_BUTTON_ID and button.id == SOLUTION_BUTTON_ID then
+            if GetRaidTargetIndex(PLAYER_STRING) ~= SOLUTION_PLAYER_MARKER then
+                SetRaidTarget(PLAYER_STRING, SOLUTION_PLAYER_MARKER);
+            end
+        end
+    end
 end
 
 -- send & sender can be nil
@@ -866,6 +896,14 @@ local function Button_SetUnactive(button, send, sender)
         MazeHelper.frame.PassedButton:SetEnabled(false);
         MazeHelper.frame.AnnounceButton:SetShown(false);
         MazeHelper.frame.AnnounceButton.clicked = false;
+
+        if MHMOTSConfig.SetMarkerSolutionPlayer then
+            if not inEncounter and not sender and SOLUTION_BUTTON_ID and not PREDICTED_SOLUTION_BUTTON_ID and button.id == SOLUTION_BUTTON_ID then
+                if GetRaidTargetIndex(PLAYER_STRING) == SOLUTION_PLAYER_MARKER then
+                    SetRaidTarget(PLAYER_STRING, 0);
+                end
+            end
+        end
 
         MazeHelper:UpdateSolution();
     end
@@ -1671,6 +1709,7 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     MHMOTSConfig.ShowLargeSymbol         = MHMOTSConfig.ShowLargeSymbol == nil and true or MHMOTSConfig.ShowLargeSymbol;
     MHMOTSConfig.UseCloneAutoMarker      = MHMOTSConfig.UseCloneAutoMarker == nil and true or MHMOTSConfig.UseCloneAutoMarker;
     MHMOTSConfig.AnnounceWithEnglish     = MHMOTSConfig.AnnounceWithEnglish == nil and true or MHMOTSConfig.AnnounceWithEnglish;
+    MHMOTSConfig.SetMarkerSolutionPlayer = MHMOTSConfig.SetMarkerSolutionPlayer == nil and true or MHMOTSConfig.SetMarkerSolutionPlayer;
 
     MHMOTSConfig.AutoAnnouncer              = MHMOTSConfig.AutoAnnouncer == nil and false or MHMOTSConfig.AutoAnnouncer;
     MHMOTSConfig.AutoAnnouncerAsPartyLeader = MHMOTSConfig.AutoAnnouncerAsPartyLeader == nil and true or MHMOTSConfig.AutoAnnouncerAsPartyLeader;
@@ -1690,6 +1729,7 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     settingsScrollChild.Data.StartInMinMode:SetChecked(MHMOTSConfig.StartInMinMode);
     settingsScrollChild.Data.UseCloneAutoMarker:SetChecked(MHMOTSConfig.UseCloneAutoMarker);
     settingsScrollChild.Data.AnnounceWithEnglish:SetChecked(MHMOTSConfig.AnnounceWithEnglish);
+    settingsScrollChild.Data.SetMarkerSolutionPlayer:SetChecked(MHMOTSConfig.SetMarkerSolutionPlayer);
 
     settingsScrollChild.Data.AutoAnnouncer:SetChecked(MHMOTSConfig.AutoAnnouncer);
     settingsScrollChild.Data.AutoAnnouncerAsPartyLeader:SetChecked(MHMOTSConfig.AutoAnnouncerAsPartyLeader);
