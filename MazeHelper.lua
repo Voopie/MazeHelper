@@ -13,6 +13,7 @@ local ADDON_COMM_PREFIX = 'MAZEHELPER';
 C_ChatInfo.RegisterAddonMessagePrefix(ADDON_COMM_PREFIX);
 
 local VERSION_COLLECTOR_TABLE = {};
+local newVersionNotified = false;
 
 local playerNameWithRealm, playerRole, inInstance, bossKilled, inEncounter, isMinimized;
 local startedInMinMode = false;
@@ -1324,12 +1325,12 @@ function MazeHelper:ReceiveUnactiveButtonID(buttonID, sender)
 end
 
 function MazeHelper:RequestVersionCheck(onlyGroupChannel)
-    if onlyGroupChannel then
-        local groupType = (IsInGroup(LE_PARTY_CATEGORY_INSTANCE) and 3) or (IsInRaid() and 2) or (IsInGroup(LE_PARTY_CATEGORY_HOME) and 1);
-        if groupType then
-            SendAddonMessage(ADDON_COMM_PREFIX, 'CHECKVERSION', groupType == 3 and 'INSTANCE_CHAT' or groupType == 2 and 'RAID' or 'PARTY');
-        end
+    local groupType = (IsInGroup(LE_PARTY_CATEGORY_INSTANCE) and 3) or (IsInRaid() and 2) or (IsInGroup(LE_PARTY_CATEGORY_HOME) and 1);
+    if groupType then
+        SendAddonMessage(ADDON_COMM_PREFIX, 'CHECKVERSION', groupType == 3 and 'INSTANCE_CHAT' or groupType == 2 and 'RAID' or 'PARTY');
+    end
 
+    if onlyGroupChannel then
         return;
     end
 
@@ -1359,7 +1360,9 @@ function MazeHelper:ReceiveVersion(version)
         end
     end);
 
-    if VERSION_COLLECTOR_TABLE[1] and tonumber(VERSION_COLLECTOR_TABLE[1]) > tonumber(Version) then
+    if VERSION_COLLECTOR_TABLE[1] and tonumber(VERSION_COLLECTOR_TABLE[1]) > tonumber(Version) and not newVersionNotified then
+        newVersionNotified = true;
+
         MazeHelper.frame:UnregisterEvent('GROUP_ROSTER_UPDATE');
         MazeHelper.frame:UnregisterEvent('GUILD_ROSTER_UPDATE');
 
@@ -1514,7 +1517,6 @@ function MazeHelper.frame:PLAYER_LOGIN()
 	end
 
     UpdateState(self);
-
     MazeHelper:RequestVersionCheck();
 end
 
