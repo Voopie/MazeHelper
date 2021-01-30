@@ -1709,7 +1709,7 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     MHMOTSConfig.ShowLargeSymbol         = MHMOTSConfig.ShowLargeSymbol == nil and true or MHMOTSConfig.ShowLargeSymbol;
     MHMOTSConfig.UseCloneAutoMarker      = MHMOTSConfig.UseCloneAutoMarker == nil and true or MHMOTSConfig.UseCloneAutoMarker;
     MHMOTSConfig.AnnounceWithEnglish     = MHMOTSConfig.AnnounceWithEnglish == nil and true or MHMOTSConfig.AnnounceWithEnglish;
-    MHMOTSConfig.SetMarkerSolutionPlayer = MHMOTSConfig.SetMarkerSolutionPlayer == nil and true or MHMOTSConfig.SetMarkerSolutionPlayer;
+    MHMOTSConfig.SetMarkerSolutionPlayer = MHMOTSConfig.SetMarkerSolutionPlayer == nil and false or MHMOTSConfig.SetMarkerSolutionPlayer;
 
     MHMOTSConfig.AutoAnnouncer              = MHMOTSConfig.AutoAnnouncer == nil and false or MHMOTSConfig.AutoAnnouncer;
     MHMOTSConfig.AutoAnnouncerAsPartyLeader = MHMOTSConfig.AutoAnnouncerAsPartyLeader == nil and true or MHMOTSConfig.AutoAnnouncerAsPartyLeader;
