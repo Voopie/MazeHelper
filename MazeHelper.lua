@@ -837,12 +837,7 @@ local function Button_SetActive(button, send, sender)
     button.state  = true;
     button.sender = sender;
 
-    if sender then
-        button:SetReceived();
-    else
-        button:SetActive();
-    end
-
+    button:UpdateBorder();
     button:UpdateSequence();
 
     MazeHelper.frame.SolutionText:SetText(L['CHOOSE_SYMBOLS_' .. (MAX_ACTIVE_BUTTONS - NUM_ACTIVE_BUTTONS)]);
@@ -884,13 +879,7 @@ local function Button_SetUnactive(button, send, sender)
         end
 
         for i = 1, MAX_BUTTONS do
-            if buttons[i].state then
-                if buttons[i].sender then
-                    buttons[i]:SetReceived();
-                else
-                    buttons[i]:SetActive();
-                end
-            end
+            buttons[i]:UpdateBorder();
         end
 
         MazeHelper.frame.PassedButton:SetEnabled(false);
@@ -1332,6 +1321,7 @@ function MazeHelper:ReceivePassedCommand(step)
 
     MazeHelper.frame.PassedCounter.Text:SetText(PASSED_COUNTER);
     PixelUtil.SetPoint(MazeHelper.frame.PassedCounter.Text, 'CENTER', MazeHelper.frame.PassedCounter, 'CENTER', (PASSED_COUNTER == 1) and -2 or 0, isMinimized and 0 or -1);
+
     ResetAll();
 end
 
