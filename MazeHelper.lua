@@ -978,6 +978,18 @@ function MazeHelper:CreateButton(index)
         self:SetBackdropBorderColor(1, 0.9, 0.71, 1);
     end
 
+    button.UpdateBorder = function(self)
+        if self.state then
+            if self.sender then
+                self:SetReceived();
+            else
+                self:SetActive();
+            end
+        else
+            self:SetUnactive();
+        end
+    end
+
     button.UpdateSequence = function(self)
         self.sequence = GetMinimumReservedSequence();
         RESERVED_BUTTONS_SEQUENCE[self.sequence] = true;
@@ -1173,15 +1185,7 @@ function MazeHelper:UpdateSolution()
 
     if NUM_ACTIVE_BUTTONS == MAX_ACTIVE_BUTTONS then
         if PREDICTED_SOLUTION_BUTTON_ID then
-            if buttons[PREDICTED_SOLUTION_BUTTON_ID].state then
-                if buttons[PREDICTED_SOLUTION_BUTTON_ID].sender then
-                    buttons[PREDICTED_SOLUTION_BUTTON_ID]:SetReceived();
-                else
-                    buttons[PREDICTED_SOLUTION_BUTTON_ID]:SetActive();
-                end
-            else
-                buttons[PREDICTED_SOLUTION_BUTTON_ID]:SetUnactive();
-            end
+            buttons[PREDICTED_SOLUTION_BUTTON_ID]:UpdateBorder();
 
             PREDICTED_SOLUTION_BUTTON_ID = nil;
         end
@@ -1246,15 +1250,7 @@ function MazeHelper:UpdateSolution()
 
         if NUM_ACTIVE_BUTTONS == MAX_ACTIVE_BUTTONS then
             for i = 1, MAX_BUTTONS do
-                if buttons[i].state then
-                    if buttons[i].sender then
-                        buttons[i]:SetReceived();
-                    else
-                        buttons[i]:SetActive();
-                    end
-                else
-                    buttons[i]:SetUnactive();
-                end
+                buttons[i]:UpdateBorder();
             end
 
             MazeHelper.frame.SolutionText:SetText(L['SOLUTION_NA']);
