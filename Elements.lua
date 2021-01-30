@@ -16,6 +16,8 @@ E.CreateRoundedCheckButton = function(parent)
 
     b.Label = b:CreateFontString(nil, 'ARTWORK', 'GameFontNormal');
     PixelUtil.SetPoint(b.Label, 'LEFT', b, 'RIGHT', 6, 0);
+    PixelUtil.SetSize(b.Label, 238, 12);
+    b.Label:SetJustifyH('LEFT');
 
     b.SetLabel = function(self, label)
         self.Label:SetText(label);
