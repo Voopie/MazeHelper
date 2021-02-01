@@ -691,7 +691,7 @@ end);
 
 settingsScrollChild.Data.AnnounceWithEnglish = E.CreateRoundedCheckButton(settingsScrollChild);
 settingsScrollChild.Data.AnnounceWithEnglish:SetPosition('TOPLEFT', settingsScrollChild.Data.ShowSequenceNumbers, 'BOTTOMLEFT', 0, 0);
-settingsScrollChild.Data.AnnounceWithEnglish:SetLabel(M.INLINE_NEW_ICON .. L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL']);
+settingsScrollChild.Data.AnnounceWithEnglish:SetLabel(L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL']);
 settingsScrollChild.Data.AnnounceWithEnglish:SetTooltip(L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP']);
 settingsScrollChild.Data.AnnounceWithEnglish:SetScript('OnClick', function(self)
     MHMOTSConfig.AnnounceWithEnglish = self:GetChecked();
@@ -811,7 +811,7 @@ end
 settingsScrollChild.Data.SavedBackgroundAlpha = E.CreateSlider('Scale', settingsScrollChild);
 settingsScrollChild.Data.SavedBackgroundAlpha:SetPosition('TOPLEFT', settingsScrollChild.Data.ScaleLargeSymbol, 'BOTTOMLEFT', 0, -42);
 PixelUtil.SetWidth(settingsScrollChild.Data.SavedBackgroundAlpha, FRAME_SIZE + X_OFFSET * (MAX_ACTIVE_BUTTONS - 1) - 50);
-settingsScrollChild.Data.SavedBackgroundAlpha:SetLabel(L['SETTINGS_ALPHA_BACKGROUND_LABEL']);
+settingsScrollChild.Data.SavedBackgroundAlpha:SetLabel(M.INLINE_NEW_ICON .. L['SETTINGS_ALPHA_BACKGROUND_LABEL']);
 settingsScrollChild.Data.SavedBackgroundAlpha:SetTooltip(L['SETTINGS_ALPHA_BACKGROUND_TOOLTIP']);
 settingsScrollChild.Data.SavedBackgroundAlpha.OnValueChangedCallback = function(_, value)
     MHMOTSConfig.SavedBackgroundAlpha = tonumber(value);
@@ -821,7 +821,7 @@ end
 settingsScrollChild.Data.SavedBackgroundAlphaLargeSymbol = E.CreateSlider('Scale', settingsScrollChild);
 settingsScrollChild.Data.SavedBackgroundAlphaLargeSymbol:SetPosition('TOPLEFT', settingsScrollChild.Data.SavedBackgroundAlpha, 'BOTTOMLEFT', 0, -42);
 PixelUtil.SetWidth(settingsScrollChild.Data.SavedBackgroundAlphaLargeSymbol, FRAME_SIZE + X_OFFSET * (MAX_ACTIVE_BUTTONS - 1) - 50);
-settingsScrollChild.Data.SavedBackgroundAlphaLargeSymbol:SetLabel(L['SETTINGS_ALPHA_BACKGROUND_LARGE_SYMBOL_LABEL']);
+settingsScrollChild.Data.SavedBackgroundAlphaLargeSymbol:SetLabel(M.INLINE_NEW_ICON .. L['SETTINGS_ALPHA_BACKGROUND_LARGE_SYMBOL_LABEL']);
 settingsScrollChild.Data.SavedBackgroundAlphaLargeSymbol:SetTooltip(L['SETTINGS_ALPHA_BACKGROUND_LARGE_SYMBOL_TOOLTIP']);
 settingsScrollChild.Data.SavedBackgroundAlphaLargeSymbol.OnValueChangedCallback = function(_, value)
     MHMOTSConfig.SavedBackgroundAlphaLargeSymbol = tonumber(value);
