@@ -1144,7 +1144,7 @@ local TryFullSolution do
         return fillSum, leafSum, circleSum;
     end
 
-    local function GetStagedSolution(kindSum, kind, sFoundCount, sButtonId)
+    local function GetStagedSolution(kindSum, kind, sButtonId, sFoundCount)
         for i = 1, MAX_BUTTONS do
             if buttons[i].state then
                 if (kindSum == 1 and buttons[i].data[kind]) or (kindSum == 3 and not buttons[i].data[kind]) then
@@ -1161,9 +1161,9 @@ local TryFullSolution do
         local sButtonId;
         local sFoundCount = 0;
 
-        sButtonId, sFoundCount = GetStagedSolution(fillSum, 'fill', sFoundCount, sButtonId);
-        sButtonId, sFoundCount = GetStagedSolution(leafSum, 'leaf', sFoundCount, sButtonId);
-        sButtonId, sFoundCount = GetStagedSolution(circleSum, 'circle', sFoundCount, sButtonId);
+        sButtonId, sFoundCount = GetStagedSolution(fillSum, 'fill', sButtonId, sFoundCount);
+        sButtonId, sFoundCount = GetStagedSolution(leafSum, 'leaf', sButtonId, sFoundCount);
+        sButtonId, sFoundCount = GetStagedSolution(circleSum, 'circle', sButtonId, sFoundCount);
 
         if sFoundCount > 1 then
             return;
