@@ -1,4 +1,4 @@
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/Voopie/MazeHelper?style=flat-square) ![GitHub issues](https://img.shields.io/github/issues/Voopie/MazeHelper?style=flat-square)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/Voopie/MazeHelper?style=flat-square)
 
 ## Maze Helper (Mists of Tirna Scithe)
 
