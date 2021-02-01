@@ -231,7 +231,6 @@ PixelUtil.SetPoint(MazeHelper.frame.background, 'TOPLEFT', MazeHelper.frame, 'TO
 PixelUtil.SetPoint(MazeHelper.frame.background, 'BOTTOMRIGHT', MazeHelper.frame, 'BOTTOMRIGHT', 15, -98);
 MazeHelper.frame.background:SetTexture(M.BACKGROUND_WHITE);
 MazeHelper.frame.background:SetVertexColor(0.05, 0.05, 0.05);
-MazeHelper.frame.background:SetAlpha(0.85);
 
 -- Close Button
 MazeHelper.frame.CloseButton = CreateFrame('Button', nil, MazeHelper.frame);
@@ -417,7 +416,6 @@ PixelUtil.SetPoint(MazeHelper.frame.LargeSymbol.Background, 'TOPLEFT', MazeHelpe
 PixelUtil.SetPoint(MazeHelper.frame.LargeSymbol.Background, 'BOTTOMRIGHT', MazeHelper.frame.LargeSymbol, 'BOTTOMRIGHT', 64, -64);
 MazeHelper.frame.LargeSymbol.Background:SetTexture(M.Rings.TEXTURE);
 MazeHelper.frame.LargeSymbol.Background:SetTexCoord(unpack(M.Rings.COORDS.GREEN));
-MazeHelper.frame.LargeSymbol.Background:SetAlpha(0.8);
 MazeHelper.frame.LargeSymbol:SetShown(false);
 MazeHelper.frame.LargeSymbol:HookScript('OnShow', function()
     PlaySoundFile(M.Sounds.Notification, 'SFX');
@@ -765,7 +763,7 @@ settingsScrollChild.Data.Scale:SetPosition('TOPLEFT', settingsScrollChild.Data.A
 PixelUtil.SetWidth(settingsScrollChild.Data.Scale, FRAME_SIZE + X_OFFSET * (MAX_ACTIVE_BUTTONS - 1) - 50);
 settingsScrollChild.Data.Scale:SetLabel(L['SETTINGS_SCALE_LABEL']);
 settingsScrollChild.Data.Scale:SetTooltip(L['SETTINGS_SCALE_TOOLTIP']);
-settingsScrollChild.Data.Scale.Callback = function(_, value)
+settingsScrollChild.Data.Scale.OnMouseUpCallback = function(_, value)
     MHMOTSConfig.SavedScale = tonumber(value);
 
     local point, relativeTo, relativePoint, xOfs, yOfs = MazeHelper.frame:GetPoint();
@@ -790,7 +788,7 @@ settingsScrollChild.Data.ScaleLargeSymbol:SetPosition('TOPLEFT', settingsScrollC
 PixelUtil.SetWidth(settingsScrollChild.Data.ScaleLargeSymbol, FRAME_SIZE + X_OFFSET * (MAX_ACTIVE_BUTTONS - 1) - 50);
 settingsScrollChild.Data.ScaleLargeSymbol:SetLabel(L['SETTINGS_SCALE_LARGE_SYMBOL_LABEL']);
 settingsScrollChild.Data.ScaleLargeSymbol:SetTooltip(L['SETTINGS_SCALE_LARGE_SYMBOL_TOOLTIP']);
-settingsScrollChild.Data.ScaleLargeSymbol.Callback = function(_, value)
+settingsScrollChild.Data.ScaleLargeSymbol.OnMouseUpCallback = function(_, value)
     MHMOTSConfig.SavedScaleLargeSymbol = tonumber(value);
 
     local point, relativeTo, relativePoint, xOfs, yOfs = MazeHelper.frame.LargeSymbol:GetPoint();
@@ -808,6 +806,26 @@ settingsScrollChild.Data.ScaleLargeSymbol.Callback = function(_, value)
     MazeHelper.frame.LargeSymbol:ClearAllPoints();
     PixelUtil.SetPoint(MazeHelper.frame.LargeSymbol, point, UIParent, relativePoint, xOfs / s, yOfs / s);
     MazeHelper.frame.LargeSymbol:SetUserPlaced(true);
+end
+
+settingsScrollChild.Data.SavedBackgroundAlpha = E.CreateSlider('Scale', settingsScrollChild);
+settingsScrollChild.Data.SavedBackgroundAlpha:SetPosition('TOPLEFT', settingsScrollChild.Data.ScaleLargeSymbol, 'BOTTOMLEFT', 0, -42);
+PixelUtil.SetWidth(settingsScrollChild.Data.SavedBackgroundAlpha, FRAME_SIZE + X_OFFSET * (MAX_ACTIVE_BUTTONS - 1) - 50);
+settingsScrollChild.Data.SavedBackgroundAlpha:SetLabel(L['SETTINGS_ALPHA_BACKGROUND_LABEL']);
+settingsScrollChild.Data.SavedBackgroundAlpha:SetTooltip(L['SETTINGS_ALPHA_BACKGROUND_TOOLTIP']);
+settingsScrollChild.Data.SavedBackgroundAlpha.OnValueChangedCallback = function(_, value)
+    MHMOTSConfig.SavedBackgroundAlpha = tonumber(value);
+    MazeHelper.frame.background:SetAlpha(MHMOTSConfig.SavedBackgroundAlpha);
+end
+
+settingsScrollChild.Data.SavedBackgroundAlphaLargeSymbol = E.CreateSlider('Scale', settingsScrollChild);
+settingsScrollChild.Data.SavedBackgroundAlphaLargeSymbol:SetPosition('TOPLEFT', settingsScrollChild.Data.SavedBackgroundAlpha, 'BOTTOMLEFT', 0, -42);
+PixelUtil.SetWidth(settingsScrollChild.Data.SavedBackgroundAlphaLargeSymbol, FRAME_SIZE + X_OFFSET * (MAX_ACTIVE_BUTTONS - 1) - 50);
+settingsScrollChild.Data.SavedBackgroundAlphaLargeSymbol:SetLabel(L['SETTINGS_ALPHA_BACKGROUND_LARGE_SYMBOL_LABEL']);
+settingsScrollChild.Data.SavedBackgroundAlphaLargeSymbol:SetTooltip(L['SETTINGS_ALPHA_BACKGROUND_LARGE_SYMBOL_TOOLTIP']);
+settingsScrollChild.Data.SavedBackgroundAlphaLargeSymbol.OnValueChangedCallback = function(_, value)
+    MHMOTSConfig.SavedBackgroundAlphaLargeSymbol = tonumber(value);
+    MazeHelper.frame.LargeSymbol.Background:SetAlpha(MHMOTSConfig.SavedBackgroundAlphaLargeSymbol);
 end
 
 MazeHelper.frame.Settings.VersionText = MazeHelper.frame.Settings:CreateFontString(nil, 'ARTWORK', 'GameFontDisable');
@@ -1670,10 +1688,12 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
 
     MHMOTSConfig = MHMOTSConfig or {};
 
-    MHMOTSConfig.SavedPosition            = MHMOTSConfig.SavedPosition or {};
-    MHMOTSConfig.SavedPositionLargeSymbol = MHMOTSConfig.SavedPositionLargeSymbol or {};
-    MHMOTSConfig.SavedScale               = MHMOTSConfig.SavedScale or 1;
-    MHMOTSConfig.SavedScaleLargeSymbol    = MHMOTSConfig.SavedScaleLargeSymbol or 1;
+    MHMOTSConfig.SavedPosition                   = MHMOTSConfig.SavedPosition or {};
+    MHMOTSConfig.SavedPositionLargeSymbol        = MHMOTSConfig.SavedPositionLargeSymbol or {};
+    MHMOTSConfig.SavedScale                      = MHMOTSConfig.SavedScale or 1;
+    MHMOTSConfig.SavedScaleLargeSymbol           = MHMOTSConfig.SavedScaleLargeSymbol or 1;
+    MHMOTSConfig.SavedBackgroundAlpha            = MHMOTSConfig.SavedBackgroundAlpha or 0.85;
+    MHMOTSConfig.SavedBackgroundAlphaLargeSymbol = MHMOTSConfig.SavedBackgroundAlphaLargeSymbol or 0.8;
 
     MHMOTSConfig.SyncEnabled             = MHMOTSConfig.SyncEnabled == nil and true or MHMOTSConfig.SyncEnabled;
     MHMOTSConfig.PredictSolution         = MHMOTSConfig.PredictSolution == nil and false or MHMOTSConfig.PredictSolution;
@@ -1726,6 +1746,12 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
 
     MazeHelper.frame:SetScale(MHMOTSConfig.SavedScale);
     MazeHelper.frame.LargeSymbol:SetScale(PixelUtil.GetPixelToUIUnitFactor() * MHMOTSConfig.SavedScaleLargeSymbol);
+
+    settingsScrollChild.Data.SavedBackgroundAlpha:SetValues(MHMOTSConfig.SavedBackgroundAlpha, 0.05, 1, 0.05);
+    settingsScrollChild.Data.SavedBackgroundAlphaLargeSymbol:SetValues(MHMOTSConfig.SavedBackgroundAlphaLargeSymbol, 0.05, 1, 0.05);
+
+    MazeHelper.frame.background:SetAlpha(MHMOTSConfig.SavedBackgroundAlpha);
+    MazeHelper.frame.LargeSymbol.Background:SetAlpha(MHMOTSConfig.SavedBackgroundAlphaLargeSymbol);
 
     if MazeHelper.currentLocale == 'enUS' then
         settingsScrollChild.Data.AnnounceWithEnglish:SetShown(false);

@@ -27,7 +27,7 @@ L['ENGLISH_FLOWER_FULL_NOCIRCLE'] = 'Filled flower without a circle';
 L['ENGLISH_FLOWER_NOFULL_CIRCLE'] = 'Empty flower in a circle';
 L['ENGLISH_FLOWER_NOFULL_NOCIRCLE'] = 'Empty flower without a circle';
 
--- Default to enUS
+-- Default to enUS (Google Translated from Russian with some my knowledge)
 L['ZONE_NAME'] = 'Mistveil Tangle';
 L['RESET'] = 'Reset';
 L['CHOOSE_SYMBOLS_4'] = 'Select 4 symbols';
@@ -80,11 +80,16 @@ L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL'] = 'Duplicate solution in English';
 L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP'] = 'Send the solution to the chat along with English phrases, for example, «Empty flower without a circle / Empty flower without a circle»|n|n|cffff6a00Ha-ha! Nevermind, it\'s only for non enUS/enGB locales|r';
 L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_LABEL'] = 'Set marker on player';
 L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_TOOLTIP'] = 'Automatically set green marker on player if he clicked on symbol that became the solution';
+L['SETTINGS_ALPHA_BACKGROUND_LABEL'] = 'Background alpha';
+L['SETTINGS_ALPHA_BACKGROUND_TOOLTIP'] = 'Set alpha for the background of the main window';
+L['SETTINGS_ALPHA_BACKGROUND_LARGE_SYMBOL_LABEL'] = 'Large symbol background alpha';
+L['SETTINGS_ALPHA_BACKGROUND_LARGE_SYMBOL_TOOLTIP'] = 'Set the alpha for the background of the large symbol';
 L['PRACTICE_TITLE'] = 'Select a symbol that differs in one way from the others';
 L['PRACTICE_PLAY_AGAIN'] = 'Play again';
 L['PRACTICE_BUTTON_TOOLTIP'] = 'Practice';
-L['NEW_VERSION_AVAILABLE'] = '|cffffb833Maze Helper:|r New version is now available Curse|cfff16336Forge|r!';
+L['NEW_VERSION_AVAILABLE'] = '|cffffb833Maze Helper:|r New version is now available on Curse|cfff16336Forge|r!';
 
+-- Русский (я)
 if gameLocale == 'ruRU' then
     L['ZONE_NAME'] = 'Туманная чащоба';
     L['RESET'] = 'Сбросить';
@@ -138,6 +143,10 @@ if gameLocale == 'ruRU' then
     L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP'] = 'Отправлять решение в чат вместе английскими фразами, например, «Пустой цветок без круга / Empty flower without a circle»';
     L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_LABEL'] = 'Ставить метку на игрока';
     L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_TOOLTIP'] = 'Автоматически ставить метку на игрока, если он кликнул по символу, который стал решением';
+    L['SETTINGS_ALPHA_BACKGROUND_LABEL'] = 'Непрозрачность фона';
+    L['SETTINGS_ALPHA_BACKGROUND_TOOLTIP'] = 'Задать непрозрачность фона главного онка';
+    L['SETTINGS_ALPHA_BACKGROUND_LARGE_SYMBOL_LABEL'] = 'Непрозрачность фона большого символа';
+    L['SETTINGS_ALPHA_BACKGROUND_LARGE_SYMBOL_TOOLTIP'] = 'Задать непрозрачность фона большого сивола';
     L['PRACTICE_TITLE'] = 'Выберите символ, отличающийся чем-то одним от других';
     L['PRACTICE_PLAY_AGAIN'] = 'Сыграть ещё';
     L['PRACTICE_BUTTON_TOOLTIP'] = 'Практика';
@@ -146,7 +155,7 @@ if gameLocale == 'ruRU' then
     return;
 end
 
--- Udaberrico (https://github.com/Udaberrico)
+-- German - Udaberrico (https://github.com/Udaberrico)
 if gameLocale == 'deDE' then
     L['ZONE_NAME'] = 'Nebelschleierdickicht';
     L['RESET'] = 'Zurücksetzen';
@@ -208,7 +217,8 @@ if gameLocale == 'deDE' then
     return;
 end
 
-if gameLocale == 'frFR' then -- Google Translate
+-- French (Google Translate)
+if gameLocale == 'frFR' then
     L['ZONE_NAME'] = 'Maquis Voile-de-Brume';
     L['RESET'] = 'Reset';
     L['CHOOSE_SYMBOLS_4'] = 'Sélectionnez 4 symboles';
@@ -269,7 +279,8 @@ if gameLocale == 'frFR' then -- Google Translate
     return;
 end
 
-if gameLocale == 'itIT' then -- Google Translate
+-- Italian (Google Translate)
+if gameLocale == 'itIT' then
     L['ZONE_NAME'] = 'Intrico Velofosco';
     L['RESET'] = 'Ripristina';
     L['CHOOSE_SYMBOLS_4'] = 'Seleziona 4 simboli';
@@ -330,7 +341,8 @@ if gameLocale == 'itIT' then -- Google Translate
     return;
 end
 
-if gameLocale == 'ptBR' then -- Brazilian Portuguese (Google Translate)
+-- Brazilian Portuguese (Google Translate)
+if gameLocale == 'ptBR' then
     L['ZONE_NAME'] = 'Enleio do Véu da Névoa';
     L['RESET'] = 'Redefinir';
     L['CHOOSE_SYMBOLS_4'] = 'Selecione 4 símbolos';
@@ -391,7 +403,8 @@ if gameLocale == 'ptBR' then -- Brazilian Portuguese (Google Translate)
     return;
 end
 
-if gameLocale == 'esES' then -- Spanish (Google Translate)
+-- Spanish (Google Translate)
+if gameLocale == 'esES' then
     L['ZONE_NAME'] = 'Espesura Velo de Niebla';
     L['RESET'] = 'Reiniciar';
     L['CHOOSE_SYMBOLS_4'] = 'Seleccione 4 símbolos';
@@ -452,13 +465,15 @@ if gameLocale == 'esES' then -- Spanish (Google Translate)
     return;
 end
 
-if gameLocale == 'esMX' then -- Latin American Spanish
+ -- Latin American Spanish
+if gameLocale == 'esMX' then
     L['ZONE_NAME'] = 'Espesura Veloniebla';
 
     return;
 end
 
-if gameLocale == 'zhTW' then -- BNS333 (https://www.curseforge.com/members/bns333) -- Traditional
+-- BNS333 (https://www.curseforge.com/members/bns333) -- Traditional
+if gameLocale == 'zhTW' then
     L['ZONE_NAME'] = '霧紗密林';
     L['CHOOSE_SYMBOLS_1'] = '再點選一個標誌';
     L['CHOOSE_SYMBOLS_2'] = '再點選兩個標誌';
@@ -509,8 +524,8 @@ if gameLocale == 'zhTW' then -- BNS333 (https://www.curseforge.com/members/bns33
     L['SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = '在老闆戰鬥中自動在幻影克隆上放置標記';
     L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL'] = '英文重複解決方案';
     L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP'] = '將解決方案與英語短語一起發送至聊天，例如，“無外環空心的花/Empty flower without a circle”';
-    L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_LABEL'] = '在播放器上設置標記';
-    L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_TOOLTIP'] = '如果他單擊成為解決方案的符號，則自動在玩家上設置綠色標記';
+    L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_LABEL'] = '在玩家上設置標記';
+    L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_TOOLTIP'] = '如果玩家點擊成為解決方案的標誌，則自動在他身上設置綠色標記';
     L['PRACTICE_TITLE'] = '選擇一個符號與其他符號不同的符號';
     L['PRACTICE_PLAY_AGAIN'] = '再玩一次';
     L['PRACTICE_BUTTON_TOOLTIP'] = '實踐';
@@ -631,10 +646,10 @@ if gameLocale == 'koKR' then -- hinski (https://www.curseforge.com/members/hinsk
     L['SETTINGS_SCALE_LARGE_SYMBOL_TOOLTIP'] = '큰 기호의 배율 설정';
     L['SETTINGS_USE_CLONE_AUTOMARKER_LABEL'] = '자동 징표';
     L['SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = '보스전에서 환영 분신들에 징표를 자동으로 분배';
-    L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL'] = '영어로 된 중복 솔루션';
-    L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP'] = '예를 들어«원 없는 빈 꽃 / Empty flower without a circle»과 같이 영어 구문과 함께 솔루션을 채팅에 보냅니다.';
-    L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_LABEL'] = '플레이어에 마커 설정';
-    L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_TOOLTIP'] = '솔루션이 된 기호를 클릭하면 플레이어에게 자동으로 녹색 마커가 설정됩니다';
+    L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL'] = '영어 정답도 중복 표시';
+    L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP'] = '예를 들어 «원 없는 빈 꽃 / Empty flower without a circle»과 같이 영어 구문과 함께 정답을 채팅에 보냅니다';
+    L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_LABEL'] = '플레이어에 징표 설정';
+    L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_TOOLTIP'] = '답을 고르면 플레이어에게 자동으로 녹색 징표가 설정됩니다';
     L['PRACTICE_TITLE'] = '한 조건이 나머지와 다른 모양을 선택하십시오';
     L['PRACTICE_PLAY_AGAIN'] = '다시 하기';
     L['PRACTICE_BUTTON_TOOLTIP'] = '연습';
