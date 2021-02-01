@@ -18,11 +18,6 @@ local newVersionNotified = false;
 local playerNameWithRealm, playerRole, inInstance, bossKilled, inEncounter, isMinimized;
 local startedInMinMode = false;
 
-local FRAME_SIZE = 300;
-local X_OFFSET = 2;
-local Y_OFFSET = -2;
-local BUTTON_SIZE = 64;
-
 -- NANO-OPTIMIZATIONS!
 local EMPTY_STRING = '';
 local PLAYER_STRING = 'player';
@@ -30,6 +25,12 @@ local PLAYER_STRING = 'player';
 local MAX_BUTTONS = 8;
 local MAX_ACTIVE_BUTTONS = 4;
 local NUM_ACTIVE_BUTTONS = 0;
+
+local FRAME_SIZE = 300;
+local X_OFFSET = 2;
+local Y_OFFSET = -2;
+local BUTTON_SIZE = 64;
+local SLIDER_FULL_WIDTH = FRAME_SIZE + X_OFFSET * (MAX_ACTIVE_BUTTONS - 1) - 50;
 
 local RESERVED_BUTTONS_SEQUENCE = {
     [1] = false,
@@ -760,7 +761,7 @@ end);
 
 settingsScrollChild.Data.Scale = E.CreateSlider('Scale', settingsScrollChild);
 settingsScrollChild.Data.Scale:SetPosition('TOPLEFT', settingsScrollChild.Data.AutoAnnouncer, 'BOTTOMLEFT', 4, -42);
-PixelUtil.SetWidth(settingsScrollChild.Data.Scale, FRAME_SIZE + X_OFFSET * (MAX_ACTIVE_BUTTONS - 1) - 50);
+PixelUtil.SetWidth(settingsScrollChild.Data.Scale, SLIDER_FULL_WIDTH);
 settingsScrollChild.Data.Scale:SetLabel(L['SETTINGS_SCALE_LABEL']);
 settingsScrollChild.Data.Scale:SetTooltip(L['SETTINGS_SCALE_TOOLTIP']);
 settingsScrollChild.Data.Scale.OnMouseUpCallback = function(_, value)
@@ -785,7 +786,7 @@ end
 
 settingsScrollChild.Data.ScaleLargeSymbol = E.CreateSlider('Scale', settingsScrollChild);
 settingsScrollChild.Data.ScaleLargeSymbol:SetPosition('TOPLEFT', settingsScrollChild.Data.Scale, 'BOTTOMLEFT', 0, -42);
-PixelUtil.SetWidth(settingsScrollChild.Data.ScaleLargeSymbol, FRAME_SIZE + X_OFFSET * (MAX_ACTIVE_BUTTONS - 1) - 50);
+PixelUtil.SetWidth(settingsScrollChild.Data.ScaleLargeSymbol, SLIDER_FULL_WIDTH);
 settingsScrollChild.Data.ScaleLargeSymbol:SetLabel(L['SETTINGS_SCALE_LARGE_SYMBOL_LABEL']);
 settingsScrollChild.Data.ScaleLargeSymbol:SetTooltip(L['SETTINGS_SCALE_LARGE_SYMBOL_TOOLTIP']);
 settingsScrollChild.Data.ScaleLargeSymbol.OnMouseUpCallback = function(_, value)
@@ -810,7 +811,7 @@ end
 
 settingsScrollChild.Data.SavedBackgroundAlpha = E.CreateSlider('Scale', settingsScrollChild);
 settingsScrollChild.Data.SavedBackgroundAlpha:SetPosition('TOPLEFT', settingsScrollChild.Data.ScaleLargeSymbol, 'BOTTOMLEFT', 0, -42);
-PixelUtil.SetWidth(settingsScrollChild.Data.SavedBackgroundAlpha, FRAME_SIZE + X_OFFSET * (MAX_ACTIVE_BUTTONS - 1) - 50);
+PixelUtil.SetWidth(settingsScrollChild.Data.SavedBackgroundAlpha, SLIDER_FULL_WIDTH);
 settingsScrollChild.Data.SavedBackgroundAlpha:SetLabel(M.INLINE_NEW_ICON .. L['SETTINGS_ALPHA_BACKGROUND_LABEL']);
 settingsScrollChild.Data.SavedBackgroundAlpha:SetTooltip(L['SETTINGS_ALPHA_BACKGROUND_TOOLTIP']);
 settingsScrollChild.Data.SavedBackgroundAlpha.OnValueChangedCallback = function(_, value)
@@ -820,7 +821,7 @@ end
 
 settingsScrollChild.Data.SavedBackgroundAlphaLargeSymbol = E.CreateSlider('Scale', settingsScrollChild);
 settingsScrollChild.Data.SavedBackgroundAlphaLargeSymbol:SetPosition('TOPLEFT', settingsScrollChild.Data.SavedBackgroundAlpha, 'BOTTOMLEFT', 0, -42);
-PixelUtil.SetWidth(settingsScrollChild.Data.SavedBackgroundAlphaLargeSymbol, FRAME_SIZE + X_OFFSET * (MAX_ACTIVE_BUTTONS - 1) - 50);
+PixelUtil.SetWidth(settingsScrollChild.Data.SavedBackgroundAlphaLargeSymbol, SLIDER_FULL_WIDTH);
 settingsScrollChild.Data.SavedBackgroundAlphaLargeSymbol:SetLabel(M.INLINE_NEW_ICON .. L['SETTINGS_ALPHA_BACKGROUND_LARGE_SYMBOL_LABEL']);
 settingsScrollChild.Data.SavedBackgroundAlphaLargeSymbol:SetTooltip(L['SETTINGS_ALPHA_BACKGROUND_LARGE_SYMBOL_TOOLTIP']);
 settingsScrollChild.Data.SavedBackgroundAlphaLargeSymbol.OnValueChangedCallback = function(_, value)
