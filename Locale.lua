@@ -144,9 +144,9 @@ if gameLocale == 'ruRU' then
     L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_LABEL'] = 'Ставить метку на игрока';
     L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_TOOLTIP'] = 'Автоматически ставить метку на игрока, если он кликнул по символу, который стал решением';
     L['SETTINGS_ALPHA_BACKGROUND_LABEL'] = 'Непрозрачность фона';
-    L['SETTINGS_ALPHA_BACKGROUND_TOOLTIP'] = 'Задать непрозрачность фона главного онка';
+    L['SETTINGS_ALPHA_BACKGROUND_TOOLTIP'] = 'Задать непрозрачность фона главного окна';
     L['SETTINGS_ALPHA_BACKGROUND_LARGE_SYMBOL_LABEL'] = 'Непрозрачность фона большого символа';
-    L['SETTINGS_ALPHA_BACKGROUND_LARGE_SYMBOL_TOOLTIP'] = 'Задать непрозрачность фона большого сивола';
+    L['SETTINGS_ALPHA_BACKGROUND_LARGE_SYMBOL_TOOLTIP'] = 'Задать непрозрачность фона большого символа';
     L['PRACTICE_TITLE'] = 'Выберите символ, отличающийся чем-то одним от других';
     L['PRACTICE_PLAY_AGAIN'] = 'Сыграть ещё';
     L['PRACTICE_BUTTON_TOOLTIP'] = 'Практика';
