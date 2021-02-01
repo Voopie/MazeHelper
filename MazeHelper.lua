@@ -191,19 +191,19 @@ local function AnnounceInChat(partyChatType)
     end
 end
 
-local function BetterOnDragStop(frame)
+local function BetterOnDragStop(frame, saveTable)
     local point, relativeTo, relativePoint, xOfs, yOfs = frame:GetPoint();
 
-    MHMOTSConfig.SavedPosition[1] = point;
-    MHMOTSConfig.SavedPosition[2] = relativeTo
-    MHMOTSConfig.SavedPosition[3] = relativePoint;
-    MHMOTSConfig.SavedPosition[4] = xOfs;
-    MHMOTSConfig.SavedPosition[5] = yOfs;
+    saveTable[1] = point;
+    saveTable[2] = relativeTo
+    saveTable[3] = relativePoint;
+    saveTable[4] = xOfs;
+    saveTable[5] = yOfs;
 
     frame:StopMovingOrSizing();
 
     frame:ClearAllPoints();
-    PixelUtil.SetPoint(frame, point, relativeTo or UIParent, relativePoint, xOfs, yOfs);
+    PixelUtil.SetPoint(frame, point, UIParent, relativePoint, xOfs, yOfs);
     frame:SetUserPlaced(true);
 end
 
@@ -220,7 +220,9 @@ MazeHelper.frame:SetScript('OnDragStart', function(self)
         self:StartMoving();
     end
 end);
-MazeHelper.frame:SetScript('OnDragStop', BetterOnDragStop);
+MazeHelper.frame:SetScript('OnDragStop', function(self)
+    BetterOnDragStop(self, MHMOTSConfig.SavedPosition);
+end);
 E.CreateAnimation(MazeHelper.frame, 'FadeInOut');
 
 -- Background
@@ -383,7 +385,7 @@ MazeHelper.frame.InvisibleMaxButton:SetScript('OnDragStart', function()
     end
 end);
 MazeHelper.frame.InvisibleMaxButton:SetScript('OnDragStop', function()
-    BetterOnDragStop(MazeHelper.frame);
+    BetterOnDragStop(MazeHelper.frame, MHMOTSConfig.SavedPosition);
 end);
 MazeHelper.frame.InvisibleMaxButton:SetShown(false);
 
@@ -405,19 +407,7 @@ MazeHelper.frame.LargeSymbol:SetScript('OnDragStart', function(self)
     end
 end);
 MazeHelper.frame.LargeSymbol:SetScript('OnDragStop', function(self)
-    local point, relativeTo, relativePoint, xOfs, yOfs = self:GetPoint();
-
-    MHMOTSConfig.SavedPositionLargeSymbol[1] = point;
-    MHMOTSConfig.SavedPositionLargeSymbol[2] = relativeTo;
-    MHMOTSConfig.SavedPositionLargeSymbol[3] = relativePoint;
-    MHMOTSConfig.SavedPositionLargeSymbol[4] = xOfs;
-    MHMOTSConfig.SavedPositionLargeSymbol[5] = yOfs;
-
-    self:StopMovingOrSizing();
-
-    self:ClearAllPoints();
-    PixelUtil.SetPoint(self, point, relativeTo or UIParent, relativePoint, xOfs, yOfs);
-    self:SetUserPlaced(true);
+    BetterOnDragStop(self, MHMOTSConfig.SavedPositionLargeSymbol);
 end);
 MazeHelper.frame.LargeSymbol.Icon = MazeHelper.frame.LargeSymbol:CreateTexture(nil, 'ARTWORK');
 MazeHelper.frame.LargeSymbol.Icon:SetAllPoints();
@@ -1024,7 +1014,7 @@ function MazeHelper:CreateButton(index)
         end
     end);
     button:SetScript('OnDragStop', function()
-        BetterOnDragStop(MazeHelper.frame);
+        BetterOnDragStop(MazeHelper.frame, MHMOTSConfig.SavedPosition);
     end);
 
     table.insert(buttons, index, button); -- index for just to be sure
