@@ -315,11 +315,15 @@ E.CreateSlider = function(name, parent)
         if slider:IsDraggingThumb() and self.editbox:HasFocus() then
             self.editbox:ClearFocus();
         end
+
+        if self.OnValueChangedCallback then
+            self:OnValueChangedCallback(self.currentValue);
+        end
     end);
 
     slider:SetScript('OnMouseUp', function(self)
-        if self.Callback then
-            self:Callback(self.currentValue);
+        if self.OnMouseUpCallback then
+            self:OnMouseUpCallback(self.currentValue);
         end
     end);
 
