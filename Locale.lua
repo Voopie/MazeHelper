@@ -198,6 +198,8 @@ if gameLocale == 'deDE' then
     L['SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = 'Setze in einem Bosskampf automatisch Marker auf Illusionärer Klon';
     L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL'] = 'Doppelte Lösung in Englisch';
     L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP'] = 'Senden Sie die Lösung zusammen mit englischen Phrasen an den Chat, z. B. «Leere Blume ohne Kreis / Empty flower without a circle»';
+    L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_LABEL'] = 'Setzen Sie einen Marker auf den Player';
+    L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_TOOLTIP'] = 'Setzen Sie automatisch eine grüne Markierung auf den Spieler, wenn er auf das Symbol klickt, das zur Lösung wurde';
     L['PRACTICE_TITLE'] = 'Wählen Sie ein Symbol aus, das sich in einer Hinsicht von den anderen unterscheidet';
     L['PRACTICE_PLAY_AGAIN'] = 'Nochmal abspielen';
     L['PRACTICE_BUTTON_TOOLTIP'] = 'Trainieren';
@@ -257,6 +259,8 @@ if gameLocale == 'frFR' then -- Google Translate
     L['SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = 'Mettre automatiquement des marqueurs sur les Clones illusoires dans un combat de boss';
     L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL'] = 'Dupliquer la solution en anglais';
     L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP'] = 'Envoyez la solution au chat avec des phrases en anglais, par exemple, «Fleur vide sans cercle / Empty flower without a circle»';
+    L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_LABEL'] = 'Placer un marqueur sur le joueur';
+    L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_TOOLTIP'] = 'Définir automatiquement le marqueur vert sur le joueur s\'il clique sur le symbole qui est devenu la solution';
     L['PRACTICE_TITLE'] = 'Sélectionnez un symbole qui diffère d\'une manière des autres';
     L['PRACTICE_PLAY_AGAIN'] = 'Rejouer';
     L['PRACTICE_BUTTON_TOOLTIP'] = 'La pratique';
@@ -316,6 +320,8 @@ if gameLocale == 'itIT' then -- Google Translate
     L['SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = 'Metti automaticamente i segnalini sui Clone Illusorio in una lotta con un boss';
     L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL'] = 'Soluzione duplicata in inglese';
     L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP'] = 'Invia la soluzione alla chat insieme a frasi in inglese, ad esempio, «Fiore vuoto senza cerchio / Empty flower without a circle»';
+    L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_LABEL'] = 'Imposta un indicatore sul giocatore';
+    L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_TOOLTIP'] = 'Imposta automaticamente l\'indicatore verde sul giocatore se ha cliccato sul simbolo che è diventato la soluzione';
     L['PRACTICE_TITLE'] = 'Seleziona un simbolo che differisce in un modo dagli altri';
     L['PRACTICE_PLAY_AGAIN'] = 'Gioca di nuovo';
     L['PRACTICE_BUTTON_TOOLTIP'] = 'Pratica';
@@ -375,6 +381,8 @@ if gameLocale == 'ptBR' then -- Brazilian Portuguese (Google Translate)
     L['SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = 'Colocar marcadores automaticamente em Clones Ilusórios em uma luta de chefe';
     L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL'] = 'Solução duplicada em inglês';
     L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP'] = 'Envie a solução para o chat junto com frases em inglês, por exemplo, «Flor vazia sem círculo / Empty flower without a circle»';
+    L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_LABEL'] = 'Definir marcador no jogador';
+    L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_TOOLTIP'] = 'Definir marcador verde automaticamente no jogador se ele clicar no símbolo que se tornou a solução';
     L['PRACTICE_TITLE'] = 'Selecione um símbolo que difere de uma forma dos outros';
     L['PRACTICE_PLAY_AGAIN'] = 'Jogar de novo';
     L['PRACTICE_BUTTON_TOOLTIP'] = 'Prática';
@@ -434,6 +442,8 @@ if gameLocale == 'esES' then -- Spanish (Google Translate)
     L['SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = 'Coloca marcadores automáticamente en Clones ilusorios en una pelea de jefes';
     L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL'] = 'Solución duplicada en inglés';
     L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP'] = 'Envía la solución al chat junto con frases en inglés, por ejemplo, «Flor vacía sin círculo / Empty flower without a circle»';
+    L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_LABEL'] = 'Establecer marcador en el jugador';
+    L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_TOOLTIP'] = 'Establece automáticamente un marcador verde en el jugador si hace clic en el símbolo que se convirtió en la solución';
     L['PRACTICE_TITLE'] = 'Seleccione un símbolo que difiera en un sentido de los demás';
     L['PRACTICE_PLAY_AGAIN'] = 'Juega de nuevo';
     L['PRACTICE_BUTTON_TOOLTIP'] = 'Práctica';
@@ -499,6 +509,8 @@ if gameLocale == 'zhTW' then -- BNS333 (https://www.curseforge.com/members/bns33
     L['SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = '在老闆戰鬥中自動在幻影克隆上放置標記';
     L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL'] = '英文重複解決方案';
     L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP'] = '將解決方案與英語短語一起發送至聊天，例如，“無外環空心的花/Empty flower without a circle”';
+    L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_LABEL'] = '在播放器上設置標記';
+    L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_TOOLTIP'] = '如果他單擊成為解決方案的符號，則自動在玩家上設置綠色標記';
     L['PRACTICE_TITLE'] = '選擇一個符號與其他符號不同的符號';
     L['PRACTICE_PLAY_AGAIN'] = '再玩一次';
     L['PRACTICE_BUTTON_TOOLTIP'] = '實踐';
@@ -560,6 +572,8 @@ if gameLocale == 'zhCN' then
     L['SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = '在老板战斗中自动在幻影克隆上放置标记';
     L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL'] = '英文重复解决方案';
     L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP'] = '将解决方案与英语短语一起发送给聊天，例如，“无环 空心 花/Empty flower without a circle”';
+    L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_LABEL'] = '在播放器上设置标记';
+    L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_TOOLTIP'] = '如果他单击成为解决方案的符号，则自动在玩家上设置绿色标记';
     L['PRACTICE_TITLE'] = '选择一个符号与其他符号不同的符号';
     L['PRACTICE_PLAY_AGAIN'] = '再玩一次';
     L['PRACTICE_BUTTON_TOOLTIP'] = '实践';
@@ -619,6 +633,8 @@ if gameLocale == 'koKR' then -- hinski (https://www.curseforge.com/members/hinsk
     L['SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = '보스전에서 환영 분신들에 징표를 자동으로 분배';
     L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL'] = '영어로 된 중복 솔루션';
     L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP'] = '예를 들어«원 없는 빈 꽃 / Empty flower without a circle»과 같이 영어 구문과 함께 솔루션을 채팅에 보냅니다.';
+    L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_LABEL'] = '플레이어에 마커 설정';
+    L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_TOOLTIP'] = '솔루션이 된 기호를 클릭하면 플레이어에게 자동으로 녹색 마커가 설정됩니다';
     L['PRACTICE_TITLE'] = '한 조건이 나머지와 다른 모양을 선택하십시오';
     L['PRACTICE_PLAY_AGAIN'] = '다시 하기';
     L['PRACTICE_BUTTON_TOOLTIP'] = '연습';
