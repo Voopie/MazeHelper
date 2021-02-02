@@ -6,11 +6,14 @@ local Version = GetAddOnMetadata(ADDON_NAME, 'Version');
 local tonumber = tonumber;
 
 -- WoW API
-local SendAddonMessage = C_ChatInfo.SendAddonMessage;
+local SendAddonMessage, BNSendGameData = C_ChatInfo.SendAddonMessage, BNSendGameData;
 local IsInRaid, IsInGroup, UnitIsGroupLeader, GetMinimapZoneText = IsInRaid, IsInGroup, UnitIsGroupLeader, GetMinimapZoneText;
 
 local ADDON_COMM_PREFIX = 'MAZEHELPER';
 C_ChatInfo.RegisterAddonMessagePrefix(ADDON_COMM_PREFIX);
+
+local connectedRealms;
+local playerRealm = GetRealmName();
 
 local VERSION_COLLECTOR_TABLE = {};
 local newVersionNotified = false;
@@ -189,6 +192,42 @@ local function AnnounceInChat(partyChatType)
         SendChatMessage(string.format(L['ANNOUNCE_SOLUTION_WITH_ENGLISH'], buttons[SOLUTION_BUTTON_ID].data.name, buttons[SOLUTION_BUTTON_ID].data.ename), partyChatType);
     else
         SendChatMessage(string.format(L['ANNOUNCE_SOLUTION'], buttons[SOLUTION_BUTTON_ID].data.name), partyChatType);
+    end
+end
+
+local function SendBNetAddonMessage(message, bNetPresenceId)
+    if bNetPresenceId then
+        BNSendGameData(bNetPresenceId, ADDON_COMM_PREFIX, message);
+        return;
+    end
+
+    local _, numFriendsOnline = BNGetNumFriends();
+    local isSameRealm, accountInfo;
+
+    for index = 1, numFriendsOnline do
+        isSameRealm = false;
+        accountInfo = C_BattleNet.GetFriendAccountInfo(index);
+
+        if accountInfo then
+            if accountInfo.gameAccountInfo.gameAccountID and accountInfo.gameAccountInfo.isOnline and accountInfo.gameAccountInfo.realmName then
+                if connectedRealms then
+                    for i = 1, #connectedRealms do
+                        if accountInfo.gameAccountInfo.realmName == connectedRealms[i] then
+                            isSameRealm = true;
+                            break;
+                        end
+                    end
+                else
+                    if accountInfo.gameAccountInfo.realmName == playerRealm then
+                        isSameRealm = true;
+                    end
+                end
+
+                if isSameRealm then
+                    BNSendGameData(accountInfo.gameAccountInfo.gameAccountID, ADDON_COMM_PREFIX, message);
+                end
+            end
+        end
     end
 end
 
@@ -1374,10 +1413,16 @@ function MazeHelper:RequestVersionCheck(onlyGroupChannel)
     if IsInGuild() then
         SendAddonMessage(ADDON_COMM_PREFIX, 'CHECKVERSION', 'GUILD');
     end
+
+    SendBNetAddonMessage('CHECKVERSION');
 end
 
-function MazeHelper:SendCurrentVersion(channel)
-    SendAddonMessage(ADDON_COMM_PREFIX, string.format('%s|%s', 'SENDVERSION', Version), channel);
+function MazeHelper:SendCurrentVersion(channel, bNetPresenceId)
+    if bNetPresenceId then
+        SendBNetAddonMessage(string.format('%s|%s', 'SENDVERSION', Version), bNetPresenceId);
+    else
+        SendAddonMessage(ADDON_COMM_PREFIX, string.format('%s|%s', 'SENDVERSION', Version), channel);
+    end
 end
 
 function MazeHelper:ReceiveVersion(version)
@@ -1402,6 +1447,8 @@ function MazeHelper:ReceiveVersion(version)
 
         MazeHelper.frame:UnregisterEvent('GROUP_ROSTER_UPDATE');
         MazeHelper.frame:UnregisterEvent('GUILD_ROSTER_UPDATE');
+        MazeHelper.frame:UnregisterEvent('BN_FRIEND_LIST_SIZE_CHANGED');
+        MazeHelper.frame:UnregisterEvent('BN_CHAT_MSG_ADDON');
 
         print(L['NEW_VERSION_AVAILABLE']);
     end
@@ -1541,6 +1588,8 @@ MazeHelper.frame:SetScript('OnEvent', function(self, event, ...)
 end);
 
 function MazeHelper.frame:PLAYER_LOGIN()
+    connectedRealms = GetAutoCompleteRealms();
+
     if MHMOTSConfig.SavedPosition and #MHMOTSConfig.SavedPosition > 1 then
         self:ClearAllPoints();
         PixelUtil.SetPoint(self, MHMOTSConfig.SavedPosition[1], UIParent, MHMOTSConfig.SavedPosition[3], MHMOTSConfig.SavedPosition[4], MHMOTSConfig.SavedPosition[5]);
@@ -1628,6 +1677,10 @@ function MazeHelper.frame:GUILD_ROSTER_UPDATE()
     MazeHelper:RequestVersionCheck();
 end
 
+function MazeHelper.frame:BN_FRIEND_LIST_SIZE_CHANGED()
+    MazeHelper:RequestVersionCheck();
+end
+
 function MazeHelper.frame:CHAT_MSG_ADDON(prefix, message, channel, sender)
     if sender == playerNameWithRealm then
         return;
@@ -1668,6 +1721,18 @@ function MazeHelper.frame:CHAT_MSG_ADDON(prefix, message, channel, sender)
             MazeHelper:SendCurrentVersion(channel);
         elseif command == 'SENDVERSION' then
             MazeHelper:ReceiveVersion(arg1);
+        end
+    end
+end
+
+function MazeHelper.frame:BN_CHAT_MSG_ADDON(prefix, message, channel, sender)
+    if prefix == ADDON_COMM_PREFIX then
+        local command, version = strsplit('|', message);
+
+        if command == 'CHECKVERSION' then
+            MazeHelper:SendCurrentVersion(channel, sender);
+        elseif command == 'SENDVERSION' then
+            MazeHelper:ReceiveVersion(version);
         end
     end
 end
@@ -1765,6 +1830,8 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     self:RegisterEvent('PLAYER_ENTERING_WORLD');
     self:RegisterEvent('PLAYER_SPECIALIZATION_CHANGED');
     self:RegisterEvent('CHAT_MSG_ADDON');
+    self:RegisterEvent('BN_CHAT_MSG_ADDON');
+    self:RegisterEvent('BN_FRIEND_LIST_SIZE_CHANGED');
     self:RegisterEvent('GROUP_ROSTER_UPDATE');
     self:RegisterEvent('GUILD_ROSTER_UPDATE');
 
