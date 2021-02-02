@@ -1829,7 +1829,7 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     self:RegisterEvent('PLAYER_LOGIN');
     self:RegisterEvent('PLAYER_ENTERING_WORLD');
     self:RegisterEvent('PLAYER_SPECIALIZATION_CHANGED');
-    -- self:RegisterEvent('CHAT_MSG_ADDON');
+    self:RegisterEvent('CHAT_MSG_ADDON');
     -- self:RegisterEvent('BN_CHAT_MSG_ADDON');
     -- self:RegisterEvent('BN_FRIEND_LIST_SIZE_CHANGED');
     -- self:RegisterEvent('GROUP_ROSTER_UPDATE');
