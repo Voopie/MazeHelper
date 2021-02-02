@@ -1492,8 +1492,6 @@ MazeHelper.frame:SetScript('OnEvent', function(self, event, ...)
 end);
 
 function MazeHelper.frame:PLAYER_LOGIN()
-    connectedRealms = GetAutoCompleteRealms();
-
     if MHMOTSConfig.SavedPosition and #MHMOTSConfig.SavedPosition > 1 then
         self:ClearAllPoints();
         PixelUtil.SetPoint(self, MHMOTSConfig.SavedPosition[1], UIParent, MHMOTSConfig.SavedPosition[3], MHMOTSConfig.SavedPosition[4], MHMOTSConfig.SavedPosition[5]);
