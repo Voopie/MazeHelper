@@ -6,17 +6,11 @@ local Version = GetAddOnMetadata(ADDON_NAME, 'Version');
 local tonumber = tonumber;
 
 -- WoW API
-local SendAddonMessage, BNSendGameData = C_ChatInfo.SendAddonMessage, BNSendGameData;
+local SendAddonMessage = C_ChatInfo.SendAddonMessage;
 local IsInRaid, IsInGroup, UnitIsGroupLeader, GetMinimapZoneText = IsInRaid, IsInGroup, UnitIsGroupLeader, GetMinimapZoneText;
 
 local ADDON_COMM_PREFIX = 'MAZEHELPER';
 C_ChatInfo.RegisterAddonMessagePrefix(ADDON_COMM_PREFIX);
-
-local connectedRealms;
-local playerRealm = GetRealmName();
-
-local VERSION_COLLECTOR_TABLE = {};
-local newVersionNotified = false;
 
 local playerNameWithRealm, playerRole, inInstance, bossKilled, inEncounter, isMinimized;
 local startedInMinMode = false;
@@ -192,42 +186,6 @@ local function AnnounceInChat(partyChatType)
         SendChatMessage(string.format(L['ANNOUNCE_SOLUTION_WITH_ENGLISH'], buttons[SOLUTION_BUTTON_ID].data.name, buttons[SOLUTION_BUTTON_ID].data.ename), partyChatType);
     else
         SendChatMessage(string.format(L['ANNOUNCE_SOLUTION'], buttons[SOLUTION_BUTTON_ID].data.name), partyChatType);
-    end
-end
-
-local function SendBNetAddonMessage(message, bNetPresenceId)
-    if bNetPresenceId then
-        BNSendGameData(bNetPresenceId, ADDON_COMM_PREFIX, message);
-        return;
-    end
-
-    local _, numFriendsOnline = BNGetNumFriends();
-    local isSameRealm, accountInfo;
-
-    for index = 1, numFriendsOnline do
-        isSameRealm = false;
-        accountInfo = C_BattleNet.GetFriendAccountInfo(index);
-
-        if accountInfo then
-            if accountInfo.gameAccountInfo.gameAccountID and accountInfo.gameAccountInfo.isOnline and accountInfo.gameAccountInfo.realmName then
-                if connectedRealms then
-                    for i = 1, #connectedRealms do
-                        if accountInfo.gameAccountInfo.realmName == connectedRealms[i] then
-                            isSameRealm = true;
-                            break;
-                        end
-                    end
-                else
-                    if accountInfo.gameAccountInfo.realmName == playerRealm then
-                        isSameRealm = true;
-                    end
-                end
-
-                if isSameRealm then
-                    BNSendGameData(accountInfo.gameAccountInfo.gameAccountID, ADDON_COMM_PREFIX, message);
-                end
-            end
-        end
     end
 end
 
@@ -1400,60 +1358,6 @@ function MazeHelper:ReceiveUnactiveButtonID(buttonID, sender)
     Button_SetUnactive(buttons[buttonID], false, sender);
 end
 
-function MazeHelper:RequestVersionCheck(onlyGroupChannel)
-    local groupType = (IsInGroup(LE_PARTY_CATEGORY_INSTANCE) and 3) or (IsInRaid() and 2) or (IsInGroup(LE_PARTY_CATEGORY_HOME) and 1);
-    if groupType then
-        SendAddonMessage(ADDON_COMM_PREFIX, 'CHECKVERSION', groupType == 3 and 'INSTANCE_CHAT' or groupType == 2 and 'RAID' or 'PARTY');
-    end
-
-    if onlyGroupChannel then
-        return;
-    end
-
-    if IsInGuild() then
-        SendAddonMessage(ADDON_COMM_PREFIX, 'CHECKVERSION', 'GUILD');
-    end
-
-    SendBNetAddonMessage('CHECKVERSION');
-end
-
-function MazeHelper:SendCurrentVersion(channel, bNetPresenceId)
-    if bNetPresenceId then
-        SendBNetAddonMessage(string.format('%s|%s', 'SENDVERSION', Version), bNetPresenceId);
-    else
-        SendAddonMessage(ADDON_COMM_PREFIX, string.format('%s|%s', 'SENDVERSION', Version), channel);
-    end
-end
-
-function MazeHelper:ReceiveVersion(version)
-    table.insert(VERSION_COLLECTOR_TABLE, version);
-
-    table.sort(VERSION_COLLECTOR_TABLE, function(a, b)
-        local majorA, minorA = strsplit('.', a);
-        majorA, minorA = tonumber(majorA), tonumber(minorA);
-
-        local majorB, minorB = strsplit('.', b);
-        majorB, minorB = tonumber(majorB), tonumber(minorB);
-
-        if majorA ~= majorB then
-            return majorA > majorB;
-        else
-            return minorA > minorB;
-        end
-    end);
-
-    if VERSION_COLLECTOR_TABLE[1] and tonumber(VERSION_COLLECTOR_TABLE[1]) > tonumber(Version) and not newVersionNotified then
-        newVersionNotified = true;
-
-        MazeHelper.frame:UnregisterEvent('GROUP_ROSTER_UPDATE');
-        MazeHelper.frame:UnregisterEvent('GUILD_ROSTER_UPDATE');
-        MazeHelper.frame:UnregisterEvent('BN_FRIEND_LIST_SIZE_CHANGED');
-        MazeHelper.frame:UnregisterEvent('BN_CHAT_MSG_ADDON');
-
-        print(L['NEW_VERSION_AVAILABLE']);
-    end
-end
-
 local function GetFreeMarkerIndex()
     for i = 1, 8 do
         if USED_MARKERS[i] == false then
@@ -1603,7 +1507,6 @@ function MazeHelper.frame:PLAYER_LOGIN()
 	end
 
     UpdateState(self);
-    -- MazeHelper:RequestVersionCheck();
 end
 
 function MazeHelper.frame:PLAYER_ENTERING_WORLD()
@@ -1669,19 +1572,11 @@ function MazeHelper.frame:NAME_PLATE_UNIT_REMOVED(unit)
     nameplatesMarkers[unit] = nil;
 end
 
-function MazeHelper.frame:GROUP_ROSTER_UPDATE()
-    MazeHelper:RequestVersionCheck(true);
-end
-
-function MazeHelper.frame:GUILD_ROSTER_UPDATE()
-    MazeHelper:RequestVersionCheck();
-end
-
-function MazeHelper.frame:BN_FRIEND_LIST_SIZE_CHANGED()
-    MazeHelper:RequestVersionCheck();
-end
-
 function MazeHelper.frame:CHAT_MSG_ADDON(prefix, message, channel, sender)
+    if not MHMOTSConfig.SyncEnabled then
+        return;
+    end
+
     if sender == playerNameWithRealm then
         return;
     end
@@ -1689,50 +1584,30 @@ function MazeHelper.frame:CHAT_MSG_ADDON(prefix, message, channel, sender)
     if prefix == ADDON_COMM_PREFIX then
         local command, arg1, arg2 = strsplit('|', message);
 
-        if MHMOTSConfig.SyncEnabled then
-            if command == 'SendButtonID'  then
-                local buttonId, buttonMode = arg1, arg2;
+        if command == 'SendButtonID'  then
+            local buttonId, buttonMode = arg1, arg2;
 
-                if buttonMode == 'ACTIVE' then
-                    MazeHelper:ReceiveActiveButtonID(tonumber(buttonId), sender);
-                elseif buttonMode == 'UNACTIVE' then
-                    MazeHelper:ReceiveUnactiveButtonID(tonumber(buttonId), sender);
-                end
-            elseif command == 'SendPassed' then
-                MazeHelper:ReceivePassedCommand(tonumber(arg1));
-
-                if MHMOTSConfig.PrintResettedPlayerName then
-                    print(string.format(L['PASSED_PLAYER'], sender));
-                end
-            elseif command == 'SendReset' then
-                MazeHelper:ReceiveResetCommand();
-
-                if MHMOTSConfig.PrintResettedPlayerName then
-                    print(string.format(L['RESETED_PLAYER'], sender));
-                end
-            elseif command == 'REQPC' then
-                MazeHelper:SendPassedCounter();
-            elseif command == 'RECPC' then
-                MazeHelper:ReceivePassedCounter(tonumber(arg1));
+            if buttonMode == 'ACTIVE' then
+                MazeHelper:ReceiveActiveButtonID(tonumber(buttonId), sender);
+            elseif buttonMode == 'UNACTIVE' then
+                MazeHelper:ReceiveUnactiveButtonID(tonumber(buttonId), sender);
             end
-        end
+        elseif command == 'SendPassed' then
+            MazeHelper:ReceivePassedCommand(tonumber(arg1));
 
-        -- if command == 'CHECKVERSION' then
-        --     MazeHelper:SendCurrentVersion(channel);
-        -- elseif command == 'SENDVERSION' then
-        --     MazeHelper:ReceiveVersion(arg1);
-        -- end
-    end
-end
+            if MHMOTSConfig.PrintResettedPlayerName then
+                print(string.format(L['PASSED_PLAYER'], sender));
+            end
+        elseif command == 'SendReset' then
+            MazeHelper:ReceiveResetCommand();
 
-function MazeHelper.frame:BN_CHAT_MSG_ADDON(prefix, message, channel, sender)
-    if prefix == ADDON_COMM_PREFIX then
-        local command, version = strsplit('|', message);
-
-        if command == 'CHECKVERSION' then
-            MazeHelper:SendCurrentVersion(channel, sender);
-        elseif command == 'SENDVERSION' then
-            MazeHelper:ReceiveVersion(version);
+            if MHMOTSConfig.PrintResettedPlayerName then
+                print(string.format(L['RESETED_PLAYER'], sender));
+            end
+        elseif command == 'REQPC' then
+            MazeHelper:SendPassedCounter();
+        elseif command == 'RECPC' then
+            MazeHelper:ReceivePassedCounter(tonumber(arg1));
         end
     end
 end
@@ -1830,10 +1705,6 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     self:RegisterEvent('PLAYER_ENTERING_WORLD');
     self:RegisterEvent('PLAYER_SPECIALIZATION_CHANGED');
     self:RegisterEvent('CHAT_MSG_ADDON');
-    -- self:RegisterEvent('BN_CHAT_MSG_ADDON');
-    -- self:RegisterEvent('BN_FRIEND_LIST_SIZE_CHANGED');
-    -- self:RegisterEvent('GROUP_ROSTER_UPDATE');
-    -- self:RegisterEvent('GUILD_ROSTER_UPDATE');
 
     _G['SLASH_MAZEHELPER1'] = '/mh';
     SlashCmdList['MAZEHELPER'] = function(input)
