@@ -1717,11 +1717,11 @@ function MazeHelper.frame:CHAT_MSG_ADDON(prefix, message, channel, sender)
             end
         end
 
-        if command == 'CHECKVERSION' then
-            MazeHelper:SendCurrentVersion(channel);
-        elseif command == 'SENDVERSION' then
-            MazeHelper:ReceiveVersion(arg1);
-        end
+        -- if command == 'CHECKVERSION' then
+        --     MazeHelper:SendCurrentVersion(channel);
+        -- elseif command == 'SENDVERSION' then
+        --     MazeHelper:ReceiveVersion(arg1);
+        -- end
     end
 end
 
