@@ -1625,12 +1625,8 @@ function MazeHelper.frame:PLAYER_SPECIALIZATION_CHANGED(unit)
 end
 
 function MazeHelper.frame:GOSSIP_SHOW()
-    if not inMOTS then
+    if not inMOTS or C_GossipInfo.GetNumOptions() ~= 1 then
         return;
-    end
-
-    if C_GossipInfo.GetNumOptions() ~= 1 then
-		return;
     end
 
     local npcId = tonumber((select(6, strsplit('-', UnitGUID('npc') or ''))) or '0');
