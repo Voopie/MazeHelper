@@ -68,7 +68,11 @@ local ANNOUNCED_BUTTON_ID;
 local MOTS_INSTANCE_ID = 2290;
 local MISTCALLER_ENCOUNTER_ID = 2392;
 local ILLUSIONARY_CLONE_ID = 165108;
-local DEPLETED_ANIMA_SEED_ID = 173702;
+local DEPLETED_ANIMA_SEED_IDS = {
+    173702,
+    357703,
+    357707,
+};
 
 local EVENTS_INSTANCE = {
     'ZONE_CHANGED',
@@ -1630,7 +1634,7 @@ function MazeHelper.frame:GOSSIP_SHOW()
     end
 
     local npcId = tonumber((select(6, strsplit('-', UnitGUID('npc') or ''))) or '0');
-    if not npcId or npcId ~= DEPLETED_ANIMA_SEED_ID then
+    if not npcId or not DEPLETED_ANIMA_SEED_IDS[npcId] then
 		return;
     end
 
