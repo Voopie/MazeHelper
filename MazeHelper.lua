@@ -1442,11 +1442,11 @@ local function UpdateState(frame)
     MazeHelper.frame.PassedCounter.Text:SetText(PASSED_COUNTER);
     PixelUtil.SetPoint(MazeHelper.frame.PassedCounter.Text, 'CENTER', MazeHelper.frame.PassedCounter, 'CENTER', (PASSED_COUNTER == 1) and -2 or 0, isMinimized and 0 or -1);
 
-    MazeHelper:RequestPassedCounter(); -- if you were dc'ed or reloading ui
-
     startedInMinMode = false;
 
     if inMOTS then
+        MazeHelper:RequestPassedCounter(); -- if you were dc'ed or reloading ui
+
         for _, event in ipairs(EVENTS_INSTANCE) do
             frame:RegisterEvent(event);
         end
