@@ -69,9 +69,9 @@ local MOTS_INSTANCE_ID = 2290;
 local MISTCALLER_ENCOUNTER_ID = 2392;
 local ILLUSIONARY_CLONE_ID = 165108;
 local DEPLETED_ANIMA_SEED_IDS = {
-    173702,
-    357703,
-    357707,
+    [173702] = true,
+    [357703] = true,
+    [357707] = true,
 };
 
 local EVENTS_INSTANCE = {
