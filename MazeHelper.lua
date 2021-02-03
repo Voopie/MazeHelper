@@ -6,10 +6,10 @@ local Version = GetAddOnMetadata(ADDON_NAME, 'Version');
 local tonumber = tonumber;
 
 -- WoW API
-local SendAddonMessage = C_ChatInfo.SendAddonMessage;
 local IsInRaid, IsInGroup, UnitIsGroupLeader, GetMinimapZoneText = IsInRaid, IsInGroup, UnitIsGroupLeader, GetMinimapZoneText;
 
 local ADDON_COMM_PREFIX = 'MAZEHELPER';
+local ADDON_COMM_MODE   = 'NORMAL';
 C_ChatInfo.RegisterAddonMessagePrefix(ADDON_COMM_PREFIX);
 
 local playerNameWithRealm, playerRole, inInstance, bossKilled, inEncounter, isMinimized;
@@ -1263,7 +1263,7 @@ function MazeHelper:SendResetCommand()
         return;
     end
 
-    SendAddonMessage(ADDON_COMM_PREFIX, 'SendReset', partyChatType);
+    ChatThrottleLib:SendAddonMessage(ADDON_COMM_MODE, ADDON_COMM_PREFIX, 'SendReset', partyChatType);
 end
 
 function MazeHelper:SendPassedCommand(step)
@@ -1276,11 +1276,15 @@ function MazeHelper:SendPassedCommand(step)
         return;
     end
 
-    SendAddonMessage(ADDON_COMM_PREFIX, string.format('SendPassed|%s', step), partyChatType);
+    ChatThrottleLib:SendAddonMessage(ADDON_COMM_MODE, ADDON_COMM_PREFIX, string.format('SendPassed|%s', step), partyChatType);
 end
 
-function MazeHelper:SendPassedCounter()
+function MazeHelper:SendPassedCounter(step)
     if not MHMOTSConfig.SyncEnabled then
+        return;
+    end
+
+    if step == PASSED_COUNTER then
         return;
     end
 
@@ -1289,7 +1293,7 @@ function MazeHelper:SendPassedCounter()
         return;
     end
 
-    SendAddonMessage(ADDON_COMM_PREFIX, string.format('RECPC|%s', PASSED_COUNTER), partyChatType);
+    ChatThrottleLib:SendAddonMessage(ADDON_COMM_MODE, ADDON_COMM_PREFIX, string.format('RECPC|%s', PASSED_COUNTER), partyChatType);
 end
 
 function MazeHelper:RequestPassedCounter()
@@ -1302,7 +1306,7 @@ function MazeHelper:RequestPassedCounter()
         return;
     end
 
-    SendAddonMessage(ADDON_COMM_PREFIX, 'REQPC', partyChatType);
+    ChatThrottleLib:SendAddonMessage(ADDON_COMM_MODE, ADDON_COMM_PREFIX, string.format('REQPC|%s', PASSED_COUNTER), partyChatType);
 end
 
 function MazeHelper:SendButtonID(buttonID, mode)
@@ -1315,7 +1319,7 @@ function MazeHelper:SendButtonID(buttonID, mode)
         return;
     end
 
-    SendAddonMessage(ADDON_COMM_PREFIX, string.format('SendButtonID|%s|%s', buttonID, mode), partyChatType);
+    ChatThrottleLib:SendAddonMessage(ADDON_COMM_MODE, ADDON_COMM_PREFIX, string.format('SendButtonID|%s|%s', buttonID, mode), partyChatType);
 end
 
 function MazeHelper:ReceiveResetCommand()
@@ -1603,7 +1607,7 @@ function MazeHelper.frame:CHAT_MSG_ADDON(prefix, message, channel, sender)
                 print(string.format(L['RESETED_PLAYER'], sender));
             end
         elseif command == 'REQPC' then
-            MazeHelper:SendPassedCounter();
+            MazeHelper:SendPassedCounter(tonumber(arg1));
         elseif command == 'RECPC' then
             MazeHelper:ReceivePassedCounter(tonumber(arg1));
         end

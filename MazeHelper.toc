@@ -4,6 +4,8 @@
 ## Version: 1.22
 ## SavedVariables: MHMOTSConfig
 
+Libraries\ChatThrottleLib.lua
+
 Locale.lua
 Media\Data.lua
 Elements.lua
