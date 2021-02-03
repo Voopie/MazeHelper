@@ -12,7 +12,7 @@ local ADDON_COMM_PREFIX = 'MAZEHELPER';
 local ADDON_COMM_MODE   = 'NORMAL';
 C_ChatInfo.RegisterAddonMessagePrefix(ADDON_COMM_PREFIX);
 
-local playerNameWithRealm, playerRole, inInstance, bossKilled, inEncounter, isMinimized;
+local playerNameWithRealm, playerRole, inInstance, inMOTS, bossKilled, inEncounter, isMinimized;
 local startedInMinMode = false;
 
 -- NANO-OPTIMIZATIONS!
@@ -68,6 +68,7 @@ local ANNOUNCED_BUTTON_ID;
 local MOTS_INSTANCE_ID = 2290;
 local MISTCALLER_ENCOUNTER_ID = 2392;
 local ILLUSIONARY_CLONE_ID = 165108;
+local DEPLETED_ANIMA_SEED_ID = 173702;
 
 local EVENTS_INSTANCE = {
     'ZONE_CHANGED',
@@ -76,6 +77,7 @@ local EVENTS_INSTANCE = {
     'ENCOUNTER_START',
     'ENCOUNTER_END',
     'BOSS_KILL',
+    'GOSSIP_SHOW',
 };
 
 local EVENTS_AUTOMARKER = {
@@ -643,18 +645,9 @@ settingsScrollChild.Data.UseCloneAutoMarker:SetTooltip(L['SETTINGS_USE_CLONE_AUT
 settingsScrollChild.Data.UseCloneAutoMarker:SetScript('OnClick', function(self)
     MHMOTSConfig.UseCloneAutoMarker = self:GetChecked();
 
-    if MHMOTSConfig.UseCloneAutoMarker then
-        if IsInInstance() then
-            local instanceId = select(8, GetInstanceInfo());
-            if instanceId == MOTS_INSTANCE_ID then
-                for _, event in ipairs(EVENTS_AUTOMARKER) do
-                    MazeHelper.frame:RegisterEvent(event);
-                end
-            end
-        else
-            for _, event in ipairs(EVENTS_AUTOMARKER) do
-                MazeHelper.frame:UnregisterEvent(event);
-            end
+    if MHMOTSConfig.UseCloneAutoMarker and inMOTS then
+        for _, event in ipairs(EVENTS_AUTOMARKER) do
+            MazeHelper.frame:RegisterEvent(event);
         end
     else
         for _, event in ipairs(EVENTS_AUTOMARKER) do
@@ -1404,9 +1397,9 @@ end
 
 local function UpdateShown()
     if MHMOTSConfig.ShowAtBoss then
-        MazeHelper.frame:SetShown((not bossKilled and inInstance and GetMinimapZoneText() == L['ZONE_NAME']));
+        MazeHelper.frame:SetShown((not bossKilled and inMOTS and GetMinimapZoneText() == L['ZONE_NAME']));
     else
-        MazeHelper.frame:SetShown((not inEncounter and inInstance and GetMinimapZoneText() == L['ZONE_NAME']));
+        MazeHelper.frame:SetShown((not inEncounter and inMOTS and GetMinimapZoneText() == L['ZONE_NAME']));
     end
 
     if MazeHelper.frame:IsShown() then
@@ -1434,8 +1427,16 @@ local function UpdateState(frame)
     playerNameWithRealm = playerName .. '-' .. playerShortenedRealm;
 
     inInstance = IsInInstance();
-    bossKilled = inInstance and (select(3, GetInstanceLockTimeRemainingEncounter(2))) or false;
-    inEncounter = not bossKilled and UnitExists('boss1');
+
+    if inInstance then
+        local instanceId = select(8, GetInstanceInfo());
+        inMOTS = instanceId == MOTS_INSTANCE_ID;
+    else
+        inMOTS = false;
+    end
+
+    bossKilled = inMOTS and (select(3, GetInstanceLockTimeRemainingEncounter(2))) or false;
+    inEncounter = inMOTS and not bossKilled and UnitExists('boss1');
 
     PASSED_COUNTER = 1;
     MazeHelper.frame.PassedCounter.Text:SetText(PASSED_COUNTER);
@@ -1445,17 +1446,14 @@ local function UpdateState(frame)
 
     startedInMinMode = false;
 
-    if inInstance then
-        local instanceId = select(8, GetInstanceInfo());
-        if instanceId == MOTS_INSTANCE_ID then
-            for _, event in ipairs(EVENTS_INSTANCE) do
-                frame:RegisterEvent(event);
-            end
+    if inMOTS then
+        for _, event in ipairs(EVENTS_INSTANCE) do
+            frame:RegisterEvent(event);
+        end
 
-            if MHMOTSConfig.UseCloneAutoMarker then
-                for _, event in ipairs(EVENTS_AUTOMARKER) do
-                    frame:RegisterEvent(event);
-                end
+        if MHMOTSConfig.UseCloneAutoMarker then
+            for _, event in ipairs(EVENTS_AUTOMARKER) do
+                frame:RegisterEvent(event);
             end
         end
     else
@@ -1620,6 +1618,24 @@ function MazeHelper.frame:PLAYER_SPECIALIZATION_CHANGED(unit)
     end
 
     playerRole = (select(5, GetSpecializationInfo(GetSpecialization())) or EMPTY_STRING);
+end
+
+function MazeHelper.frame:GOSSIP_SHOW()
+    if not inMOTS then
+        return;
+    end
+
+    if C_GossipInfo.GetNumOptions() ~= 1 then
+		return;
+    end
+
+    local npcId = tonumber((select(6, strsplit('-', UnitGUID('npc') or ''))) or '0');
+    if not npcId or npcId ~= DEPLETED_ANIMA_SEED_ID then
+		return;
+    end
+
+    C_GossipInfo.SelectOption(1);
+    C_GossipInfo.CloseGossip();
 end
 
 function MazeHelper.frame:ADDON_LOADED(addonName)
