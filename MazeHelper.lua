@@ -625,7 +625,7 @@ end);
 
 settingsScrollChild.Data.SetMarkerSolutionPlayer = E.CreateRoundedCheckButton(settingsScrollChild);
 settingsScrollChild.Data.SetMarkerSolutionPlayer:SetPosition('TOPLEFT', settingsScrollChild.Data.ShowLargeSymbol, 'BOTTOMLEFT', 0, 0);
-settingsScrollChild.Data.SetMarkerSolutionPlayer:SetLabel(M.INLINE_NEW_ICON .. L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_LABEL']);
+settingsScrollChild.Data.SetMarkerSolutionPlayer:SetLabel(L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_LABEL']);
 settingsScrollChild.Data.SetMarkerSolutionPlayer:SetTooltip(L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_TOOLTIP']);
 settingsScrollChild.Data.SetMarkerSolutionPlayer:SetScript('OnClick', function(self)
     MHMOTSConfig.SetMarkerSolutionPlayer = self:GetChecked();
