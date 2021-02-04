@@ -396,13 +396,17 @@ MazeHelper.frame.MainHolder = CreateFrame('Frame', nil, MazeHelper.frame);
 MazeHelper.frame.MainHolder:SetAllPoints();
 
 -- Large Solution Symbol
-MazeHelper.frame.LargeSymbol = CreateFrame('Frame', nil, MazeHelper.frame);
+MazeHelper.frame.LargeSymbol = CreateFrame('Button', nil, UIParent);
 PixelUtil.SetPoint(MazeHelper.frame.LargeSymbol, 'TOP', UIParent, 'TOP', 0, -32);
 PixelUtil.SetSize(MazeHelper.frame.LargeSymbol, 64, 64)
 MazeHelper.frame.LargeSymbol:SetIgnoreParentScale(true);
 MazeHelper.frame.LargeSymbol:EnableMouse(true);
 MazeHelper.frame.LargeSymbol:SetMovable(true);
 MazeHelper.frame.LargeSymbol:SetClampedToScreen(true);
+MazeHelper.frame.LargeSymbol:RegisterForClicks('RightButtonUp');
+MazeHelper.frame.LargeSymbol:SetScript('OnClick', function(self)
+    self:SetShown(false);
+end);
 MazeHelper.frame.LargeSymbol:RegisterForDrag('LeftButton');
 MazeHelper.frame.LargeSymbol:SetScript('OnDragStart', function(self)
     if self:IsMovable() then
