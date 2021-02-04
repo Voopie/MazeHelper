@@ -3,6 +3,26 @@ MazeHelper.E = {};
 
 local E, M = MazeHelper.E, MazeHelper.M;
 
+E.CreateTooltip = function(frame, tooltipText, anchor)
+    if not frame then
+        return;
+    end
+
+    frame.tooltip = tooltipText;
+
+    frame:HookScript('OnEnter', function(self)
+        if not self.tooltip then
+            return;
+        end
+
+        GameTooltip:SetOwner(self, anchor or 'ANCHOR_RIGHT');
+        GameTooltip:AddLine(self.tooltip, 1, 0.85, 0, true);
+        GameTooltip:Show();
+    end);
+
+    frame:HookScript('OnLeave', GameTooltip_Hide);
+end
+
 E.CreateRoundedCheckButton = function(parent)
     local b = CreateFrame('CheckButton', nil, parent);
 
