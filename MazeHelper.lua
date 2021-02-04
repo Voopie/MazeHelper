@@ -1005,11 +1005,11 @@ function MazeHelper:CreateButton(index)
     end);
 
     button:HookScript('OnEnter', function(self)
-        if not self.sender then
-            return;
+        if self.sender then
+            self.tooltip = self.state and string.format(L['SENDED_BY'], self.sender) or string.format(L['CLEARED_BY'], self.sender);
+        else
+            self.tooltip = nil;
         end
-
-        self.tooltip = self.state and string.format(L['SENDED_BY'], self.sender) or string.format(L['CLEARED_BY'], self.sender);
     end);
 
     E.CreateTooltip(button);
