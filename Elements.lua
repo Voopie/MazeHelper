@@ -189,7 +189,7 @@ E.CreateScrollFrame = function(parent, scrollStep)
     return scrollChild, scrollArea;
 end
 
-E.CreateAnimation = function(frame)
+E.CreateSmoothShowing = function(frame)
     if not frame then
         return;
     end
@@ -232,6 +232,9 @@ E.CreateAnimation = function(frame)
             end
         end
     end
+
+    frame.AnimIn  = AnimationFadeInGroup;
+    frame.AnimOut = AnimationFadeOutGroup;
 end
 
 local function SliderRound(val, minVal, valueStep)

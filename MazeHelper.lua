@@ -227,7 +227,7 @@ end);
 MazeHelper.frame:SetScript('OnDragStop', function(self)
     BetterOnDragStop(self, MHMOTSConfig.SavedPosition);
 end);
-E.CreateAnimation(MazeHelper.frame);
+E.CreateSmoothShowing(MazeHelper.frame);
 
 -- Background
 MazeHelper.frame.background = MazeHelper.frame:CreateTexture(nil, 'BACKGROUND');
@@ -424,7 +424,7 @@ MazeHelper.frame.LargeSymbol:SetShown(false);
 MazeHelper.frame.LargeSymbol:HookScript('OnShow', function()
     PlaySoundFile(M.Sounds.Notification, 'SFX');
 end);
-E.CreateAnimation(MazeHelper.frame.LargeSymbol);
+E.CreateSmoothShowing(MazeHelper.frame.LargeSymbol);
 MazeHelper.frame.LargeSymbol.AnimIn:HookScript('OnFinished', function()
     C_Timer.After(0, function()
         MazeHelper.frame.LargeSymbol.Background:SetAlpha(MHMOTSConfig.SavedBackgroundAlphaLargeSymbol);
