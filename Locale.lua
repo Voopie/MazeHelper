@@ -106,8 +106,8 @@ if gameLocale == 'ruRU' then
     L['FLOWER_FULL_NOCIRCLE'] = 'Полный цветок без круга';
     L['FLOWER_NOFULL_CIRCLE'] = 'Пустой цветок в круге';
     L['FLOWER_NOFULL_NOCIRCLE'] = 'Пустой цветок без круга';
-    L['SENDED_BY'] = 'Отправлено %s';
-    L['CLEARED_BY'] = 'Очищено %s';
+    L['SENDED_BY'] = 'Отправлено: %s';
+    L['CLEARED_BY'] = 'Очищено: %s';
     L['PASSED'] = 'Прошли';
     L['RESETED_PLAYER'] = '|cffffb833Maze Helper:|r %s |cffff0537сбросил|r мини-игру';
     L['PASSED_PLAYER'] = '|cffffb833Maze Helper:|r %s кликнул на кнопку «|cff66ff6eПрошли|r»';
