@@ -227,7 +227,7 @@ end);
 MazeHelper.frame:SetScript('OnDragStop', function(self)
     BetterOnDragStop(self, MHMOTSConfig.SavedPosition);
 end);
-E.CreateAnimation(MazeHelper.frame, 'FadeInOut');
+E.CreateAnimation(MazeHelper.frame);
 
 -- Background
 MazeHelper.frame.background = MazeHelper.frame:CreateTexture(nil, 'BACKGROUND');
@@ -424,7 +424,12 @@ MazeHelper.frame.LargeSymbol:SetShown(false);
 MazeHelper.frame.LargeSymbol:HookScript('OnShow', function()
     PlaySoundFile(M.Sounds.Notification, 'SFX');
 end);
-E.CreateAnimation(MazeHelper.frame.LargeSymbol, 'FadeInOut');
+E.CreateAnimation(MazeHelper.frame.LargeSymbol);
+MazeHelper.frame.LargeSymbol.AnimIn:HookScript('OnFinished', function()
+    C_Timer.After(0, function()
+        MazeHelper.frame.LargeSymbol.Background:SetAlpha(MHMOTSConfig.SavedBackgroundAlphaLargeSymbol);
+    end);
+end);
 
 -- Solution Text
 MazeHelper.frame.SolutionText = MazeHelper.frame.MainHolder:CreateFontString(nil, 'ARTWORK', 'GameFontNormalLarge');
