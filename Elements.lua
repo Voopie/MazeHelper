@@ -55,17 +55,7 @@ E.CreateRoundedCheckButton = function(parent)
         PixelUtil.SetSize(self, width, height);
     end
 
-    b:HookScript('OnEnter', function(self)
-        if not self.tooltip then
-            return;
-        end
-
-        GameTooltip:SetOwner(self, 'ANCHOR_RIGHT');
-        GameTooltip:AddLine(self.tooltip, 1, 0.85, 0, true);
-        GameTooltip:Show();
-    end);
-
-    b:HookScript('OnLeave', GameTooltip_Hide);
+    E.CreateTooltip(b);
 
     b:SetSize(26, 26);
 
@@ -91,17 +81,7 @@ E.CreateCheckButton = function(name, parent)
         self.tooltip = tooltip;
     end
 
-    b:HookScript('OnEnter', function(self)
-        if not self.tooltip then
-            return;
-        end
-
-        GameTooltip:SetOwner(self, 'ANCHOR_RIGHT');
-        GameTooltip:AddLine(self.tooltip, 1, 0.85, 0, true);
-        GameTooltip:Show();
-    end);
-
-    b:HookScript('OnLeave', GameTooltip_Hide);
+    E.CreateTooltip(b);
 
     hooksecurefunc(b, 'SetEnabled', function(self, state)
         if state then
