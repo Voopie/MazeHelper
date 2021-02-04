@@ -501,7 +501,6 @@ MazeHelper.frame.PassedButton:SetScript('OnClick', function()
     PixelUtil.SetPoint(MazeHelper.frame.PassedCounter.Text, 'CENTER', MazeHelper.frame.PassedCounter, 'CENTER', (PASSED_COUNTER == 1) and -2 or 0, isMinimized and 0 or -1);
 
     MazeHelper:SendPassedCommand(PASSED_COUNTER);
-
     ResetAll();
 end);
 MazeHelper.frame.PassedButton:SetEnabled(false);
@@ -577,12 +576,8 @@ MazeHelper.frame.PracticeModeButton:SetScript('OnClick', function()
     MazeHelper.frame:SetShown(false);
     MazeHelper.PracticeFrame:SetShown(true);
 end);
-MazeHelper.frame.PracticeModeButton:HookScript('OnEnter', function(self)
-    GameTooltip:SetOwner(self, 'ANCHOR_RIGHT');
-    GameTooltip:AddLine(L['PRACTICE_BUTTON_TOOLTIP'], 1, 0.85, 0, true);
-    GameTooltip:Show();
-end);
-MazeHelper.frame.PracticeModeButton:HookScript('OnLeave', GameTooltip_Hide);
+E.CreateTooltip(MazeHelper.frame.PracticeModeButton, L['PRACTICE_BUTTON_TOOLTIP']);
+
 MazeHelper.frame.PracticeModeButton.Background = MazeHelper.frame.PracticeModeButton:CreateTexture(nil, 'BACKGROUND');
 PixelUtil.SetPoint(MazeHelper.frame.PracticeModeButton.Background, 'TOPLEFT', MazeHelper.frame.PracticeModeButton, 'TOPLEFT', -30, 30);
 PixelUtil.SetPoint(MazeHelper.frame.PracticeModeButton.Background, 'BOTTOMRIGHT', MazeHelper.frame.PracticeModeButton, 'BOTTOMRIGHT', 30, -30);
@@ -1009,16 +1004,11 @@ function MazeHelper:CreateButton(index)
         end
     end);
 
-    button:SetScript('OnEnter', function(self)
-        if not self.sender then
-            return;
-        end
-
-        GameTooltip:SetOwner(self, 'ANCHOR_RIGHT');
-        GameTooltip:AddLine(self.state and string.format(L['SENDED_BY'], self.sender) or string.format(L['CLEARED_BY'], self.sender), 1, 0.85, 0, true);
-        GameTooltip:Show();
+    button:HookScript('OnEnter', function(self)
+        self.tooltip = self.state and string.format(L['SENDED_BY'], self.sender) or string.format(L['CLEARED_BY'], self.sender);
     end);
-    button:SetScript('OnLeave', GameTooltip_Hide);
+
+    E.CreateTooltip(button);
 
     button:RegisterForDrag('LeftButton');
     button:SetScript('OnDragStart', function()
