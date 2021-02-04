@@ -225,7 +225,7 @@ local function PlayRandomErrorSound()
 end
 
 MazeHelper.PracticeFrame = CreateFrame('Frame', 'ST_Maze_Helper_Practice', UIParent);
-PixelUtil.SetPoint(MazeHelper.PracticeFrame, 'TOP', UIParent, 'TOP', 0, -32);
+PixelUtil.SetPoint(MazeHelper.PracticeFrame, 'TOP', UIParent, 'TOP', 0, -64);
 PixelUtil.SetSize(MazeHelper.PracticeFrame, FRAME_SIZE + X_OFFSET * (MAX_BUTTONS - 1), BUTTON_SIZE + X_OFFSET);
 MazeHelper.PracticeFrame:SetShown(false);
 MazeHelper.PracticeFrame:HookScript('OnShow', UpdateButtons);
