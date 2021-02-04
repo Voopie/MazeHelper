@@ -670,6 +670,10 @@ settingsScrollChild.Data.UseColoredSymbols:SetScript('OnClick', function(self)
     for i = 1, MAX_BUTTONS do
         buttons[i].Icon:SetTexCoord(unpack(MHMOTSConfig.UseColoredSymbols and buttonsData[i].coords or buttonsData[i].coords_white));
     end
+
+    if SOLUTION_BUTTON_ID then
+        MazeHelper.frame.LargeSymbol.Icon:SetTexCoord(unpack(MHMOTSConfig.UseColoredSymbols and buttonsData[SOLUTION_BUTTON_ID].coords or buttonsData[SOLUTION_BUTTON_ID].coords_white));
+    end
 end);
 
 settingsScrollChild.Data.ShowSequenceNumbers = E.CreateRoundedCheckButton(settingsScrollChild);
