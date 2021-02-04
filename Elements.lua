@@ -1,8 +1,7 @@
 local _, MazeHelper = ...;
 MazeHelper.E = {};
 
-local E = MazeHelper.E;
-local M = MazeHelper.M;
+local E, M = MazeHelper.E, MazeHelper.M;
 
 E.CreateRoundedCheckButton = function(parent)
     local b = CreateFrame('CheckButton', nil, parent);
