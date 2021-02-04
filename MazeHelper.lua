@@ -1625,7 +1625,7 @@ function MazeHelper.frame:PLAYER_SPECIALIZATION_CHANGED(unit)
 end
 
 function MazeHelper.frame:GOSSIP_SHOW()
-    if not inMOTS or C_GossipInfo.GetNumOptions() ~= 1 then
+    if C_GossipInfo.GetNumOptions() ~= 1 then
         return;
     end
 
