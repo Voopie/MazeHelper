@@ -140,7 +140,7 @@ if gameLocale == 'ruRU' then
     L['SETTINGS_USE_CLONE_AUTOMARKER_LABEL'] = 'Авто-метки';
     L['SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = 'Автоматически ставить метки на Иллюзорных клонов в бою с боссом';
     L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL'] = 'Дублировать решение на английском';
-    L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP'] = 'Отправлять решение в чат вместе английскими фразами, например, «Пустой цветок без круга / Empty flower without a circle»';
+    L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP'] = 'Отправлять решение в чат вместе с английскими фразами, например, «Пустой цветок без круга / Empty flower without a circle»';
     L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_LABEL'] = 'Ставить метку на игрока';
     L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_TOOLTIP'] = 'Автоматически ставить метку на игрока, если он кликнул по символу, который стал решением';
     L['SETTINGS_ALPHA_BACKGROUND_LABEL'] = 'Непрозрачность фона';
