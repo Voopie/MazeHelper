@@ -6,7 +6,7 @@ local Version = GetAddOnMetadata(ADDON_NAME, 'Version');
 local tonumber = tonumber;
 
 -- WoW API
-local IsInRaid, IsInGroup, UnitIsGroupLeader, GetMinimapZoneText = IsInRaid, IsInGroup, UnitIsGroupLeader, GetMinimapZoneText;
+local IsInRaid, IsInGroup, GetMinimapZoneText = IsInRaid, IsInGroup, GetMinimapZoneText;
 
 local ADDON_COMM_PREFIX = 'MAZEHELPER';
 local ADDON_COMM_MODE   = 'NORMAL';
@@ -1570,7 +1570,7 @@ function MazeHelper.frame:NAME_PLATE_UNIT_REMOVED(unit)
     nameplatesMarkers[unit] = nil;
 end
 
-function MazeHelper.frame:CHAT_MSG_ADDON(prefix, message, channel, sender)
+function MazeHelper.frame:CHAT_MSG_ADDON(prefix, message, _, sender)
     if not MHMOTSConfig.SyncEnabled then
         return;
     end
