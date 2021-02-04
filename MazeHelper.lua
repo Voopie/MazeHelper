@@ -1709,8 +1709,8 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     MazeHelper.frame:SetScale(MHMOTSConfig.SavedScale);
     MazeHelper.frame.LargeSymbol:SetScale(PixelUtil.GetPixelToUIUnitFactor() * MHMOTSConfig.SavedScaleLargeSymbol);
 
-    settingsScrollChild.Data.SavedBackgroundAlpha:SetValues(MHMOTSConfig.SavedBackgroundAlpha, 0.05, 1, 0.05);
-    settingsScrollChild.Data.SavedBackgroundAlphaLargeSymbol:SetValues(MHMOTSConfig.SavedBackgroundAlphaLargeSymbol, 0.05, 1, 0.05);
+    settingsScrollChild.Data.SavedBackgroundAlpha:SetValues(MHMOTSConfig.SavedBackgroundAlpha, 0, 1, 0.05);
+    settingsScrollChild.Data.SavedBackgroundAlphaLargeSymbol:SetValues(MHMOTSConfig.SavedBackgroundAlphaLargeSymbol, 0, 1, 0.05);
 
     MazeHelper.frame.background:SetAlpha(MHMOTSConfig.SavedBackgroundAlpha);
     MazeHelper.frame.LargeSymbol.Background:SetAlpha(MHMOTSConfig.SavedBackgroundAlphaLargeSymbol);
