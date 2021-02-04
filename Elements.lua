@@ -73,8 +73,8 @@ E.CreateCheckButton = function(name, parent)
         self:SetHitRectInsets(0, -(self.Label:GetWidth() + 8), 0, 0);
     end
 
-    b.SetPosition = function(self, point, relativeTo, relativePoint, offsetX, offsetY)
-        PixelUtil.SetPoint(self, point, relativeTo, relativePoint, offsetX, offsetY);
+    b.SetPosition = function(self, point, relativeTo, relativePoint, offsetX, offsetY, minOffsetXPixels, minOffsetYPixels)
+        PixelUtil.SetPoint(self, point, relativeTo, relativePoint, offsetX, offsetY, minOffsetXPixels, minOffsetYPixels);
     end
 
     b.SetTooltip = function(self, tooltip)
@@ -275,8 +275,8 @@ E.CreateSlider = function(name, parent)
         insets   = { left = 3, right = 3, top = 6, bottom = 6 },
     });
 
-    slider.SetPosition = function(self, point, relativeTo, relativePoint, offsetX, offsetY)
-        PixelUtil.SetPoint(self, point, relativeTo, relativePoint, offsetX, offsetY);
+    slider.SetPosition = function(self, point, relativeTo, relativePoint, offsetX, offsetY, minOffsetXPixels, minOffsetYPixels)
+        PixelUtil.SetPoint(self, point, relativeTo, relativePoint, offsetX, offsetY, minOffsetXPixels, minOffsetYPixels);
     end
 
     hooksecurefunc(slider, 'SetValue', function(self, value)
