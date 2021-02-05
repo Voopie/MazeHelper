@@ -227,6 +227,11 @@ end);
 MazeHelper.frame:SetScript('OnDragStop', function(self)
     BetterOnDragStop(self, MHMOTSConfig.SavedPosition);
 end);
+MazeHelper.frame:HookScript('OnShow', function(self)
+    if SOLUTION_BUTTON_ID then
+        self.LargeSymbol:SetShown(true);
+    end
+end)
 E.CreateSmoothShowing(MazeHelper.frame);
 
 -- Background
@@ -578,6 +583,7 @@ MazeHelper.frame.PracticeModeButton:GetHighlightTexture():SetTexCoord(unpack(M.I
 MazeHelper.frame.PracticeModeButton:GetHighlightTexture():SetVertexColor(1, 0.85, 0, 1);
 MazeHelper.frame.PracticeModeButton:SetScript('OnClick', function()
     MazeHelper.frame:SetShown(false);
+    MazeHelper.frame.LargeSymbol:SetShown(false);
     MazeHelper.PracticeFrame:SetShown(true);
 end);
 E.CreateTooltip(MazeHelper.frame.PracticeModeButton, L['PRACTICE_BUTTON_TOOLTIP']);
