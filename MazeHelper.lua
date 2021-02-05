@@ -429,11 +429,6 @@ MazeHelper.frame.LargeSymbol:HookScript('OnShow', function()
     PlaySoundFile(M.Sounds.Notification, 'SFX');
 end);
 E.CreateSmoothShowing(MazeHelper.frame.LargeSymbol);
-MazeHelper.frame.LargeSymbol.AnimIn:HookScript('OnFinished', function()
-    C_Timer.After(0, function()
-        MazeHelper.frame.LargeSymbol.Background:SetAlpha(MHMOTSConfig.SavedBackgroundAlphaLargeSymbol);
-    end);
-end);
 
 -- Solution Text
 MazeHelper.frame.SolutionText = MazeHelper.frame.MainHolder:CreateFontString(nil, 'ARTWORK', 'GameFontNormalLarge');
