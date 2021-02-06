@@ -69,7 +69,7 @@ L['SETTINGS_SHOW_SEQUENCE_NUMBERS_TOOLTIP'] = 'Show sequence numbers when clicki
 L['SETTINGS_PREDICT_SOLUTION_LABEL'] = 'Predict solution';
 L['SETTINGS_PREDICT_SOLUTION_TOOLTIP'] = 'Predict the solution on 2-3 steps, but |cffff6a00first|r picked symbol |cffff6a00must be|r the entrance symbol';
 L['SETTINGS_SHOW_LARGE_SYMBOL_LABEL'] = 'Show large symbol';
-L['SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = 'Show a large symbol at the top of the screen if there is a ready-made solution';
+L['SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = 'Show a large symbol at the top of the screen if there is a ready-made solution|n|nRight click to close';
 L['SETTINGS_SCALE_LABEL'] = 'Scale';
 L['SETTINGS_SCALE_TOOLTIP'] = 'Set the scale of the main window';
 L['SETTINGS_SCALE_LARGE_SYMBOL_LABEL'] = 'Scale of large symbol';
@@ -132,7 +132,7 @@ if gameLocale == 'ruRU' then
     L['SETTINGS_PREDICT_SOLUTION_LABEL'] = 'Предсказывать решение';
     L['SETTINGS_PREDICT_SOLUTION_TOOLTIP'] = 'Предсказывать решение на 2–3 шагах, но |cffff6a00первый|r выбранный символ |cffff6a00должен быть|r символом входа';
     L['SETTINGS_SHOW_LARGE_SYMBOL_LABEL'] = 'Показывать большой символ';
-    L['SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = 'Показывать большой символ вверху экрана при наличии решения';
+    L['SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = 'Показывать большой символ вверху экрана при наличии решения|n|nПравый клик, чтобы закрыть';
     L['SETTINGS_SCALE_LABEL'] = 'Масштаб';
     L['SETTINGS_SCALE_TOOLTIP'] = 'Задать масштаб главного окна';
     L['SETTINGS_SCALE_LARGE_SYMBOL_LABEL'] = 'Масштаб большого символа';
@@ -198,7 +198,7 @@ if gameLocale == 'deDE' then
     L['SETTINGS_PREDICT_SOLUTION_LABEL'] = 'Vorhersage der Lösung';
     L['SETTINGS_PREDICT_SOLUTION_TOOLTIP'] = 'Sagen Sie die Lösung in 2-3 Schritten voraus, aber |cffff6a00zuerst|r ausgewähltes Symbol |cffff6a00muss|r das Eingangssymbol sein';
     L['SETTINGS_SHOW_LARGE_SYMBOL_LABEL'] = 'Großes Symbol anzeigen';
-    L['SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = 'Zeigen Sie oben auf dem Bildschirm ein großes Symbol an, wenn eine fertige Lösung vorhanden ist';
+    L['SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = 'Zeigen Sie oben auf dem Bildschirm ein großes Symbol an, wenn eine fertige Lösung vorhanden ist|n|nRechtsklick zum Schließen';
     L['SETTINGS_SCALE_LABEL'] = 'Rahmen';
     L['SETTINGS_SCALE_TOOLTIP'] = 'Stellen Sie den Maßstab des Hauptfensters ein';
     L['SETTINGS_SCALE_LARGE_SYMBOL_LABEL'] = 'Skala des großen Symbols';
@@ -264,7 +264,7 @@ if gameLocale == 'frFR' then
     L['SETTINGS_PREDICT_SOLUTION_LABEL'] = 'Solution de prédiction';
     L['SETTINGS_PREDICT_SOLUTION_TOOLTIP'] = 'Prédire la solution sur 2-3 étapes, mais |cffff6a00en premier|r symbole choisi |cffff6a00doit être|r le symbole d\'entrée';
     L['SETTINGS_SHOW_LARGE_SYMBOL_LABEL'] = 'Afficher le grand symbole';
-    L['SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = 'Afficher un grand symbole en haut de l\'écran s\'il existe une solution toute faite';
+    L['SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = 'Afficher un grand symbole en haut de l\'écran s\'il existe une solution toute faite|n|nClic droit pour fermer';
     L['SETTINGS_SCALE_LABEL'] = 'Échelle';
     L['SETTINGS_SCALE_TOOLTIP'] = 'Réglez l\'échelle de la fenêtre principale';
     L['SETTINGS_SCALE_LARGE_SYMBOL_LABEL'] = 'Échelle du grand symbole';
@@ -330,7 +330,7 @@ if gameLocale == 'itIT' then
     L['SETTINGS_PREDICT_SOLUTION_LABEL'] = 'Predire soluzione';
     L['SETTINGS_PREDICT_SOLUTION_TOOLTIP'] = 'Prevedere la soluzione su 2-3 passaggi, ma |cffff6a00il primo|r scelto simbolo |cffff6a00deve essere|r il simbolo di entrata';
     L['SETTINGS_SHOW_LARGE_SYMBOL_LABEL'] = 'Mostra il simbolo grande';
-    L['SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = 'Mostra un grande simbolo nella parte superiore dello schermo se c\'è una soluzione già pronta';
+    L['SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = 'Mostra un grande simbolo nella parte superiore dello schermo se c\'è una soluzione già pronta|n|nFare clic con il tasto destro per chiudere';
     L['SETTINGS_SCALE_LABEL'] = 'Scala';
     L['SETTINGS_SCALE_TOOLTIP'] = 'Imposta la scala della finestra principale';
     L['SETTINGS_SCALE_LARGE_SYMBOL_LABEL'] = 'Scala di grande simbolo';
@@ -396,7 +396,7 @@ if gameLocale == 'ptBR' then
     L['SETTINGS_PREDICT_SOLUTION_LABEL'] = 'Solução de previsão';
     L['SETTINGS_PREDICT_SOLUTION_TOOLTIP'] = 'Preveja a solução em 2-3 etapas, mas |cffff6a00primeiro|r escolheu o símbolo |cffff6a00deve ser|r o símbolo de entrada';
     L['SETTINGS_SHOW_LARGE_SYMBOL_LABEL'] = 'Mostrar símbolo grande';
-    L['SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = 'Mostra um grande símbolo no topo da tela se houver uma solução pronta';
+    L['SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = 'Mostra um grande símbolo no topo da tela se houver uma solução pronta|n|nClique com o botão direito para fechar';
     L['SETTINGS_SCALE_LABEL'] = 'Escala';
     L['SETTINGS_SCALE_TOOLTIP'] = 'Defina a escala da janela principal';
     L['SETTINGS_SCALE_LARGE_SYMBOL_LABEL'] = 'Escala de grande símbolo';
@@ -462,7 +462,7 @@ if gameLocale == 'esES' then
     L['SETTINGS_PREDICT_SOLUTION_LABEL'] = 'Predecir solución';
     L['SETTINGS_PREDICT_SOLUTION_TOOLTIP'] = 'Predecir la solución en 2-3 pasos, pero |cffff6a00el primer|r símbolo elegido |cffff6a00debe ser|r el símbolo de entrada';
     L['SETTINGS_SHOW_LARGE_SYMBOL_LABEL'] = 'Mostrar símbolo grande';
-    L['SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = 'Muestre un símbolo grande en la parte superior de la pantalla si hay una solución preparada';
+    L['SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = 'Muestre un símbolo grande en la parte superior de la pantalla si hay una solución preparada|n|nClick derecho para cerrar';
     L['SETTINGS_SCALE_LABEL'] = 'Escala';
     L['SETTINGS_SCALE_TOOLTIP'] = 'Establecer la escala de la ventana principal';
     L['SETTINGS_SCALE_LARGE_SYMBOL_LABEL'] = 'Escala de símbolo grande';
@@ -535,7 +535,7 @@ if gameLocale == 'zhTW' then
     L['SETTINGS_PREDICT_SOLUTION_LABEL'] = '預測解決方案';
     L['SETTINGS_PREDICT_SOLUTION_TOOLTIP'] = '在2-3步上預測解決方案，但是|cffff6a00第一個|r選擇的符號|cffff6a00必須是|r入口符號';
     L['SETTINGS_SHOW_LARGE_SYMBOL_LABEL'] = '顯示大符號';
-    L['SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = '如果有現成的解決方案，請在屏幕頂部顯示一個大符號';
+    L['SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = '如果有現成的解決方案，請在屏幕頂部顯示一個大符號|n|n右鍵單擊以關閉';
     L['SETTINGS_SCALE_LABEL'] = '規模';
     L['SETTINGS_SCALE_TOOLTIP'] = '設置主窗口的比例';
     L['SETTINGS_SCALE_LARGE_SYMBOL_LABEL'] = '大符號的比例';
@@ -602,7 +602,7 @@ if gameLocale == 'zhCN' then
     L['SETTINGS_PREDICT_SOLUTION_LABEL'] = '预测答案';
     L['SETTINGS_PREDICT_SOLUTION_TOOLTIP'] = '在2-3步预测答案，但是|cffff6a00第一个|r选择的符号|cffff6a00必须是|r入口符号';
     L['SETTINGS_SHOW_LARGE_SYMBOL_LABEL'] = '显示大符号';
-    L['SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = '如果有现成的解决方案，请在屏幕顶部显示一个大符号';
+    L['SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = '如果有现成的解决方案，请在屏幕顶部显示一个大符号|n|n右键单击以关闭';
     L['SETTINGS_SCALE_LABEL'] = '规模';
     L['SETTINGS_SCALE_TOOLTIP'] = '设置主窗口的比例';
     L['SETTINGS_SCALE_LARGE_SYMBOL_LABEL'] = '大符号的比例';
@@ -667,7 +667,7 @@ if gameLocale == 'koKR' then -- hinski (https://www.curseforge.com/members/hinsk
     L['SETTINGS_USE_COLORED_SYMBOLS_TOOLTIP'] = '흑백 대신 색칠된 모양 사용';
     L['SOLUTION_NA'] = '|cffffb833정답이 없습니다...|r';
     L['SETTINGS_SHOW_LARGE_SYMBOL_LABEL'] = '큰 기호 표시';
-    L['SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = '기성 솔루션이있는 경우 화면 상단에 큰 기호 표시';
+    L['SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = '기성 솔루션이있는 경우 화면 상단에 큰 기호 표시|n|n닫으려면 오른쪽 클릭';
     L['SETTINGS_SCALE_LABEL'] = '비율';
     L['SETTINGS_SCALE_TOOLTIP'] = '기본 창의 배율 설정';
     L['SETTINGS_SCALE_LARGE_SYMBOL_LABEL'] = '큰 심볼의 스케일';
