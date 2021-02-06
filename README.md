@@ -1,5 +1,3 @@
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/Voopie/MazeHelper?style=flat-square)
-
 ## Maze Helper (Mists of Tirna Scithe)
 
 [CurseForge](https://www.curseforge.com/wow/addons/maze-helper-mists-of-tirna-scithe)  
@@ -19,6 +17,7 @@
 - Passed counter and button
 - Minimized mode: for those who don't click on the buttons but want to know the right solution
 - Practice mode: practice and you will become stronger, wiser and everyone will adore you!
+- Auto activation of Depleted Anima Seeds (just one click!)
 
 ### ***Usage:***
 
