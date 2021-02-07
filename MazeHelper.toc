@@ -1,10 +1,12 @@
 ## Interface: 90002
 ## Author: Voopie
-## Title: Maze Helper [|cff235be8Mists of Tirna Scithe|r]
+## Title: + |TInterface\AddOns\MazeHelper\Media\mazehelper:14:112:0:1:128:64:0:128:0:16|t
+## Notes: Your favorite helper for Mists of Tirna Scithe
+## Notes-ruRU: Ваш любимый помощник для подземелья «Туманы Тирна Скитта»
 ## Version: 1.23
 ## SavedVariables: MHMOTSConfig
 
-Libraries\ChatThrottleLib.lua
+Libraries\Load_Libraries.xml
 
 Locale.lua
 Media\Data.lua

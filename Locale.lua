@@ -88,6 +88,11 @@ L['PRACTICE_TITLE'] = 'Select a symbol that differs in one way from the others';
 L['PRACTICE_PLAY_AGAIN'] = 'Play again';
 L['PRACTICE_BUTTON_TOOLTIP'] = 'Practice';
 L['NEW_VERSION_AVAILABLE'] = '|cffffb833Maze Helper:|r New version is now available on Curse|cfff16336Forge|r!';
+L['MINIMAP_BUTTON_LMB'] = 'LMB';
+L['MINIMAP_BUTTON_RMB'] = 'RMB';
+L['MINIMAP_BUTTON_TOGGLE_MAZEHELPER'] = 'Toggle «Maze Helper» frame';
+L['MINIMAP_BUTTON_HIDE'] = 'Hide minimap button';
+L['MINIMAP_BUTTON_COMMAND_SHOW'] = '|cffffb833Maze Helper:|r Use /mh minimap to show the minimap button again';
 
 -- Русский (я)
 if gameLocale == 'ruRU' then
@@ -151,6 +156,11 @@ if gameLocale == 'ruRU' then
     L['PRACTICE_PLAY_AGAIN'] = 'Сыграть ещё';
     L['PRACTICE_BUTTON_TOOLTIP'] = 'Практика';
     L['NEW_VERSION_AVAILABLE'] = '|cffffb833Maze Helper:|r Новая версия доступна на Curse|cfff16336Forge|r!';
+    L['MINIMAP_BUTTON_LMB'] = 'ЛКМ';
+    L['MINIMAP_BUTTON_RMB'] = 'ПКМ';
+    L['MINIMAP_BUTTON_TOGGLE_MAZEHELPER'] = 'Открыть/Закрыть Maze Helper';
+    L['MINIMAP_BUTTON_HIDE'] = 'Скрыть кнопку у миникарты';
+    L['MINIMAP_BUTTON_COMMAND_SHOW'] = '|cffffb833Maze Helper:|r Используйте /mh minimap, чтобы снова показать кнопку у миникарты';
 
     return;
 end
@@ -217,6 +227,11 @@ if gameLocale == 'deDE' then
     L['PRACTICE_PLAY_AGAIN'] = 'Nochmal abspielen';
     L['PRACTICE_BUTTON_TOOLTIP'] = 'Trainieren';
     L['NEW_VERSION_AVAILABLE'] = '|cffffb833Maze Helper:|r Neue Version ist jetzt auf Curse|cfff16336Forge|r verfügbar!';
+    L['MINIMAP_BUTTON_LMB'] = 'Linke Maustaste';
+    L['MINIMAP_BUTTON_RMB'] = 'Rechte Maustaste';
+    L['MINIMAP_BUTTON_TOGGLE_MAZEHELPER'] = 'Schalter «Maze Helper» Rahmen';
+    L['MINIMAP_BUTTON_HIDE'] = 'Minikartenschaltfläche ausblenden';
+    L['MINIMAP_BUTTON_COMMAND_SHOW'] = '|cffffb833Maze Helper:|r Verwenden Sie /mh minimap, um das Minikartensymbol erneut anzuzeigen';
 
     return;
 end
@@ -283,6 +298,11 @@ if gameLocale == 'frFR' then
     L['PRACTICE_PLAY_AGAIN'] = 'Rejouer';
     L['PRACTICE_BUTTON_TOOLTIP'] = 'La pratique';
     L['NEW_VERSION_AVAILABLE'] = '|cffffb833Maze Helper:|r Une nouvelle version est maintenant disponible sur Curse|cfff16336Forge|r!';
+    L['MINIMAP_BUTTON_LMB'] = 'Bouton gauche';
+    L['MINIMAP_BUTTON_RMB'] = 'Bouton de droite';
+    L['MINIMAP_BUTTON_TOGGLE_MAZEHELPER'] = 'Basculer la fenêtre «Maze Helper»';
+    L['MINIMAP_BUTTON_HIDE'] = 'Masquer le bouton de la minicarte';
+    L['MINIMAP_BUTTON_COMMAND_SHOW'] = '|cffffb833Maze Helper:|r Utilisez /mh minimap pour afficher à nouveau l\'icône de minicarte';
 
     return;
 end
@@ -349,6 +369,11 @@ if gameLocale == 'itIT' then
     L['PRACTICE_PLAY_AGAIN'] = 'Gioca di nuovo';
     L['PRACTICE_BUTTON_TOOLTIP'] = 'Pratica';
     L['NEW_VERSION_AVAILABLE'] = '|cffffb833Maze Helper:|r La nuova versione è ora disponibile su Curse|cfff16336Forge|r!';
+    L['MINIMAP_BUTTON_LMB'] = 'Pulsante di sinistra';
+    L['MINIMAP_BUTTON_RMB'] = 'Pulsante destro';
+    L['MINIMAP_BUTTON_TOGGLE_MAZEHELPER'] = 'Attiva / disattiva la finestra «Maze Helper»';
+    L['MINIMAP_BUTTON_HIDE'] = 'Nascondi pulsante minimappa';
+    L['MINIMAP_BUTTON_COMMAND_SHOW'] = '|cffffb833Maze Helper:|r Usa /mh minimap per mostrare di nuovo il pulsante minimappa';
 
     return;
 end
@@ -415,6 +440,11 @@ if gameLocale == 'ptBR' then
     L['PRACTICE_PLAY_AGAIN'] = 'Jogar de novo';
     L['PRACTICE_BUTTON_TOOLTIP'] = 'Prática';
     L['NEW_VERSION_AVAILABLE'] = '|cffffb833Maze Helper:|r Nova versão já está disponível no Curse|cfff16336Forge|r!';
+    L['MINIMAP_BUTTON_LMB'] = 'Botão esquerdo';
+    L['MINIMAP_BUTTON_RMB'] = 'Botão direito';
+    L['MINIMAP_BUTTON_TOGGLE_MAZEHELPER'] = 'Alternar a janela «Maze Helper»';
+    L['MINIMAP_BUTTON_HIDE'] = 'Ocultar botão de minimapa';
+    L['MINIMAP_BUTTON_COMMAND_SHOW'] = '|cffffb833Maze Helper:|r Use /mh minimap para mostrar o ícone do minimapa novamente';
 
     return;
 end
@@ -481,6 +511,11 @@ if gameLocale == 'esES' then
     L['PRACTICE_PLAY_AGAIN'] = 'Juega de nuevo';
     L['PRACTICE_BUTTON_TOOLTIP'] = 'Práctica';
     L['NEW_VERSION_AVAILABLE'] = '|cffffb833Maze Helper:|r ¡La nueva versión ya está disponible en Curse|cfff16336Forge|r!';
+    L['MINIMAP_BUTTON_LMB'] = 'Botón izquierdo';
+    L['MINIMAP_BUTTON_RMB'] = 'Botón derecho';
+    L['MINIMAP_BUTTON_TOGGLE_MAZEHELPER'] = 'Alternar la ventana «Maze Helper»';
+    L['MINIMAP_BUTTON_HIDE'] = 'Ocultar botón de minimapa';
+    L['MINIMAP_BUTTON_COMMAND_SHOW'] = '|cffffb833Maze Helper:|r Use /mh minimap para mostrar el botón del minimapa nuevamente';
 
     return;
 end
@@ -554,6 +589,11 @@ if gameLocale == 'zhTW' then
     L['PRACTICE_PLAY_AGAIN'] = '再玩一次';
     L['PRACTICE_BUTTON_TOOLTIP'] = '實踐';
     L['NEW_VERSION_AVAILABLE'] = '|cffffb833Maze Helper:|r 新版本現已在Curse|cfff16336Forge|r上可用！';
+    L['MINIMAP_BUTTON_LMB'] = '左鍵';
+    L['MINIMAP_BUTTON_RMB'] = '右鍵';
+    L['MINIMAP_BUTTON_TOGGLE_MAZEHELPER'] = '切換“Maze Helper”窗口';
+    L['MINIMAP_BUTTON_HIDE'] = '隱藏小地圖按鈕';
+    L['MINIMAP_BUTTON_COMMAND_SHOW'] = '|cffffb833Maze Helper:|r 使用“/mh minimap”再次顯示小地圖按鈕';
 
     return;
 end
@@ -621,17 +661,24 @@ if gameLocale == 'zhCN' then
     L['PRACTICE_PLAY_AGAIN'] = '再玩一次';
     L['PRACTICE_BUTTON_TOOLTIP'] = '实践';
     L['NEW_VERSION_AVAILABLE'] = '|cffffb833Maze Helper:|r 现在可以在Curse|cfff16336Forge|r上使用新版本!';
+    L['MINIMAP_BUTTON_LMB'] = '左键';
+    L['MINIMAP_BUTTON_RMB'] = '右键';
+    L['MINIMAP_BUTTON_TOGGLE_MAZEHELPER'] = '切换“Maze Helper”窗口';
+    L['MINIMAP_BUTTON_HIDE'] = '隐藏小地图按钮';
+    L['MINIMAP_BUTTON_COMMAND_SHOW'] = '|cffffb833Maze Helper:|r 使用“/mh minimap”再次显示小地图按钮';
 
     return;
 end
 
-if gameLocale == 'koKR' then -- hinski (https://www.curseforge.com/members/hinski)
+-- Korean
+-- hinski (https://www.curseforge.com/members/hinski)
+if gameLocale == 'koKR' then 
     L['ZONE_NAME'] = '안개장막 덩굴숲';
     L['CHOOSE_SYMBOLS_1'] = '1개의 모양을 더 고르세요';
     L['CHOOSE_SYMBOLS_2'] = '2개의 모양을 더 고르세요';
     L['CHOOSE_SYMBOLS_3'] = '3개의 모양을 더 고르세요';
     L['CHOOSE_SYMBOLS_4'] = '4개의 모양을 고르세요';
-    L['CLEARED_BY'] = '%s에 의해 지워짐';
+    L['CLEARED_BY'] = '%s에 의해 초기화됨';
     L['FLOWER_FULL_CIRCLE'] = '원 안의 색칠한 꽃';
     L['FLOWER_FULL_NOCIRCLE'] = '원 없는 색칠한 꽃';
     L['FLOWER_NOFULL_CIRCLE'] = '원 안의 빈 꽃';
@@ -652,7 +699,7 @@ if gameLocale == 'koKR' then -- hinski (https://www.curseforge.com/members/hinsk
     L['SETTINGS_AUTOANNOUNCER_LABEL'] = '자동 알리기 활성화';
     L['SETTINGS_AUTOANNOUNCER_TOOLTIP'] = '자동으로 완성된 정답을 파티 채팅에 보냄';
     L['SETTINGS_PREDICT_SOLUTION_LABEL'] = '정답 예측';
-    L['SETTINGS_PREDICT_SOLUTION_TOOLTIP'] = '2-3 단계로 정답을 예측하지만, |cffff6a00첫 번째|r로 선택한 모양은 |cffff6a00반드시|r 입구 방향의 모양이여야 합니다';
+    L['SETTINGS_PREDICT_SOLUTION_TOOLTIP'] = '2-3 단계로 정답을 예측할 수 있지만, |cffff6a00첫 번째|r로 선택한 모양은 |cffff6a00반드시|r 입구 방향의 모양이여야 합니다';
     L['SETTINGS_REVEAL_RESETTER_LABEL'] = '퍼즐을 초기화한 사람 공개';
     L['SETTINGS_REVEAL_RESETTER_TOOLTIP'] = '채팅에 «초기화» 혹은 «통과» 버튼을 누른 사람의 이름을 넣습니다 (자신만 해당)';
     L['SETTINGS_SHOW_AT_BOSS_LABEL'] = '보스에서 나오게 하기';
@@ -674,18 +721,23 @@ if gameLocale == 'koKR' then -- hinski (https://www.curseforge.com/members/hinsk
     L['SETTINGS_SCALE_LARGE_SYMBOL_TOOLTIP'] = '큰 기호의 배율 설정';
     L['SETTINGS_USE_CLONE_AUTOMARKER_LABEL'] = '자동 징표';
     L['SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = '보스전에서 환영 분신들에 징표를 자동으로 분배';
-    L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL'] = '영어 정답도 중복 표시';
+    L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL'] = '영어로도 중복해서 표시';
     L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP'] = '예를 들어 «원 없는 빈 꽃 / Empty flower without a circle»과 같이 영어 구문과 함께 정답을 채팅에 보냅니다';
     L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_LABEL'] = '플레이어에 징표 설정';
     L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_TOOLTIP'] = '답을 고르면 플레이어에게 자동으로 녹색 징표가 설정됩니다';
     L['SETTINGS_ALPHA_BACKGROUND_LABEL'] = '배경 불투명도';
-    L['SETTINGS_ALPHA_BACKGROUND_TOOLTIP'] = '기본 창의 배경에 대한 불투명도 설정';
-    L['SETTINGS_ALPHA_BACKGROUND_LARGE_SYMBOL_LABEL'] = '큰 심볼의 배경 불투명도';
-    L['SETTINGS_ALPHA_BACKGROUND_LARGE_SYMBOL_TOOLTIP'] = '큰 심볼의 배경에 대한 불투명도 설정';
+    L['SETTINGS_ALPHA_BACKGROUND_TOOLTIP'] = '기본 창의 배경 불투명도 설정';
+    L['SETTINGS_ALPHA_BACKGROUND_LARGE_SYMBOL_LABEL'] = '큰 모양의 배경 불투명도';
+    L['SETTINGS_ALPHA_BACKGROUND_LARGE_SYMBOL_TOOLTIP'] = '큰 모양의 배경 불투명도 설정';
     L['PRACTICE_TITLE'] = '한 조건이 나머지와 다른 모양을 선택하십시오';
     L['PRACTICE_PLAY_AGAIN'] = '다시 하기';
     L['PRACTICE_BUTTON_TOOLTIP'] = '연습';
     L['NEW_VERSION_AVAILABLE'] = '|cffffb833Maze Helper:|r Curse|cfff16336Forge|r에서 새 버전을 사용할 수 있습니다!';
+    L['MINIMAP_BUTTON_LMB'] = '왼쪽 버튼';
+    L['MINIMAP_BUTTON_RMB'] = '오른쪽 버튼';
+    L['MINIMAP_BUTTON_TOGGLE_MAZEHELPER'] = '«Maze Helper»창 전환';
+    L['MINIMAP_BUTTON_HIDE'] = '미니 맵 숨기기 버튼';
+    L['MINIMAP_BUTTON_COMMAND_SHOW'] = '|cffffb833Maze Helper:|r /mh minimap 을 사용하여 미니 맵 버튼을 다시 표시합니다';
 
     return;
 end

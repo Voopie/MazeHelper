@@ -1,5 +1,6 @@
 local ADDON_NAME, MazeHelper = ...;
 local L, E, M = MazeHelper.L, MazeHelper.E, MazeHelper.M;
+local Title   = GetAddOnMetadata(ADDON_NAME, 'Title');
 local Version = GetAddOnMetadata(ADDON_NAME, 'Version');
 
 -- Lua API
@@ -1498,6 +1499,57 @@ end
 MazeHelper.frame.ResetAll    = ResetAll;
 MazeHelper.frame.UpdateShown = UpdateShown;
 
+local MinimapIcon = {};
+local LDB = LibStub('LibDataBroker-1.1', true)
+local LDBIcon = LDB and LibStub('LibDBIcon-1.0', true)
+
+MinimapIcon.Initialize = function()
+    if not LDB then
+        return;
+    end
+
+    local LDB_MazeHelper = LDB:NewDataObject('MazeHelper', {
+        type          = 'launcher',
+        text          = 'Maze Helper',
+        icon          = M.MazeHelper.TEXTURE,
+        iconCoords    = M.MazeHelper.COORDS.MINI,
+        OnClick       = MinimapIcon.OnClick,
+        OnTooltipShow = MinimapIcon.OnTooltipShow,
+    });
+
+    if LDBIcon then
+        LDBIcon:Register('MazeHelper', LDB_MazeHelper, MHMOTSConfig.MinimapIcon);
+    end
+end
+
+MinimapIcon.Toggle = function()
+    MHMOTSConfig.MinimapIcon.hide = not MHMOTSConfig.MinimapIcon.hide;
+
+    if MHMOTSConfig.MinimapIcon.hide then
+        print(L['MINIMAP_BUTTON_COMMAND_SHOW']);
+        LDBIcon:Hide('MazeHelper');
+    else
+        LDBIcon:Show('MazeHelper');
+    end
+end
+
+MinimapIcon.OnClick = function(_, button)
+    if button == 'LeftButton' then
+        if not MazeHelper.PracticeFrame:IsShown() then
+            MazeHelper.frame:SetShown(not MazeHelper.frame:IsShown());
+        end
+    elseif button == 'RightButton' then
+        MinimapIcon.Toggle();
+    end
+end
+
+MinimapIcon.OnTooltipShow = function(tooltip)
+    tooltip:AddDoubleLine(M.INLINE_LOGO, Version);
+    tooltip:AddLine(' ');
+    tooltip:AddDoubleLine(L['MINIMAP_BUTTON_LMB'], L['MINIMAP_BUTTON_TOGGLE_MAZEHELPER']);
+    tooltip:AddDoubleLine(L['MINIMAP_BUTTON_RMB'], L['MINIMAP_BUTTON_HIDE']);
+end
+
 MazeHelper.frame:RegisterEvent('ADDON_LOADED');
 MazeHelper.frame:SetScript('OnEvent', function(self, event, ...)
     if self[event] then
@@ -1682,6 +1734,8 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
 
     MHMOTSConfig.PracticeNoSound = MHMOTSConfig.PracticeNoSound == nil and false or MHMOTSConfig.PracticeNoSound;
 
+    MHMOTSConfig.MinimapIcon = MHMOTSConfig.MinimapIcon or { hide = false };
+
     settingsScrollChild.Data.SyncEnabled:SetChecked(MHMOTSConfig.SyncEnabled);
     settingsScrollChild.Data.PredictSolution:SetChecked(MHMOTSConfig.PredictSolution);
     settingsScrollChild.Data.UseColoredSymbols:SetChecked(MHMOTSConfig.UseColoredSymbols);
@@ -1732,39 +1786,47 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     self:RegisterEvent('PLAYER_SPECIALIZATION_CHANGED');
     self:RegisterEvent('CHAT_MSG_ADDON');
 
+    MinimapIcon.Initialize();
+
     _G['SLASH_MAZEHELPER1'] = '/mh';
     SlashCmdList['MAZEHELPER'] = function(input)
-        if input and string.find(input, 'scale') then
-            local _, scale = strsplit(' ', input);
-            if not scale or scale == '' or scale == 'reset' or scale == 'r' then
-                scale = 1;
+        if input then
+            if string.find(input, 'scale') then
+                local _, scale = strsplit(' ', input);
+                if not scale or scale == '' or scale == 'reset' or scale == 'r' then
+                    scale = 1;
+                end
+
+                scale = tonumber(scale);
+                scale = math.min(scale, 3);
+                scale = math.max(scale, 0.25);
+
+                MHMOTSConfig.SavedScale = scale;
+
+                local point, relativeTo, relativePoint, xOfs, yOfs = MazeHelper.frame:GetPoint();
+                local s = MazeHelper.frame:GetScale();
+                s = MHMOTSConfig.SavedScale / s;
+
+                MHMOTSConfig.SavedPosition[1] = point;
+                MHMOTSConfig.SavedPosition[2] = relativeTo;
+                MHMOTSConfig.SavedPosition[3] = relativePoint;
+                MHMOTSConfig.SavedPosition[4] = xOfs / s;
+                MHMOTSConfig.SavedPosition[5] = yOfs / s;
+
+                MazeHelper.frame:SetScale(MHMOTSConfig.SavedScale);
+
+                MazeHelper.frame:ClearAllPoints();
+                PixelUtil.SetPoint(MazeHelper.frame, point, UIParent, relativePoint, xOfs / s, yOfs / s);
+                MazeHelper.frame:SetUserPlaced(true);
+
+                settingsScrollChild.Data.Scale:SetValue(MHMOTSConfig.SavedScale);
+
+                return;
+            elseif string.find(input, 'minimap') then
+                MinimapIcon.Toggle();
+
+                return;
             end
-
-            scale = tonumber(scale);
-            scale = math.min(scale, 3);
-            scale = math.max(scale, 0.25);
-
-            MHMOTSConfig.SavedScale = scale;
-
-            local point, relativeTo, relativePoint, xOfs, yOfs = MazeHelper.frame:GetPoint();
-            local s = MazeHelper.frame:GetScale();
-            s = MHMOTSConfig.SavedScale / s;
-
-            MHMOTSConfig.SavedPosition[1] = point;
-            MHMOTSConfig.SavedPosition[2] = relativeTo;
-            MHMOTSConfig.SavedPosition[3] = relativePoint;
-            MHMOTSConfig.SavedPosition[4] = xOfs / s;
-            MHMOTSConfig.SavedPosition[5] = yOfs / s;
-
-            MazeHelper.frame:SetScale(MHMOTSConfig.SavedScale);
-
-            MazeHelper.frame:ClearAllPoints();
-            PixelUtil.SetPoint(MazeHelper.frame, point, UIParent, relativePoint, xOfs / s, yOfs / s);
-            MazeHelper.frame:SetUserPlaced(true);
-
-            settingsScrollChild.Data.Scale:SetValue(MHMOTSConfig.SavedScale);
-
-            return;
         end
 
         if not MazeHelper.PracticeFrame:IsShown() then

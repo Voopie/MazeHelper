@@ -17,6 +17,17 @@ M.INLINE_EXCLAMATION_MARK = '|TInterface\\OptionsFrame\\UI-OptionsFrame-NewFeatu
 M.BACKGROUND_WHITE = MEDIA_PATH .. 'background-white.blp';
 M.SLIDER_BORDER    = MEDIA_PATH .. 'slider-border.blp';
 
+M.MazeHelper = {
+    TEXTURE = MEDIA_PATH .. 'mazehelper.blp', -- 128x64
+
+    COORDS = {
+        MAXI = {0, 1, 0, 1/4},
+        MINI = {0, 1/4, 1/2, 2/2},
+    }
+};
+
+M.INLINE_LOGO = '|T' .. MEDIA_PATH .. 'mazehelper.blp:14:112:0:0:128:64:0:128:0:16|t';
+
 M.Rings = {
     TEXTURE = MEDIA_PATH .. 'rings.blp', -- 256x256
 
