@@ -1,6 +1,5 @@
 local ADDON_NAME, MazeHelper = ...;
 local L, E, M = MazeHelper.L, MazeHelper.E, MazeHelper.M;
-local Title   = GetAddOnMetadata(ADDON_NAME, 'Title');
 local Version = GetAddOnMetadata(ADDON_NAME, 'Version');
 
 -- Lua API
