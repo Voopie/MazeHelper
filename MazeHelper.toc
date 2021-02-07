@@ -3,7 +3,7 @@
 ## Title: + |TInterface\AddOns\MazeHelper\Media\mazehelper:14:112:0:1:128:64:0:128:0:16|t
 ## Notes: Your favorite helper for Mists of Tirna Scithe
 ## Notes-ruRU: Ваш любимый помощник для подземелья «Туманы Тирна Скитта»
-## Version: 1.23
+## Version: 1.24
 ## SavedVariables: MHMOTSConfig
 
 Libraries\Load_Libraries.xml
