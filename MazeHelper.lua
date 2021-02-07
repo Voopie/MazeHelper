@@ -1495,8 +1495,15 @@ local function UpdateBossState(encounterID, inFight, killed)
     UpdateShown();
 end
 
+local function ToggleShown()
+    if not MazeHelper.PracticeFrame:IsShown() then
+        MazeHelper.frame:SetShown(not MazeHelper.frame:IsShown());
+    end
+end
+
 MazeHelper.frame.ResetAll    = ResetAll;
 MazeHelper.frame.UpdateShown = UpdateShown;
+MazeHelper.frame.ToggleShown = ToggleShown;
 
 local MinimapIcon = {};
 local LDB = LibStub('LibDataBroker-1.1', true);
@@ -1534,9 +1541,7 @@ end
 
 MinimapIcon.OnClick = function(_, button)
     if button == 'LeftButton' then
-        if not MazeHelper.PracticeFrame:IsShown() then
-            MazeHelper.frame:SetShown(not MazeHelper.frame:IsShown());
-        end
+        ToggleShown();
     elseif button == 'RightButton' then
         MinimapIcon.Toggle();
     end
@@ -1828,8 +1833,6 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
             end
         end
 
-        if not MazeHelper.PracticeFrame:IsShown() then
-            MazeHelper.frame:SetShown(not MazeHelper.frame:IsShown());
-        end
+        ToggleShown();
     end
 end
