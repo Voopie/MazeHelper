@@ -1499,8 +1499,8 @@ MazeHelper.frame.ResetAll    = ResetAll;
 MazeHelper.frame.UpdateShown = UpdateShown;
 
 local MinimapIcon = {};
-local LDB = LibStub('LibDataBroker-1.1', true)
-local LDBIcon = LDB and LibStub('LibDBIcon-1.0', true)
+local LDB = LibStub('LibDataBroker-1.1', true);
+local LDBIcon = LDB and LibStub('LibDBIcon-1.0', true);
 
 MinimapIcon.Initialize = function()
     if not LDB then
