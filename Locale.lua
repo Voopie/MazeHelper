@@ -184,7 +184,7 @@ if gameLocale == 'deDE' then
     L['FLOWER_NOFULL_NOCIRCLE'] = 'Leere Blume ohne Kreis';
     L['SENDED_BY'] = 'Gesendet von %s';
     L['CLEARED_BY'] = 'Gelöscht von %s';
-    L['PASSED'] = 'Übergeben';
+    L['PASSED'] = 'Bestanden';
     L['RESETED_PLAYER'] = '|cffffb833Maze Helper:|r %s hat dieses Minispiel |cffff0537zurückgesetzt|r';
     L['PASSED_PLAYER'] = '|cffffb833Maze Helper:|r %s klickte auf «|cff66ff6eBestanden|r»';
     L['SETTINGS_REVEAL_RESETTER_LABEL'] = 'Verrate den Resetter des Minispiels';
