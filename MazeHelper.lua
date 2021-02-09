@@ -1528,7 +1528,7 @@ MinimapButton.Initialize = function()
     end
 end
 
-MinimapButton.Toggle = function()
+MinimapButton.ToggleShown = function()
     MHMOTSConfig.MinimapButton.hide = not MHMOTSConfig.MinimapButton.hide;
 
     if MHMOTSConfig.MinimapButton.hide then
@@ -1543,7 +1543,7 @@ MinimapButton.OnClick = function(_, button)
     if button == 'LeftButton' then
         ToggleShown();
     elseif button == 'RightButton' then
-        MinimapButton.Toggle();
+        MinimapButton.ToggleShown();
     end
 end
 
@@ -1827,7 +1827,7 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
 
                 return;
             elseif string.find(input, 'minimap') then
-                MinimapButton.Toggle();
+                MinimapButton.ToggleShown();
 
                 return;
             end
