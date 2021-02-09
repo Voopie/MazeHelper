@@ -1367,6 +1367,12 @@ function MazeHelper:ReceiveUnactiveButtonID(buttonID, sender)
     Button_SetUnactive(buttons[buttonID], false, sender);
 end
 
+function MazeHelper:ToggleShown()
+    if not MazeHelper.PracticeFrame:IsShown() then
+        MazeHelper.frame:SetShown(not MazeHelper.frame:IsShown());
+    end
+end
+
 local function GetFreeMarkerIndex()
     for i = 1, 8 do
         if USED_MARKERS[i] == false then
@@ -1447,7 +1453,7 @@ local function UpdateState(frame)
         inMOTS = false;
     end
 
-    bossKilled = inMOTS and (select(3, GetInstanceLockTimeRemainingEncounter(2))) or false;
+    bossKilled  = inMOTS and (select(3, GetInstanceLockTimeRemainingEncounter(2))) or false;
     inEncounter = inMOTS and not bossKilled and UnitExists('boss1');
 
     PASSED_COUNTER = 1;
@@ -1495,16 +1501,6 @@ local function UpdateBossState(encounterID, inFight, killed)
     UpdateShown();
 end
 
-local function ToggleShown()
-    if not MazeHelper.PracticeFrame:IsShown() then
-        MazeHelper.frame:SetShown(not MazeHelper.frame:IsShown());
-    end
-end
-
-MazeHelper.frame.ResetAll    = ResetAll;
-MazeHelper.frame.UpdateShown = UpdateShown;
-MazeHelper.frame.ToggleShown = ToggleShown;
-
 local MinimapButton = {};
 local LDB = LibStub('LibDataBroker-1.1', true);
 local LDBIcon = LDB and LibStub('LibDBIcon-1.0', true);
@@ -1541,9 +1537,9 @@ end
 
 MinimapButton.OnClick = function(_, button)
     if button == 'LeftButton' then
-        ToggleShown();
+        MazeHelper:ToggleShown();
     elseif button == 'RightButton' then
-        MinimapButton.ToggleShown();
+        MinimapButton:ToggleShown();
     end
 end
 
@@ -1790,7 +1786,7 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     self:RegisterEvent('PLAYER_SPECIALIZATION_CHANGED');
     self:RegisterEvent('CHAT_MSG_ADDON');
 
-    MinimapButton.Initialize();
+    MinimapButton:Initialize();
 
     _G['SLASH_MAZEHELPER1'] = '/mh';
     SlashCmdList['MAZEHELPER'] = function(input)
@@ -1827,12 +1823,12 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
 
                 return;
             elseif string.find(input, 'minimap') then
-                MinimapButton.ToggleShown();
+                MinimapButton:ToggleShown();
 
                 return;
             end
         end
 
-        ToggleShown();
+        MazeHelper:ToggleShown();
     end
 end
