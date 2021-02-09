@@ -815,7 +815,7 @@ end
 settingsScrollChild.Data.SavedBackgroundAlpha = E.CreateSlider('Scale', settingsScrollChild);
 settingsScrollChild.Data.SavedBackgroundAlpha:SetPosition('TOPLEFT', settingsScrollChild.Data.ScaleLargeSymbol, 'BOTTOMLEFT', 0, -42);
 PixelUtil.SetWidth(settingsScrollChild.Data.SavedBackgroundAlpha, SLIDER_FULL_WIDTH);
-settingsScrollChild.Data.SavedBackgroundAlpha:SetLabel(M.INLINE_NEW_ICON .. L['SETTINGS_ALPHA_BACKGROUND_LABEL']);
+settingsScrollChild.Data.SavedBackgroundAlpha:SetLabel(L['SETTINGS_ALPHA_BACKGROUND_LABEL']);
 settingsScrollChild.Data.SavedBackgroundAlpha:SetTooltip(L['SETTINGS_ALPHA_BACKGROUND_TOOLTIP']);
 settingsScrollChild.Data.SavedBackgroundAlpha.OnValueChangedCallback = function(_, value)
     MHMOTSConfig.SavedBackgroundAlpha = tonumber(value);
@@ -825,7 +825,7 @@ end
 settingsScrollChild.Data.SavedBackgroundAlphaLargeSymbol = E.CreateSlider('Scale', settingsScrollChild);
 settingsScrollChild.Data.SavedBackgroundAlphaLargeSymbol:SetPosition('TOPLEFT', settingsScrollChild.Data.SavedBackgroundAlpha, 'BOTTOMLEFT', 0, -42);
 PixelUtil.SetWidth(settingsScrollChild.Data.SavedBackgroundAlphaLargeSymbol, SLIDER_FULL_WIDTH);
-settingsScrollChild.Data.SavedBackgroundAlphaLargeSymbol:SetLabel(M.INLINE_NEW_ICON .. L['SETTINGS_ALPHA_BACKGROUND_LARGE_SYMBOL_LABEL']);
+settingsScrollChild.Data.SavedBackgroundAlphaLargeSymbol:SetLabel(L['SETTINGS_ALPHA_BACKGROUND_LARGE_SYMBOL_LABEL']);
 settingsScrollChild.Data.SavedBackgroundAlphaLargeSymbol:SetTooltip(L['SETTINGS_ALPHA_BACKGROUND_LARGE_SYMBOL_TOOLTIP']);
 settingsScrollChild.Data.SavedBackgroundAlphaLargeSymbol.OnValueChangedCallback = function(_, value)
     MHMOTSConfig.SavedBackgroundAlphaLargeSymbol = tonumber(value);
