@@ -158,7 +158,7 @@ if gameLocale == 'ruRU' then
     L['NEW_VERSION_AVAILABLE'] = '|cffffb833Maze Helper:|r Новая версия доступна на Curse|cfff16336Forge|r!';
     L['MINIMAP_BUTTON_LMB'] = 'ЛКМ';
     L['MINIMAP_BUTTON_RMB'] = 'ПКМ';
-    L['MINIMAP_BUTTON_TOGGLE_MAZEHELPER'] = 'Открыть/Закрыть Maze Helper';
+    L['MINIMAP_BUTTON_TOGGLE_MAZEHELPER'] = 'Открыть / закрыть окно помощника';
     L['MINIMAP_BUTTON_HIDE'] = 'Скрыть кнопку у миникарты';
     L['MINIMAP_BUTTON_COMMAND_SHOW'] = '|cffffb833Maze Helper:|r Используйте /mh minimap, чтобы снова показать кнопку у миникарты';
 
