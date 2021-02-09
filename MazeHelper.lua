@@ -1775,13 +1775,12 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     end
 
     MazeHelper:CreateButtons();
+    MinimapButton:Initialize();
 
     self:RegisterEvent('PLAYER_LOGIN');
     self:RegisterEvent('PLAYER_ENTERING_WORLD');
     self:RegisterEvent('PLAYER_SPECIALIZATION_CHANGED');
     self:RegisterEvent('CHAT_MSG_ADDON');
-
-    MinimapButton:Initialize();
 
     _G['SLASH_MAZEHELPER1'] = '/mh';
     SlashCmdList['MAZEHELPER'] = function(input)
@@ -1814,6 +1813,8 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
                 MHMOTSConfig.SavedScaleLargeSymbol = scale;
                 BetterSetScale(MazeHelper.frame.LargeSymbol, MHMOTSConfig.SavedScaleLargeSymbol, MHMOTSConfig.SavedPositionLargeSymbol, true);
                 settingsScrollChild.Data.ScaleLargeSymbol:SetValue(MHMOTSConfig.SavedScaleLargeSymbol);
+
+                return;
             elseif string.find(input, 'minimap') then
                 MinimapButton:ToggleShown();
 
