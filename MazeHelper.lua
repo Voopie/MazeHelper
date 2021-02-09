@@ -1505,11 +1505,11 @@ MazeHelper.frame.ResetAll    = ResetAll;
 MazeHelper.frame.UpdateShown = UpdateShown;
 MazeHelper.frame.ToggleShown = ToggleShown;
 
-local MinimapIcon = {};
+local MinimapButton = {};
 local LDB = LibStub('LibDataBroker-1.1', true);
 local LDBIcon = LDB and LibStub('LibDBIcon-1.0', true);
 
-MinimapIcon.Initialize = function()
+MinimapButton.Initialize = function()
     if not LDB then
         return;
     end
@@ -1519,19 +1519,19 @@ MinimapIcon.Initialize = function()
         text          = 'Maze Helper',
         icon          = M.MazeHelper.TEXTURE,
         iconCoords    = M.MazeHelper.COORDS.MINI,
-        OnClick       = MinimapIcon.OnClick,
-        OnTooltipShow = MinimapIcon.OnTooltipShow,
+        OnClick       = MinimapButton.OnClick,
+        OnTooltipShow = MinimapButton.OnTooltipShow,
     });
 
     if LDBIcon then
-        LDBIcon:Register('MazeHelper', LDB_MazeHelper, MHMOTSConfig.MinimapIcon);
+        LDBIcon:Register('MazeHelper', LDB_MazeHelper, MHMOTSConfig.MinimapButton);
     end
 end
 
-MinimapIcon.Toggle = function()
-    MHMOTSConfig.MinimapIcon.hide = not MHMOTSConfig.MinimapIcon.hide;
+MinimapButton.Toggle = function()
+    MHMOTSConfig.MinimapButton.hide = not MHMOTSConfig.MinimapButton.hide;
 
-    if MHMOTSConfig.MinimapIcon.hide then
+    if MHMOTSConfig.MinimapButton.hide then
         print(L['MINIMAP_BUTTON_COMMAND_SHOW']);
         LDBIcon:Hide('MazeHelper');
     else
@@ -1539,15 +1539,15 @@ MinimapIcon.Toggle = function()
     end
 end
 
-MinimapIcon.OnClick = function(_, button)
+MinimapButton.OnClick = function(_, button)
     if button == 'LeftButton' then
         ToggleShown();
     elseif button == 'RightButton' then
-        MinimapIcon.Toggle();
+        MinimapButton.Toggle();
     end
 end
 
-MinimapIcon.OnTooltipShow = function(tooltip)
+MinimapButton.OnTooltipShow = function(tooltip)
     tooltip:AddDoubleLine(M.INLINE_LOGO, Version);
     tooltip:AddLine(' ');
     tooltip:AddDoubleLine(L['MINIMAP_BUTTON_LMB'], L['MINIMAP_BUTTON_TOGGLE_MAZEHELPER']);
@@ -1738,7 +1738,7 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
 
     MHMOTSConfig.PracticeNoSound = MHMOTSConfig.PracticeNoSound == nil and false or MHMOTSConfig.PracticeNoSound;
 
-    MHMOTSConfig.MinimapIcon = MHMOTSConfig.MinimapIcon or { hide = false };
+    MHMOTSConfig.MinimapButton = MHMOTSConfig.MinimapButton or { hide = false };
 
     settingsScrollChild.Data.SyncEnabled:SetChecked(MHMOTSConfig.SyncEnabled);
     settingsScrollChild.Data.PredictSolution:SetChecked(MHMOTSConfig.PredictSolution);
@@ -1790,7 +1790,7 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     self:RegisterEvent('PLAYER_SPECIALIZATION_CHANGED');
     self:RegisterEvent('CHAT_MSG_ADDON');
 
-    MinimapIcon.Initialize();
+    MinimapButton.Initialize();
 
     _G['SLASH_MAZEHELPER1'] = '/mh';
     SlashCmdList['MAZEHELPER'] = function(input)
@@ -1827,7 +1827,7 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
 
                 return;
             elseif string.find(input, 'minimap') then
-                MinimapIcon.Toggle();
+                MinimapButton.Toggle();
 
                 return;
             end
