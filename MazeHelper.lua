@@ -1790,11 +1790,11 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
                 local _, scale = strsplit(' ', input);
                 if not scale or scale == '' or scale == 'reset' or scale == 'r' then
                     scale = 1;
+                else
+                    scale = tonumber(scale);
+                    scale = math.min(scale, 3);
+                    scale = math.max(scale, 0.25);
                 end
-
-                scale = tonumber(scale);
-                scale = math.min(scale, 3);
-                scale = math.max(scale, 0.25);
 
                 MHMOTSConfig.SavedScale = scale;
                 BetterSetScale(MazeHelper.frame, MHMOTSConfig.SavedScale, MHMOTSConfig.SavedPosition);
@@ -1805,11 +1805,11 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
                 local _, scale = strsplit(' ', input);
                 if not scale or scale == '' or scale == 'reset' or scale == 'r' then
                     scale = 1;
+                else
+                    scale = tonumber(scale);
+                    scale = math.min(scale, 3);
+                    scale = math.max(scale, 0.25);
                 end
-
-                scale = tonumber(scale);
-                scale = math.min(scale, 3);
-                scale = math.max(scale, 0.25);
 
                 MHMOTSConfig.SavedScaleLargeSymbol = scale;
                 BetterSetScale(MazeHelper.frame.LargeSymbol, MHMOTSConfig.SavedScaleLargeSymbol, MHMOTSConfig.SavedPositionLargeSymbol, true);
