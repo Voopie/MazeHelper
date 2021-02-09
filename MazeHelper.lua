@@ -1785,22 +1785,7 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     _G['SLASH_MAZEHELPER1'] = '/mh';
     SlashCmdList['MAZEHELPER'] = function(input)
         if input then
-            if string.find(input, 'scale') then
-                local _, scale = strsplit(' ', input);
-                if not scale or scale == '' or scale == 'reset' or scale == 'r' then
-                    scale = 1;
-                else
-                    scale = tonumber(scale);
-                    scale = math.min(scale, 3);
-                    scale = math.max(scale, 0.25);
-                end
-
-                MHMOTSConfig.SavedScale = scale;
-                BetterSetScale(MazeHelper.frame, MHMOTSConfig.SavedScale, MHMOTSConfig.SavedPosition);
-                settingsScrollChild.Data.Scale:SetValue(MHMOTSConfig.SavedScale);
-
-                return;
-            elseif string.find(input, 'scalels') then
+            if string.find(input, 'scalels') then
                 local _, scale = strsplit(' ', input);
                 if not scale or scale == '' or scale == 'reset' or scale == 'r' then
                     scale = 1;
@@ -1813,6 +1798,21 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
                 MHMOTSConfig.SavedScaleLargeSymbol = scale;
                 BetterSetScale(MazeHelper.frame.LargeSymbol, MHMOTSConfig.SavedScaleLargeSymbol, MHMOTSConfig.SavedPositionLargeSymbol, true);
                 settingsScrollChild.Data.ScaleLargeSymbol:SetValue(MHMOTSConfig.SavedScaleLargeSymbol);
+
+                return;
+            elseif string.find(input, 'scale') then
+                local _, scale = strsplit(' ', input);
+                if not scale or scale == '' or scale == 'reset' or scale == 'r' then
+                    scale = 1;
+                else
+                    scale = tonumber(scale);
+                    scale = math.min(scale, 3);
+                    scale = math.max(scale, 0.25);
+                end
+
+                MHMOTSConfig.SavedScale = scale;
+                BetterSetScale(MazeHelper.frame, MHMOTSConfig.SavedScale, MHMOTSConfig.SavedPosition);
+                settingsScrollChild.Data.Scale:SetValue(MHMOTSConfig.SavedScale);
 
                 return;
             elseif string.find(input, 'minimap') then
