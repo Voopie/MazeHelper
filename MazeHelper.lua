@@ -211,6 +211,31 @@ local function BetterOnDragStop(frame, saveTable)
     frame:SetUserPlaced(true);
 end
 
+local function BetterSetScale(frame, value, positionTable, ignoredParentScale)
+    local point, relativeTo, relativePoint, xOfs, yOfs = frame:GetPoint();
+    local s = frame:GetScale();
+
+    if ignoredParentScale then
+        s = PixelUtil.GetPixelToUIUnitFactor() * value / s;
+        value = value * PixelUtil.GetPixelToUIUnitFactor();
+    else
+        s = value / s;
+    end
+
+    if positionTable and type(positionTable) == 'table' then
+        positionTable[1] = point;
+        positionTable[2] = relativeTo;
+        positionTable[3] = relativePoint;
+        positionTable[4] = xOfs / s;
+        positionTable[5] = yOfs / s;
+    end
+
+    frame:SetScale(value);
+    frame:ClearAllPoints();
+    PixelUtil.SetPoint(frame, point, UIParent, relativePoint, xOfs / s, yOfs / s);
+    frame:SetUserPlaced(true);
+end
+
 MazeHelper.frame = CreateFrame('Frame', 'ST_Maze_Helper', UIParent);
 PixelUtil.SetPoint(MazeHelper.frame, 'CENTER', UIParent, 'CENTER', -FRAME_SIZE, FRAME_SIZE);
 PixelUtil.SetSize(MazeHelper.frame, FRAME_SIZE + X_OFFSET * (MAX_ACTIVE_BUTTONS - 1), FRAME_SIZE * 3/4);
@@ -769,22 +794,7 @@ settingsScrollChild.Data.Scale:SetLabel(L['SETTINGS_SCALE_LABEL']);
 settingsScrollChild.Data.Scale:SetTooltip(L['SETTINGS_SCALE_TOOLTIP']);
 settingsScrollChild.Data.Scale.OnMouseUpCallback = function(_, value)
     MHMOTSConfig.SavedScale = tonumber(value);
-
-    local point, relativeTo, relativePoint, xOfs, yOfs = MazeHelper.frame:GetPoint();
-    local s = MazeHelper.frame:GetScale();
-    s = MHMOTSConfig.SavedScale / s;
-
-    MHMOTSConfig.SavedPosition[1] = point;
-    MHMOTSConfig.SavedPosition[2] = relativeTo;
-    MHMOTSConfig.SavedPosition[3] = relativePoint;
-    MHMOTSConfig.SavedPosition[4] = xOfs / s;
-    MHMOTSConfig.SavedPosition[5] = yOfs / s;
-
-    MazeHelper.frame:SetScale(MHMOTSConfig.SavedScale);
-
-    MazeHelper.frame:ClearAllPoints();
-    PixelUtil.SetPoint(MazeHelper.frame, point, UIParent, relativePoint, xOfs / s, yOfs / s);
-    MazeHelper.frame:SetUserPlaced(true);
+    BetterSetScale(MazeHelper.frame, MHMOTSConfig.SavedScale, MHMOTSConfig.SavedPosition);
 end
 
 settingsScrollChild.Data.ScaleLargeSymbol = E.CreateSlider('Scale', settingsScrollChild);
@@ -794,22 +804,7 @@ settingsScrollChild.Data.ScaleLargeSymbol:SetLabel(L['SETTINGS_SCALE_LARGE_SYMBO
 settingsScrollChild.Data.ScaleLargeSymbol:SetTooltip(L['SETTINGS_SCALE_LARGE_SYMBOL_TOOLTIP']);
 settingsScrollChild.Data.ScaleLargeSymbol.OnMouseUpCallback = function(_, value)
     MHMOTSConfig.SavedScaleLargeSymbol = tonumber(value);
-
-    local point, relativeTo, relativePoint, xOfs, yOfs = MazeHelper.frame.LargeSymbol:GetPoint();
-    local s = MazeHelper.frame.LargeSymbol:GetScale();
-    s = PixelUtil.GetPixelToUIUnitFactor() * MHMOTSConfig.SavedScaleLargeSymbol / s;
-
-    MHMOTSConfig.SavedPositionLargeSymbol[1] = point;
-    MHMOTSConfig.SavedPositionLargeSymbol[2] = relativeTo;
-    MHMOTSConfig.SavedPositionLargeSymbol[3] = relativePoint;
-    MHMOTSConfig.SavedPositionLargeSymbol[4] = xOfs / s;
-    MHMOTSConfig.SavedPositionLargeSymbol[5] = yOfs / s;
-
-    MazeHelper.frame.LargeSymbol:SetScale(PixelUtil.GetPixelToUIUnitFactor() * MHMOTSConfig.SavedScaleLargeSymbol);
-
-    MazeHelper.frame.LargeSymbol:ClearAllPoints();
-    PixelUtil.SetPoint(MazeHelper.frame.LargeSymbol, point, UIParent, relativePoint, xOfs / s, yOfs / s);
-    MazeHelper.frame.LargeSymbol:SetUserPlaced(true);
+    BetterSetScale(MazeHelper.frame.LargeSymbol, MHMOTSConfig.SavedScaleLargeSymbol, MHMOTSConfig.SavedPositionLargeSymbol, true);
 end
 
 settingsScrollChild.Data.SavedBackgroundAlpha = E.CreateSlider('Scale', settingsScrollChild);
@@ -1802,26 +1797,23 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
                 scale = math.max(scale, 0.25);
 
                 MHMOTSConfig.SavedScale = scale;
-
-                local point, relativeTo, relativePoint, xOfs, yOfs = MazeHelper.frame:GetPoint();
-                local s = MazeHelper.frame:GetScale();
-                s = MHMOTSConfig.SavedScale / s;
-
-                MHMOTSConfig.SavedPosition[1] = point;
-                MHMOTSConfig.SavedPosition[2] = relativeTo;
-                MHMOTSConfig.SavedPosition[3] = relativePoint;
-                MHMOTSConfig.SavedPosition[4] = xOfs / s;
-                MHMOTSConfig.SavedPosition[5] = yOfs / s;
-
-                MazeHelper.frame:SetScale(MHMOTSConfig.SavedScale);
-
-                MazeHelper.frame:ClearAllPoints();
-                PixelUtil.SetPoint(MazeHelper.frame, point, UIParent, relativePoint, xOfs / s, yOfs / s);
-                MazeHelper.frame:SetUserPlaced(true);
-
+                BetterSetScale(MazeHelper.frame, MHMOTSConfig.SavedScale, MHMOTSConfig.SavedPosition);
                 settingsScrollChild.Data.Scale:SetValue(MHMOTSConfig.SavedScale);
 
                 return;
+            elseif string.find(input, 'scalels') then
+                local _, scale = strsplit(' ', input);
+                if not scale or scale == '' or scale == 'reset' or scale == 'r' then
+                    scale = 1;
+                end
+
+                scale = tonumber(scale);
+                scale = math.min(scale, 3);
+                scale = math.max(scale, 0.25);
+
+                MHMOTSConfig.SavedScaleLargeSymbol = scale;
+                BetterSetScale(MazeHelper.frame.LargeSymbol, MHMOTSConfig.SavedScaleLargeSymbol, MHMOTSConfig.SavedPositionLargeSymbol, true);
+                settingsScrollChild.Data.ScaleLargeSymbol:SetValue(MHMOTSConfig.SavedScaleLargeSymbol);
             elseif string.find(input, 'minimap') then
                 MinimapButton:ToggleShown();
 
