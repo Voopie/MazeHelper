@@ -1550,8 +1550,8 @@ end
 MinimapButton.OnTooltipShow = function(tooltip)
     tooltip:AddDoubleLine(M.INLINE_LOGO, Version);
     tooltip:AddLine(' ');
-    tooltip:AddDoubleLine(L['MINIMAP_BUTTON_LMB'], L['MINIMAP_BUTTON_TOGGLE_MAZEHELPER']);
-    tooltip:AddDoubleLine(L['MINIMAP_BUTTON_RMB'], L['MINIMAP_BUTTON_HIDE']);
+    tooltip:AddDoubleLine(L['MINIMAP_BUTTON_LMB'], L['MINIMAP_BUTTON_TOGGLE_MAZEHELPER'], 1, 0.85, 0, 1, 1, 1);
+    tooltip:AddDoubleLine(L['MINIMAP_BUTTON_RMB'], L['MINIMAP_BUTTON_HIDE'], 1, 0.85, 0, 1, 1, 1);
 end
 
 MazeHelper.frame:RegisterEvent('ADDON_LOADED');
