@@ -362,8 +362,14 @@ E.CreateSlider = function(name, parent)
         end
 
         self:GetParent():SetValue(SliderRound(value, self:GetParent().minValue, self:GetParent().stepValue));
-        if self:GetParent().Callback then
-            self:GetParent():Callback(self:GetParent().currentValue);
+        self:SetText(value);
+
+        if self:GetParent().OnValueChangedCallback then
+            self:GetParent():OnValueChangedCallback(value);
+        end
+
+        if self:GetParent().OnMouseUpCallback then
+            self:GetParent():OnMouseUpCallback(value);
         end
 
         PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
