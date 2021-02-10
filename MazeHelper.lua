@@ -1631,15 +1631,7 @@ function MazeHelper.frame:NAME_PLATE_UNIT_ADDED(unit)
 end
 
 function MazeHelper.frame:NAME_PLATE_UNIT_REMOVED(unit)
-    if not inEncounter then
-        return;
-    end
-
-    if not nameplatesMarkers[unit] then
-        return;
-    end
-
-    if not IndexMarkerExists(nameplatesMarkers[unit]) then
+    if not inEncounter or not nameplatesMarkers[unit] or not IndexMarkerExists(nameplatesMarkers[unit]) then
         return;
     end
 
