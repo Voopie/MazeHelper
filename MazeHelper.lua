@@ -1386,6 +1386,14 @@ local function SetUnfreeMarkerIndex(index)
     USED_MARKERS[index] = true;
 end
 
+local function IndexMarkerExists(index)
+    if USED_MARKERS[index] ~= nil then
+        return true;
+    end
+
+    return false;
+end
+
 local function UpdateUsedMarkers()
     for i = 1, #USED_MARKERS do
         SetFreeMarkerIndex(i);
@@ -1628,6 +1636,10 @@ function MazeHelper.frame:NAME_PLATE_UNIT_REMOVED(unit)
     end
 
     if not nameplatesMarkers[unit] then
+        return;
+    end
+
+    if not IndexMarkerExists(nameplatesMarkers[unit]) then
         return;
     end
 
