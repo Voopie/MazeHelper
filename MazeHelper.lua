@@ -1394,16 +1394,20 @@ local function UpdateUsedMarkers()
     local index;
 
     for _, unit in ipairs(MARKER_UNITS) do
-        index = GetRaidTargetIndex(unit);
-        if index then
-            SetUnfreeMarkerIndex(index);
+        if UnitExists(unit) then
+            index = GetRaidTargetIndex(unit);
+            if index then
+                SetUnfreeMarkerIndex(index);
+            end
         end
     end
 
     for _, frame in pairs(C_NamePlate.GetNamePlates()) do
-        index = GetRaidTargetIndex(frame.namePlateUnitToken);
-        if index then
-            SetUnfreeMarkerIndex(index);
+        if UnitExists(frame.namePlateUnitToken) then
+            index = GetRaidTargetIndex(frame.namePlateUnitToken);
+            if index then
+                SetUnfreeMarkerIndex(index);
+            end
         end
     end
 end
