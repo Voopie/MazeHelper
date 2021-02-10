@@ -1387,7 +1387,7 @@ local function SetUnfreeMarkerIndex(index)
 end
 
 local function UpdateUsedMarkers()
-    for i = 1, 8 do
+    for i = 1, #USED_MARKERS do
         SetFreeMarkerIndex(i);
     end
 
