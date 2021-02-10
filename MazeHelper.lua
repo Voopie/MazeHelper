@@ -1369,7 +1369,7 @@ function MazeHelper:ToggleShown()
 end
 
 local function GetFreeMarkerIndex()
-    for i = 1, 8 do
+    for i = 1, #USED_MARKERS do
         if USED_MARKERS[i] == false then
             return i;
         end
