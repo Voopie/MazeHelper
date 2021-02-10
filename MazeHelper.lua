@@ -1483,8 +1483,8 @@ local function UpdateState(frame)
     UpdateShown();
 end
 
-local function UpdateBossState(encounterID, inFight, killed)
-    if encounterID ~= MISTCALLER_ENCOUNTER_ID then
+local function UpdateBossState(encounterId, inFight, killed)
+    if encounterId ~= MISTCALLER_ENCOUNTER_ID then
         return;
     end
 
@@ -1584,16 +1584,16 @@ function MazeHelper.frame:ZONE_CHANGED_NEW_AREA()
     UpdateShown();
 end
 
-function MazeHelper.frame:ENCOUNTER_START(encounterID)
-    UpdateBossState(encounterID, true, false);
+function MazeHelper.frame:ENCOUNTER_START(encounterId)
+    UpdateBossState(encounterId, true, false);
 end
 
-function MazeHelper.frame:ENCOUNTER_END(encounterID, _, _, _, success)
-    UpdateBossState(encounterID, false, success);
+function MazeHelper.frame:ENCOUNTER_END(encounterId, _, _, _, success)
+    UpdateBossState(encounterId, false, success);
 end
 
-function MazeHelper.frame:BOSS_KILL(encounterID)
-    UpdateBossState(encounterID, false, true);
+function MazeHelper.frame:BOSS_KILL(encounterId)
+    UpdateBossState(encounterId, false, true);
 end
 
 function MazeHelper.frame:NAME_PLATE_UNIT_ADDED(unit)
