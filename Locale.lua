@@ -165,7 +165,9 @@ if gameLocale == 'ruRU' then
     return;
 end
 
--- German - Udaberrico (https://github.com/Udaberrico)
+-- German
+-- Udaberrico (https://github.com/Udaberrico)
+-- robozu (https://github.com/robozu)
 if gameLocale == 'deDE' then
     L['ZONE_NAME'] = 'Nebelschleierdickicht';
     L['RESET'] = 'Zurücksetzen';
