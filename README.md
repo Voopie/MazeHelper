@@ -36,6 +36,9 @@
 - /mh - to manually toggle helper visibility (show / hide)
 - /mh scale [number] - to set scale for main window
 - /mh scale reset - to reset scale to 1
+- /mh scalels [number] - to set scale for the large symbol
+- /mh scalels reset - to reset scale of the large symbol to 1
+- /mh minimap - to toggle visibility of the minimap button
 
 ---
 
