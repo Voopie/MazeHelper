@@ -371,13 +371,13 @@ if gameLocale == 'frFR' then
     L['PRACTICE_TITLE'] = 'Sélectionnez un symbole qui diffère d\'une manière des autres';
     L['PRACTICE_PLAY_AGAIN'] = 'Rejouer';
     L['PRACTICE_BUTTON_TOOLTIP'] = 'La pratique';
-    L['NEW_VERSION_AVAILABLE'] = 'Une nouvelle version est maintenant disponible sur Curse|cfff16336Forge|r!';
+    L['NEW_VERSION_AVAILABLE'] = 'Une nouvelle version est maintenant disponible sur Curse|cfff16336Forge|r !';
     L['MINIMAP_BUTTON_LMB'] = 'Bouton gauche';
     L['MINIMAP_BUTTON_RMB'] = 'Bouton de droite';
     L['MINIMAP_BUTTON_TOGGLE_MAZEHELPER'] = 'Basculer la fenêtre «Maze Helper»';
     L['MINIMAP_BUTTON_HIDE'] = 'Masquer le bouton de la minicarte';
     L['MINIMAP_BUTTON_COMMAND_SHOW'] = 'Utilisez /mh minimap pour afficher à nouveau l\'icône de minicarte';
-    L['AUTO_PASS'] = 'Auto pass!';
+    L['AUTO_PASS'] = 'Auto pass !';
 
     return;
 end
