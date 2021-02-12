@@ -1715,6 +1715,10 @@ function MazeHelper.frame:CHAT_MSG_MONSTER_SAY(message, npcName)
         return;
     end
 
+    if not SOLUTION_BUTTON_ID then
+        return;
+    end
+
     if MazeHelper.MISTCALLER_QUOTES_CURRENT and tContains(MazeHelper.MISTCALLER_QUOTES_CURRENT, message) then
         PASSED_COUNTER = PASSED_COUNTER + 1;
 
