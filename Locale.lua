@@ -32,9 +32,9 @@ MazeHelper.MISTCALLER_QUOTES = {
     },
 
     frFR = {
-        'On ne vous la fait pas, à vous !',
-        'Vous avez réussi ! Bien vu !',
-        'Youpi, vous y êtes presque !',
+        'On ne vous la fait pas, à vous !', -- extra space before the exclamation mark?
+        'Vous avez réussi ! Bien vu !',     -- extra space before the exclamation marks?
+        'Youpi, vous y êtes presque !',     -- extra space before the exclamation mark?
     },
 
     itIT = {
@@ -53,6 +53,10 @@ MazeHelper.MISTCALLER_QUOTES = {
         '¡Sois la monda!',
         '¡Lo habéis logrado! ¡Bravo!',
         '¡Viva! ¡Ya casi estás!',
+    },
+
+    esMX = {
+
     },
 
     zhTW = {
@@ -607,7 +611,7 @@ end
 -- BNS333 (https://www.curseforge.com/members/bns333) -- Traditional
 if gameLocale == 'zhTW' then
     L['ZONE_NAME'] = '霧紗密林';
-    L['MISTCALLER_NAME'] = '來電者';
+    L['MISTCALLER_NAME'] = '喚霧者';
     L['CHOOSE_SYMBOLS_1'] = '再點選一個標誌';
     L['CHOOSE_SYMBOLS_2'] = '再點選兩個標誌';
     L['CHOOSE_SYMBOLS_3'] = '再點選三個標誌';
