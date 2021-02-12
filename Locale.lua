@@ -14,49 +14,42 @@ local L = MazeHelper.L;
 
 MazeHelper.MISTCALLER_QUOTES = {
     enUS = {
-        'Can you find your way through the mist? Choose wisely!',
         'No fooling you!',
         'You did it! Good guess!',
         'Hooray! You\'re almost there!',
     },
 
     ruRU = {
-        'Попробуйте найти путь в тумане! Думайте дважды!',
         'Вас не обдурить!',
         'Получилось! Хорошая догадка!',
         'Ура! Вы почти справились!',
     },
 
     deDE = {
-        'Findet Ihr den Weg durch den Nebel? Wählt weise!',
         'Euch legt man nicht rein!',
         'Geschafft! Gut geraten!',
         'Hurra! Fast geschafft!',
     },
 
     frFR = {
-        'Essayez de trouver votre chemin dans la brume. Choisissez bien !';
         'On ne vous la fait pas, à vous !',
         'Vous avez réussi ! Bien vu !',
         'Youpi, vous y êtes presque !',
     },
 
     itIT = {
-        'Riesci a trovare la strada attraverso la nebbia? Scegli con saggezza!',
         'Non ti si può ingannare!',
         'Ce l\'hai fatta! Hai indovinato!',
         'Urrà! Ci sei quasi!',
     },
 
     ptBR = {
-        'Você consegue se orientar na bruma? Escolha com sabedoria!',
         'Ninguém engana você!',
         'Você conseguiu! Belo palpite!',
         'Eba! Você está quase lá!',
     },
 
     esES = {
-        '¿Podréis orientaros a través de la niebla? ¡Elegid sabiamente!',
         '¡Sois la monda!',
         '¡Lo habéis logrado! ¡Bravo!',
         '¡Viva! ¡Ya casi estás!',
@@ -71,7 +64,6 @@ MazeHelper.MISTCALLER_QUOTES = {
     },
 
     koKR = {
-        '안개 속에서 길을 찾을 수 있겠어? 잘 골라 봐!',
         '안 속네?',
         '맞췄잖아? 감이 좋은데!',
         '만세! 거의 다 왔어!',
