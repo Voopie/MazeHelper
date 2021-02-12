@@ -735,11 +735,11 @@ if gameLocale == 'koKR' then
     L['PRACTICE_PLAY_AGAIN'] = '다시 하기';
     L['PRACTICE_BUTTON_TOOLTIP'] = '연습';
     L['NEW_VERSION_AVAILABLE'] = '|cffffb833Maze Helper:|r Curse|cfff16336Forge|r에서 새 버전을 사용할 수 있습니다!';
-    L['MINIMAP_BUTTON_LMB'] = '왼쪽 버튼';
-    L['MINIMAP_BUTTON_RMB'] = '오른쪽 버튼';
-    L['MINIMAP_BUTTON_TOGGLE_MAZEHELPER'] = '«Maze Helper»창 전환';
-    L['MINIMAP_BUTTON_HIDE'] = '미니 맵 숨기기 버튼';
-    L['MINIMAP_BUTTON_COMMAND_SHOW'] = '|cffffb833Maze Helper:|r /mh minimap 을 사용하여 미니 맵 버튼을 다시 표시합니다';
+    L['MINIMAP_BUTTON_LMB'] = '좌클릭';
+    L['MINIMAP_BUTTON_RMB'] = '우클릭';
+    L['MINIMAP_BUTTON_TOGGLE_MAZEHELPER'] = '«Maze Helper»창 토글';
+    L['MINIMAP_BUTTON_HIDE'] = '미니맵 버튼 숨기기';
+    L['MINIMAP_BUTTON_COMMAND_SHOW'] = '|cffffb833Maze Helper:|r /mh minimap 으로 미니맵 버튼을 표시할 수 있습니다';
 
     return;
 end
