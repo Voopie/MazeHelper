@@ -32,9 +32,9 @@ MazeHelper.MISTCALLER_QUOTES = {
     },
 
     frFR = {
-        'On ne vous la fait pas, à vous !', -- extra space before the exclamation mark?
-        'Vous avez réussi ! Bien vu !',     -- extra space before the exclamation mark?
-        'Youpi, vous y êtes presque !',     -- extra space before the exclamation mark?
+        'On ne vous la fait pas, à vous !',
+        'Vous avez réussi ! Bien vu !',
+        'Youpi, vous y êtes presque !',
     },
 
     itIT = {
