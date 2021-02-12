@@ -1275,7 +1275,7 @@ function MazeHelper:SendResetCommand()
     ChatThrottleLib:SendAddonMessage(ADDON_COMM_MODE, ADDON_COMM_PREFIX, 'SendReset', partyChatType);
 end
 
-function MazeHelper:SendPassedCommand(step)
+function MazeHelper:SendPassedCommand(step, isAutoPass)
     if not MHMOTSConfig.SyncEnabled then
         return;
     end
@@ -1285,7 +1285,7 @@ function MazeHelper:SendPassedCommand(step)
         return;
     end
 
-    ChatThrottleLib:SendAddonMessage(ADDON_COMM_MODE, ADDON_COMM_PREFIX, string.format('SendPassed|%s', step), partyChatType);
+    ChatThrottleLib:SendAddonMessage(ADDON_COMM_MODE, ADDON_COMM_PREFIX, isAutoPass and string.format('SendPassed|%s|%s', step, 'AP') or string.format('SendPassed|%s', step), partyChatType);
 end
 
 function MazeHelper:SendPassedCounter(step)
@@ -1669,10 +1669,12 @@ function MazeHelper.frame:CHAT_MSG_ADDON(prefix, message, _, sender)
                 MazeHelper:ReceiveUnactiveButtonID(tonumber(buttonId), sender);
             end
         elseif command == 'SendPassed' then
-            MazeHelper:ReceivePassedCommand(tonumber(arg1));
+            if arg2 ~= 'AP' then
+                MazeHelper:ReceivePassedCommand(tonumber(arg1));
 
-            if MHMOTSConfig.PrintResettedPlayerName then
-                mhPrint(string.format(L['PASSED_PLAYER'], sender));
+                if MHMOTSConfig.PrintResettedPlayerName then
+                    mhPrint(string.format(L['PASSED_PLAYER'], sender));
+                end
             end
         elseif command == 'SendReset' then
             MazeHelper:ReceiveResetCommand();
@@ -1725,6 +1727,7 @@ function MazeHelper.frame:CHAT_MSG_MONSTER_SAY(message, npcName)
         MazeHelper.frame.PassedCounter.Text:SetText(PASSED_COUNTER);
         PixelUtil.SetPoint(MazeHelper.frame.PassedCounter.Text, 'CENTER', MazeHelper.frame.PassedCounter, 'CENTER', 0, isMinimized and 0 or -1);
 
+        MazeHelper:SendPassedCommand(PASSED_COUNTER, true);
         ResetAll();
 
         mhPrint(L['AUTO_PASS']);
