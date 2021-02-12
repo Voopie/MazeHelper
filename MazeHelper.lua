@@ -82,6 +82,7 @@ local EVENTS_INSTANCE = {
     'ENCOUNTER_END',
     'BOSS_KILL',
     'GOSSIP_SHOW',
+    'CHAT_MSG_MONSTER_SAY',
 };
 
 local EVENTS_AUTOMARKER = {
@@ -174,6 +175,14 @@ local buttonsData = {
 };
 
 MazeHelper.ButtonsData = buttonsData;
+
+local function mhPrint(message)
+    if not message or message == '' then
+        return;
+    end
+
+    print(string.format(L['MAZE_HELPER_PRINT'], message));
+end
 
 local function GetPartyChatType()
     if IsInRaid() then
@@ -532,7 +541,7 @@ MazeHelper.frame.PassedButton:SetScript('OnClick', function()
     PASSED_COUNTER = PASSED_COUNTER + 1;
 
     MazeHelper.frame.PassedCounter.Text:SetText(PASSED_COUNTER);
-    PixelUtil.SetPoint(MazeHelper.frame.PassedCounter.Text, 'CENTER', MazeHelper.frame.PassedCounter, 'CENTER', (PASSED_COUNTER == 1) and -2 or 0, isMinimized and 0 or -1);
+    PixelUtil.SetPoint(MazeHelper.frame.PassedCounter.Text, 'CENTER', MazeHelper.frame.PassedCounter, 'CENTER', 0, isMinimized and 0 or -1);
 
     MazeHelper:SendPassedCommand(PASSED_COUNTER);
     ResetAll();
@@ -1535,7 +1544,7 @@ MinimapButton.ToggleShown = function()
     MHMOTSConfig.MinimapButton.hide = not MHMOTSConfig.MinimapButton.hide;
 
     if MHMOTSConfig.MinimapButton.hide then
-        print(L['MINIMAP_BUTTON_COMMAND_SHOW']);
+        mhPrint(L['MINIMAP_BUTTON_COMMAND_SHOW']);
         LDBIcon:Hide('MazeHelper');
     else
         LDBIcon:Show('MazeHelper');
@@ -1663,13 +1672,13 @@ function MazeHelper.frame:CHAT_MSG_ADDON(prefix, message, _, sender)
             MazeHelper:ReceivePassedCommand(tonumber(arg1));
 
             if MHMOTSConfig.PrintResettedPlayerName then
-                print(string.format(L['PASSED_PLAYER'], sender));
+                mhPrint(string.format(L['PASSED_PLAYER'], sender));
             end
         elseif command == 'SendReset' then
             MazeHelper:ReceiveResetCommand();
 
             if MHMOTSConfig.PrintResettedPlayerName then
-                print(string.format(L['RESETED_PLAYER'], sender));
+                mhPrint(string.format(L['RESETED_PLAYER'], sender));
             end
         elseif command == 'REQPC' then
             MazeHelper:SendPassedCounter(tonumber(arg1));
@@ -1699,6 +1708,23 @@ function MazeHelper.frame:GOSSIP_SHOW()
 
     C_GossipInfo.SelectOption(1);
     C_GossipInfo.CloseGossip();
+end
+
+function MazeHelper.frame:CHAT_MSG_MONSTER_SAY(message, npcName)
+    if npcName ~= L['MISTCALLER_NAME'] then
+        return;
+    end
+
+    if MazeHelper.MISTCALLER_QUOTES_CURRENT and tContains(MazeHelper.MISTCALLER_QUOTES_CURRENT, message) then
+        PASSED_COUNTER = PASSED_COUNTER + 1;
+
+        MazeHelper.frame.PassedCounter.Text:SetText(PASSED_COUNTER);
+        PixelUtil.SetPoint(MazeHelper.frame.PassedCounter.Text, 'CENTER', MazeHelper.frame.PassedCounter, 'CENTER', 0, isMinimized and 0 or -1);
+
+        ResetAll();
+
+        mhPrint(L['AUTO_PASS']);
+    end
 end
 
 function MazeHelper.frame:ADDON_LOADED(addonName)

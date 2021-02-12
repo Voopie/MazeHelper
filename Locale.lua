@@ -12,10 +12,79 @@ MazeHelper.currentLocale = gameLocale;
 MazeHelper.L = {};
 local L = MazeHelper.L;
 
+MazeHelper.MISTCALLER_QUOTES = {
+    enUS = {
+        'Can you find your way through the mist? Choose wisely!',
+        'No fooling you!',
+        'You did it! Good guess!',
+        'Hooray! You\'re almost there!',
+    },
+
+    ruRU = {
+        'Попробуйте найти путь в тумане! Думайте дважды!',
+        'Вас не обдурить!',
+        'Получилось! Хорошая догадка!',
+        'Ура! Вы почти справились!',
+    },
+
+    deDE = {
+        'Findet Ihr den Weg durch den Nebel? Wählt weise!',
+        'Euch legt man nicht rein!',
+        'Geschafft! Gut geraten!',
+        'Hurra! Fast geschafft!',
+    },
+
+    frFR = {
+        'Essayez de trouver votre chemin dans la brume. Choisissez bien !';
+        'On ne vous la fait pas, à vous !',
+        'Vous avez réussi ! Bien vu !',
+        'Youpi, vous y êtes presque !',
+    },
+
+    itIT = {
+        'Riesci a trovare la strada attraverso la nebbia? Scegli con saggezza!',
+        'Non ti si può ingannare!',
+        'Ce l\'hai fatta! Hai indovinato!',
+        'Urrà! Ci sei quasi!',
+    },
+
+    ptBR = {
+        'Você consegue se orientar na bruma? Escolha com sabedoria!',
+        'Ninguém engana você!',
+        'Você conseguiu! Belo palpite!',
+        'Eba! Você está quase lá!',
+    },
+
+    esES = {
+        '¿Podréis orientaros a través de la niebla? ¡Elegid sabiamente!',
+        '¡Sois la monda!',
+        '¡Lo habéis logrado! ¡Bravo!',
+        '¡Viva! ¡Ya casi estás!',
+    },
+
+    zhTW = {
+
+    },
+
+    zhCN = {
+
+    },
+
+    koKR = {
+        '안개 속에서 길을 찾을 수 있겠어? 잘 골라 봐!',
+        '안 속네?',
+        '맞췄잖아? 감이 좋은데!',
+        '만세! 거의 다 왔어!',
+    },
+};
+
+MazeHelper.MISTCALLER_QUOTES_CURRENT = MazeHelper.MISTCALLER_QUOTES[gameLocale];
+
 -- Common
 L['SOLUTION'] = '|cff33cc66%s|r';
 L['ANNOUNCE_SOLUTION'] = '%s';
 L['ANNOUNCE_SOLUTION_WITH_ENGLISH'] = '%s / %s';
+L['MAZE_HELPER_PRINT'] = '|cffffb833Maze Helper:|r %s';
 
 -- English announce solution
 L['ENGLISH_LEAF_FULL_CIRCLE'] = 'Filled leaf in a circle';
@@ -29,6 +98,7 @@ L['ENGLISH_FLOWER_NOFULL_NOCIRCLE'] = 'Empty flower without a circle';
 
 -- Default to enUS (Google Translated from Russian with some my knowledge)
 L['ZONE_NAME'] = 'Mistveil Tangle';
+L['MISTCALLER_NAME'] = 'Mistcaller';
 L['RESET'] = 'Reset';
 L['CHOOSE_SYMBOLS_4'] = 'Select 4 symbols';
 L['CHOOSE_SYMBOLS_3'] = 'Select 3 more symbols';
@@ -46,8 +116,8 @@ L['FLOWER_NOFULL_NOCIRCLE'] = 'Empty flower without a circle';
 L['SENDED_BY'] = 'Sended by %s';
 L['CLEARED_BY'] = 'Cleared by %s';
 L['PASSED'] = 'Passed';
-L['RESETED_PLAYER'] = '|cffffb833Maze Helper:|r %s |cffff0537resetted|r this mini-game';
-L['PASSED_PLAYER'] = '|cffffb833Maze Helper:|r %s clicked on «|cff66ff6ePassed|r» button';
+L['RESETED_PLAYER'] = '%s |cffff0537resetted|r this mini-game';
+L['PASSED_PLAYER'] = '%s clicked on «|cff66ff6ePassed|r» button';
 L['SETTINGS_REVEAL_RESETTER_LABEL'] = 'Reveal resetter of the mini-game';
 L['SETTINGS_REVEAL_RESETTER_TOOLTIP'] = 'Type in the chat the name of the player who did click on the «Reset» or «Passed» button (only for yourself)';
 L['SETTINGS_AUTOANNOUNCER_LABEL'] = 'Enable auto announcer';
@@ -87,16 +157,18 @@ L['SETTINGS_ALPHA_BACKGROUND_LARGE_SYMBOL_TOOLTIP'] = 'Set the alpha for the bac
 L['PRACTICE_TITLE'] = 'Select a symbol that differs in one way from the others';
 L['PRACTICE_PLAY_AGAIN'] = 'Play again';
 L['PRACTICE_BUTTON_TOOLTIP'] = 'Practice';
-L['NEW_VERSION_AVAILABLE'] = '|cffffb833Maze Helper:|r New version is now available on Curse|cfff16336Forge|r!';
+L['NEW_VERSION_AVAILABLE'] = 'New version is now available on Curse|cfff16336Forge|r!';
 L['MINIMAP_BUTTON_LMB'] = 'LMB';
 L['MINIMAP_BUTTON_RMB'] = 'RMB';
 L['MINIMAP_BUTTON_TOGGLE_MAZEHELPER'] = 'Toggle «Maze Helper» frame';
 L['MINIMAP_BUTTON_HIDE'] = 'Hide minimap button';
-L['MINIMAP_BUTTON_COMMAND_SHOW'] = '|cffffb833Maze Helper:|r Use /mh minimap to show the minimap button again';
+L['MINIMAP_BUTTON_COMMAND_SHOW'] = 'Use /mh minimap to show the minimap button again';
+L['AUTO_PASS'] = 'Auto pass!';
 
 -- Русский (я)
 if gameLocale == 'ruRU' then
     L['ZONE_NAME'] = 'Туманная чащоба';
+    L['MISTCALLER_NAME'] = 'Призывательница Туманов';
     L['RESET'] = 'Сбросить';
     L['CHOOSE_SYMBOLS_4'] = 'Выберите 4 символа';
     L['CHOOSE_SYMBOLS_3'] = 'Выберите еще 3 символа';
@@ -114,8 +186,8 @@ if gameLocale == 'ruRU' then
     L['SENDED_BY'] = 'Отправлено: %s';
     L['CLEARED_BY'] = 'Очищено: %s';
     L['PASSED'] = 'Прошли';
-    L['RESETED_PLAYER'] = '|cffffb833Maze Helper:|r %s |cffff0537сбросил|r мини-игру';
-    L['PASSED_PLAYER'] = '|cffffb833Maze Helper:|r %s кликнул на кнопку «|cff66ff6eПрошли|r»';
+    L['RESETED_PLAYER'] = '%s |cffff0537сбросил|r мини-игру';
+    L['PASSED_PLAYER'] = '%s кликнул на кнопку «|cff66ff6eПрошли|r»';
     L['SETTINGS_REVEAL_RESETTER_LABEL'] = 'Имя игрока, сбросившего мини-игру';
     L['SETTINGS_REVEAL_RESETTER_TOOLTIP'] = 'Писать в чате имя игрока, который нажал на кнопку «Сброс» или «Прошли» (будет видно только Вам)';
     L['SETTINGS_AUTOANNOUNCER_LABEL'] = 'Включить авто-оповещатель';
@@ -155,12 +227,13 @@ if gameLocale == 'ruRU' then
     L['PRACTICE_TITLE'] = 'Выберите символ, отличающийся чем-то одним от других';
     L['PRACTICE_PLAY_AGAIN'] = 'Сыграть ещё';
     L['PRACTICE_BUTTON_TOOLTIP'] = 'Практика';
-    L['NEW_VERSION_AVAILABLE'] = '|cffffb833Maze Helper:|r Новая версия доступна на Curse|cfff16336Forge|r!';
+    L['NEW_VERSION_AVAILABLE'] = 'Новая версия доступна на Curse|cfff16336Forge|r!';
     L['MINIMAP_BUTTON_LMB'] = 'ЛКМ';
     L['MINIMAP_BUTTON_RMB'] = 'ПКМ';
     L['MINIMAP_BUTTON_TOGGLE_MAZEHELPER'] = 'Открыть / закрыть окно помощника';
     L['MINIMAP_BUTTON_HIDE'] = 'Скрыть кнопку у миникарты';
-    L['MINIMAP_BUTTON_COMMAND_SHOW'] = '|cffffb833Maze Helper:|r Используйте /mh minimap, чтобы снова показать кнопку у миникарты';
+    L['MINIMAP_BUTTON_COMMAND_SHOW'] = 'Используйте /mh minimap, чтобы снова показать кнопку у миникарты';
+    L['AUTO_PASS'] = 'Авто-проход!';
 
     return;
 end
@@ -170,6 +243,7 @@ end
 -- robozu (https://github.com/robozu)
 if gameLocale == 'deDE' then
     L['ZONE_NAME'] = 'Nebelschleierdickicht';
+    L['MISTCALLER_NAME'] = 'Nebelruferin';
     L['RESET'] = 'Zurücksetzen';
     L['CHOOSE_SYMBOLS_4'] = 'Wählen Sie 4 Symbole';
     L['CHOOSE_SYMBOLS_3'] = 'Wählen Sie 3 weitere Symbole';
@@ -187,8 +261,8 @@ if gameLocale == 'deDE' then
     L['SENDED_BY'] = 'Gesendet von %s';
     L['CLEARED_BY'] = 'Gelöscht von %s';
     L['PASSED'] = 'Bestanden';
-    L['RESETED_PLAYER'] = '|cffffb833Maze Helper:|r %s hat dieses Minispiel |cffff0537zurückgesetzt|r';
-    L['PASSED_PLAYER'] = '|cffffb833Maze Helper:|r %s klickte auf «|cff66ff6eBestanden|r»';
+    L['RESETED_PLAYER'] = '%s hat dieses Minispiel |cffff0537zurückgesetzt|r';
+    L['PASSED_PLAYER'] = '%s klickte auf «|cff66ff6eBestanden|r»';
     L['SETTINGS_REVEAL_RESETTER_LABEL'] = 'Verrate den Resetter des Minispiels';
     L['SETTINGS_REVEAL_RESETTER_TOOLTIP'] = 'Geben Sie im Chat den Namen des Spielers ein, der auf die Schaltfläche «Zurücksetzen» oder «Bestanden» geklickt hat (nur für Sie selbst)';
     L['SETTINGS_AUTOANNOUNCER_LABEL'] = 'Aktivieren Sie die automatische Ansage';
@@ -228,12 +302,13 @@ if gameLocale == 'deDE' then
     L['PRACTICE_TITLE'] = 'Wählen Sie ein Symbol aus, das sich in einer Hinsicht von den anderen unterscheidet';
     L['PRACTICE_PLAY_AGAIN'] = 'Nochmal abspielen';
     L['PRACTICE_BUTTON_TOOLTIP'] = 'Trainieren';
-    L['NEW_VERSION_AVAILABLE'] = '|cffffb833Maze Helper:|r Neue Version ist jetzt auf Curse|cfff16336Forge|r verfügbar!';
+    L['NEW_VERSION_AVAILABLE'] = 'Neue Version ist jetzt auf Curse|cfff16336Forge|r verfügbar!';
     L['MINIMAP_BUTTON_LMB'] = 'Linke Maustaste';
     L['MINIMAP_BUTTON_RMB'] = 'Rechte Maustaste';
     L['MINIMAP_BUTTON_TOGGLE_MAZEHELPER'] = 'Schalter «Maze Helper» Rahmen';
     L['MINIMAP_BUTTON_HIDE'] = 'Minikartenschaltfläche ausblenden';
-    L['MINIMAP_BUTTON_COMMAND_SHOW'] = '|cffffb833Maze Helper:|r Verwenden Sie /mh minimap, um das Minikartensymbol erneut anzuzeigen';
+    L['MINIMAP_BUTTON_COMMAND_SHOW'] = 'Verwenden Sie /mh minimap, um das Minikartensymbol erneut anzuzeigen';
+    L['AUTO_PASS'] = 'Auto-pass!';
 
     return;
 end
@@ -241,6 +316,7 @@ end
 -- French (Google Translate)
 if gameLocale == 'frFR' then
     L['ZONE_NAME'] = 'Maquis Voile-de-Brume';
+    L['MISTCALLER_NAME'] = 'Mandebrume';
     L['RESET'] = 'Reset';
     L['CHOOSE_SYMBOLS_4'] = 'Sélectionnez 4 symboles';
     L['CHOOSE_SYMBOLS_3'] = 'Sélectionnez 3 autres symboles';
@@ -258,8 +334,8 @@ if gameLocale == 'frFR' then
     L['SENDED_BY'] = 'Envoyé par %s';
     L['CLEARED_BY'] = 'Innocenté par %s';
     L['PASSED'] = 'Passer';
-    L['RESETED_PLAYER'] = '|cffffb833Maze Helper:|r %s a |cffff0537réinitialisé|r ce mini-jeu';
-    L['PASSED_PLAYER'] = '|cffffb833Maze Helper:|r %s a cliqué sur le bouton «|cff66ff6ePasser|r»';
+    L['RESETED_PLAYER'] = '%s a |cffff0537réinitialisé|r ce mini-jeu';
+    L['PASSED_PLAYER'] = '%s a cliqué sur le bouton «|cff66ff6ePasser|r»';
     L['SETTINGS_REVEAL_RESETTER_LABEL'] = 'Reveal resetter du mini-jeu';
     L['SETTINGS_REVEAL_RESETTER_TOOLTIP'] = 'Tapez dans le chat le nom du joueur qui a cliqué sur le bouton «Réinitialiser» ou «Passé» (uniquement pour vous)';
     L['SETTINGS_AUTOANNOUNCER_LABEL'] = 'Activer l\'annonceur automatique';
@@ -299,12 +375,13 @@ if gameLocale == 'frFR' then
     L['PRACTICE_TITLE'] = 'Sélectionnez un symbole qui diffère d\'une manière des autres';
     L['PRACTICE_PLAY_AGAIN'] = 'Rejouer';
     L['PRACTICE_BUTTON_TOOLTIP'] = 'La pratique';
-    L['NEW_VERSION_AVAILABLE'] = '|cffffb833Maze Helper:|r Une nouvelle version est maintenant disponible sur Curse|cfff16336Forge|r!';
+    L['NEW_VERSION_AVAILABLE'] = 'Une nouvelle version est maintenant disponible sur Curse|cfff16336Forge|r!';
     L['MINIMAP_BUTTON_LMB'] = 'Bouton gauche';
     L['MINIMAP_BUTTON_RMB'] = 'Bouton de droite';
     L['MINIMAP_BUTTON_TOGGLE_MAZEHELPER'] = 'Basculer la fenêtre «Maze Helper»';
     L['MINIMAP_BUTTON_HIDE'] = 'Masquer le bouton de la minicarte';
-    L['MINIMAP_BUTTON_COMMAND_SHOW'] = '|cffffb833Maze Helper:|r Utilisez /mh minimap pour afficher à nouveau l\'icône de minicarte';
+    L['MINIMAP_BUTTON_COMMAND_SHOW'] = 'Utilisez /mh minimap pour afficher à nouveau l\'icône de minicarte';
+    L['AUTO_PASS'] = 'Auto pass!';
 
     return;
 end
@@ -312,6 +389,7 @@ end
 -- Italian (Google Translate)
 if gameLocale == 'itIT' then
     L['ZONE_NAME'] = 'Intrico Velofosco';
+    L['MISTCALLER_NAME'] = 'Evocanebbie';
     L['RESET'] = 'Ripristina';
     L['CHOOSE_SYMBOLS_4'] = 'Seleziona 4 simboli';
     L['CHOOSE_SYMBOLS_3'] = 'Seleziona altri 3 simboli';
@@ -329,8 +407,8 @@ if gameLocale == 'itIT' then
     L['SENDED_BY'] = 'Inviato da %s';
     L['CLEARED_BY'] = 'Cancellato da %s';
     L['PASSED'] = 'Passato';
-    L['RESETED_PLAYER'] = '|cffffb833Maze Helper:|r %s |cffff0537ha ripristinato|r questo minigioco';
-    L['PASSED_PLAYER'] = '|cffffb833Maze Helper:|r %s ha fatto clic sul pulsante «|cff66ff6ePassato|r»';
+    L['RESETED_PLAYER'] = '%s |cffff0537ha ripristinato|r questo minigioco';
+    L['PASSED_PLAYER'] = '%s ha fatto clic sul pulsante «|cff66ff6ePassato|r»';
     L['SETTINGS_REVEAL_RESETTER_LABEL'] = 'Rivela il resetter del mini-gioco';
     L['SETTINGS_REVEAL_RESETTER_TOOLTIP'] = 'Digita nella chat il nome del giocatore che ha fatto clic sul pulsante «Ripristina» o «Passato» (solo per te)';
     L['SETTINGS_AUTOANNOUNCER_LABEL'] = 'Abilita annunciatore automatico';
@@ -370,12 +448,13 @@ if gameLocale == 'itIT' then
     L['PRACTICE_TITLE'] = 'Seleziona un simbolo che differisce in un modo dagli altri';
     L['PRACTICE_PLAY_AGAIN'] = 'Gioca di nuovo';
     L['PRACTICE_BUTTON_TOOLTIP'] = 'Pratica';
-    L['NEW_VERSION_AVAILABLE'] = '|cffffb833Maze Helper:|r La nuova versione è ora disponibile su Curse|cfff16336Forge|r!';
+    L['NEW_VERSION_AVAILABLE'] = 'La nuova versione è ora disponibile su Curse|cfff16336Forge|r!';
     L['MINIMAP_BUTTON_LMB'] = 'Pulsante di sinistra';
     L['MINIMAP_BUTTON_RMB'] = 'Pulsante destro';
     L['MINIMAP_BUTTON_TOGGLE_MAZEHELPER'] = 'Attiva / disattiva la finestra «Maze Helper»';
     L['MINIMAP_BUTTON_HIDE'] = 'Nascondi pulsante minimappa';
-    L['MINIMAP_BUTTON_COMMAND_SHOW'] = '|cffffb833Maze Helper:|r Usa /mh minimap per mostrare di nuovo il pulsante minimappa';
+    L['MINIMAP_BUTTON_COMMAND_SHOW'] = 'Usa /mh minimap per mostrare di nuovo il pulsante minimappa';
+    L['AUTO_PASS'] = 'Passaggio automatico!';
 
     return;
 end
@@ -383,6 +462,7 @@ end
 -- Brazilian Portuguese (Google Translate)
 if gameLocale == 'ptBR' then
     L['ZONE_NAME'] = 'Enleio do Véu da Névoa';
+    L['MISTCALLER_NAME'] = 'Chamabruma';
     L['RESET'] = 'Redefinir';
     L['CHOOSE_SYMBOLS_4'] = 'Selecione 4 símbolos';
     L['CHOOSE_SYMBOLS_3'] = 'Selecione mais 3 símbolos';
@@ -400,8 +480,8 @@ if gameLocale == 'ptBR' then
     L['SENDED_BY'] = 'Enviado por %s';
     L['CLEARED_BY'] = 'Apagado por %s';
     L['PASSED'] = 'Passado';
-    L['RESETED_PLAYER'] = '|cffffb833Maze Helper:|r %s |cffff0537redefiniu|r este minijogo';
-    L['PASSED_PLAYER'] = '|cffffb833Maze Helper:|r %s clicou no botão «|cff66ff6ePassado|r»';
+    L['RESETED_PLAYER'] = '%s |cffff0537redefiniu|r este minijogo';
+    L['PASSED_PLAYER'] = '%s clicou no botão «|cff66ff6ePassado|r»';
     L['SETTINGS_REVEAL_RESETTER_LABEL'] = 'Revelar a reinicialização do minijogo';
     L['SETTINGS_REVEAL_RESETTER_TOOLTIP'] = 'Digite no chat o nome do jogador que clicou no botão «Redefinir» ou «Passado» (apenas para você)';
     L['SETTINGS_AUTOANNOUNCER_LABEL'] = 'Ativar locutor automático';
@@ -441,12 +521,13 @@ if gameLocale == 'ptBR' then
     L['PRACTICE_TITLE'] = 'Selecione um símbolo que difere de uma forma dos outros';
     L['PRACTICE_PLAY_AGAIN'] = 'Jogar de novo';
     L['PRACTICE_BUTTON_TOOLTIP'] = 'Prática';
-    L['NEW_VERSION_AVAILABLE'] = '|cffffb833Maze Helper:|r Nova versão já está disponível no Curse|cfff16336Forge|r!';
+    L['NEW_VERSION_AVAILABLE'] = 'Nova versão já está disponível no Curse|cfff16336Forge|r!';
     L['MINIMAP_BUTTON_LMB'] = 'Botão esquerdo';
     L['MINIMAP_BUTTON_RMB'] = 'Botão direito';
     L['MINIMAP_BUTTON_TOGGLE_MAZEHELPER'] = 'Alternar a janela «Maze Helper»';
     L['MINIMAP_BUTTON_HIDE'] = 'Ocultar botão de minimapa';
-    L['MINIMAP_BUTTON_COMMAND_SHOW'] = '|cffffb833Maze Helper:|r Use /mh minimap para mostrar o ícone do minimapa novamente';
+    L['MINIMAP_BUTTON_COMMAND_SHOW'] = 'Use /mh minimap para mostrar o ícone do minimapa novamente';
+    L['AUTO_PASS'] = 'Passe automático!';
 
     return;
 end
@@ -454,6 +535,7 @@ end
 -- Spanish (Google Translate)
 if gameLocale == 'esES' then
     L['ZONE_NAME'] = 'Espesura Velo de Niebla';
+    L['MISTCALLER_NAME'] = 'Clamaneblina';
     L['RESET'] = 'Reiniciar';
     L['CHOOSE_SYMBOLS_4'] = 'Seleccione 4 símbolos';
     L['CHOOSE_SYMBOLS_3'] = 'Seleccione 3 símbolos más';
@@ -471,8 +553,8 @@ if gameLocale == 'esES' then
     L['SENDED_BY'] = 'Enviado por %s';
     L['CLEARED_BY'] = 'Despejado por %s';
     L['PASSED'] = 'Aprobado';
-    L['RESETED_PLAYER'] = '|cffffb833Maze Helper:|r %s |cffff0537resetted|r este minijuego';
-    L['PASSED_PLAYER'] = '|cffffb833Maze Helper:|r %s hizo clic en el botón «|cff66ff6eAprobado|r»';
+    L['RESETED_PLAYER'] = '%s |cffff0537resetted|r este minijuego';
+    L['PASSED_PLAYER'] = '%s hizo clic en el botón «|cff66ff6eAprobado|r»';
     L['SETTINGS_REVEAL_RESETTER_LABEL'] = 'Revelar reiniciador del minijuego';
     L['SETTINGS_REVEAL_RESETTER_TOOLTIP'] = 'Escribe en el chat el nombre del jugador que hizo clic en el botón «Reiniciar» o «Aprobado» (solo para ti)';
     L['SETTINGS_AUTOANNOUNCER_LABEL'] = 'Habilitar auto locutor';
@@ -512,12 +594,13 @@ if gameLocale == 'esES' then
     L['PRACTICE_TITLE'] = 'Seleccione un símbolo que difiera en un sentido de los demás';
     L['PRACTICE_PLAY_AGAIN'] = 'Juega de nuevo';
     L['PRACTICE_BUTTON_TOOLTIP'] = 'Práctica';
-    L['NEW_VERSION_AVAILABLE'] = '|cffffb833Maze Helper:|r ¡La nueva versión ya está disponible en Curse|cfff16336Forge|r!';
+    L['NEW_VERSION_AVAILABLE'] = '¡La nueva versión ya está disponible en Curse|cfff16336Forge|r!';
     L['MINIMAP_BUTTON_LMB'] = 'Botón izquierdo';
     L['MINIMAP_BUTTON_RMB'] = 'Botón derecho';
     L['MINIMAP_BUTTON_TOGGLE_MAZEHELPER'] = 'Alternar la ventana «Maze Helper»';
     L['MINIMAP_BUTTON_HIDE'] = 'Ocultar botón de minimapa';
-    L['MINIMAP_BUTTON_COMMAND_SHOW'] = '|cffffb833Maze Helper:|r Use /mh minimap para mostrar el botón del minimapa nuevamente';
+    L['MINIMAP_BUTTON_COMMAND_SHOW'] = 'Use /mh minimap para mostrar el botón del minimapa nuevamente';
+    L['AUTO_PASS'] = 'Pase automático!';
 
     return;
 end
@@ -532,6 +615,7 @@ end
 -- BNS333 (https://www.curseforge.com/members/bns333) -- Traditional
 if gameLocale == 'zhTW' then
     L['ZONE_NAME'] = '霧紗密林';
+    L['MISTCALLER_NAME'] = '來電者';
     L['CHOOSE_SYMBOLS_1'] = '再點選一個標誌';
     L['CHOOSE_SYMBOLS_2'] = '再點選兩個標誌';
     L['CHOOSE_SYMBOLS_3'] = '再點選三個標誌';
@@ -545,9 +629,9 @@ if gameLocale == 'zhTW' then
     L['LEAF_FULL_NOCIRCLE'] = '無外環實心的葉';
     L['LEAF_NOFULL_CIRCLE'] = '有外環空心的葉';
     L['LEAF_NOFULL_NOCIRCLE'] = '無外環空心的葉';
-    L['RESETED_PLAYER'] = '|cffffb833Maze Helper:|r %s |cffff0537已重置|r此小遊戲';
+    L['RESETED_PLAYER'] = '%s |cffff0537已重置|r此小遊戲';
     L['PASSED'] = '已通過';
-    L['PASSED_PLAYER'] = '|cffffb833Maze Helper:|r %s 點擊了«|cff66ff6e已通過|r»按鈕';
+    L['PASSED_PLAYER'] = '%s 點擊了«|cff66ff6e已通過|r»按鈕';
     L['RESET'] = '重置';
     L['SENDED_BY'] = '由 %s 發送';
     L['SETTINGS_AA_ALWAYS'] = '總是';
@@ -590,12 +674,13 @@ if gameLocale == 'zhTW' then
     L['PRACTICE_TITLE'] = '選擇一個符號與其他符號不同的符號';
     L['PRACTICE_PLAY_AGAIN'] = '再玩一次';
     L['PRACTICE_BUTTON_TOOLTIP'] = '實踐';
-    L['NEW_VERSION_AVAILABLE'] = '|cffffb833Maze Helper:|r 新版本現已在Curse|cfff16336Forge|r上可用！';
+    L['NEW_VERSION_AVAILABLE'] = '新版本現已在Curse|cfff16336Forge|r上可用！';
     L['MINIMAP_BUTTON_LMB'] = '左鍵';
     L['MINIMAP_BUTTON_RMB'] = '右鍵';
     L['MINIMAP_BUTTON_TOGGLE_MAZEHELPER'] = '切換“Maze Helper”窗口';
     L['MINIMAP_BUTTON_HIDE'] = '隱藏小地圖按鈕';
-    L['MINIMAP_BUTTON_COMMAND_SHOW'] = '|cffffb833Maze Helper:|r 使用“/mh minimap”再次顯示小地圖按鈕';
+    L['MINIMAP_BUTTON_COMMAND_SHOW'] = '使用“/mh minimap”再次顯示小地圖按鈕';
+    L['AUTO_PASS'] = '自動通過！';
 
     return;
 end
@@ -604,6 +689,7 @@ end
 -- gjfLeo (https://github.com/gjfLeo)
 if gameLocale == 'zhCN' then
     L['ZONE_NAME'] = '纱雾迷结';
+    L['MISTCALLER_NAME'] = '唤雾者';
     L['CHOOSE_SYMBOLS_1'] = '再点一个标志';
     L['CHOOSE_SYMBOLS_2'] = '再点两个标志';
     L['CHOOSE_SYMBOLS_3'] = '再点三个标志';
@@ -618,9 +704,9 @@ if gameLocale == 'zhCN' then
     L['LEAF_NOFULL_CIRCLE'] = '有环 空心 叶';
     L['LEAF_NOFULL_NOCIRCLE'] = '无环 空心 叶';
     L['PASSED'] = '通过';
-    L['PASSED_PLAYER'] = '|cffffb833Maze Helper:|r %s 点击了«|cff66ff6e通过|r»按钮';
+    L['PASSED_PLAYER'] = '%s 点击了«|cff66ff6e通过|r»按钮';
     L['RESET'] = '重置';
-    L['RESETED_PLAYER'] = '|cffffb833Maze Helper:|r %s |cffff0537已重置|r此小游戏';
+    L['RESETED_PLAYER'] = '%s |cffff0537已重置|r此小游戏';
     L['SENDED_BY'] = '由 %s 发送';
     L['SETTINGS_AA_ALWAYS'] = '总是';
     L['SETTINGS_AA_HEALER'] = '治疗者';
@@ -662,20 +748,22 @@ if gameLocale == 'zhCN' then
     L['PRACTICE_TITLE'] = '选择一个符号与其他符号不同的符号';
     L['PRACTICE_PLAY_AGAIN'] = '再玩一次';
     L['PRACTICE_BUTTON_TOOLTIP'] = '实践';
-    L['NEW_VERSION_AVAILABLE'] = '|cffffb833Maze Helper:|r 现在可以在Curse|cfff16336Forge|r上使用新版本!';
+    L['NEW_VERSION_AVAILABLE'] = '现在可以在Curse|cfff16336Forge|r上使用新版本!';
     L['MINIMAP_BUTTON_LMB'] = '左键';
     L['MINIMAP_BUTTON_RMB'] = '右键';
     L['MINIMAP_BUTTON_TOGGLE_MAZEHELPER'] = '切换“Maze Helper”窗口';
     L['MINIMAP_BUTTON_HIDE'] = '隐藏小地图按钮';
-    L['MINIMAP_BUTTON_COMMAND_SHOW'] = '|cffffb833Maze Helper:|r 使用“/mh minimap”再次显示小地图按钮';
+    L['MINIMAP_BUTTON_COMMAND_SHOW'] = '使用“/mh minimap”再次显示小地图按钮';
+    L['AUTO_PASS'] = '自动通行证！';
 
     return;
 end
 
 -- Korean
 -- hinski (https://www.curseforge.com/members/hinski)
-if gameLocale == 'koKR' then 
+if gameLocale == 'koKR' then
     L['ZONE_NAME'] = '안개장막 덩굴숲';
+    L['MISTCALLER_NAME'] = '미스트콜러';
     L['CHOOSE_SYMBOLS_1'] = '1개의 모양을 더 고르세요';
     L['CHOOSE_SYMBOLS_2'] = '2개의 모양을 더 고르세요';
     L['CHOOSE_SYMBOLS_3'] = '3개의 모양을 더 고르세요';
@@ -690,9 +778,9 @@ if gameLocale == 'koKR' then
     L['LEAF_NOFULL_CIRCLE'] = '원 안의 빈 잎';
     L['LEAF_NOFULL_NOCIRCLE'] = '원 없는 빈 잎';
     L['PASSED'] = '통과';
-    L['PASSED_PLAYER'] = '|cffffb833Maze Helper:|r %s이(가) «|cff66ff6e통과|r» 버튼을 눌렀습니다';
+    L['PASSED_PLAYER'] = '%s이(가) «|cff66ff6e통과|r» 버튼을 눌렀습니다';
     L['RESET'] = '초기화';
-    L['RESETED_PLAYER'] = '|cffffb833Maze Helper:|r %s이(가) 이 퍼즐을 |cffff0537초기화|r했습니다';
+    L['RESETED_PLAYER'] = '%s이(가) 이 퍼즐을 |cffff0537초기화|r했습니다';
     L['SENDED_BY'] = '%s의 전송';
     L['SETTINGS_AA_ALWAYS'] = '항상';
     L['SETTINGS_AA_HEALER'] = '힐러';
@@ -734,12 +822,13 @@ if gameLocale == 'koKR' then
     L['PRACTICE_TITLE'] = '한 조건이 나머지와 다른 모양을 선택하십시오';
     L['PRACTICE_PLAY_AGAIN'] = '다시 하기';
     L['PRACTICE_BUTTON_TOOLTIP'] = '연습';
-    L['NEW_VERSION_AVAILABLE'] = '|cffffb833Maze Helper:|r Curse|cfff16336Forge|r에서 새 버전을 사용할 수 있습니다!';
+    L['NEW_VERSION_AVAILABLE'] = 'Curse|cfff16336Forge|r에서 새 버전을 사용할 수 있습니다!';
     L['MINIMAP_BUTTON_LMB'] = '좌클릭';
     L['MINIMAP_BUTTON_RMB'] = '우클릭';
     L['MINIMAP_BUTTON_TOGGLE_MAZEHELPER'] = '«Maze Helper»창 토글';
     L['MINIMAP_BUTTON_HIDE'] = '미니맵 버튼 숨기기';
-    L['MINIMAP_BUTTON_COMMAND_SHOW'] = '|cffffb833Maze Helper:|r /mh minimap 으로 미니맵 버튼을 표시할 수 있습니다';
+    L['MINIMAP_BUTTON_COMMAND_SHOW'] = '/mh minimap 으로 미니맵 버튼을 표시할 수 있습니다';
+    L['AUTO_PASS'] = '자동 통과!';
 
     return;
 end
