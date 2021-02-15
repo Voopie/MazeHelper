@@ -727,32 +727,41 @@ settingsScrollChild.Data.ShowSequenceNumbers:SetScript('OnClick', function(self)
     end
 end);
 
-settingsScrollChild.Data.AnnounceWithEnglish = E.CreateRoundedCheckButton(settingsScrollChild);
-settingsScrollChild.Data.AnnounceWithEnglish:SetPosition('TOPLEFT', settingsScrollChild.Data.ShowSequenceNumbers, 'BOTTOMLEFT', 0, 0);
-settingsScrollChild.Data.AnnounceWithEnglish:SetLabel(L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL']);
-settingsScrollChild.Data.AnnounceWithEnglish:SetTooltip(L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP']);
-settingsScrollChild.Data.AnnounceWithEnglish:SetScript('OnClick', function(self)
-    MHMOTSConfig.AnnounceWithEnglish = self:GetChecked();
-end);
-
-settingsScrollChild.Data.PrintResettedPlayerName = E.CreateRoundedCheckButton(settingsScrollChild);
-settingsScrollChild.Data.PrintResettedPlayerName:SetPosition('TOPLEFT', settingsScrollChild.Data.AnnounceWithEnglish, 'BOTTOMLEFT', 0, 0);
-settingsScrollChild.Data.PrintResettedPlayerName:SetLabel(L['SETTINGS_REVEAL_RESETTER_LABEL']);
-settingsScrollChild.Data.PrintResettedPlayerName:SetTooltip(L['SETTINGS_REVEAL_RESETTER_TOOLTIP']);
-settingsScrollChild.Data.PrintResettedPlayerName:SetScript('OnClick', function(self)
-    MHMOTSConfig.PrintResettedPlayerName = self:GetChecked();
+settingsScrollChild.Data.AutoPass = E.CreateRoundedCheckButton(settingsScrollChild);
+settingsScrollChild.Data.AutoPass:SetPosition('TOPLEFT', settingsScrollChild.Data.ShowSequenceNumbers, 'BOTTOMLEFT', 0, 0);
+settingsScrollChild.Data.AutoPass:SetLabel(M.INLINE_NEW_ICON .. L['SETTINGS_AUTO_PASS_LABEL']);
+settingsScrollChild.Data.AutoPass:SetTooltip(L['SETTINGS_AUTO_PASS_TOOLTIP']);
+settingsScrollChild.Data.AutoPass:SetScript('OnClick', function(self)
+    MHMOTSConfig.AutoPass = self:GetChecked();
 end);
 
 settingsScrollChild.Data.StartInMinMode = E.CreateRoundedCheckButton(settingsScrollChild);
-settingsScrollChild.Data.StartInMinMode:SetPosition('TOPLEFT', settingsScrollChild.Data.PrintResettedPlayerName, 'BOTTOMLEFT', 0, 0);
+settingsScrollChild.Data.StartInMinMode:SetPosition('TOPLEFT', settingsScrollChild.Data.AutoPass, 'BOTTOMLEFT', 0, 0);
 settingsScrollChild.Data.StartInMinMode:SetLabel(L['SETTINGS_START_IN_MINMODE_LABEL']);
 settingsScrollChild.Data.StartInMinMode:SetTooltip(L['SETTINGS_START_IN_MINMODE_TOOLTIP']);
 settingsScrollChild.Data.StartInMinMode:SetScript('OnClick', function(self)
     MHMOTSConfig.StartInMinMode = self:GetChecked();
 end);
 
+settingsScrollChild.Data.PrintResettedPlayerName = E.CreateRoundedCheckButton(settingsScrollChild);
+settingsScrollChild.Data.PrintResettedPlayerName:SetPosition('TOPLEFT', settingsScrollChild.Data.StartInMinMode, 'BOTTOMLEFT', 0, 0);
+settingsScrollChild.Data.PrintResettedPlayerName:SetLabel(L['SETTINGS_REVEAL_RESETTER_LABEL']);
+settingsScrollChild.Data.PrintResettedPlayerName:SetTooltip(L['SETTINGS_REVEAL_RESETTER_TOOLTIP']);
+settingsScrollChild.Data.PrintResettedPlayerName:SetScript('OnClick', function(self)
+    MHMOTSConfig.PrintResettedPlayerName = self:GetChecked();
+end);
+
+
+settingsScrollChild.Data.AnnounceWithEnglish = E.CreateRoundedCheckButton(settingsScrollChild);
+settingsScrollChild.Data.AnnounceWithEnglish:SetPosition('TOPLEFT', settingsScrollChild.Data.PrintResettedPlayerName, 'BOTTOMLEFT', 0, 0);
+settingsScrollChild.Data.AnnounceWithEnglish:SetLabel(L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL']);
+settingsScrollChild.Data.AnnounceWithEnglish:SetTooltip(L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP']);
+settingsScrollChild.Data.AnnounceWithEnglish:SetScript('OnClick', function(self)
+    MHMOTSConfig.AnnounceWithEnglish = self:GetChecked();
+end);
+
 settingsScrollChild.Data.AutoAnnouncer = E.CreateRoundedCheckButton(settingsScrollChild);
-settingsScrollChild.Data.AutoAnnouncer:SetPosition('TOPLEFT', settingsScrollChild.Data.StartInMinMode, 'BOTTOMLEFT', 0, 0);
+settingsScrollChild.Data.AutoAnnouncer:SetPosition('TOPLEFT', settingsScrollChild.Data.AnnounceWithEnglish, 'BOTTOMLEFT', 0, 0);
 settingsScrollChild.Data.AutoAnnouncer:SetLabel(L['SETTINGS_AUTOANNOUNCER_LABEL']);
 settingsScrollChild.Data.AutoAnnouncer:SetTooltip(L['SETTINGS_AUTOANNOUNCER_TOOLTIP']);
 settingsScrollChild.Data.AutoAnnouncer:SetScript('OnClick', function(self)
@@ -1761,6 +1770,7 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     MHMOTSConfig.UseCloneAutoMarker      = MHMOTSConfig.UseCloneAutoMarker == nil and true or MHMOTSConfig.UseCloneAutoMarker;
     MHMOTSConfig.AnnounceWithEnglish     = MHMOTSConfig.AnnounceWithEnglish == nil and true or MHMOTSConfig.AnnounceWithEnglish;
     MHMOTSConfig.SetMarkerSolutionPlayer = MHMOTSConfig.SetMarkerSolutionPlayer == nil and false or MHMOTSConfig.SetMarkerSolutionPlayer;
+    MHMOTSConfig.AutoPass                = MHMOTSConfig.AutoPass == nil and true or MHMOTSConfig.AutoPass;
 
     MHMOTSConfig.AutoAnnouncer              = MHMOTSConfig.AutoAnnouncer == nil and false or MHMOTSConfig.AutoAnnouncer;
     MHMOTSConfig.AutoAnnouncerAsPartyLeader = MHMOTSConfig.AutoAnnouncerAsPartyLeader == nil and true or MHMOTSConfig.AutoAnnouncerAsPartyLeader;
@@ -1783,6 +1793,7 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     settingsScrollChild.Data.UseCloneAutoMarker:SetChecked(MHMOTSConfig.UseCloneAutoMarker);
     settingsScrollChild.Data.AnnounceWithEnglish:SetChecked(MHMOTSConfig.AnnounceWithEnglish);
     settingsScrollChild.Data.SetMarkerSolutionPlayer:SetChecked(MHMOTSConfig.SetMarkerSolutionPlayer);
+    settingsScrollChild.Data.AutoPass:SetChecked(MHMOTSConfig.AutoPass);
 
     settingsScrollChild.Data.AutoAnnouncer:SetChecked(MHMOTSConfig.AutoAnnouncer);
     settingsScrollChild.Data.AutoAnnouncerAsPartyLeader:SetChecked(MHMOTSConfig.AutoAnnouncerAsPartyLeader);

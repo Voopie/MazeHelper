@@ -160,6 +160,8 @@ L['MINIMAP_BUTTON_TOGGLE_MAZEHELPER'] = 'Toggle «Maze Helper» frame';
 L['MINIMAP_BUTTON_HIDE'] = 'Hide minimap button';
 L['MINIMAP_BUTTON_COMMAND_SHOW'] = 'Use /mh minimap to show the minimap button again';
 L['AUTO_PASS'] = 'Auto pass!';
+L['SETTINGS_AUTO_PASS_LABEL'] = 'Auto pass';
+L['SETTINGS_AUTO_PASS_TOOLTIP'] = 'Auto «|cff66ff6ePassed|r» on successful passage through the mists';
 
 -- Русский (я)
 if gameLocale == 'ruRU' then
@@ -230,6 +232,8 @@ if gameLocale == 'ruRU' then
     L['MINIMAP_BUTTON_HIDE'] = 'Скрыть кнопку у миникарты';
     L['MINIMAP_BUTTON_COMMAND_SHOW'] = 'Используйте /mh minimap, чтобы снова показать кнопку у миникарты';
     L['AUTO_PASS'] = 'Авто-проход!';
+    L['SETTINGS_AUTO_PASS_LABEL'] = 'Авто-проход';
+    L['SETTINGS_AUTO_PASS_TOOLTIP'] = 'Авто «|cff66ff6eПрошли|r» при успешном прохождении сквозь туманы';
 
     return;
 end
@@ -305,6 +309,8 @@ if gameLocale == 'deDE' then
     L['MINIMAP_BUTTON_HIDE'] = 'Minikartenschaltfläche ausblenden';
     L['MINIMAP_BUTTON_COMMAND_SHOW'] = 'Verwenden Sie /mh minimap, um das Minikartensymbol erneut anzuzeigen';
     L['AUTO_PASS'] = 'Auto-pass!';
+    L['SETTINGS_AUTO_PASS_LABEL'] = 'Auto-pass';
+    L['SETTINGS_AUTO_PASS_TOOLTIP'] = 'Auto «|cff66ff6eBestanden|r» bei erfolgreichem Durchgang durch die Nebel';
 
     return;
 end
@@ -378,6 +384,8 @@ if gameLocale == 'frFR' then
     L['MINIMAP_BUTTON_HIDE'] = 'Masquer le bouton de la minicarte';
     L['MINIMAP_BUTTON_COMMAND_SHOW'] = 'Utilisez /mh minimap pour afficher à nouveau l\'icône de minicarte';
     L['AUTO_PASS'] = 'Auto pass !';
+    L['SETTINGS_AUTO_PASS_LABEL'] = 'Auto pass';
+    L['SETTINGS_AUTO_PASS_TOOLTIP'] = 'Auto «|cff66ff6ePasser|r» sur un passage réussi dans les brumes';
 
     return;
 end
@@ -451,6 +459,8 @@ if gameLocale == 'itIT' then
     L['MINIMAP_BUTTON_HIDE'] = 'Nascondi pulsante minimappa';
     L['MINIMAP_BUTTON_COMMAND_SHOW'] = 'Usa /mh minimap per mostrare di nuovo il pulsante minimappa';
     L['AUTO_PASS'] = 'Passaggio automatico!';
+    L['SETTINGS_AUTO_PASS_LABEL'] = 'Passaggio automatico';
+    L['SETTINGS_AUTO_PASS_TOOLTIP'] = 'Automatico «|cff66ff6ePassato|r» sul passaggio riuscito attraverso le nebbie';
 
     return;
 end
@@ -524,6 +534,8 @@ if gameLocale == 'ptBR' then
     L['MINIMAP_BUTTON_HIDE'] = 'Ocultar botão de minimapa';
     L['MINIMAP_BUTTON_COMMAND_SHOW'] = 'Use /mh minimap para mostrar o ícone do minimapa novamente';
     L['AUTO_PASS'] = 'Passe automático!';
+    L['SETTINGS_AUTO_PASS_LABEL'] = 'Passe automático';
+    L['SETTINGS_AUTO_PASS_TOOLTIP'] = 'Automático «|cff66ff6ePassado|r» na passagem bem-sucedida pelas brumas';
 
     return;
 end
@@ -597,6 +609,8 @@ if gameLocale == 'esES' then
     L['MINIMAP_BUTTON_HIDE'] = 'Ocultar botón de minimapa';
     L['MINIMAP_BUTTON_COMMAND_SHOW'] = 'Use /mh minimap para mostrar el botón del minimapa nuevamente';
     L['AUTO_PASS'] = 'Pase automático!';
+    L['SETTINGS_AUTO_PASS_LABEL'] = 'Pase automático';
+    L['SETTINGS_AUTO_PASS_TOOLTIP'] = 'Automático «|cff66ff6eAprobado|r» en el paso exitoso a través de las nieblas';
 
     return;
 end
@@ -675,8 +689,10 @@ if gameLocale == 'zhTW' then
     L['MINIMAP_BUTTON_RMB'] = '右鍵';
     L['MINIMAP_BUTTON_TOGGLE_MAZEHELPER'] = '切換“Maze Helper”窗口';
     L['MINIMAP_BUTTON_HIDE'] = '隱藏小地圖按鈕';
-    L['MINIMAP_BUTTON_COMMAND_SHOW'] = '使用“/mh minimap”再次顯示小地圖按鈕';
+    L['MINIMAP_BUTTON_COMMAND_SHOW'] = '使用/mh minimap再次顯示小地圖按鈕';
     L['AUTO_PASS'] = '自動通過！';
+    L['SETTINGS_AUTO_PASS_LABEL'] = '自動通過';
+    L['SETTINGS_AUTO_PASS_TOOLTIP'] = '成功通過霧氣時自動«|cff66ff6e已通過|r»';
 
     return;
 end
@@ -747,10 +763,12 @@ if gameLocale == 'zhCN' then
     L['NEW_VERSION_AVAILABLE'] = '现在可以在Curse|cfff16336Forge|r上使用新版本!';
     L['MINIMAP_BUTTON_LMB'] = '左键';
     L['MINIMAP_BUTTON_RMB'] = '右键';
-    L['MINIMAP_BUTTON_TOGGLE_MAZEHELPER'] = '切换“Maze Helper”窗口';
+    L['MINIMAP_BUTTON_TOGGLE_MAZEHELPER'] = '切换«Maze Helper»窗口';
     L['MINIMAP_BUTTON_HIDE'] = '隐藏小地图按钮';
-    L['MINIMAP_BUTTON_COMMAND_SHOW'] = '使用“/mh minimap”再次显示小地图按钮';
+    L['MINIMAP_BUTTON_COMMAND_SHOW'] = '使用/mh minimap再次显示小地图按钮';
     L['AUTO_PASS'] = '自动通行证！';
+    L['SETTINGS_AUTO_PASS_LABEL'] = '自动通行证';
+    L['SETTINGS_AUTO_PASS_TOOLTIP'] = '成功通过雾气时自动«|cff66ff6e通过|r»';
 
     return;
 end
@@ -825,6 +843,8 @@ if gameLocale == 'koKR' then
     L['MINIMAP_BUTTON_HIDE'] = '미니맵 버튼 숨기기';
     L['MINIMAP_BUTTON_COMMAND_SHOW'] = '/mh minimap 으로 미니맵 버튼을 표시할 수 있습니다';
     L['AUTO_PASS'] = '자동 통과!';
+    L['SETTINGS_AUTO_PASS_LABEL'] = '자동 통과';
+    L['SETTINGS_AUTO_PASS_TOOLTIP'] = '안개를 성공적으로 통과하면 자동«|cff66ff6e통과|r»';
 
     return;
 end
