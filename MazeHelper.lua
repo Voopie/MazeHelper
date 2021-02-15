@@ -1825,7 +1825,7 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
 
     if MazeHelper.currentLocale == 'enUS' then
         settingsScrollChild.Data.AnnounceWithEnglish:SetShown(false);
-        settingsScrollChild.Data.PrintResettedPlayerName:SetPosition('TOPLEFT', settingsScrollChild.Data.ShowSequenceNumbers, 'BOTTOMLEFT', 0, 0);
+        settingsScrollChild.Data.AutoAnnouncer:SetPosition('TOPLEFT', settingsScrollChild.Data.PrintResettedPlayerName, 'BOTTOMLEFT', 0, 0);
     end
 
     MazeHelper:CreateButtons();
