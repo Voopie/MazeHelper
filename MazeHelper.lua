@@ -1678,12 +1678,14 @@ function MazeHelper.frame:CHAT_MSG_ADDON(prefix, message, _, sender)
                 MazeHelper:ReceiveUnactiveButtonID(tonumber(buttonId), sender);
             end
         elseif command == 'SendPassed' then
-            if arg2 ~= 'AP' then
-                MazeHelper:ReceivePassedCommand(tonumber(arg1));
+            if arg2 == 'AP' then
+                return;
+            end
 
-                if MHMOTSConfig.PrintResettedPlayerName then
-                    mhPrint(string.format(L['PASSED_PLAYER'], sender));
-                end
+            MazeHelper:ReceivePassedCommand(tonumber(arg1));
+
+            if MHMOTSConfig.PrintResettedPlayerName then
+                mhPrint(string.format(L['PASSED_PLAYER'], sender));
             end
         elseif command == 'SendReset' then
             MazeHelper:ReceiveResetCommand();
