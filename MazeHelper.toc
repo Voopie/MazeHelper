@@ -3,6 +3,13 @@
 ## Title: + |TInterface\AddOns\MazeHelper\Media\mazehelper:14:112:0:1:128:64:0:128:0:16|t
 ## Notes: Your favorite helper for «Mists of Tirna Scithe»
 ## Notes-ruRU: Ваш любимый помощник для подземелья «Туманы Тирна Скитта»
+## Notes-deDE: Ihr Lieblingshelfer für «Die Nebel von Tirna Scithe»
+## Notes-frFR: Votre assistant préféré pour «Brumes de Tirna Scithe»
+## Notes-esES: Tu ayudante favorito para «Nieblas de Tirna Scithe»
+## Notes-itIT: Il tuo aiutante preferito per «Nebbie di Tirna Falcis»
+## Notes-ptBR: Seu ajudante favorito para «Brumas de Tirna Scithe»
+## Notes-zhCN: 您最喜欢的«塞兹仙林的迷雾»的助手
+## Notes-koKR: «티르너 사이드의 안개»에 가장 좋아하는 도우미
 ## Version: 1.25
 ## SavedVariables: MHMOTSConfig
 
