@@ -18,6 +18,7 @@
 - Minimized mode: for those who don't click on the buttons but want to know the right solution
 - Practice mode: practice and you will become stronger, wiser and everyone will adore you!
 - Auto activation of Depleted Anima Seeds (just one click!)
+- Auto Pass (on successful passage through the mists)
 
 ### ***Usage:***
 
