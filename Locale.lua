@@ -59,8 +59,11 @@ MazeHelper.MISTCALLER_QUOTES = {
 
     },
 
+    -- RainbowUI (https://www.curseforge.com/members/rainbowui)
     zhTW = {
-
+        '瞞不過你呢！',
+        '成功了！猜得好！',
+        '好棒！你快到了！',
     },
 
     zhCN = {
@@ -699,6 +702,7 @@ end
 
 -- Geminil82 (https://www.curseforge.com/members/Geminil82)
 -- gjfLeo (https://github.com/gjfLeo)
+-- NeoS0923 (https://www.curseforge.com/members/neos0923)
 if gameLocale == 'zhCN' then
     L['ZONE_NAME'] = '纱雾迷结';
     L['MISTCALLER_NAME'] = '唤雾者';
@@ -766,8 +770,8 @@ if gameLocale == 'zhCN' then
     L['MINIMAP_BUTTON_TOGGLE_MAZEHELPER'] = '切换«Maze Helper»窗口';
     L['MINIMAP_BUTTON_HIDE'] = '隐藏小地图按钮';
     L['MINIMAP_BUTTON_COMMAND_SHOW'] = '使用/mh minimap再次显示小地图按钮';
-    L['AUTO_PASS'] = '自动通行证！';
-    L['SETTINGS_AUTO_PASS_LABEL'] = '自动通行证';
+    L['AUTO_PASS'] = '自动通过！';
+    L['SETTINGS_AUTO_PASS_LABEL'] = '自动通过';
     L['SETTINGS_AUTO_PASS_TOOLTIP'] = '成功通过雾气时自动«|cff66ff6e通过|r»';
 
     return;
