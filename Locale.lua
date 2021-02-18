@@ -166,6 +166,11 @@ L['MINIMAP_BUTTON_COMMAND_SHOW'] = 'Use /mh minimap to show the minimap button a
 L['AUTO_PASS'] = 'Auto pass!';
 L['SETTINGS_AUTO_PASS_LABEL'] = 'Auto pass';
 L['SETTINGS_AUTO_PASS_TOOLTIP'] = 'Auto «|cff66ff6ePassed|r» on successful passage through the mists';
+L['SETTINGS_BORDERS_COLORS'] = 'Borders colors';
+L['SETTINGS_ACTIVE_COLORPICKER'] = 'Selected';
+L['SETTINGS_RECEIVED_COLORPICKER'] = 'Received';
+L['SETTINGS_SOLUTION_COLORPICKER'] = 'Solution';
+L['SETTINGS_PREDICTED_COLORPICKER'] = 'Predicted';
 
 -- Русский (я)
 if gameLocale == 'ruRU' then
@@ -238,6 +243,11 @@ if gameLocale == 'ruRU' then
     L['AUTO_PASS'] = 'Авто-проход!';
     L['SETTINGS_AUTO_PASS_LABEL'] = 'Авто-проход';
     L['SETTINGS_AUTO_PASS_TOOLTIP'] = 'Авто «|cff66ff6eПрошли|r» при успешном прохождении сквозь туманы';
+    L['SETTINGS_BORDERS_COLORS'] = 'Цвета рамок';
+    L['SETTINGS_ACTIVE_COLORPICKER'] = 'Выбранный';
+    L['SETTINGS_RECEIVED_COLORPICKER'] = 'Полученный';
+    L['SETTINGS_SOLUTION_COLORPICKER'] = 'Решение';
+    L['SETTINGS_PREDICTED_COLORPICKER'] = 'Предсказание';
 
     return;
 end
@@ -315,6 +325,11 @@ if gameLocale == 'deDE' then
     L['AUTO_PASS'] = 'Auto-pass!';
     L['SETTINGS_AUTO_PASS_LABEL'] = 'Auto-pass';
     L['SETTINGS_AUTO_PASS_TOOLTIP'] = 'Auto «|cff66ff6eBestanden|r» bei erfolgreichem Durchgang durch die Nebel';
+    L['SETTINGS_BORDERS_COLORS'] = 'Grenzen Farben';
+    L['SETTINGS_ACTIVE_COLORPICKER'] = 'Ausgewählt';
+    L['SETTINGS_RECEIVED_COLORPICKER'] = 'Empfangen';
+    L['SETTINGS_SOLUTION_COLORPICKER'] = 'Lösung';
+    L['SETTINGS_PREDICTED_COLORPICKER'] = 'Vorausgesagt';
 
     return;
 end
@@ -390,6 +405,11 @@ if gameLocale == 'frFR' then
     L['AUTO_PASS'] = 'Auto pass !';
     L['SETTINGS_AUTO_PASS_LABEL'] = 'Auto pass';
     L['SETTINGS_AUTO_PASS_TOOLTIP'] = 'Auto «|cff66ff6ePasser|r» sur un passage réussi dans les brumes';
+    L['SETTINGS_BORDERS_COLORS'] = 'Couleurs des bordures';
+    L['SETTINGS_ACTIVE_COLORPICKER'] = 'Choisi';
+    L['SETTINGS_RECEIVED_COLORPICKER'] = 'A reçu';
+    L['SETTINGS_SOLUTION_COLORPICKER'] = 'Solution';
+    L['SETTINGS_PREDICTED_COLORPICKER'] = 'Prédite';
 
     return;
 end
@@ -465,6 +485,11 @@ if gameLocale == 'itIT' then
     L['AUTO_PASS'] = 'Passaggio automatico!';
     L['SETTINGS_AUTO_PASS_LABEL'] = 'Passaggio automatico';
     L['SETTINGS_AUTO_PASS_TOOLTIP'] = 'Automatico «|cff66ff6ePassato|r» sul passaggio riuscito attraverso le nebbie';
+    L['SETTINGS_BORDERS_COLORS'] = 'Colori dei bordi';
+    L['SETTINGS_ACTIVE_COLORPICKER'] = 'Selezionato';
+    L['SETTINGS_RECEIVED_COLORPICKER'] = 'Ricevuto';
+    L['SETTINGS_SOLUTION_COLORPICKER'] = 'Soluzione';
+    L['SETTINGS_PREDICTED_COLORPICKER'] = 'Predetto';
 
     return;
 end
@@ -540,6 +565,11 @@ if gameLocale == 'ptBR' then
     L['AUTO_PASS'] = 'Passe automático!';
     L['SETTINGS_AUTO_PASS_LABEL'] = 'Passe automático';
     L['SETTINGS_AUTO_PASS_TOOLTIP'] = 'Automático «|cff66ff6ePassado|r» na passagem bem-sucedida pelas brumas';
+    L['SETTINGS_BORDERS_COLORS'] = 'Cores das bordas';
+    L['SETTINGS_ACTIVE_COLORPICKER'] = 'Selecionado';
+    L['SETTINGS_RECEIVED_COLORPICKER'] = 'Recebido';
+    L['SETTINGS_SOLUTION_COLORPICKER'] = 'Solução';
+    L['SETTINGS_PREDICTED_COLORPICKER'] = 'Previsto';
 
     return;
 end
@@ -615,6 +645,11 @@ if gameLocale == 'esES' then
     L['AUTO_PASS'] = 'Pase automático!';
     L['SETTINGS_AUTO_PASS_LABEL'] = 'Pase automático';
     L['SETTINGS_AUTO_PASS_TOOLTIP'] = 'Automático «|cff66ff6eAprobado|r» en el paso exitoso a través de las nieblas';
+    L['SETTINGS_BORDERS_COLORS'] = 'Colores de las fronteras';
+    L['SETTINGS_ACTIVE_COLORPICKER'] = 'Seleccionado';
+    L['SETTINGS_RECEIVED_COLORPICKER'] = 'Recibido';
+    L['SETTINGS_SOLUTION_COLORPICKER'] = 'Solución';
+    L['SETTINGS_PREDICTED_COLORPICKER'] = 'Predicho';
 
     return;
 end
@@ -697,6 +732,11 @@ if gameLocale == 'zhTW' then
     L['AUTO_PASS'] = '自動通過！';
     L['SETTINGS_AUTO_PASS_LABEL'] = '自動通過';
     L['SETTINGS_AUTO_PASS_TOOLTIP'] = '成功通過霧氣時自動«|cff66ff6e已通過|r»';
+    L['SETTINGS_BORDERS_COLORS'] = '邊框顏色';
+    L['SETTINGS_ACTIVE_COLORPICKER'] = '已選';
+    L['SETTINGS_RECEIVED_COLORPICKER'] = '已收到';
+    L['SETTINGS_SOLUTION_COLORPICKER'] = '解決方案';
+    L['SETTINGS_PREDICTED_COLORPICKER'] = '預料到的';
 
     return;
 end
@@ -774,6 +814,11 @@ if gameLocale == 'zhCN' then
     L['AUTO_PASS'] = '自动通过！';
     L['SETTINGS_AUTO_PASS_LABEL'] = '自动通过';
     L['SETTINGS_AUTO_PASS_TOOLTIP'] = '成功通过雾气时自动«|cff66ff6e通过|r»';
+    L['SETTINGS_BORDERS_COLORS'] = '边框颜色';
+    L['SETTINGS_ACTIVE_COLORPICKER'] = '已选';
+    L['SETTINGS_RECEIVED_COLORPICKER'] = '已收到';
+    L['SETTINGS_SOLUTION_COLORPICKER'] = '解决方案';
+    L['SETTINGS_PREDICTED_COLORPICKER'] = '预料到的';
 
     return;
 end
@@ -850,6 +895,11 @@ if gameLocale == 'koKR' then
     L['AUTO_PASS'] = '자동 통과!';
     L['SETTINGS_AUTO_PASS_LABEL'] = '자동 통과';
     L['SETTINGS_AUTO_PASS_TOOLTIP'] = '안개를 성공적으로 통과하면 자동«|cff66ff6e통과|r»';
+    L['SETTINGS_BORDERS_COLORS'] = '테두리 색상';
+    L['SETTINGS_ACTIVE_COLORPICKER'] = '선택된';
+    L['SETTINGS_RECEIVED_COLORPICKER'] = '받은';
+    L['SETTINGS_SOLUTION_COLORPICKER'] = '해결책';
+    L['SETTINGS_PREDICTED_COLORPICKER'] = '예측';
 
     return;
 end

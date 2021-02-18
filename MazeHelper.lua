@@ -90,6 +90,13 @@ local EVENTS_AUTOMARKER = {
     'NAME_PLATE_UNIT_REMOVED',
 };
 
+local DEFAULT_COLORS = {
+    Active    = {0.4, 0.52, 0.95, 1},
+    Received  = {0.9, 1, 0.1, 1},
+    Solution  = {0.2, 0.8, 0.4, 1},
+    Predicted = {1, 0.9, 0.71, 1},
+}
+
 local buttons = {}
 local buttonsData = {
     [1] = {
@@ -201,6 +208,18 @@ local function AnnounceInChat(partyChatType)
         SendChatMessage(string.format(L['ANNOUNCE_SOLUTION_WITH_ENGLISH'], buttons[SOLUTION_BUTTON_ID].data.name, buttons[SOLUTION_BUTTON_ID].data.ename), partyChatType);
     else
         SendChatMessage(string.format(L['ANNOUNCE_SOLUTION'], buttons[SOLUTION_BUTTON_ID].data.name), partyChatType);
+    end
+end
+
+local function UpdateBorderColors()
+    for i = 1, MAX_BUTTONS do
+        if buttons[i] then
+            buttons[i]:UpdateBorder();
+        end
+    end
+
+    if PREDICTED_SOLUTION_BUTTON_ID and buttons[PREDICTED_SOLUTION_BUTTON_ID] then
+        buttons[PREDICTED_SOLUTION_BUTTON_ID]:SetPredicted();
     end
 end
 
@@ -630,8 +649,77 @@ MazeHelper.frame.PracticeModeButton.Background:SetTexCoord(unpack(M.Rings.COORDS
 
 local settingsScrollChild = E.CreateScrollFrame(MazeHelper.frame.Settings, 26);
 
+settingsScrollChild.Data.ColorsHeader = E.CreateHeader(settingsScrollChild, M.INLINE_NEW_ICON .. L['SETTINGS_BORDERS_COLORS']);
+settingsScrollChild.Data.ColorsHeader:SetPosition('TOPLEFT', settingsScrollChild, 'TOPLEFT', 12, 0);
+settingsScrollChild.Data.ColorsHeader:SetSize(settingsScrollChild:GetWidth() - 4, 18);
+
+settingsScrollChild.Data.ActiveColorPicker = E.CreateColorPicker(settingsScrollChild, DEFAULT_COLORS.Active)
+PixelUtil.SetPoint(settingsScrollChild.Data.ActiveColorPicker, 'TOPLEFT', settingsScrollChild.Data.ColorsHeader, 'BOTTOMLEFT', 0, 0);
+settingsScrollChild.Data.ActiveColorPicker.labelText:SetText(L['SETTINGS_ACTIVE_COLORPICKER']);
+settingsScrollChild.Data.ActiveColorPicker.OnValueChanged = function(_, r, g, b, a)
+    MHMOTSConfig.ActiveColor[1] = r;
+    MHMOTSConfig.ActiveColor[2] = g;
+    MHMOTSConfig.ActiveColor[3] = b;
+    MHMOTSConfig.ActiveColor[4] = a;
+
+    UpdateBorderColors();
+end
+
+settingsScrollChild.Data.ReceivedColorPicker = E.CreateColorPicker(settingsScrollChild, DEFAULT_COLORS.Received)
+PixelUtil.SetPoint(settingsScrollChild.Data.ReceivedColorPicker, 'TOPLEFT', settingsScrollChild.Data.ColorsHeader, 'BOTTOMLEFT', settingsScrollChild.Data.ColorsHeader:GetWidth() / 2, 0);
+settingsScrollChild.Data.ReceivedColorPicker.labelText:SetText(L['SETTINGS_RECEIVED_COLORPICKER']);
+settingsScrollChild.Data.ReceivedColorPicker.OnValueChanged = function(_, r, g, b, a)
+    MHMOTSConfig.ReceivedColor[1] = r;
+    MHMOTSConfig.ReceivedColor[2] = g;
+    MHMOTSConfig.ReceivedColor[3] = b;
+    MHMOTSConfig.ReceivedColor[4] = a;
+
+    UpdateBorderColors();
+end
+
+settingsScrollChild.Data.SolutionColorPicker = E.CreateColorPicker(settingsScrollChild, DEFAULT_COLORS.Solution)
+PixelUtil.SetPoint(settingsScrollChild.Data.SolutionColorPicker, 'TOPLEFT', settingsScrollChild.Data.ActiveColorPicker, 'BOTTOMLEFT', 0, 0);
+settingsScrollChild.Data.SolutionColorPicker.labelText:SetText(L['SETTINGS_SOLUTION_COLORPICKER']);
+settingsScrollChild.Data.SolutionColorPicker.OnValueChanged = function(_, r, g, b, a)
+    MHMOTSConfig.SolutionColor[1] = r;
+    MHMOTSConfig.SolutionColor[2] = g;
+    MHMOTSConfig.SolutionColor[3] = b;
+    MHMOTSConfig.SolutionColor[4] = a;
+
+    UpdateBorderColors();
+end
+
+settingsScrollChild.Data.PredictedColorPicker = E.CreateColorPicker(settingsScrollChild, DEFAULT_COLORS.Predicted)
+PixelUtil.SetPoint(settingsScrollChild.Data.PredictedColorPicker, 'TOPLEFT', settingsScrollChild.Data.ActiveColorPicker, 'BOTTOMLEFT', settingsScrollChild.Data.ColorsHeader:GetWidth() / 2, 0);
+settingsScrollChild.Data.PredictedColorPicker.labelText:SetText(L['SETTINGS_PREDICTED_COLORPICKER']);
+settingsScrollChild.Data.PredictedColorPicker.OnValueChanged = function(_, r, g, b, a)
+    MHMOTSConfig.PredictedColor[1] = r;
+    MHMOTSConfig.PredictedColor[2] = g;
+    MHMOTSConfig.PredictedColor[3] = b;
+    MHMOTSConfig.PredictedColor[4] = a;
+
+    UpdateBorderColors();
+end
+
+settingsScrollChild.Data.ResetColorsButton = CreateFrame('Button', nil, settingsScrollChild, 'SharedButtonSmallTemplate');
+PixelUtil.SetPoint(settingsScrollChild.Data.ResetColorsButton, 'TOP', settingsScrollChild, 'TOP', 12, -78);
+settingsScrollChild.Data.ResetColorsButton:SetText(L['RESET']);
+PixelUtil.SetSize(settingsScrollChild.Data.ResetColorsButton, tonumber(settingsScrollChild.Data.ResetColorsButton:GetTextWidth()) + 20, 22);
+settingsScrollChild.Data.ResetColorsButton:SetScript('OnClick', function()
+    settingsScrollChild.Data.ActiveColorPicker:SetValue(unpack(DEFAULT_COLORS.Active));
+    settingsScrollChild.Data.ReceivedColorPicker:SetValue(unpack(DEFAULT_COLORS.Received));
+    settingsScrollChild.Data.SolutionColorPicker:SetValue(unpack(DEFAULT_COLORS.Solution));
+    settingsScrollChild.Data.PredictedColorPicker:SetValue(unpack(DEFAULT_COLORS.Predicted));
+
+    UpdateBorderColors();
+end);
+
+settingsScrollChild.Data.EmptyHeader = E.CreateHeader(settingsScrollChild);
+settingsScrollChild.Data.EmptyHeader:SetPosition('TOPLEFT', settingsScrollChild.Data.SolutionColorPicker, 'BOTTOMLEFT', 0, -30);
+settingsScrollChild.Data.EmptyHeader:SetSize(settingsScrollChild:GetWidth() - 4, 18);
+
 settingsScrollChild.Data.SyncEnabled = E.CreateRoundedCheckButton(settingsScrollChild);
-settingsScrollChild.Data.SyncEnabled:SetPosition('TOPLEFT', settingsScrollChild, 'TOPLEFT', 12, 0);
+settingsScrollChild.Data.SyncEnabled:SetPosition('TOPLEFT', settingsScrollChild.Data.EmptyHeader, 'BOTTOMLEFT', 0, 0);
 settingsScrollChild.Data.SyncEnabled:SetLabel(L['SETTINGS_SYNC_ENABLED_LABEL']);
 settingsScrollChild.Data.SyncEnabled:SetTooltip(L['SETTINGS_SYNC_ENABLED_TOOLTIP']);
 settingsScrollChild.Data.SyncEnabled:SetScript('OnClick', function(self)
@@ -726,14 +814,6 @@ settingsScrollChild.Data.ShowSequenceNumbers:SetScript('OnClick', function(self)
         buttons[i].SequenceText:SetShown(MHMOTSConfig.ShowSequenceNumbers);
     end
 end);
-
--- settingsScrollChild.Data.AutoPass = E.CreateRoundedCheckButton(settingsScrollChild);
--- settingsScrollChild.Data.AutoPass:SetPosition('TOPLEFT', settingsScrollChild.Data.ShowSequenceNumbers, 'BOTTOMLEFT', 0, 0);
--- settingsScrollChild.Data.AutoPass:SetLabel(M.INLINE_NEW_ICON .. L['SETTINGS_AUTO_PASS_LABEL']);
--- settingsScrollChild.Data.AutoPass:SetTooltip(L['SETTINGS_AUTO_PASS_TOOLTIP']);
--- settingsScrollChild.Data.AutoPass:SetScript('OnClick', function(self)
---     MHMOTSConfig.AutoPass = self:GetChecked();
--- end);
 
 settingsScrollChild.Data.StartInMinMode = E.CreateRoundedCheckButton(settingsScrollChild);
 settingsScrollChild.Data.StartInMinMode:SetPosition('TOPLEFT', settingsScrollChild.Data.ShowSequenceNumbers, 'BOTTOMLEFT', 0, 0);
@@ -973,7 +1053,7 @@ function MazeHelper:CreateButton(index)
     });
 
     button.SetActive = function(self)
-        self:SetBackdropBorderColor(0.4, 0.52, 0.95, 1);
+        self:SetBackdropBorderColor(unpack(MHMOTSConfig.ActiveColor));
     end
 
     button.SetUnactive = function(self)
@@ -981,15 +1061,15 @@ function MazeHelper:CreateButton(index)
     end
 
     button.SetReceived = function(self)
-        self:SetBackdropBorderColor(0.9, 1, 0.1, 1);
+        self:SetBackdropBorderColor(unpack(MHMOTSConfig.ReceivedColor));
     end
 
     button.SetSolution = function(self)
-        self:SetBackdropBorderColor(0.2, 0.8, 0.4, 1);
+        self:SetBackdropBorderColor(unpack(MHMOTSConfig.SolutionColor));
     end
 
     button.SetPredicted = function(self)
-        self:SetBackdropBorderColor(1, 0.9, 0.71, 1);
+        self:SetBackdropBorderColor(unpack(MHMOTSConfig.PredictedColor));
     end
 
     button.UpdateBorder = function(self)
@@ -1772,13 +1852,17 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     MHMOTSConfig.UseCloneAutoMarker      = MHMOTSConfig.UseCloneAutoMarker == nil and true or MHMOTSConfig.UseCloneAutoMarker;
     MHMOTSConfig.AnnounceWithEnglish     = MHMOTSConfig.AnnounceWithEnglish == nil and true or MHMOTSConfig.AnnounceWithEnglish;
     MHMOTSConfig.SetMarkerSolutionPlayer = MHMOTSConfig.SetMarkerSolutionPlayer == nil and false or MHMOTSConfig.SetMarkerSolutionPlayer;
-    -- MHMOTSConfig.AutoPass                = MHMOTSConfig.AutoPass == nil and true or MHMOTSConfig.AutoPass;
 
     MHMOTSConfig.AutoAnnouncer              = MHMOTSConfig.AutoAnnouncer == nil and false or MHMOTSConfig.AutoAnnouncer;
     MHMOTSConfig.AutoAnnouncerAsPartyLeader = MHMOTSConfig.AutoAnnouncerAsPartyLeader == nil and true or MHMOTSConfig.AutoAnnouncerAsPartyLeader;
     MHMOTSConfig.AutoAnnouncerAsAlways      = MHMOTSConfig.AutoAnnouncerAsAlways == nil and false or MHMOTSConfig.AutoAnnouncerAsAlways;
     MHMOTSConfig.AutoAnnouncerAsTank        = MHMOTSConfig.AutoAnnouncerAsTank == nil and false or MHMOTSConfig.AutoAnnouncerAsTank;
     MHMOTSConfig.AutoAnnouncerAsHealer      = MHMOTSConfig.AutoAnnouncerAsHealer == nil and false or MHMOTSConfig.AutoAnnouncerAsHealer;
+
+    MHMOTSConfig.ActiveColor    = MHMOTSConfig.ActiveColor    or DEFAULT_COLORS.Active;
+    MHMOTSConfig.ReceivedColor  = MHMOTSConfig.ReceivedColor  or DEFAULT_COLORS.Received;
+    MHMOTSConfig.SolutionColor  = MHMOTSConfig.SolutionColor  or DEFAULT_COLORS.Solution;
+    MHMOTSConfig.PredictedColor = MHMOTSConfig.PredictedColor or DEFAULT_COLORS.Predicted;
 
     MHMOTSConfig.PracticeNoSound = MHMOTSConfig.PracticeNoSound == nil and false or MHMOTSConfig.PracticeNoSound;
 
@@ -1795,7 +1879,6 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     settingsScrollChild.Data.UseCloneAutoMarker:SetChecked(MHMOTSConfig.UseCloneAutoMarker);
     settingsScrollChild.Data.AnnounceWithEnglish:SetChecked(MHMOTSConfig.AnnounceWithEnglish);
     settingsScrollChild.Data.SetMarkerSolutionPlayer:SetChecked(MHMOTSConfig.SetMarkerSolutionPlayer);
-    -- settingsScrollChild.Data.AutoPass:SetChecked(MHMOTSConfig.AutoPass);
 
     settingsScrollChild.Data.AutoAnnouncer:SetChecked(MHMOTSConfig.AutoAnnouncer);
     settingsScrollChild.Data.AutoAnnouncerAsPartyLeader:SetChecked(MHMOTSConfig.AutoAnnouncerAsPartyLeader);
@@ -1813,6 +1896,11 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
 
     MazeHelper.PracticeFrame.NoSoundButton:SetChecked(MHMOTSConfig.PracticeNoSound);
     MazeHelper.PracticeFrame.NoSoundButton:SetTurned(not MHMOTSConfig.PracticeNoSound);
+
+    settingsScrollChild.Data.ActiveColorPicker:SetValue(unpack(MHMOTSConfig.ActiveColor));
+    settingsScrollChild.Data.ReceivedColorPicker:SetValue(unpack(MHMOTSConfig.ReceivedColor));
+    settingsScrollChild.Data.SolutionColorPicker:SetValue(unpack(MHMOTSConfig.SolutionColor));
+    settingsScrollChild.Data.PredictedColorPicker:SetValue(unpack(MHMOTSConfig.PredictedColor));
 
     MazeHelper.frame:SetScale(MHMOTSConfig.SavedScale);
     MazeHelper.frame.LargeSymbol:SetScale(PixelUtil.GetPixelToUIUnitFactor() * MHMOTSConfig.SavedScaleLargeSymbol);

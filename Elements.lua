@@ -2,6 +2,7 @@ local _, MazeHelper = ...;
 MazeHelper.E = {};
 
 local E, M = MazeHelper.E, MazeHelper.M;
+local LCP = _G.LibStub('LibColorPicker-1.0');
 
 E.CreateTooltip = function(frame, tooltipText, anchor)
     if not frame then
@@ -420,4 +421,76 @@ E.CreateSlider = function(name, parent)
     slider:Show();
 
     return slider;
+end
+
+E.CreateColorPicker = function(parent, color, tooltip)
+    if type(color) ~= 'table' then
+        return;
+    end
+
+    local hasOpacity = false;
+
+    if not color.r and color[4] then
+        hasOpacity = color[4];
+        color = color;
+    elseif color.a then
+        hasOpacity = color.a;
+        color = { color.r, color.g, color.b, color.a };
+    elseif color.r and color.g and color.b then
+        hasOpacity = false;
+        color = { color.r, color.g, color.b };
+    end
+
+    local colorpicker = LCP:New(parent, nil, tooltip, hasOpacity);
+    colorpicker:SetValue(unpack(color));
+
+    colorpicker:HookScript('OnClick', function()
+        PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
+    end);
+
+    return colorpicker;
+end
+
+E.CreateHeader = function(parent, text)
+    local frame = CreateFrame('Frame', nil, parent);
+
+    frame.SetPosition = function(self, point, relativeTo, relativePoint, offsetX, offsetY, minOffsetXPixels, minOffsetYPixels)
+        PixelUtil.SetPoint(self, point, relativeTo, relativePoint, offsetX, offsetY, minOffsetXPixels, minOffsetYPixels);
+    end
+
+    frame.SetSize = function(self, width, height)
+        PixelUtil.SetSize(self, width, height);
+    end
+
+    local label = frame:CreateFontString(nil, 'BACKGROUND', 'GameFontNormal');
+    PixelUtil.SetPoint(label, 'TOP', frame, 'TOP', 0, 0);
+    PixelUtil.SetPoint(label, 'BOTTOM', frame, 'BOTTOM', 0, 0);
+    label:SetJustifyH('CENTER');
+
+    local left = frame:CreateTexture(nil, 'BACKGROUND');
+    PixelUtil.SetPoint(left, 'LEFT', frame, 'LEFT', 3, 0);
+    PixelUtil.SetPoint(left, 'RIGHT', label, 'LEFT', -5, 0);
+    PixelUtil.SetHeight(left, 2);
+    left:SetTexture('Interface\\Buttons\\WHITE8x8');
+    left:SetVertexColor(0.4, 0.4, 0.4, 1);
+
+    local right = frame:CreateTexture(nil, 'BACKGROUND');
+    PixelUtil.SetPoint(right, 'RIGHT', frame, 'RIGHT', -3, 0);
+    PixelUtil.SetPoint(right, 'LEFT', label, 'RIGHT', 5, 0);
+	PixelUtil.SetHeight(right, 2);
+    right:SetTexture('Interface\\Buttons\\WHITE8x8');
+    right:SetVertexColor(0.4, 0.4, 0.4, 1);
+
+    if text and text ~= '' then
+        label:SetText(text);
+        PixelUtil.SetPoint(left, 'RIGHT', label, 'LEFT', -5, 0);
+        right:Show();
+    else
+        PixelUtil.SetPoint(left, 'RIGHT', frame, 'RIGHT', -3, 0);
+        right:Hide();
+    end
+
+    frame.Label = label;
+
+    return frame;
 end
