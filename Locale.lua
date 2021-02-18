@@ -335,7 +335,7 @@ if gameLocale == 'deDE' then
     L['SETTINGS_SOLUTION_COLORPICKER'] = 'Lösung';
     L['SETTINGS_PREDICTED_COLORPICKER'] = 'Vorausgesagt';
     L['SETTINGS_SKULLMARKER_CLONE_LABEL'] = 'Schädel auf Klon';
-    L['SETTINGS_SKULLMARKER_CLONE_TOOLTIP'] = 'Setze den Schädelmarker {rt8} automatisch auf den Ziel-Illusionärer Klon';
+    L['SETTINGS_SKULLMARKER_CLONE_TOOLTIP'] = 'Setze den Schädelmarker |TInterface\\TargetingFrame\\UI-RaidTargetingIcon_8:0|t automatisch auf den Ziel-Illusionärer Klon';
 
     return;
 end
@@ -417,7 +417,7 @@ if gameLocale == 'frFR' then
     L['SETTINGS_SOLUTION_COLORPICKER'] = 'Solution';
     L['SETTINGS_PREDICTED_COLORPICKER'] = 'Prédite';
     L['SETTINGS_SKULLMARKER_CLONE_LABEL'] = 'Crâne sur Clone';
-    L['SETTINGS_SKULLMARKER_CLONE_TOOLTIP'] = 'Définissez automatiquement le marqueur de crâne {rt8} sur le Clone illusoire ciblé';
+    L['SETTINGS_SKULLMARKER_CLONE_TOOLTIP'] = 'Définissez automatiquement le marqueur de crâne |TInterface\\TargetingFrame\\UI-RaidTargetingIcon_8:0|t sur le Clone illusoire ciblé';
 
     return;
 end
@@ -499,7 +499,7 @@ if gameLocale == 'itIT' then
     L['SETTINGS_SOLUTION_COLORPICKER'] = 'Soluzione';
     L['SETTINGS_PREDICTED_COLORPICKER'] = 'Predetto';
     L['SETTINGS_SKULLMARKER_CLONE_LABEL'] = 'Teschio su Clone';
-    L['SETTINGS_SKULLMARKER_CLONE_TOOLTIP'] = 'Imposta automaticamente l\'indicatore del teschio {rt8} sul Clone Illusorio scelto';
+    L['SETTINGS_SKULLMARKER_CLONE_TOOLTIP'] = 'Imposta automaticamente l\'indicatore del teschio |TInterface\\TargetingFrame\\UI-RaidTargetingIcon_8:0|t sul Clone Illusorio scelto';
 
     return;
 end
@@ -581,7 +581,7 @@ if gameLocale == 'ptBR' then
     L['SETTINGS_SOLUTION_COLORPICKER'] = 'Solução';
     L['SETTINGS_PREDICTED_COLORPICKER'] = 'Previsto';
     L['SETTINGS_SKULLMARKER_CLONE_LABEL'] = 'Marcador de crânio no Clone';
-    L['SETTINGS_SKULLMARKER_CLONE_TOOLTIP'] = 'Defina automaticamente o marcador de caveira {rt8} para o Clone Ilusório visado';
+    L['SETTINGS_SKULLMARKER_CLONE_TOOLTIP'] = 'Defina automaticamente o marcador de caveira |TInterface\\TargetingFrame\\UI-RaidTargetingIcon_8:0|t para o Clone Ilusório visado';
 
     return;
 end
@@ -663,7 +663,7 @@ if gameLocale == 'esES' then
     L['SETTINGS_SOLUTION_COLORPICKER'] = 'Solución';
     L['SETTINGS_PREDICTED_COLORPICKER'] = 'Predicho';
     L['SETTINGS_SKULLMARKER_CLONE_LABEL'] = 'Cráneo en Clon';
-    L['SETTINGS_SKULLMARKER_CLONE_TOOLTIP'] = 'Establece automáticamente el marcador de cráneo {rt8} en el Clon ilusorio objetivo';
+    L['SETTINGS_SKULLMARKER_CLONE_TOOLTIP'] = 'Establece automáticamente el marcador de cráneo |TInterface\\TargetingFrame\\UI-RaidTargetingIcon_8:0|t en el Clon ilusorio objetivo';
 
     return;
 end
@@ -752,7 +752,7 @@ if gameLocale == 'zhTW' then
     L['SETTINGS_SOLUTION_COLORPICKER'] = '解決方案';
     L['SETTINGS_PREDICTED_COLORPICKER'] = '預料到的';
     L['SETTINGS_SKULLMARKER_CLONE_LABEL'] = '頭骨上克隆';
-    L['SETTINGS_SKULLMARKER_CLONE_TOOLTIP'] = '自動將頭骨標記{rt8}設置為目標幻影克隆';
+    L['SETTINGS_SKULLMARKER_CLONE_TOOLTIP'] = '自動將頭骨標記|TInterface\\TargetingFrame\\UI-RaidTargetingIcon_8:0|t設置為目標幻影克隆';
 
     return;
 end
@@ -836,7 +836,7 @@ if gameLocale == 'zhCN' then
     L['SETTINGS_SOLUTION_COLORPICKER'] = '解决方案';
     L['SETTINGS_PREDICTED_COLORPICKER'] = '预料到的';
     L['SETTINGS_SKULLMARKER_CLONE_LABEL'] = '头骨上克隆';
-    L['SETTINGS_SKULLMARKER_CLONE_TOOLTIP'] = '自动将头骨标记{rt8}设置为目标幻影克隆';
+    L['SETTINGS_SKULLMARKER_CLONE_TOOLTIP'] = '自动将头骨标记|TInterface\\TargetingFrame\\UI-RaidTargetingIcon_8:0|t设置为目标幻影克隆';
 
     return;
 end
@@ -919,7 +919,7 @@ if gameLocale == 'koKR' then
     L['SETTINGS_SOLUTION_COLORPICKER'] = '해결책';
     L['SETTINGS_PREDICTED_COLORPICKER'] = '예측';
     L['SETTINGS_SKULLMARKER_CLONE_LABEL'] = '클론에 해골';
-    L['SETTINGS_SKULLMARKER_CLONE_TOOLTIP'] = '해골 마커 {rt8}를 타겟 환영 분신으로 자동 설정';
+    L['SETTINGS_SKULLMARKER_CLONE_TOOLTIP'] = '해골 마커 |TInterface\\TargetingFrame\\UI-RaidTargetingIcon_8:0|t를 타겟 환영 분신으로 자동 설정';
 
     return;
 end
