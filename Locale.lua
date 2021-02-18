@@ -171,6 +171,8 @@ L['SETTINGS_ACTIVE_COLORPICKER'] = 'Selected';
 L['SETTINGS_RECEIVED_COLORPICKER'] = 'Received';
 L['SETTINGS_SOLUTION_COLORPICKER'] = 'Solution';
 L['SETTINGS_PREDICTED_COLORPICKER'] = 'Predicted';
+L['SETTINGS_SKULLMARKER_CLONE_LABEL'] = 'Skull on Clone';
+L['SETTINGS_SKULLMARKER_CLONE_TOOLTIP'] = 'Automatically set the skull marker |TInterface\\TargetingFrame\\UI-RaidTargetingIcon_8:0|t to the targeted Illusionary Clone';
 
 -- Русский (я)
 if gameLocale == 'ruRU' then
@@ -248,6 +250,8 @@ if gameLocale == 'ruRU' then
     L['SETTINGS_RECEIVED_COLORPICKER'] = 'Полученный';
     L['SETTINGS_SOLUTION_COLORPICKER'] = 'Решение';
     L['SETTINGS_PREDICTED_COLORPICKER'] = 'Предсказание';
+    L['SETTINGS_SKULLMARKER_CLONE_LABEL'] = 'Череп на Клона';
+    L['SETTINGS_SKULLMARKER_CLONE_TOOLTIP'] = 'Автоматически ставить метку черепа |TInterface\\TargetingFrame\\UI-RaidTargetingIcon_8:0|t на Иллюзорного клона, который является вашей целью';
 
     return;
 end
@@ -330,6 +334,8 @@ if gameLocale == 'deDE' then
     L['SETTINGS_RECEIVED_COLORPICKER'] = 'Empfangen';
     L['SETTINGS_SOLUTION_COLORPICKER'] = 'Lösung';
     L['SETTINGS_PREDICTED_COLORPICKER'] = 'Vorausgesagt';
+    L['SETTINGS_SKULLMARKER_CLONE_LABEL'] = 'Schädel auf Klon';
+    L['SETTINGS_SKULLMARKER_CLONE_TOOLTIP'] = 'Setze den Schädelmarker {rt8} automatisch auf den Ziel-Illusionärer Klon';
 
     return;
 end
@@ -410,6 +416,8 @@ if gameLocale == 'frFR' then
     L['SETTINGS_RECEIVED_COLORPICKER'] = 'A reçu';
     L['SETTINGS_SOLUTION_COLORPICKER'] = 'Solution';
     L['SETTINGS_PREDICTED_COLORPICKER'] = 'Prédite';
+    L['SETTINGS_SKULLMARKER_CLONE_LABEL'] = 'Crâne sur Clone';
+    L['SETTINGS_SKULLMARKER_CLONE_TOOLTIP'] = 'Définissez automatiquement le marqueur de crâne {rt8} sur le Clone illusoire ciblé';
 
     return;
 end
@@ -490,6 +498,8 @@ if gameLocale == 'itIT' then
     L['SETTINGS_RECEIVED_COLORPICKER'] = 'Ricevuto';
     L['SETTINGS_SOLUTION_COLORPICKER'] = 'Soluzione';
     L['SETTINGS_PREDICTED_COLORPICKER'] = 'Predetto';
+    L['SETTINGS_SKULLMARKER_CLONE_LABEL'] = 'Teschio su Clone';
+    L['SETTINGS_SKULLMARKER_CLONE_TOOLTIP'] = 'Imposta automaticamente l\'indicatore del teschio {rt8} sul Clone Illusorio scelto';
 
     return;
 end
@@ -570,6 +580,8 @@ if gameLocale == 'ptBR' then
     L['SETTINGS_RECEIVED_COLORPICKER'] = 'Recebido';
     L['SETTINGS_SOLUTION_COLORPICKER'] = 'Solução';
     L['SETTINGS_PREDICTED_COLORPICKER'] = 'Previsto';
+    L['SETTINGS_SKULLMARKER_CLONE_LABEL'] = 'Marcador de crânio no Clone';
+    L['SETTINGS_SKULLMARKER_CLONE_TOOLTIP'] = 'Defina automaticamente o marcador de caveira {rt8} para o Clone Ilusório visado';
 
     return;
 end
@@ -650,6 +662,8 @@ if gameLocale == 'esES' then
     L['SETTINGS_RECEIVED_COLORPICKER'] = 'Recibido';
     L['SETTINGS_SOLUTION_COLORPICKER'] = 'Solución';
     L['SETTINGS_PREDICTED_COLORPICKER'] = 'Predicho';
+    L['SETTINGS_SKULLMARKER_CLONE_LABEL'] = 'Cráneo en Clon';
+    L['SETTINGS_SKULLMARKER_CLONE_TOOLTIP'] = 'Establece automáticamente el marcador de cráneo {rt8} en el Clon ilusorio objetivo';
 
     return;
 end
@@ -737,6 +751,8 @@ if gameLocale == 'zhTW' then
     L['SETTINGS_RECEIVED_COLORPICKER'] = '已收到';
     L['SETTINGS_SOLUTION_COLORPICKER'] = '解決方案';
     L['SETTINGS_PREDICTED_COLORPICKER'] = '預料到的';
+    L['SETTINGS_SKULLMARKER_CLONE_LABEL'] = '頭骨上克隆';
+    L['SETTINGS_SKULLMARKER_CLONE_TOOLTIP'] = '自動將頭骨標記{rt8}設置為目標幻影克隆';
 
     return;
 end
@@ -819,6 +835,8 @@ if gameLocale == 'zhCN' then
     L['SETTINGS_RECEIVED_COLORPICKER'] = '已收到';
     L['SETTINGS_SOLUTION_COLORPICKER'] = '解决方案';
     L['SETTINGS_PREDICTED_COLORPICKER'] = '预料到的';
+    L['SETTINGS_SKULLMARKER_CLONE_LABEL'] = '头骨上克隆';
+    L['SETTINGS_SKULLMARKER_CLONE_TOOLTIP'] = '自动将头骨标记{rt8}设置为目标幻影克隆';
 
     return;
 end
@@ -900,6 +918,8 @@ if gameLocale == 'koKR' then
     L['SETTINGS_RECEIVED_COLORPICKER'] = '받은';
     L['SETTINGS_SOLUTION_COLORPICKER'] = '해결책';
     L['SETTINGS_PREDICTED_COLORPICKER'] = '예측';
+    L['SETTINGS_SKULLMARKER_CLONE_LABEL'] = '클론에 해골';
+    L['SETTINGS_SKULLMARKER_CLONE_TOOLTIP'] = '해골 마커 {rt8}를 타겟 환영 분신으로 자동 설정';
 
     return;
 end

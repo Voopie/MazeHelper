@@ -18,6 +18,7 @@ local startedInMinMode = false;
 -- NANO-OPTIMIZATIONS!
 local EMPTY_STRING = '';
 local PLAYER_STRING = 'player';
+local TARGET_STRING = 'target';
 
 local MAX_BUTTONS = 8;
 local MAX_ACTIVE_BUTTONS = 4;
@@ -59,6 +60,7 @@ local MARKER_UNITS = {
 };
 
 local SOLUTION_PLAYER_MARKER = 4; -- GREEN
+local SKULL_MARKER = 8;
 
 local PASSED_COUNTER = 1;
 local SOLUTION_BUTTON_ID;
@@ -85,16 +87,20 @@ local EVENTS_INSTANCE = {
     'CHAT_MSG_MONSTER_SAY',
 };
 
+local EVENTS_SKULLMARKER = {
+    'PLAYER_TARGET_CHANGED',
+};
+
 local EVENTS_AUTOMARKER = {
     'NAME_PLATE_UNIT_ADDED',
     'NAME_PLATE_UNIT_REMOVED',
 };
 
 local DEFAULT_COLORS = {
-    Active    = {0.4, 0.52, 0.95, 1},
-    Received  = {0.9, 1, 0.1, 1},
-    Solution  = {0.2, 0.8, 0.4, 1},
-    Predicted = {1, 0.9, 0.71, 1},
+    Active    = { 0.4, 0.52, 0.95, 1 },
+    Received  = { 0.9,    1,  0.1, 1 },
+    Solution  = { 0.2,  0.8,  0.4, 1 },
+    Predicted = {   1,  0.9, 0.71, 1 },
 };
 
 local buttons = {};
@@ -776,7 +782,7 @@ settingsScrollChild.Data.UseCloneAutoMarker:SetTooltip(L['SETTINGS_USE_CLONE_AUT
 settingsScrollChild.Data.UseCloneAutoMarker:SetScript('OnClick', function(self)
     MHMOTSConfig.UseCloneAutoMarker = self:GetChecked();
 
-    if MHMOTSConfig.UseCloneAutoMarker and inMOTS then
+    if MHMOTSConfig.UseCloneAutoMarker and inEncounter then
         for _, event in ipairs(EVENTS_AUTOMARKER) do
             MazeHelper.frame:RegisterEvent(event);
         end
@@ -787,8 +793,26 @@ settingsScrollChild.Data.UseCloneAutoMarker:SetScript('OnClick', function(self)
     end
 end);
 
+settingsScrollChild.Data.SetMarkerOnTargetClone = E.CreateRoundedCheckButton(settingsScrollChild);
+settingsScrollChild.Data.SetMarkerOnTargetClone:SetPosition('TOPLEFT', settingsScrollChild.Data.UseCloneAutoMarker, 'BOTTOMLEFT', 0, 0);
+settingsScrollChild.Data.SetMarkerOnTargetClone:SetLabel(M.INLINE_NEW_ICON .. L['SETTINGS_SKULLMARKER_CLONE_LABEL']);
+settingsScrollChild.Data.SetMarkerOnTargetClone:SetTooltip(L['SETTINGS_SKULLMARKER_CLONE_TOOLTIP']);
+settingsScrollChild.Data.SetMarkerOnTargetClone:SetScript('OnClick', function(self)
+    MHMOTSConfig.SetMarkerOnTargetClone = self:GetChecked();
+
+    if MHMOTSConfig.SetMarkerOnTargetClone and inEncounter then
+        for _, event in ipairs(EVENTS_SKULLMARKER) do
+            MazeHelper.frame:RegisterEvent(event);
+        end
+    else
+        for _, event in ipairs(EVENTS_SKULLMARKER) do
+            MazeHelper.frame:UnregisterEvent(event);
+        end
+    end
+end);
+
 settingsScrollChild.Data.UseColoredSymbols = E.CreateRoundedCheckButton(settingsScrollChild);
-settingsScrollChild.Data.UseColoredSymbols:SetPosition('TOPLEFT', settingsScrollChild.Data.UseCloneAutoMarker, 'BOTTOMLEFT', 0, 0);
+settingsScrollChild.Data.UseColoredSymbols:SetPosition('TOPLEFT', settingsScrollChild.Data.SetMarkerOnTargetClone, 'BOTTOMLEFT', 0, 0);
 settingsScrollChild.Data.UseColoredSymbols:SetLabel(L['SETTINGS_USE_COLORED_SYMBOLS_LABEL']);
 settingsScrollChild.Data.UseColoredSymbols:SetTooltip(L['SETTINGS_USE_COLORED_SYMBOLS_TOOLTIP']);
 settingsScrollChild.Data.UseColoredSymbols:SetScript('OnClick', function(self)
@@ -1545,7 +1569,7 @@ local function UpdateShown()
     end
 end
 
-local function UpdateState(frame)
+local function UpdateState()
     local playerName, playerShortenedRealm = UnitFullName(PLAYER_STRING);
     playerNameWithRealm = playerName .. '-' .. playerShortenedRealm;
 
@@ -1571,21 +1595,41 @@ local function UpdateState(frame)
         MazeHelper:RequestPassedCounter(); -- if you were dc'ed or reloading ui
 
         for _, event in ipairs(EVENTS_INSTANCE) do
-            frame:RegisterEvent(event);
+            MazeHelper.frame:RegisterEvent(event);
         end
 
-        if MHMOTSConfig.UseCloneAutoMarker then
+        if inEncounter then
+            if MHMOTSConfig.UseCloneAutoMarker then
+                for _, event in ipairs(EVENTS_AUTOMARKER) do
+                    MazeHelper.frame:RegisterEvent(event);
+                end
+            end
+
+            if MHMOTSConfig.SetMarkerOnTargetClone then
+                for _, event in ipairs(EVENTS_SKULLMARKER) do
+                    MazeHelper.frame:RegisterEvent(event);
+                end
+            end
+        else
             for _, event in ipairs(EVENTS_AUTOMARKER) do
-                frame:RegisterEvent(event);
+                MazeHelper.frame:UnregisterEvent(event);
+            end
+
+            for _, event in ipairs(EVENTS_SKULLMARKER) do
+                MazeHelper.frame:UnregisterEvent(event);
             end
         end
     else
         for _, event in ipairs(EVENTS_INSTANCE) do
-            frame:UnregisterEvent(event);
+            MazeHelper.frame:UnregisterEvent(event);
         end
 
         for _, event in ipairs(EVENTS_AUTOMARKER) do
-            frame:UnregisterEvent(event);
+            MazeHelper.frame:UnregisterEvent(event);
+        end
+
+        for _, event in ipairs(EVENTS_SKULLMARKER) do
+            MazeHelper.frame:UnregisterEvent(event);
         end
     end
 
@@ -1600,6 +1644,28 @@ local function UpdateBossState(encounterId, inFight, killed)
 
     inEncounter = inFight;
     bossKilled  = killed;
+
+    if inEncounter then
+        if MHMOTSConfig.UseCloneAutoMarker then
+            for _, event in ipairs(EVENTS_AUTOMARKER) do
+                MazeHelper.frame:RegisterEvent(event);
+            end
+        end
+
+        if MHMOTSConfig.SetMarkerOnTargetClone then
+            for _, event in ipairs(EVENTS_SKULLMARKER) do
+                MazeHelper.frame:RegisterEvent(event);
+            end
+        end
+    else
+        for _, event in ipairs(EVENTS_AUTOMARKER) do
+            MazeHelper.frame:UnregisterEvent(event);
+        end
+
+        for _, event in ipairs(EVENTS_SKULLMARKER) do
+            MazeHelper.frame:UnregisterEvent(event);
+        end
+    end
 
     UpdateUsedMarkers();
     ResetAll();
@@ -1675,11 +1741,11 @@ function MazeHelper.frame:PLAYER_LOGIN()
         self.LargeSymbol:SetUserPlaced(true);
 	end
 
-    UpdateState(self);
+    UpdateState();
 end
 
 function MazeHelper.frame:PLAYER_ENTERING_WORLD()
-    UpdateState(self);
+    UpdateState();
 end
 
 function MazeHelper.frame:ZONE_CHANGED()
@@ -1711,9 +1777,7 @@ function MazeHelper.frame:NAME_PLATE_UNIT_ADDED(unit)
         return;
     end
 
-    local npcId = select(6, strsplit('-', UnitGUID(unit)));
-    npcId = tonumber(npcId);
-
+    local npcId = tonumber((select(6, strsplit('-', UnitGUID(unit) or ''))) or '0');
     if not npcId or npcId ~= ILLUSIONARY_CLONE_ID then
         return;
     end
@@ -1735,6 +1799,22 @@ function MazeHelper.frame:NAME_PLATE_UNIT_REMOVED(unit)
 
     SetFreeMarkerIndex(nameplatesMarkers[unit]);
     nameplatesMarkers[unit] = nil;
+end
+
+function MazeHelper.frame:PLAYER_TARGET_CHANGED()
+    if not UnitExists(TARGET_STRING) then
+        return;
+    end
+
+    local npcId = tonumber((select(6, strsplit('-', UnitGUID(TARGET_STRING) or ''))) or '0');
+    if not npcId or npcId ~= ILLUSIONARY_CLONE_ID then
+        return;
+    end
+
+    local targetIndex = GetRaidTargetIndex(TARGET_STRING);
+    if not targetIndex or targetIndex ~= SKULL_MARKER then
+        SetRaidTarget(TARGET_STRING, SKULL_MARKER);
+    end
 end
 
 function MazeHelper.frame:CHAT_MSG_ADDON(prefix, message, _, sender)
@@ -1852,6 +1932,7 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     MHMOTSConfig.UseCloneAutoMarker      = MHMOTSConfig.UseCloneAutoMarker == nil and true or MHMOTSConfig.UseCloneAutoMarker;
     MHMOTSConfig.AnnounceWithEnglish     = MHMOTSConfig.AnnounceWithEnglish == nil and true or MHMOTSConfig.AnnounceWithEnglish;
     MHMOTSConfig.SetMarkerSolutionPlayer = MHMOTSConfig.SetMarkerSolutionPlayer == nil and false or MHMOTSConfig.SetMarkerSolutionPlayer;
+    MHMOTSConfig.SetMarkerOnTargetClone  = MHMOTSConfig.SetMarkerOnTargetClone == nil and false or MHMOTSConfig.SetMarkerOnTargetClone;
 
     MHMOTSConfig.AutoAnnouncer              = MHMOTSConfig.AutoAnnouncer == nil and false or MHMOTSConfig.AutoAnnouncer;
     MHMOTSConfig.AutoAnnouncerAsPartyLeader = MHMOTSConfig.AutoAnnouncerAsPartyLeader == nil and true or MHMOTSConfig.AutoAnnouncerAsPartyLeader;
@@ -1879,6 +1960,7 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     settingsScrollChild.Data.UseCloneAutoMarker:SetChecked(MHMOTSConfig.UseCloneAutoMarker);
     settingsScrollChild.Data.AnnounceWithEnglish:SetChecked(MHMOTSConfig.AnnounceWithEnglish);
     settingsScrollChild.Data.SetMarkerSolutionPlayer:SetChecked(MHMOTSConfig.SetMarkerSolutionPlayer);
+    settingsScrollChild.Data.SetMarkerOnTargetClone:SetChecked(MHMOTSConfig.SetMarkerOnTargetClone);
 
     settingsScrollChild.Data.AutoAnnouncer:SetChecked(MHMOTSConfig.AutoAnnouncer);
     settingsScrollChild.Data.AutoAnnouncerAsPartyLeader:SetChecked(MHMOTSConfig.AutoAnnouncerAsPartyLeader);
