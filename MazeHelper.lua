@@ -95,9 +95,9 @@ local DEFAULT_COLORS = {
     Received  = {0.9, 1, 0.1, 1},
     Solution  = {0.2, 0.8, 0.4, 1},
     Predicted = {1, 0.9, 0.71, 1},
-}
+};
 
-local buttons = {}
+local buttons = {};
 local buttonsData = {
     [1] = {
         name = L['LEAF_FULL_CIRCLE'],
@@ -211,7 +211,7 @@ local function AnnounceInChat(partyChatType)
     end
 end
 
-local function UpdateBorderColors()
+local function BorderColor_UpdateAll()
     for i = 1, MAX_BUTTONS do
         if buttons[i] then
             buttons[i]:UpdateBorder();
@@ -662,7 +662,7 @@ settingsScrollChild.Data.ActiveColorPicker.OnValueChanged = function(_, r, g, b,
     MHMOTSConfig.ActiveColor[3] = b;
     MHMOTSConfig.ActiveColor[4] = a;
 
-    UpdateBorderColors();
+    BorderColor_UpdateAll();
 end
 
 settingsScrollChild.Data.ReceivedColorPicker = E.CreateColorPicker(settingsScrollChild, DEFAULT_COLORS.Received)
@@ -674,7 +674,7 @@ settingsScrollChild.Data.ReceivedColorPicker.OnValueChanged = function(_, r, g, 
     MHMOTSConfig.ReceivedColor[3] = b;
     MHMOTSConfig.ReceivedColor[4] = a;
 
-    UpdateBorderColors();
+    BorderColor_UpdateAll();
 end
 
 settingsScrollChild.Data.SolutionColorPicker = E.CreateColorPicker(settingsScrollChild, DEFAULT_COLORS.Solution)
@@ -686,7 +686,7 @@ settingsScrollChild.Data.SolutionColorPicker.OnValueChanged = function(_, r, g, 
     MHMOTSConfig.SolutionColor[3] = b;
     MHMOTSConfig.SolutionColor[4] = a;
 
-    UpdateBorderColors();
+    BorderColor_UpdateAll();
 end
 
 settingsScrollChild.Data.PredictedColorPicker = E.CreateColorPicker(settingsScrollChild, DEFAULT_COLORS.Predicted)
@@ -698,7 +698,7 @@ settingsScrollChild.Data.PredictedColorPicker.OnValueChanged = function(_, r, g,
     MHMOTSConfig.PredictedColor[3] = b;
     MHMOTSConfig.PredictedColor[4] = a;
 
-    UpdateBorderColors();
+    BorderColor_UpdateAll();
 end
 
 settingsScrollChild.Data.ResetColorsButton = CreateFrame('Button', nil, settingsScrollChild, 'SharedButtonSmallTemplate');
@@ -711,7 +711,7 @@ settingsScrollChild.Data.ResetColorsButton:SetScript('OnClick', function()
     settingsScrollChild.Data.SolutionColorPicker:SetValue(unpack(DEFAULT_COLORS.Solution));
     settingsScrollChild.Data.PredictedColorPicker:SetValue(unpack(DEFAULT_COLORS.Predicted));
 
-    UpdateBorderColors();
+    BorderColor_UpdateAll();
 end);
 
 settingsScrollChild.Data.EmptyHeader = E.CreateHeader(settingsScrollChild);
