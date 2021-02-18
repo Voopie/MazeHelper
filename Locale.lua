@@ -12,6 +12,7 @@ MazeHelper.currentLocale = gameLocale;
 MazeHelper.L = {};
 local L = MazeHelper.L;
 
+-- https://www.wowhead.com/npc=164501/mistcaller
 MazeHelper.MISTCALLER_QUOTES = {
     enUS = {
         'No fooling you!',
