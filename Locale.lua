@@ -894,7 +894,7 @@ if gameLocale == 'koKR' then
     L['MINIMAP_BUTTON_COMMAND_SHOW'] = '/mh minimap 으로 미니맵 버튼을 표시할 수 있습니다';
     L['AUTO_PASS'] = '자동 통과!';
     L['SETTINGS_AUTO_PASS_LABEL'] = '자동 통과';
-    L['SETTINGS_AUTO_PASS_TOOLTIP'] = '안개를 성공적으로 통과하면 자동«|cff66ff6e통과|r»';
+    L['SETTINGS_AUTO_PASS_TOOLTIP'] = '안개를 성공적으로 지나가면 자동으로 «|cff66ff6e통과|r»';
     L['SETTINGS_BORDERS_COLORS'] = '테두리 색상';
     L['SETTINGS_ACTIVE_COLORPICKER'] = '선택된';
     L['SETTINGS_RECEIVED_COLORPICKER'] = '받은';
