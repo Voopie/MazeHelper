@@ -34,6 +34,8 @@ E.CreateRoundedCheckButton = function(parent)
     b:SetHighlightTexture(M.Icons.TEXTURE);
     b:GetHighlightTexture():SetTexCoord(unpack(M.Icons.COORDS.CHECKBUTTON_NORMAL));
 
+    b:SetHitRectInsets(0, 0, 0, 0);
+
     b.Label = b:CreateFontString(nil, 'ARTWORK', 'GameFontNormal');
     PixelUtil.SetPoint(b.Label, 'LEFT', b, 'RIGHT', 6, 0);
     PixelUtil.SetHeight(b.Label, 12);
