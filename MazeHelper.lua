@@ -8,6 +8,8 @@ local tonumber = tonumber;
 -- WoW API
 local IsInRaid, IsInGroup, GetMinimapZoneText = IsInRaid, IsInGroup, GetMinimapZoneText;
 
+local GUI = _G.LibStub('AceGUI-3.0');
+
 local ADDON_COMM_PREFIX = 'MAZEHELPER';
 local ADDON_COMM_MODE   = 'NORMAL';
 C_ChatInfo.RegisterAddonMessagePrefix(ADDON_COMM_PREFIX);
@@ -61,6 +63,18 @@ local MARKER_UNITS = {
 
 local SOLUTION_PLAYER_MARKER = 4; -- GREEN
 local SKULL_MARKER = 8;
+
+local MODIFIERS = {
+    [1] = IsAltKeyDown,
+    [2] = IsControlKeyDown,
+    [3] = IsShiftKeyDown,
+};
+
+local MODIFIERS_LIST = {
+    [1] = 'ALT',
+    [2] = 'CTRL',
+    [3] = 'SHIFT',
+};
 
 local PASSED_COUNTER = 1;
 local SOLUTION_BUTTON_ID;
@@ -809,6 +823,33 @@ settingsScrollChild.Data.SetMarkerOnTargetClone:SetScript('OnClick', function(se
             MazeHelper.frame:UnregisterEvent(event);
         end
     end
+
+    if MHMOTSConfig.SetMarkerOnTargetClone then
+        settingsScrollChild.Data.SetMarkerOnTargetCloneUseModifier:SetEnabled(true);
+        settingsScrollChild.Data.SetMarkerOnTargetCloneModifier:SetDisabled(not MHMOTSConfig.SetMarkerOnTargetCloneUseModifier);
+    else
+        settingsScrollChild.Data.SetMarkerOnTargetCloneUseModifier:SetEnabled(false);
+        settingsScrollChild.Data.SetMarkerOnTargetCloneModifier:SetDisabled(true);
+    end
+end);
+
+settingsScrollChild.Data.SetMarkerOnTargetCloneUseModifier = E.CreateCheckButton('MazeHelper_Settings_SetMarkerOnTargetCloneUseModifier_CheckButton', settingsScrollChild);
+settingsScrollChild.Data.SetMarkerOnTargetCloneUseModifier:SetPosition('LEFT', settingsScrollChild.Data.SetMarkerOnTargetClone.Label, 'RIGHT', 6, 0);
+settingsScrollChild.Data.SetMarkerOnTargetCloneUseModifier:SetTooltip(L['SETTINGS_SKULLMARKER_USE_MODIFIER_TOOLTIP']);
+settingsScrollChild.Data.SetMarkerOnTargetCloneUseModifier:SetScript('OnClick', function(self)
+    MHMOTSConfig.SetMarkerOnTargetCloneUseModifier = self:GetChecked();
+
+    settingsScrollChild.Data.SetMarkerOnTargetCloneModifier:SetDisabled(not MHMOTSConfig.SetMarkerOnTargetCloneUseModifier);
+end);
+
+settingsScrollChild.Data.SetMarkerOnTargetCloneModifier = GUI:Create('Dropdown');
+settingsScrollChild.Data.SetMarkerOnTargetCloneModifier:SetPoint('LEFT', settingsScrollChild.Data.SetMarkerOnTargetCloneUseModifier.Label, 'RIGHT', 2, 1);
+settingsScrollChild.Data.SetMarkerOnTargetCloneModifier.frame:SetParent(settingsScrollChild);
+settingsScrollChild.Data.SetMarkerOnTargetCloneModifier:SetWidth(70);
+settingsScrollChild.Data.SetMarkerOnTargetCloneModifier.frame:SetScale(0.85);
+settingsScrollChild.Data.SetMarkerOnTargetCloneModifier:SetList(MODIFIERS_LIST);
+settingsScrollChild.Data.SetMarkerOnTargetCloneModifier:SetCallback('OnValueChanged', function(_, _, value)
+    MHMOTSConfig.SetMarkerOnTargetCloneModifier = tonumber(value);
 end);
 
 settingsScrollChild.Data.UseColoredSymbols = E.CreateRoundedCheckButton(settingsScrollChild);
@@ -1802,6 +1843,10 @@ function MazeHelper.frame:NAME_PLATE_UNIT_REMOVED(unit)
 end
 
 function MazeHelper.frame:PLAYER_TARGET_CHANGED()
+    if MHMOTSConfig.SetMarkerOnTargetCloneUseModifier and not MODIFIERS[MHMOTSConfig.SetMarkerOnTargetCloneModifier]() then
+        return;
+    end
+
     if not UnitExists(TARGET_STRING) then
         return;
     end
@@ -1932,7 +1977,10 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     MHMOTSConfig.UseCloneAutoMarker      = MHMOTSConfig.UseCloneAutoMarker == nil and true or MHMOTSConfig.UseCloneAutoMarker;
     MHMOTSConfig.AnnounceWithEnglish     = MHMOTSConfig.AnnounceWithEnglish == nil and true or MHMOTSConfig.AnnounceWithEnglish;
     MHMOTSConfig.SetMarkerSolutionPlayer = MHMOTSConfig.SetMarkerSolutionPlayer == nil and false or MHMOTSConfig.SetMarkerSolutionPlayer;
-    MHMOTSConfig.SetMarkerOnTargetClone  = MHMOTSConfig.SetMarkerOnTargetClone == nil and false or MHMOTSConfig.SetMarkerOnTargetClone;
+
+    MHMOTSConfig.SetMarkerOnTargetClone            = MHMOTSConfig.SetMarkerOnTargetClone == nil and true or MHMOTSConfig.SetMarkerOnTargetClone;
+    MHMOTSConfig.SetMarkerOnTargetCloneUseModifier = MHMOTSConfig.SetMarkerOnTargetCloneUseModifier == nil and true or MHMOTSConfig.SetMarkerOnTargetCloneUseModifier;
+    MHMOTSConfig.SetMarkerOnTargetCloneModifier    = MHMOTSConfig.SetMarkerOnTargetCloneModifier or 3; -- SHIFT
 
     MHMOTSConfig.AutoAnnouncer              = MHMOTSConfig.AutoAnnouncer == nil and false or MHMOTSConfig.AutoAnnouncer;
     MHMOTSConfig.AutoAnnouncerAsPartyLeader = MHMOTSConfig.AutoAnnouncerAsPartyLeader == nil and true or MHMOTSConfig.AutoAnnouncerAsPartyLeader;
@@ -1961,6 +2009,9 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     settingsScrollChild.Data.AnnounceWithEnglish:SetChecked(MHMOTSConfig.AnnounceWithEnglish);
     settingsScrollChild.Data.SetMarkerSolutionPlayer:SetChecked(MHMOTSConfig.SetMarkerSolutionPlayer);
     settingsScrollChild.Data.SetMarkerOnTargetClone:SetChecked(MHMOTSConfig.SetMarkerOnTargetClone);
+    settingsScrollChild.Data.SetMarkerOnTargetCloneUseModifier:SetChecked(MHMOTSConfig.SetMarkerOnTargetCloneUseModifier);
+    settingsScrollChild.Data.SetMarkerOnTargetCloneModifier:SetValue(tonumber(MHMOTSConfig.SetMarkerOnTargetCloneModifier));
+    settingsScrollChild.Data.SetMarkerOnTargetCloneModifier:SetDisabled(not MHMOTSConfig.SetMarkerOnTargetCloneUseModifier);
 
     settingsScrollChild.Data.AutoAnnouncer:SetChecked(MHMOTSConfig.AutoAnnouncer);
     settingsScrollChild.Data.AutoAnnouncerAsPartyLeader:SetChecked(MHMOTSConfig.AutoAnnouncerAsPartyLeader);

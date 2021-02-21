@@ -36,12 +36,13 @@ E.CreateRoundedCheckButton = function(parent)
 
     b.Label = b:CreateFontString(nil, 'ARTWORK', 'GameFontNormal');
     PixelUtil.SetPoint(b.Label, 'LEFT', b, 'RIGHT', 6, 0);
-    PixelUtil.SetSize(b.Label, 238, 12);
+    PixelUtil.SetHeight(b.Label, 12);
     b.Label:SetJustifyH('LEFT');
 
     b.SetLabel = function(self, label)
         self.Label:SetText(label);
         self:SetHitRectInsets(0, -1 * math.max(100, self.Label:GetStringWidth() + 4), 0, 0);
+        PixelUtil.SetWidth(self.Label, math.min(238, self.Label:GetStringWidth() + 4));
     end
 
     b.SetTooltip = function(self, tooltip)
@@ -65,6 +66,7 @@ end
 
 E.CreateCheckButton = function(name, parent)
     local b = CreateFrame('CheckButton', name, parent, 'ChatConfigCheckButtonTemplate');
+    b:SetHitRectInsets(0, 0, 0, 0);
 
     b.Label = _G[b:GetName() .. 'Text'];
     PixelUtil.SetPoint(b.Label, 'LEFT', b, 'RIGHT', 4, 0);
