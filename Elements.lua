@@ -266,10 +266,15 @@ E.CreateSlider = function(name, parent)
         self.Thumb:SetTexCoord(unpack(M.Icons.COORDS.CIRCLE_NORMAL));
     end);
 
-    if slider.backdropInfo then
-        slider.backdropInfo.edgeFile = M.SLIDER_BORDER;
-        slider:ApplyBackdrop();
-    end
+    slider:SetBackdrop({
+        bgFile   = 'Interface\\Buttons\\UI-SliderBar-Background',
+        edgeFile = M.SLIDER_BORDER,
+        tile     = true,
+        tileEdge = true,
+        tileSize = 8,
+        edgeSize = 8,
+        insets   = { left = 3, right = 3, top = 6, bottom = 6 },
+    });
 
     slider.SetPosition = function(self, point, relativeTo, relativePoint, offsetX, offsetY, minOffsetXPixels, minOffsetYPixels)
         PixelUtil.SetPoint(self, point, relativeTo, relativePoint, offsetX, offsetY, minOffsetXPixels, minOffsetYPixels);
