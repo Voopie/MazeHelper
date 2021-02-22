@@ -504,6 +504,7 @@ E.CreateHeader = function(parent, text)
     return frame;
 end
 
+local activeLists = {};
 E.CreateDropdown = function(parent)
     local holderButton = CreateFrame('Button', nil, parent, 'BackdropTemplate');
 
@@ -562,8 +563,8 @@ E.CreateDropdown = function(parent)
     end);
 
     local list = CreateFrame('Frame', nil, holderButton, 'BackdropTemplate');
-    PixelUtil.SetPoint(list, 'TOP', holderButton, 'TOP', 0, 0);
-    PixelUtil.SetSize(list, holderButton.WidthValue, holderButton.HeightValue);
+    PixelUtil.SetPoint(list, 'TOPLEFT', holderButton, 'TOPLEFT', 0, 0);
+    PixelUtil.SetPoint(list, 'TOPRIGHT', holderButton, 'TOPRIGHT', 0, 0);
     list:SetFrameLevel(arrowButton:GetFrameLevel() + 1);
     list:SetBackdrop({
         bgFile = 'Interface\\Buttons\\WHITE8x8',
@@ -571,6 +572,8 @@ E.CreateDropdown = function(parent)
     });
     list:SetBackdropColor(0.05, 0.05, 0.05, 1);
     list:SetShown(false);
+
+    table.insert(activeLists, list);
 
     list.buttons = {};
 
@@ -583,7 +586,6 @@ E.CreateDropdown = function(parent)
         end
 
         PixelUtil.SetSize(self, width, height);
-        PixelUtil.SetSize(self.list, width, height);
 
         self.WidthValue  = width;
         self.HeightValue = height;
@@ -685,4 +687,34 @@ E.CreateDropdown = function(parent)
     end);
 
     return holderButton;
+end
+
+do
+    if UIDropDownMenu_HandleGlobalMouseEvent then
+        local function DropDown_ContainsMouse()
+            for _, list in ipairs(activeLists) do
+                if list:IsShown() and list:IsMouseOver() then
+                    return true;
+                end
+            end
+
+            return false;
+        end
+
+        local function DropDown_CloseAll()
+            for _, list in ipairs(activeLists) do
+                if list:IsShown() then
+                    list:SetShown(false);
+                end
+            end
+        end
+
+        hooksecurefunc('UIDropDownMenu_HandleGlobalMouseEvent', function(button, event)
+            if event == 'GLOBAL_MOUSE_DOWN' and (button == 'LeftButton' or button == 'RightButton') then
+                if not DropDown_ContainsMouse() then
+                    DropDown_CloseAll();
+                end
+            end
+        end);
+    end
 end
