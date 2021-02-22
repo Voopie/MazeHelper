@@ -52,6 +52,7 @@ M.Icons = {
         MAZE_BRAIN       = {1/4, 2/4, 2/4, 3/4},
         CROSS_THIN_WHITE = {2/4, 3/4, 2/4, 3/4},
         NEW              = {2/4, 3/4, 3/4, 4/4},
+        ARROW_DOWN       = {3/4, 4/4, 2/4, 3/4},
 
         CHECKBUTTON_CHECKED = {  0, 1/4, 1/4, 2/4},
         CHECKBUTTON_NORMAL  = {1/4, 2/4, 1/4, 2/4},
