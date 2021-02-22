@@ -520,6 +520,7 @@ E.CreateDropdown = function(parent)
     });
     holderButton:SetBackdropColor(0.05, 0.05, 0.05, 1);
     holderButton:SetBackdropBorderColor(0.3, 0.3, 0.3, 1);
+
     holderButton:SetScript('OnClick', function(self)
         self.list:SetShown(not self.list:IsShown());
         PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
@@ -544,6 +545,7 @@ E.CreateDropdown = function(parent)
     });
     arrowButton:SetBackdropColor(0.1, 0.1, 0.1, 1);
     arrowButton:SetBackdropBorderColor(0.5, 0.5, 0.5, 1);
+
     arrowButton:SetScript('OnClick', function(self)
         self:GetParent().list:SetShown(not self:GetParent().list:IsShown());
         PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
@@ -607,7 +609,7 @@ E.CreateDropdown = function(parent)
                 PixelUtil.SetPoint(itemButton, 'TOPRIGHT', listFrame.buttons[itemCounter - 1], 'BOTTOMRIGHT', 0, 0);
             end
 
-            PixelUtil.SetHeight(itemButton, holderButton.HeightValue);
+            PixelUtil.SetHeight(itemButton, self.HeightValue);
 
             itemButton:SetBackdrop({
                 bgFile = 'Interface\\Buttons\\WHITE8x8',
@@ -617,7 +619,7 @@ E.CreateDropdown = function(parent)
 
             itemButton.SelectedIcon = itemButton:CreateTexture(nil, 'ARTWORK');
             PixelUtil.SetPoint(itemButton.SelectedIcon, 'LEFT', itemButton, 'LEFT', 2, 0);
-            PixelUtil.SetSize(itemButton.SelectedIcon, 16, 16);
+            PixelUtil.SetSize(itemButton.SelectedIcon, self.HeightValue / 1.5, self.HeightValue / 1.5);
             itemButton.SelectedIcon:SetTexture('Interface\\Buttons\\UI-CheckBox-Check');
             itemButton.SelectedIcon:SetShown(false);
 
@@ -650,7 +652,7 @@ E.CreateDropdown = function(parent)
             table.insert(listFrame.buttons, key, itemButton);
         end
 
-        PixelUtil.SetHeight(listFrame, itemCounter * holderButton.HeightValue);
+        PixelUtil.SetHeight(listFrame, itemCounter * self.HeightValue);
     end
 
     holderButton.SetValue = function(self, value)
@@ -682,6 +684,5 @@ E.CreateDropdown = function(parent)
         end
     end);
 
-    return holderButton
-
+    return holderButton;
 end
