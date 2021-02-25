@@ -660,7 +660,7 @@ do
                     end
                 end);
 
-                if not itemButton.HookedBackdropColor then
+                if not itemButton.HookedOnEnterOnLeave then
                     itemButton:HookScript('OnEnter', function(self)
                         self:SetBackdropColor(1, 0.72, 0.2, 0.65);
                     end);
