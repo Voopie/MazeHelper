@@ -504,192 +504,211 @@ E.CreateHeader = function(parent, text)
     return frame;
 end
 
-local activeLists = {};
-E.CreateDropdown = function(parent)
-    local holderButton = CreateFrame('Button', nil, parent, 'BackdropTemplate');
+-- Reinventing the wheel
+do
+    local activeLists = {};
 
-    -- Default size
-    holderButton.WidthValue  = 100;
-    holderButton.HeightValue = 24;
+    local DROPDOWN_WIDTH, DROPDOWN_HEIGHT = 100, 24;
 
-    PixelUtil.SetSize(holderButton, holderButton.WidthValue, holderButton.HeightValue);
-    holderButton:SetBackdrop({
+    local DROPDOWN_HOLDER_BACKDROP = {
         bgFile   = 'Interface\\Buttons\\WHITE8x8',
         insets   = { top = 0, left = 0, bottom = 0, right = 0 },
         edgeFile = 'Interface\\Buttons\\WHITE8x8',
         edgeSize = 1,
-    });
-    holderButton:SetBackdropColor(0.05, 0.05, 0.05, 1);
-    holderButton:SetBackdropBorderColor(0.3, 0.3, 0.3, 1);
+    };
 
-    holderButton:SetScript('OnClick', function(self)
-        self.list:SetShown(not self.list:IsShown());
-        PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
-    end);
-
-    holderButton.Text = holderButton:CreateFontString(nil, 'ARTWORK', 'GameFontHighlight');
-    PixelUtil.SetPoint(holderButton.Text, 'LEFT', holderButton, 'LEFT', 6, 0);
-
-    local arrowButton = CreateFrame('Button', nil, holderButton, 'BackdropTemplate');
-    PixelUtil.SetPoint(arrowButton, 'TOPRIGHT', holderButton, 'TOPRIGHT', 0, 0);
-    PixelUtil.SetSize(arrowButton, holderButton.HeightValue, holderButton.HeightValue);
-    arrowButton.Icon = arrowButton:CreateTexture(nil, 'ARTWORK');
-    PixelUtil.SetPoint(arrowButton.Icon, 'CENTER', arrowButton, 'CENTER', 0, 0);
-    PixelUtil.SetSize(arrowButton.Icon, holderButton.HeightValue / 1.2, holderButton.HeightValue / 1.2);
-    arrowButton.Icon:SetTexture(M.Icons.TEXTURE);
-    arrowButton.Icon:SetTexCoord(unpack(M.Icons.COORDS.ARROW_DOWN));
-    arrowButton:SetBackdrop({
+    local DROPDOWN_ARROWBUTTON_BACKDROP = {
         bgFile   = 'Interface\\Buttons\\WHITE8x8',
         insets   = { top = 0, left = 0, bottom = 0, right = 0 },
         edgeFile = 'Interface\\Buttons\\WHITE8x8',
         edgeSize = 1,
-    });
-    arrowButton:SetBackdropColor(0.1, 0.1, 0.1, 1);
-    arrowButton:SetBackdropBorderColor(0.5, 0.5, 0.5, 1);
+    };
 
-    arrowButton:SetScript('OnClick', function(self)
-        self:GetParent().list:SetShown(not self:GetParent().list:IsShown());
-        PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
-    end);
-
-    arrowButton:HookScript('OnEnter', function(self)
-        self.Icon:SetVertexColor(1, 0.72, 0.2);
-        self:SetBackdropBorderColor(0.8, 0.8, 0.8, 1);
-    end);
-
-    arrowButton:HookScript('OnLeave', function(self)
-        self.Icon:SetVertexColor(1, 1, 1);
-        self:SetBackdropBorderColor(0.5, 0.5, 0.5, 1);
-    end);
-
-    local list = CreateFrame('Frame', nil, holderButton, 'BackdropTemplate');
-    PixelUtil.SetPoint(list, 'TOPLEFT', holderButton, 'TOPLEFT', 0, 0);
-    PixelUtil.SetPoint(list, 'TOPRIGHT', holderButton, 'TOPRIGHT', 0, 0);
-    list:SetFrameLevel(arrowButton:GetFrameLevel() + 1);
-    list:SetBackdrop({
+    local DROPDOWN_LIST_BACKDROP = {
         bgFile = 'Interface\\Buttons\\WHITE8x8',
         insets = { top = 0, left = 0, bottom = 0, right = 0 },
-    });
-    list:SetBackdropColor(0.05, 0.05, 0.05, 1);
-    list:SetShown(false);
+    };
 
-    table.insert(activeLists, list);
+    local DROPDOWN_ITEMBUTTON_BACKDROP = {
+        bgFile = 'Interface\\Buttons\\WHITE8x8',
+        insets = { top = 0, left = 0, bottom = 0, right = 0 },
+    };
 
-    list.buttons = {};
+    E.CreateDropdown = function(parent)
+        local holderButton = CreateFrame('Button', nil, parent, 'BackdropTemplate');
 
-    holderButton.arrowButton = arrowButton;
-    holderButton.list = list;
+        holderButton.WidthValue  = DROPDOWN_WIDTH;
+        holderButton.HeightValue = DROPDOWN_HEIGHT;
 
-    holderButton.SetSize = function(self, width, height)
-        if not width or not height then
-            return;
-        end
+        PixelUtil.SetSize(holderButton, holderButton.WidthValue, holderButton.HeightValue);
+        holderButton:SetBackdrop(DROPDOWN_HOLDER_BACKDROP);
+        holderButton:SetBackdropColor(0.05, 0.05, 0.05, 1);
+        holderButton:SetBackdropBorderColor(0.3, 0.3, 0.3, 1);
 
-        PixelUtil.SetSize(self, width, height);
+        holderButton:SetScript('OnClick', function(self)
+            self.list:SetShown(not self.list:IsShown());
+            PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
+        end);
 
-        self.WidthValue  = width;
-        self.HeightValue = height;
-    end
+        holderButton.Text = holderButton:CreateFontString(nil, 'ARTWORK', 'GameFontHighlight');
+        PixelUtil.SetPoint(holderButton.Text, 'LEFT', holderButton, 'LEFT', 6, 0);
 
-    holderButton.SetList = function(self, t)
-        local itemButton;
-        local itemCounter = 0;
-        local listFrame = self.list;
+        local arrowButton = CreateFrame('Button', nil, holderButton, 'BackdropTemplate');
+        PixelUtil.SetPoint(arrowButton, 'TOPRIGHT', holderButton, 'TOPRIGHT', 0, 0);
+        PixelUtil.SetSize(arrowButton, holderButton.HeightValue, holderButton.HeightValue);
+        arrowButton.Icon = arrowButton:CreateTexture(nil, 'ARTWORK');
+        PixelUtil.SetPoint(arrowButton.Icon, 'CENTER', arrowButton, 'CENTER', 0, 0);
+        PixelUtil.SetSize(arrowButton.Icon, holderButton.HeightValue / 1.2, holderButton.HeightValue / 1.2);
+        arrowButton.Icon:SetTexture(M.Icons.TEXTURE);
+        arrowButton.Icon:SetTexCoord(unpack(M.Icons.COORDS.ARROW_DOWN));
+        arrowButton:SetBackdrop(DROPDOWN_ARROWBUTTON_BACKDROP);
+        arrowButton:SetBackdropColor(0.1, 0.1, 0.1, 1);
+        arrowButton:SetBackdropBorderColor(0.5, 0.5, 0.5, 1);
 
-        wipe(listFrame.buttons);
+        arrowButton:SetScript('OnClick', function(self)
+            self:GetParent().list:SetShown(not self:GetParent().list:IsShown());
+            PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
+        end);
 
-        for key, value in ipairs(t) do
-            itemCounter = itemCounter + 1;
+        arrowButton:HookScript('OnEnter', function(self)
+            self.Icon:SetVertexColor(1, 0.72, 0.2);
+            self:SetBackdropBorderColor(0.8, 0.8, 0.8, 1);
+        end);
 
-            itemButton = CreateFrame('Button', nil, listFrame, 'BackdropTemplate');
+        arrowButton:HookScript('OnLeave', function(self)
+            self.Icon:SetVertexColor(1, 1, 1);
+            self:SetBackdropBorderColor(0.5, 0.5, 0.5, 1);
+        end);
 
-            if itemCounter == 1 then
-                PixelUtil.SetPoint(itemButton, 'TOPLEFT', listFrame, 'TOPLEFT', 0, 0);
-                PixelUtil.SetPoint(itemButton, 'TOPRIGHT', listFrame, 'TOPRIGHT', 0, 0);
-            else
-                PixelUtil.SetPoint(itemButton, 'TOPLEFT', listFrame.buttons[itemCounter - 1], 'BOTTOMLEFT', 0, 0);
-                PixelUtil.SetPoint(itemButton, 'TOPRIGHT', listFrame.buttons[itemCounter - 1], 'BOTTOMRIGHT', 0, 0);
+        local list = CreateFrame('Frame', nil, holderButton, 'BackdropTemplate');
+        PixelUtil.SetPoint(list, 'TOPLEFT', holderButton, 'TOPLEFT', 0, 0);
+        PixelUtil.SetPoint(list, 'TOPRIGHT', holderButton, 'TOPRIGHT', 0, 0);
+        list:SetFrameLevel(arrowButton:GetFrameLevel() + 1);
+        list:SetBackdrop(DROPDOWN_LIST_BACKDROP);
+        list:SetBackdropColor(0.05, 0.05, 0.05, 1);
+        list:SetShown(false);
+
+        list.buttonPool = CreateFramePool('Button', list, 'BackdropTemplate');
+
+        table.insert(activeLists, list);
+
+        holderButton.arrowButton = arrowButton;
+        holderButton.list        = list;
+
+        holderButton.SetSize = function(self, width, height)
+            if not width or not height then
+                return;
             end
 
-            PixelUtil.SetHeight(itemButton, self.HeightValue);
+            PixelUtil.SetSize(self, width, height);
 
-            itemButton:SetBackdrop({
-                bgFile = 'Interface\\Buttons\\WHITE8x8',
-                insets = { top = 0, left = 0, bottom = 0, right = 0 },
-            });
-            itemButton:SetBackdropColor(0, 0, 0, 1);
+            self.WidthValue  = width;
+            self.HeightValue = height;
+        end
 
-            itemButton.SelectedIcon = itemButton:CreateTexture(nil, 'ARTWORK');
-            PixelUtil.SetPoint(itemButton.SelectedIcon, 'LEFT', itemButton, 'LEFT', 2, 0);
-            PixelUtil.SetSize(itemButton.SelectedIcon, self.HeightValue / 1.5, self.HeightValue / 1.5);
-            itemButton.SelectedIcon:SetTexture('Interface\\Buttons\\UI-CheckBox-Check');
-            itemButton.SelectedIcon:SetShown(false);
+        holderButton.SetList = function(self, itemsTable)
+            local itemButton, lastButton;
+            local itemCounter = 0;
+            local listFrame = self.list;
 
-            itemButton.Text = itemButton:CreateFontString(nil, 'ARTWORK', 'GameFontHighlight');
-            PixelUtil.SetPoint(itemButton.Text, 'LEFT', itemButton.SelectedIcon, 'RIGHT', 2, 0);
-            itemButton.Text:SetText(value);
+            listFrame.buttonPool:ReleaseAll();
 
-            itemButton.Key   = key;
-            itemButton.Value = value;
+            for key, value in ipairs(itemsTable) do
+                itemCounter = itemCounter + 1;
+                itemButton  = list.buttonPool:Acquire();
 
-            itemButton:SetScript('OnClick', function(self)
-                PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
-
-                holderButton:SetValue(self.Key);
-                listFrame:SetShown(false);
-
-                if holderButton.OnValueChangedCallback then
-                    holderButton:OnValueChangedCallback(self.Key);
+                if itemCounter == 1 then
+                    PixelUtil.SetPoint(itemButton, 'TOPLEFT', listFrame, 'TOPLEFT', 0, 0);
+                    PixelUtil.SetPoint(itemButton, 'TOPRIGHT', listFrame, 'TOPRIGHT', 0, 0);
+                else
+                    PixelUtil.SetPoint(itemButton, 'TOPLEFT', lastButton, 'BOTTOMLEFT', 0, 0);
+                    PixelUtil.SetPoint(itemButton, 'TOPRIGHT', lastButton, 'BOTTOMRIGHT', 0, 0);
                 end
-            end);
 
-            itemButton:HookScript('OnEnter', function(self)
-                self:SetBackdropColor(1, 0.72, 0.2, 0.65);
-            end);
+                lastButton = itemButton;
 
-            itemButton:HookScript('OnLeave', function(self)
-                self:SetBackdropColor(0, 0, 0, 1);
-            end);
+                itemButton:SetBackdrop(DROPDOWN_ITEMBUTTON_BACKDROP);
+                itemButton:SetBackdropColor(0, 0, 0, 1);
 
-            table.insert(listFrame.buttons, key, itemButton);
+                if not itemButton.SelectedIcon then
+                    itemButton.SelectedIcon = itemButton:CreateTexture(nil, 'ARTWORK');
+                    PixelUtil.SetPoint(itemButton.SelectedIcon, 'LEFT', itemButton, 'LEFT', 2, 0);
+                    itemButton.SelectedIcon:SetTexture('Interface\\Buttons\\UI-CheckBox-Check');
+                    itemButton.SelectedIcon:SetShown(false);
+                end
+
+                if not itemButton.Text then
+                    itemButton.Text = itemButton:CreateFontString(nil, 'ARTWORK', 'GameFontHighlight');
+                    PixelUtil.SetPoint(itemButton.Text, 'LEFT', itemButton.SelectedIcon, 'RIGHT', 2, 0);
+                end
+
+                PixelUtil.SetHeight(itemButton, self.HeightValue);
+                PixelUtil.SetSize(itemButton.SelectedIcon, self.HeightValue / 1.5, self.HeightValue / 1.5);
+                itemButton.Text:SetText(value);
+
+                itemButton.Key   = key;
+                itemButton.Value = value;
+
+                itemButton:SetScript('OnClick', function(self)
+                    PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
+
+                    holderButton:SetValue(self.Key);
+                    listFrame:SetShown(false);
+
+                    if holderButton.OnValueChangedCallback then
+                        holderButton:OnValueChangedCallback(self.Key);
+                    end
+                end);
+
+                if not itemButton.HookedBackdropColor then
+                    itemButton:HookScript('OnEnter', function(self)
+                        self:SetBackdropColor(1, 0.72, 0.2, 0.65);
+                    end);
+
+                    itemButton:HookScript('OnLeave', function(self)
+                        self:SetBackdropColor(0, 0, 0, 1);
+                    end);
+
+                    itemButton.HookedOnEnterOnLeave = true;
+                end
+
+                itemButton:SetShown(true);
+            end
+
+            PixelUtil.SetHeight(listFrame, itemCounter * self.HeightValue);
         end
 
-        PixelUtil.SetHeight(listFrame, itemCounter * self.HeightValue);
+        holderButton.SetValue = function(self, value)
+            for button, _ in self.list.buttonPool:EnumerateActive() do
+                button.SelectedIcon:SetShown(false);
+
+                if button.Key == value then
+                    button.SelectedIcon:SetShown(true);
+                    self.Text:SetText(button.Value);
+                    self.currentValue = value;
+                end
+            end
+        end
+
+        holderButton.GetValue = function(self)
+            return self.currentValue;
+        end
+
+        hooksecurefunc(holderButton, 'SetEnabled', function(self, state)
+            if state then
+                self.Text:SetFontObject('GameFontHighlight');
+                self.arrowButton:Enable();
+                self.arrowButton.Icon:SetVertexColor(1, 1, 1, 1);
+            else
+                self.Text:SetFontObject('GameFontDisable');
+                self.arrowButton:Disable();
+                self.arrowButton.Icon:SetVertexColor(0.5, 0.5, 0.5, 1);
+            end
+        end);
+
+        return holderButton;
     end
 
-    holderButton.SetValue = function(self, value)
-        for _, button in ipairs(self.list.buttons) do
-            button.SelectedIcon:SetShown(false);
-        end
-
-        if self.list.buttons[value] then
-            self.list.buttons[value].SelectedIcon:SetShown(true);
-            self.Text:SetText(self.list.buttons[value].Value);
-
-            self.currentValue = value;
-        end
-    end
-
-    holderButton.GetValue = function(self)
-        return self.currentValue;
-    end
-
-    hooksecurefunc(holderButton, 'SetEnabled', function(self, state)
-        if state then
-            self.Text:SetFontObject('GameFontHighlight');
-            self.arrowButton:Enable();
-            self.arrowButton.Icon:SetVertexColor(1, 1, 1, 1);
-        else
-            self.Text:SetFontObject('GameFontDisable');
-            self.arrowButton:Disable();
-            self.arrowButton.Icon:SetVertexColor(0.5, 0.5, 0.5, 1);
-        end
-    end);
-
-    return holderButton;
-end
-
-do
     if UIDropDownMenu_HandleGlobalMouseEvent then
         local function DropDown_ContainsMouse()
             for _, list in ipairs(activeLists) do
