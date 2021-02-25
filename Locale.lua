@@ -923,13 +923,13 @@ if gameLocale == 'koKR' then
     L['SETTINGS_AUTO_PASS_LABEL'] = '자동 통과';
     L['SETTINGS_AUTO_PASS_TOOLTIP'] = '안개를 성공적으로 지나가면 자동으로 «|cff66ff6e통과|r»';
     L['SETTINGS_BORDERS_COLORS'] = '테두리 색상';
-    L['SETTINGS_ACTIVE_COLORPICKER'] = '선택된';
-    L['SETTINGS_RECEIVED_COLORPICKER'] = '받은';
-    L['SETTINGS_SOLUTION_COLORPICKER'] = '해결책';
-    L['SETTINGS_PREDICTED_COLORPICKER'] = '예측';
-    L['SETTINGS_SKULLMARKER_CLONE_LABEL'] = '클론에 해골';
-    L['SETTINGS_SKULLMARKER_CLONE_TOOLTIP'] = '해골 마커 |TInterface\\TargetingFrame\\UI-RaidTargetingIcon_8:0|t를 타겟 환영 분신으로 자동 설정';
-    L['SETTINGS_SKULLMARKER_USE_MODIFIER_TOOLTIP'] = '수정 자 키 사용';
+    L['SETTINGS_ACTIVE_COLORPICKER'] = '선택함';
+    L['SETTINGS_RECEIVED_COLORPICKER'] = '전송받음';
+    L['SETTINGS_SOLUTION_COLORPICKER'] = '정답';
+    L['SETTINGS_PREDICTED_COLORPICKER'] = '예상';
+    L['SETTINGS_SKULLMARKER_CLONE_LABEL'] = '분신에 해골';
+    L['SETTINGS_SKULLMARKER_CLONE_TOOLTIP'] = '해골 징표 |TInterface\\TargetingFrame\\UI-RaidTargetingIcon_8:0|t를 대상으로 지정한 환영 분신에 자동으로 설정합니다';
+    L['SETTINGS_SKULLMARKER_USE_MODIFIER_TOOLTIP'] = '모드 키 사용';
 
     return;
 end
