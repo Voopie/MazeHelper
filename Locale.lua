@@ -682,7 +682,9 @@ if gameLocale == 'esMX' then
     return;
 end
 
--- BNS333 (https://www.curseforge.com/members/bns333) -- Traditional
+-- Chinese Traditional
+-- BNS333 (https://www.curseforge.com/members/bns333)
+-- RainbowUI (https://www.curseforge.com/members/rainbowui)
 if gameLocale == 'zhTW' then
     L['ZONE_NAME'] = '霧紗密林';
     L['MISTCALLER_NAME'] = '喚霧者';
@@ -765,6 +767,7 @@ if gameLocale == 'zhTW' then
     return;
 end
 
+-- Chinese Simplified
 -- Geminil82 (https://www.curseforge.com/members/Geminil82)
 -- gjfLeo (https://github.com/gjfLeo)
 -- NeoS0923 (https://www.curseforge.com/members/neos0923)
