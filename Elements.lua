@@ -710,19 +710,9 @@ do
     end
 
     if UIDropDownMenu_HandleGlobalMouseEvent then
-        local function DropDown_ContainsMouse()
+        local function DropDown_CloseNotActive()
             for _, list in ipairs(activeLists) do
-                if list:IsShown() and list:IsMouseOver() then
-                    return true;
-                end
-            end
-
-            return false;
-        end
-
-        local function DropDown_CloseAll()
-            for _, list in ipairs(activeLists) do
-                if list:IsShown() then
+                if list:IsShown() and not list:IsMouseOver() then
                     list:SetShown(false);
                 end
             end
@@ -730,9 +720,7 @@ do
 
         hooksecurefunc('UIDropDownMenu_HandleGlobalMouseEvent', function(button, event)
             if event == 'GLOBAL_MOUSE_DOWN' and (button == 'LeftButton' or button == 'RightButton') then
-                if not DropDown_ContainsMouse() then
-                    DropDown_CloseAll();
-                end
+                DropDown_CloseNotActive();
             end
         end);
     end
