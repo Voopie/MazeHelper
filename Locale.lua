@@ -758,7 +758,7 @@ if gameLocale == 'zhTW' then
     L['SETTINGS_RECEIVED_COLORPICKER'] = '已收到';
     L['SETTINGS_SOLUTION_COLORPICKER'] = '解決方案';
     L['SETTINGS_PREDICTED_COLORPICKER'] = '預料到的';
-    L['SETTINGS_SKULLMARKER_CLONE_LABEL'] = '頭骨上克隆';
+    L['SETTINGS_SKULLMARKER_CLONE_LABEL'] = '複製體上骷髏標記';
     L['SETTINGS_SKULLMARKER_CLONE_TOOLTIP'] = '自動將頭骨標記|TInterface\\TargetingFrame\\UI-RaidTargetingIcon_8:0|t設置為目標幻影克隆';
     L['SETTINGS_SKULLMARKER_USE_MODIFIER_TOOLTIP'] = '使用修飾鍵';
 
