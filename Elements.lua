@@ -715,7 +715,7 @@ local NewColorPicker do
         background:SetTexCoord(unpack(M.Icons.COORDS.FULL_CIRCLE));
         background:SetVertexColor(0.8, 0.8, 0.8);
         PixelUtil.SetPoint(background, 'CENTER', holder, 'CENTER', 0, 0);
-        background:SetSize(18, 18);
+        PixelUtil.SetSize(background, 18, 18)
         holder.background = background;
 
         local border = holder:CreateTexture(nil, 'BORDER');
