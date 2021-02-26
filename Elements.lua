@@ -426,6 +426,8 @@ E.CreateSlider = function(name, parent)
 
     slider.editbox = editbox;
 
+    E.CreateTooltip(slider);
+
     slider:Show();
 
     return slider;
