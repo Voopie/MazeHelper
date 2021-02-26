@@ -673,7 +673,7 @@ settingsScrollChild.Data.ColorsHeader:SetSize(settingsScrollChild:GetWidth() - 4
 
 settingsScrollChild.Data.ActiveColorPicker = E.CreateColorPicker(settingsScrollChild, DEFAULT_COLORS.Active)
 PixelUtil.SetPoint(settingsScrollChild.Data.ActiveColorPicker, 'TOPLEFT', settingsScrollChild.Data.ColorsHeader, 'BOTTOMLEFT', 0, 0);
-settingsScrollChild.Data.ActiveColorPicker.labelText:SetText(L['SETTINGS_ACTIVE_COLORPICKER']);
+settingsScrollChild.Data.ActiveColorPicker:SetLabel(L['SETTINGS_ACTIVE_COLORPICKER']);
 settingsScrollChild.Data.ActiveColorPicker.OnValueChanged = function(_, r, g, b, a)
     MHMOTSConfig.ActiveColor[1] = r;
     MHMOTSConfig.ActiveColor[2] = g;
@@ -685,7 +685,7 @@ end
 
 settingsScrollChild.Data.ReceivedColorPicker = E.CreateColorPicker(settingsScrollChild, DEFAULT_COLORS.Received)
 PixelUtil.SetPoint(settingsScrollChild.Data.ReceivedColorPicker, 'TOPLEFT', settingsScrollChild.Data.ColorsHeader, 'BOTTOMLEFT', settingsScrollChild.Data.ColorsHeader:GetWidth() / 2, 0);
-settingsScrollChild.Data.ReceivedColorPicker.labelText:SetText(L['SETTINGS_RECEIVED_COLORPICKER']);
+settingsScrollChild.Data.ReceivedColorPicker:SetLabel(L['SETTINGS_RECEIVED_COLORPICKER']);
 settingsScrollChild.Data.ReceivedColorPicker.OnValueChanged = function(_, r, g, b, a)
     MHMOTSConfig.ReceivedColor[1] = r;
     MHMOTSConfig.ReceivedColor[2] = g;
@@ -697,7 +697,7 @@ end
 
 settingsScrollChild.Data.SolutionColorPicker = E.CreateColorPicker(settingsScrollChild, DEFAULT_COLORS.Solution)
 PixelUtil.SetPoint(settingsScrollChild.Data.SolutionColorPicker, 'TOPLEFT', settingsScrollChild.Data.ActiveColorPicker, 'BOTTOMLEFT', 0, 0);
-settingsScrollChild.Data.SolutionColorPicker.labelText:SetText(L['SETTINGS_SOLUTION_COLORPICKER']);
+settingsScrollChild.Data.SolutionColorPicker:SetLabel(L['SETTINGS_SOLUTION_COLORPICKER']);
 settingsScrollChild.Data.SolutionColorPicker.OnValueChanged = function(_, r, g, b, a)
     MHMOTSConfig.SolutionColor[1] = r;
     MHMOTSConfig.SolutionColor[2] = g;
@@ -709,7 +709,7 @@ end
 
 settingsScrollChild.Data.PredictedColorPicker = E.CreateColorPicker(settingsScrollChild, DEFAULT_COLORS.Predicted)
 PixelUtil.SetPoint(settingsScrollChild.Data.PredictedColorPicker, 'TOPLEFT', settingsScrollChild.Data.ActiveColorPicker, 'BOTTOMLEFT', settingsScrollChild.Data.ColorsHeader:GetWidth() / 2, 0);
-settingsScrollChild.Data.PredictedColorPicker.labelText:SetText(L['SETTINGS_PREDICTED_COLORPICKER']);
+settingsScrollChild.Data.PredictedColorPicker:SetLabel(L['SETTINGS_PREDICTED_COLORPICKER']);
 settingsScrollChild.Data.PredictedColorPicker.OnValueChanged = function(_, r, g, b, a)
     MHMOTSConfig.PredictedColor[1] = r;
     MHMOTSConfig.PredictedColor[2] = g;

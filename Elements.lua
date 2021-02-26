@@ -2,14 +2,13 @@ local _, MazeHelper = ...;
 MazeHelper.E = {};
 
 local E, M = MazeHelper.E, MazeHelper.M;
-local LCP = _G.LibStub('LibColorPicker-1.0');
 
-E.CreateTooltip = function(frame, tooltipText, anchor)
+E.CreateTooltip = function(frame, tooltip, anchor)
     if not frame then
         return;
     end
 
-    frame.tooltip = tooltipText;
+    frame.tooltip = tooltip;
 
     frame:HookScript('OnEnter', function(self)
         if not self.tooltip then
@@ -289,7 +288,7 @@ E.CreateSlider = function(name, parent)
     end);
 
     slider.SetTooltip = function(self, tooltip)
-        self.tooltipText = tooltip;
+        self.tooltip = tooltip;
     end
 
     slider.SetLabel = function(self, label)
@@ -407,12 +406,12 @@ E.CreateSlider = function(name, parent)
             self.Background:SetBackdropBorderColor(0.5, 0.5, 0.5, 1);
         end
 
-        if not self:GetParent().tooltipText then
+        if not self:GetParent().tooltip then
             return;
         end
 
         GameTooltip:SetOwner(self:GetParent(), 'ANCHOR_RIGHT');
-        GameTooltip:AddLine(self:GetParent().tooltipText, 1, 0.85, 0, true);
+        GameTooltip:AddLine(self:GetParent().tooltip, 1, 0.85, 0, true);
         GameTooltip:Show();
     end);
 
@@ -430,34 +429,6 @@ E.CreateSlider = function(name, parent)
     slider:Show();
 
     return slider;
-end
-
-E.CreateColorPicker = function(parent, color, tooltip)
-    if type(color) ~= 'table' then
-        return;
-    end
-
-    local hasOpacity = false;
-
-    if not color.r and color[4] then
-        hasOpacity = color[4];
-        color = color;
-    elseif color.a then
-        hasOpacity = color.a;
-        color = { color.r, color.g, color.b, color.a };
-    elseif color.r and color.g and color.b then
-        hasOpacity = false;
-        color = { color.r, color.g, color.b };
-    end
-
-    local colorpicker = LCP:New(parent, nil, tooltip, hasOpacity);
-    colorpicker:SetValue(unpack(color));
-
-    colorpicker:HookScript('OnClick', function()
-        PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
-    end);
-
-    return colorpicker;
 end
 
 E.CreateHeader = function(parent, text)
@@ -724,4 +695,175 @@ do
             end
         end);
     end
+end
+
+-- Based on Phanx's LibColorPicker-1.0
+-- https://github.com/Phanx/PhanxConfig-ColorPicker
+local NewColorPicker do
+    local NORMAL_FONT_COLOR, HIGHLIGHT_FONT_COLOR, GRAY_FONT_COLOR = _G.NORMAL_FONT_COLOR, _G.HIGHLIGHT_FONT_COLOR, _G.GRAY_FONT_COLOR;
+
+    local function GetFloorValue(value)
+        return math.floor(value * 100 + 0.5) / 100;
+    end
+
+    function NewColorPicker(parent, hasOpacity)
+        local holder = CreateFrame('Button', nil, parent);
+        PixelUtil.SetSize(holder, 28, 28);
+
+        local background = holder:CreateTexture(nil, 'BACKGROUND');
+        background:SetTexture(M.Icons.TEXTURE);
+        background:SetTexCoord(unpack(M.Icons.COORDS.FULL_CIRCLE));
+        background:SetVertexColor(0.8, 0.8, 0.8);
+        PixelUtil.SetPoint(background, 'CENTER', holder, 'CENTER', 0, 0);
+        background:SetSize(18, 18);
+        holder.background = background;
+
+        local border = holder:CreateTexture(nil, 'BORDER');
+        border:SetTexture(M.Icons.TEXTURE);
+        border:SetTexCoord(unpack(M.Icons.COORDS.FULL_CIRCLE));
+        border:SetVertexColor(0, 0, 0);
+        PixelUtil.SetPoint(border, 'TOPLEFT', background, 'TOPLEFT', 1, -1);
+        PixelUtil.SetPoint(border, 'BOTTOMRIGHT', background, 'BOTTOMRIGHT', -1, 1);
+        holder.border = border;
+
+        local sample = holder:CreateTexture(nil, 'OVERLAY');
+        sample:SetTexture(M.Icons.TEXTURE);
+        sample:SetTexCoord(unpack(M.Icons.COORDS.FULL_CIRCLE));
+        PixelUtil.SetPoint(sample, 'TOPLEFT', border, 'TOPLEFT', 1, -1);
+        PixelUtil.SetPoint(sample, 'BOTTOMRIGHT', border, 'BOTTOMRIGHT', -1, 1);
+        holder.sample = sample;
+
+        local label = holder:CreateFontString(nil, 'ARTWORK', 'GameFontHighlight');
+        PixelUtil.SetPoint(label, 'LEFT', sample, 'RIGHT', 8, 0);
+        holder.label = label;
+
+        holder:SetScript('OnEnter', function(self)
+            if not self.disabled then
+                self.background:SetVertexColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b);
+            end
+        end);
+
+        holder:SetScript('OnLeave', function(self)
+            if not self.disabled then
+                self.background:SetVertexColor(HIGHLIGHT_FONT_COLOR.r, HIGHLIGHT_FONT_COLOR.g, HIGHLIGHT_FONT_COLOR.b);
+            end
+        end);
+
+        holder:SetScript('OnClick', function(self)
+            PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
+
+            if ColorPickerFrame:IsShown() then
+                ColorPickerFrame:Hide();
+                return;
+            end
+
+            self.r, self.g, self.b, self.opacity = self:GetValue();
+            self.opacity = 1 - self.opacity;
+            self.opening = true;
+
+            OpenColorPicker(self);
+            ColorPickerFrame:SetFrameStrata('TOOLTIP');
+            ColorPickerFrame:Raise();
+
+            self.opening = false;
+        end);
+
+        holder:SetScript('OnDisable', function(self)
+            self.background:SetVertexColor(GRAY_FONT_COLOR.r, GRAY_FONT_COLOR.g, GRAY_FONT_COLOR.b);
+            self.label:SetFontObject(GameFontDisable);
+
+            self.disabled = true;
+        end);
+
+        holder:SetScript('OnEnable', function(self)
+            local color = self:IsMouseOver() and NORMAL_FONT_COLOR or HIGHLIGHT_FONT_COLOR;
+
+            self.background:SetVertexColor(color.r, color.g, color.b);
+            self.label:SetFontObject(GameFontHighlight);
+
+            self.disabled = false;
+        end);
+
+        holder.GetValue = function(self)
+            local r, g, b, a = self.sample:GetVertexColor();
+            return GetFloorValue(r), GetFloorValue(g), GetFloorValue(b), GetFloorValue(a);
+        end
+
+        holder.SetValue = function(self, r, g, b, a)
+            if type(r) == 'table' then
+                r, g, b, a = r.r or r[1], r.g or r[2], r.b or r[3], r.a or r[4];
+            end
+
+            r, g, b = GetFloorValue(r), GetFloorValue(g), GetFloorValue(b);
+            a       = a and self.hasOpacity and GetFloorValue(a) or 1;
+
+            self.sample:SetVertexColor(r, g, b, a);
+            self.background:SetAlpha(a);
+
+            if self.OnValueChanged then
+                self:OnValueChanged(r, g, b, a);
+            end
+        end
+
+        holder.hasOpacity = hasOpacity;
+
+        holder.cancelFunc = function()
+            holder:SetValue(holder.r, holder.g, holder.b, holder.hasOpacity and (1 - holder.opacity) or 1);
+        end
+
+        holder.opacityFunc = function()
+            local r, g, b = ColorPickerFrame:GetColorRGB();
+            local a = 1 - OpacitySliderFrame:GetValue();
+
+            holder:SetValue(r, g, b, a);
+        end
+
+        holder.swatchFunc = function()
+            if holder.opening then
+                return;
+            end
+
+            local r, g, b = ColorPickerFrame:GetColorRGB();
+            local a = 1 - OpacitySliderFrame:GetValue();
+
+            holder:SetValue(r, g, b, a);
+        end
+
+        holder.SetLabel = function(self, text)
+            self.label:SetText(text);
+            self:SetHitRectInsets(0, -(self.label:GetStringWidth() + 2), 0, 0);
+        end
+
+        holder.SetTooltip = function(self, tooltip)
+            self.tooltip = tooltip;
+        end
+
+        E.CreateTooltip(holder);
+
+        return holder;
+    end
+end
+
+E.CreateColorPicker = function(parent, color)
+    if type(color) ~= 'table' then
+        return;
+    end
+
+    local hasOpacity = false;
+
+    if not color.r and color[4] then
+        hasOpacity = color[4];
+        color = color;
+    elseif color.a then
+        hasOpacity = color.a;
+        color = { color.r, color.g, color.b, color.a };
+    elseif color.r and color.g and color.b then
+        hasOpacity = false;
+        color = { color.r, color.g, color.b };
+    end
+
+    local colorpicker = NewColorPicker(parent, hasOpacity);
+    colorpicker:SetValue(unpack(color));
+
+    return colorpicker;
 end
