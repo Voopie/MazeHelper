@@ -1848,7 +1848,7 @@ function MazeHelper.frame:PLAYER_TARGET_CHANGED()
         return;
     end
 
-    local npcId = tonumber((select(6, strsplit('-', UnitGUID(TARGET_STRING) or ''))) or '0');
+    local npcId = tonumber((select(6, strsplit('-', UnitGUID(TARGET_STRING) or EMPTY_STRING))) or '0');
     if not npcId or npcId ~= ILLUSIONARY_CLONE_ID then
         return;
     end
@@ -1871,7 +1871,7 @@ function MazeHelper.frame:CHAT_MSG_ADDON(prefix, message, _, sender)
     if prefix == ADDON_COMM_PREFIX then
         local command, arg1, arg2 = strsplit('|', message);
 
-        if command == 'SendButtonID'  then
+        if command == 'SendButtonID' then
             local buttonId, buttonMode = arg1, arg2;
 
             if buttonMode == 'ACTIVE' then
@@ -1916,7 +1916,7 @@ function MazeHelper.frame:GOSSIP_SHOW()
         return;
     end
 
-    local npcId = tonumber((select(6, strsplit('-', UnitGUID('npc') or ''))) or '0');
+    local npcId = tonumber((select(6, strsplit('-', UnitGUID('npc') or EMPTY_STRING))) or '0');
     if not npcId or not DEPLETED_ANIMA_SEED_IDS[npcId] then
 		return;
     end
