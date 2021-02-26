@@ -42,8 +42,8 @@ E.CreateRoundedCheckButton = function(parent)
 
     b.SetLabel = function(self, label)
         self.Label:SetText(label);
-        self:SetHitRectInsets(0, -1 * math.max(100, self.Label:GetStringWidth() + 4), 0, 0);
-        PixelUtil.SetWidth(self.Label, math.min(238, self.Label:GetStringWidth() + 4));
+        self:SetHitRectInsets(0, -1 * math.max(100, self.Label:GetStringWidth() + 8), 0, 0);
+        PixelUtil.SetWidth(self.Label, math.min(238, self.Label:GetStringWidth() + 8));
     end
 
     b.SetTooltip = function(self, tooltip)
@@ -74,7 +74,7 @@ E.CreateCheckButton = function(name, parent)
 
     b.SetLabel = function(self, label)
         self.Label:SetText(label);
-        self:SetHitRectInsets(0, -(self.Label:GetWidth() + 8), 0, 0);
+        self:SetHitRectInsets(0, -(self.Label:GetStringWidth() + 8), 0, 0);
     end
 
     b.SetPosition = function(self, point, relativeTo, relativePoint, offsetX, offsetY, minOffsetXPixels, minOffsetYPixels)
