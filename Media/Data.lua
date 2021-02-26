@@ -23,7 +23,7 @@ M.MazeHelper = {
     COORDS = {
         MAXI = {0, 1, 0, 1/4},
         MINI = {0, 1/4, 1/2, 2/2},
-    }
+    },
 };
 
 M.INLINE_LOGO = '|T' .. MEDIA_PATH .. 'mazehelper.blp:14:112:0:0:128:64:0:128:0:16|t';
@@ -67,27 +67,27 @@ M.Symbols = {
     TEXTURE = MEDIA_PATH .. 'symbols.blp', -- 256x256
 
     COORDS_WHITE = {
-        LEAF_CIRCLE_FILL     = {0, 1/4, 0, 1/4},
-        LEAF_CIRCLE_NOFILL   = {1/4, 2/4, 0, 1/4},
-        LEAF_NOCIRCLE_FILL   = {0, 1/4, 1/4, 2/4},
+        LEAF_CIRCLE_FILL     = {  0, 1/4,   0, 1/4},
+        LEAF_CIRCLE_NOFILL   = {1/4, 2/4,   0, 1/4},
+        LEAF_NOCIRCLE_FILL   = {  0, 1/4, 1/4, 2/4},
         LEAF_NOCIRCLE_NOFILL = {1/4, 2/4, 1/4, 2/4},
 
-        FLOWER_CIRCLE_FILL     = {2/4, 3/4, 0, 1/4},
-        FLOWER_CIRCLE_NOFILL   = {3/4, 1, 0, 1/4},
+        FLOWER_CIRCLE_FILL     = {2/4, 3/4,   0, 1/4},
+        FLOWER_CIRCLE_NOFILL   = {3/4,   1,   0, 1/4},
         FLOWER_NOCIRCLE_FILL   = {2/4, 3/4, 1/4, 2/4},
-        FLOWER_NOCIRCLE_NOFILL = {3/4, 1, 1/4, 2/4},
+        FLOWER_NOCIRCLE_NOFILL = {3/4,   1, 1/4, 2/4},
     },
 
     COORDS_COLOR = {
-        LEAF_CIRCLE_FILL     = {0, 1/4, 2/4, 3/4},
+        LEAF_CIRCLE_FILL     = {  0, 1/4, 2/4, 3/4},
         LEAF_CIRCLE_NOFILL   = {1/4, 2/4, 2/4, 3/4},
-        LEAF_NOCIRCLE_FILL   = {0, 1/4, 3/4, 4/4},
+        LEAF_NOCIRCLE_FILL   = {  0, 1/4, 3/4, 4/4},
         LEAF_NOCIRCLE_NOFILL = {1/4, 2/4, 3/4, 4/4},
 
         FLOWER_CIRCLE_FILL     = {2/4, 3/4, 2/4, 3/4},
         FLOWER_CIRCLE_NOFILL   = {3/4, 4/4, 2/4, 3/4},
         FLOWER_NOCIRCLE_FILL   = {2/4, 3/4, 3/4, 4/4},
-        FLOWER_NOCIRCLE_NOFILL = {3/4, 1, 3/4, 4/4},
+        FLOWER_NOCIRCLE_NOFILL = {3/4,   1, 3/4, 4/4},
     },
 };
 
@@ -99,9 +99,10 @@ M.Sounds = {
             [1] = MEDIA_PATH .. 'success_1.ogg',
             [2] = MEDIA_PATH .. 'success_2.ogg',
         },
+
         Error   = {
             [1] = MEDIA_PATH .. 'error_1.ogg',
             [2] = MEDIA_PATH .. 'error_2.ogg',
         },
-    }
-}
+    },
+};
