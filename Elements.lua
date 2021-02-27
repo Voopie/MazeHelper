@@ -710,22 +710,22 @@ local NewColorPicker do
 
     function NewColorPicker(parent, hasOpacity)
         local holder = CreateFrame('Button', nil, parent);
-        PixelUtil.SetSize(holder, 28, 28);
+        PixelUtil.SetSize(holder, 27, 27);
 
         local background = holder:CreateTexture(nil, 'BACKGROUND');
         background:SetTexture(M.Icons.TEXTURE);
         background:SetTexCoord(unpack(M.Icons.COORDS.FULL_CIRCLE));
         background:SetVertexColor(0.8, 0.8, 0.8);
         PixelUtil.SetPoint(background, 'CENTER', holder, 'CENTER', 0, 0);
-        PixelUtil.SetSize(background, 18, 18)
+        PixelUtil.SetSize(background, 17, 17)
         holder.background = background;
 
         local border = holder:CreateTexture(nil, 'BORDER');
         border:SetTexture(M.Icons.TEXTURE);
         border:SetTexCoord(unpack(M.Icons.COORDS.FULL_CIRCLE));
         border:SetVertexColor(0, 0, 0);
-        PixelUtil.SetPoint(border, 'TOPLEFT', background, 'TOPLEFT', 1, -1);
-        PixelUtil.SetPoint(border, 'BOTTOMRIGHT', background, 'BOTTOMRIGHT', -1, 1);
+        PixelUtil.SetPoint(border, 'TOPLEFT', background, 'TOPLEFT', 2, -2);
+        PixelUtil.SetPoint(border, 'BOTTOMRIGHT', background, 'BOTTOMRIGHT', -2, 2);
         holder.border = border;
 
         local sample = holder:CreateTexture(nil, 'OVERLAY');
