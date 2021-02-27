@@ -19,6 +19,7 @@ local startedInMinMode = false;
 local EMPTY_STRING = '';
 local PLAYER_STRING = 'player';
 local TARGET_STRING = 'target';
+local MOUSEOVER_STRING = 'mouseover';
 
 local MAX_BUTTONS = 8;
 local MAX_ACTIVE_BUTTONS = 4;
@@ -73,6 +74,9 @@ local MODIFIERS_LIST = {
     [2] = 'CTRL',
     [3] = 'SHIFT',
 };
+
+local TOUGH_CROWD_QUEST_ID = 60739;
+local EXPOSED_BOGGARD_ID = 170080;
 
 local PASSED_COUNTER = 1;
 local SOLUTION_BUTTON_ID;
@@ -1859,6 +1863,86 @@ function MazeHelper.frame:PLAYER_TARGET_CHANGED()
     end
 end
 
+function MazeHelper.frame:GOSSIP_SHOW()
+    if C_GossipInfo.GetNumOptions() ~= 1 then
+        return;
+    end
+
+    local npcId = tonumber((select(6, strsplit('-', UnitGUID('npc') or EMPTY_STRING))) or '0');
+    if not npcId or not DEPLETED_ANIMA_SEED_IDS[npcId] then
+		return;
+    end
+
+    C_GossipInfo.SelectOption(1);
+    C_GossipInfo.CloseGossip();
+end
+
+function MazeHelper.frame:QUEST_ACCEPTED(questId)
+    if questId ~= TOUGH_CROWD_QUEST_ID then
+        return;
+    end
+
+    self:RegisterEvent('UPDATE_MOUSEOVER_UNIT');
+end
+
+function MazeHelper.frame:QUEST_REMOVED(questId)
+    if questId ~= TOUGH_CROWD_QUEST_ID then
+        return;
+    end
+
+    self:UnregisterEvent('UPDATE_MOUSEOVER_UNIT');
+end
+
+function MazeHelper.frame:UPDATE_MOUSEOVER_UNIT()
+    if not C_TaskQuest.IsActive(TOUGH_CROWD_QUEST_ID) then
+        return;
+    end
+
+    if not UnitExists(MOUSEOVER_STRING) or UnitIsDead(MOUSEOVER_STRING) then
+        return;
+    end
+
+    local npcId = tonumber((select(6, strsplit('-', UnitGUID(MOUSEOVER_STRING) or EMPTY_STRING))) or '0');
+    if not npcId or npcId ~= EXPOSED_BOGGARD_ID then
+		return;
+    end
+
+    local targetIndex = GetRaidTargetIndex(MOUSEOVER_STRING);
+    if not targetIndex or targetIndex ~= SKULL_MARKER then
+        SetRaidTarget(MOUSEOVER_STRING, SKULL_MARKER);
+    end
+end
+
+function MazeHelper.frame:PLAYER_SPECIALIZATION_CHANGED(unit)
+    if unit ~= PLAYER_STRING then
+        return;
+    end
+
+    playerRole = (select(5, GetSpecializationInfo(GetSpecialization())) or EMPTY_STRING);
+end
+
+function MazeHelper.frame:CHAT_MSG_MONSTER_SAY(message, npcName)
+    if npcName ~= L['MISTCALLER_NAME'] then
+        return;
+    end
+
+    if not SOLUTION_BUTTON_ID then
+        return;
+    end
+
+    if MazeHelper.MISTCALLER_QUOTES_CURRENT and tContains(MazeHelper.MISTCALLER_QUOTES_CURRENT, message) then
+        PASSED_COUNTER = PASSED_COUNTER + 1;
+
+        MazeHelper.frame.PassedCounter.Text:SetText(PASSED_COUNTER);
+        PixelUtil.SetPoint(MazeHelper.frame.PassedCounter.Text, 'CENTER', MazeHelper.frame.PassedCounter, 'CENTER', 0, isMinimized and 0 or -1);
+
+        MazeHelper:SendPassedCommand(PASSED_COUNTER, true);
+        ResetAll();
+
+        mhPrint(L['AUTO_PASS']);
+    end
+end
+
 function MazeHelper.frame:CHAT_MSG_ADDON(prefix, message, _, sender)
     if not MHMOTSConfig.SyncEnabled then
         return;
@@ -1900,50 +1984,6 @@ function MazeHelper.frame:CHAT_MSG_ADDON(prefix, message, _, sender)
         elseif command == 'RECPC' then
             MazeHelper:ReceivePassedCounter(tonumber(arg1));
         end
-    end
-end
-
-function MazeHelper.frame:PLAYER_SPECIALIZATION_CHANGED(unit)
-    if unit ~= PLAYER_STRING then
-        return;
-    end
-
-    playerRole = (select(5, GetSpecializationInfo(GetSpecialization())) or EMPTY_STRING);
-end
-
-function MazeHelper.frame:GOSSIP_SHOW()
-    if C_GossipInfo.GetNumOptions() ~= 1 then
-        return;
-    end
-
-    local npcId = tonumber((select(6, strsplit('-', UnitGUID('npc') or EMPTY_STRING))) or '0');
-    if not npcId or not DEPLETED_ANIMA_SEED_IDS[npcId] then
-		return;
-    end
-
-    C_GossipInfo.SelectOption(1);
-    C_GossipInfo.CloseGossip();
-end
-
-function MazeHelper.frame:CHAT_MSG_MONSTER_SAY(message, npcName)
-    if npcName ~= L['MISTCALLER_NAME'] then
-        return;
-    end
-
-    if not SOLUTION_BUTTON_ID then
-        return;
-    end
-
-    if MazeHelper.MISTCALLER_QUOTES_CURRENT and tContains(MazeHelper.MISTCALLER_QUOTES_CURRENT, message) then
-        PASSED_COUNTER = PASSED_COUNTER + 1;
-
-        MazeHelper.frame.PassedCounter.Text:SetText(PASSED_COUNTER);
-        PixelUtil.SetPoint(MazeHelper.frame.PassedCounter.Text, 'CENTER', MazeHelper.frame.PassedCounter, 'CENTER', 0, isMinimized and 0 or -1);
-
-        MazeHelper:SendPassedCommand(PASSED_COUNTER, true);
-        ResetAll();
-
-        mhPrint(L['AUTO_PASS']);
     end
 end
 
@@ -2053,6 +2093,8 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     self:RegisterEvent('PLAYER_ENTERING_WORLD');
     self:RegisterEvent('PLAYER_SPECIALIZATION_CHANGED');
     self:RegisterEvent('CHAT_MSG_ADDON');
+    self:RegisterEvent('QUEST_ACCEPTED');
+    self:RegisterEvent('QUEST_REMOVED');
 
     _G['SLASH_MAZEHELPER1'] = '/mh';
     SlashCmdList['MAZEHELPER'] = function(input)
