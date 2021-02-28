@@ -29,7 +29,7 @@ local FRAME_SIZE = 300;
 local X_OFFSET = 2;
 local Y_OFFSET = -2;
 local BUTTON_SIZE = 64;
-local SLIDER_FULL_WIDTH = FRAME_SIZE + X_OFFSET * (MAX_ACTIVE_BUTTONS - 1) - 50;
+local SLIDER_FULL_WIDTH = 10 + FRAME_SIZE + X_OFFSET * (MAX_ACTIVE_BUTTONS - 1) - 50;
 
 local RESERVED_BUTTONS_SEQUENCE = {
     [1] = false,
@@ -671,77 +671,8 @@ MazeHelper.frame.PracticeModeButton.Background:SetTexCoord(unpack(M.Rings.COORDS
 
 local settingsScrollChild = E.CreateScrollFrame(MazeHelper.frame.Settings, 26);
 
-settingsScrollChild.Data.ColorsHeader = E.CreateHeader(settingsScrollChild, M.INLINE_NEW_ICON .. L['SETTINGS_BORDERS_COLORS']);
-settingsScrollChild.Data.ColorsHeader:SetPosition('TOPLEFT', settingsScrollChild, 'TOPLEFT', 12, 0);
-settingsScrollChild.Data.ColorsHeader:SetSize(settingsScrollChild:GetWidth() - 4, 18);
-
-settingsScrollChild.Data.ActiveColorPicker = E.CreateColorPicker(settingsScrollChild, DEFAULT_COLORS.Active)
-PixelUtil.SetPoint(settingsScrollChild.Data.ActiveColorPicker, 'TOPLEFT', settingsScrollChild.Data.ColorsHeader, 'BOTTOMLEFT', 0, 0);
-settingsScrollChild.Data.ActiveColorPicker:SetLabel(L['SETTINGS_ACTIVE_COLORPICKER']);
-settingsScrollChild.Data.ActiveColorPicker.OnValueChanged = function(_, r, g, b, a)
-    MHMOTSConfig.ActiveColor[1] = r;
-    MHMOTSConfig.ActiveColor[2] = g;
-    MHMOTSConfig.ActiveColor[3] = b;
-    MHMOTSConfig.ActiveColor[4] = a;
-
-    BorderColor_UpdateAll();
-end
-
-settingsScrollChild.Data.ReceivedColorPicker = E.CreateColorPicker(settingsScrollChild, DEFAULT_COLORS.Received)
-PixelUtil.SetPoint(settingsScrollChild.Data.ReceivedColorPicker, 'TOPLEFT', settingsScrollChild.Data.ColorsHeader, 'BOTTOMLEFT', settingsScrollChild.Data.ColorsHeader:GetWidth() / 2, 0);
-settingsScrollChild.Data.ReceivedColorPicker:SetLabel(L['SETTINGS_RECEIVED_COLORPICKER']);
-settingsScrollChild.Data.ReceivedColorPicker.OnValueChanged = function(_, r, g, b, a)
-    MHMOTSConfig.ReceivedColor[1] = r;
-    MHMOTSConfig.ReceivedColor[2] = g;
-    MHMOTSConfig.ReceivedColor[3] = b;
-    MHMOTSConfig.ReceivedColor[4] = a;
-
-    BorderColor_UpdateAll();
-end
-
-settingsScrollChild.Data.SolutionColorPicker = E.CreateColorPicker(settingsScrollChild, DEFAULT_COLORS.Solution)
-PixelUtil.SetPoint(settingsScrollChild.Data.SolutionColorPicker, 'TOPLEFT', settingsScrollChild.Data.ActiveColorPicker, 'BOTTOMLEFT', 0, 0);
-settingsScrollChild.Data.SolutionColorPicker:SetLabel(L['SETTINGS_SOLUTION_COLORPICKER']);
-settingsScrollChild.Data.SolutionColorPicker.OnValueChanged = function(_, r, g, b, a)
-    MHMOTSConfig.SolutionColor[1] = r;
-    MHMOTSConfig.SolutionColor[2] = g;
-    MHMOTSConfig.SolutionColor[3] = b;
-    MHMOTSConfig.SolutionColor[4] = a;
-
-    BorderColor_UpdateAll();
-end
-
-settingsScrollChild.Data.PredictedColorPicker = E.CreateColorPicker(settingsScrollChild, DEFAULT_COLORS.Predicted)
-PixelUtil.SetPoint(settingsScrollChild.Data.PredictedColorPicker, 'TOPLEFT', settingsScrollChild.Data.ActiveColorPicker, 'BOTTOMLEFT', settingsScrollChild.Data.ColorsHeader:GetWidth() / 2, 0);
-settingsScrollChild.Data.PredictedColorPicker:SetLabel(L['SETTINGS_PREDICTED_COLORPICKER']);
-settingsScrollChild.Data.PredictedColorPicker.OnValueChanged = function(_, r, g, b, a)
-    MHMOTSConfig.PredictedColor[1] = r;
-    MHMOTSConfig.PredictedColor[2] = g;
-    MHMOTSConfig.PredictedColor[3] = b;
-    MHMOTSConfig.PredictedColor[4] = a;
-
-    BorderColor_UpdateAll();
-end
-
-settingsScrollChild.Data.ResetColorsButton = CreateFrame('Button', nil, settingsScrollChild, 'SharedButtonSmallTemplate');
-PixelUtil.SetPoint(settingsScrollChild.Data.ResetColorsButton, 'TOP', settingsScrollChild, 'TOP', 12, -78);
-settingsScrollChild.Data.ResetColorsButton:SetText(L['RESET']);
-PixelUtil.SetSize(settingsScrollChild.Data.ResetColorsButton, tonumber(settingsScrollChild.Data.ResetColorsButton:GetTextWidth()) + 20, 22);
-settingsScrollChild.Data.ResetColorsButton:SetScript('OnClick', function()
-    settingsScrollChild.Data.ActiveColorPicker:SetValue(unpack(DEFAULT_COLORS.Active));
-    settingsScrollChild.Data.ReceivedColorPicker:SetValue(unpack(DEFAULT_COLORS.Received));
-    settingsScrollChild.Data.SolutionColorPicker:SetValue(unpack(DEFAULT_COLORS.Solution));
-    settingsScrollChild.Data.PredictedColorPicker:SetValue(unpack(DEFAULT_COLORS.Predicted));
-
-    BorderColor_UpdateAll();
-end);
-
-settingsScrollChild.Data.EmptyHeader = E.CreateHeader(settingsScrollChild);
-settingsScrollChild.Data.EmptyHeader:SetPosition('TOPLEFT', settingsScrollChild.Data.SolutionColorPicker, 'BOTTOMLEFT', 0, -30);
-settingsScrollChild.Data.EmptyHeader:SetSize(settingsScrollChild:GetWidth() - 4, 18);
-
 settingsScrollChild.Data.SyncEnabled = E.CreateRoundedCheckButton(settingsScrollChild);
-settingsScrollChild.Data.SyncEnabled:SetPosition('TOPLEFT', settingsScrollChild.Data.EmptyHeader, 'BOTTOMLEFT', 0, 0);
+settingsScrollChild.Data.SyncEnabled:SetPosition('TOPLEFT', settingsScrollChild, 'TOPLEFT', 12, 0);
 settingsScrollChild.Data.SyncEnabled:SetLabel(L['SETTINGS_SYNC_ENABLED_LABEL']);
 settingsScrollChild.Data.SyncEnabled:SetTooltip(L['SETTINGS_SYNC_ENABLED_TOOLTIP']);
 settingsScrollChild.Data.SyncEnabled:SetScript('OnClick', function(self)
@@ -811,7 +742,7 @@ end);
 
 settingsScrollChild.Data.SetMarkerOnTargetClone = E.CreateRoundedCheckButton(settingsScrollChild);
 settingsScrollChild.Data.SetMarkerOnTargetClone:SetPosition('TOPLEFT', settingsScrollChild.Data.UseCloneAutoMarker, 'BOTTOMLEFT', 0, 0);
-settingsScrollChild.Data.SetMarkerOnTargetClone:SetLabel(M.INLINE_NEW_ICON .. L['SETTINGS_SKULLMARKER_CLONE_LABEL']);
+settingsScrollChild.Data.SetMarkerOnTargetClone:SetLabel(L['SETTINGS_SKULLMARKER_CLONE_LABEL']);
 settingsScrollChild.Data.SetMarkerOnTargetClone:SetTooltip(L['SETTINGS_SKULLMARKER_CLONE_TOOLTIP']);
 settingsScrollChild.Data.SetMarkerOnTargetClone:SetScript('OnClick', function(self)
     MHMOTSConfig.SetMarkerOnTargetClone = self:GetChecked();
@@ -951,8 +882,77 @@ settingsScrollChild.Data.AutoAnnouncerAsHealer:SetScript('OnClick', function(sel
     MHMOTSConfig.AutoAnnouncerAsHealer = self:GetChecked();
 end);
 
+settingsScrollChild.Data.ColorsHeader = E.CreateHeader(settingsScrollChild, L['SETTINGS_BORDERS_COLORS']);
+settingsScrollChild.Data.ColorsHeader:SetPosition('TOPLEFT', settingsScrollChild.Data.AutoAnnouncer, 'BOTTOMLEFT', 0, -32);
+settingsScrollChild.Data.ColorsHeader:SetSize(settingsScrollChild:GetWidth() - 4, 18);
+
+settingsScrollChild.Data.ActiveColorPicker = E.CreateColorPicker(settingsScrollChild, DEFAULT_COLORS.Active)
+PixelUtil.SetPoint(settingsScrollChild.Data.ActiveColorPicker, 'TOPLEFT', settingsScrollChild.Data.ColorsHeader, 'BOTTOMLEFT', 0, 0);
+settingsScrollChild.Data.ActiveColorPicker:SetLabel(L['SETTINGS_ACTIVE_COLORPICKER']);
+settingsScrollChild.Data.ActiveColorPicker.OnValueChanged = function(_, r, g, b, a)
+    MHMOTSConfig.ActiveColor[1] = r;
+    MHMOTSConfig.ActiveColor[2] = g;
+    MHMOTSConfig.ActiveColor[3] = b;
+    MHMOTSConfig.ActiveColor[4] = a;
+
+    BorderColor_UpdateAll();
+end
+
+settingsScrollChild.Data.ReceivedColorPicker = E.CreateColorPicker(settingsScrollChild, DEFAULT_COLORS.Received)
+PixelUtil.SetPoint(settingsScrollChild.Data.ReceivedColorPicker, 'TOPLEFT', settingsScrollChild.Data.ColorsHeader, 'BOTTOMLEFT', settingsScrollChild.Data.ColorsHeader:GetWidth() / 2, 0);
+settingsScrollChild.Data.ReceivedColorPicker:SetLabel(L['SETTINGS_RECEIVED_COLORPICKER']);
+settingsScrollChild.Data.ReceivedColorPicker.OnValueChanged = function(_, r, g, b, a)
+    MHMOTSConfig.ReceivedColor[1] = r;
+    MHMOTSConfig.ReceivedColor[2] = g;
+    MHMOTSConfig.ReceivedColor[3] = b;
+    MHMOTSConfig.ReceivedColor[4] = a;
+
+    BorderColor_UpdateAll();
+end
+
+settingsScrollChild.Data.SolutionColorPicker = E.CreateColorPicker(settingsScrollChild, DEFAULT_COLORS.Solution)
+PixelUtil.SetPoint(settingsScrollChild.Data.SolutionColorPicker, 'TOPLEFT', settingsScrollChild.Data.ActiveColorPicker, 'BOTTOMLEFT', 0, 0);
+settingsScrollChild.Data.SolutionColorPicker:SetLabel(L['SETTINGS_SOLUTION_COLORPICKER']);
+settingsScrollChild.Data.SolutionColorPicker.OnValueChanged = function(_, r, g, b, a)
+    MHMOTSConfig.SolutionColor[1] = r;
+    MHMOTSConfig.SolutionColor[2] = g;
+    MHMOTSConfig.SolutionColor[3] = b;
+    MHMOTSConfig.SolutionColor[4] = a;
+
+    BorderColor_UpdateAll();
+end
+
+settingsScrollChild.Data.PredictedColorPicker = E.CreateColorPicker(settingsScrollChild, DEFAULT_COLORS.Predicted)
+PixelUtil.SetPoint(settingsScrollChild.Data.PredictedColorPicker, 'TOPLEFT', settingsScrollChild.Data.ActiveColorPicker, 'BOTTOMLEFT', settingsScrollChild.Data.ColorsHeader:GetWidth() / 2, 0);
+settingsScrollChild.Data.PredictedColorPicker:SetLabel(L['SETTINGS_PREDICTED_COLORPICKER']);
+settingsScrollChild.Data.PredictedColorPicker.OnValueChanged = function(_, r, g, b, a)
+    MHMOTSConfig.PredictedColor[1] = r;
+    MHMOTSConfig.PredictedColor[2] = g;
+    MHMOTSConfig.PredictedColor[3] = b;
+    MHMOTSConfig.PredictedColor[4] = a;
+
+    BorderColor_UpdateAll();
+end
+
+settingsScrollChild.Data.EmptyHeader = E.CreateHeader(settingsScrollChild);
+settingsScrollChild.Data.EmptyHeader:SetPosition('TOPLEFT', settingsScrollChild.Data.SolutionColorPicker, 'BOTTOMLEFT', 0, -30);
+settingsScrollChild.Data.EmptyHeader:SetSize(settingsScrollChild:GetWidth() - 4, 18);
+
+settingsScrollChild.Data.ResetColorsButton = CreateFrame('Button', nil, settingsScrollChild, 'SharedButtonSmallTemplate');
+PixelUtil.SetPoint(settingsScrollChild.Data.ResetColorsButton, 'BOTTOM', settingsScrollChild.Data.EmptyHeader, 'TOP', 0, 0);
+settingsScrollChild.Data.ResetColorsButton:SetText(L['RESET']);
+PixelUtil.SetSize(settingsScrollChild.Data.ResetColorsButton, tonumber(settingsScrollChild.Data.ResetColorsButton:GetTextWidth()) + 20, 22);
+settingsScrollChild.Data.ResetColorsButton:SetScript('OnClick', function()
+    settingsScrollChild.Data.ActiveColorPicker:SetValue(unpack(DEFAULT_COLORS.Active));
+    settingsScrollChild.Data.ReceivedColorPicker:SetValue(unpack(DEFAULT_COLORS.Received));
+    settingsScrollChild.Data.SolutionColorPicker:SetValue(unpack(DEFAULT_COLORS.Solution));
+    settingsScrollChild.Data.PredictedColorPicker:SetValue(unpack(DEFAULT_COLORS.Predicted));
+
+    BorderColor_UpdateAll();
+end);
+
 settingsScrollChild.Data.Scale = E.CreateSlider('Scale', settingsScrollChild);
-settingsScrollChild.Data.Scale:SetPosition('TOPLEFT', settingsScrollChild.Data.AutoAnnouncer, 'BOTTOMLEFT', 4, -42);
+settingsScrollChild.Data.Scale:SetPosition('TOPLEFT', settingsScrollChild.Data.EmptyHeader, 'BOTTOMLEFT', 0, -21);
 PixelUtil.SetWidth(settingsScrollChild.Data.Scale, SLIDER_FULL_WIDTH);
 settingsScrollChild.Data.Scale:SetLabel(L['SETTINGS_SCALE_LABEL']);
 settingsScrollChild.Data.Scale:SetTooltip(L['SETTINGS_SCALE_TOOLTIP']);
