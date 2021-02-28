@@ -553,7 +553,7 @@ do
             self:SetBackdropBorderColor(0.5, 0.5, 0.5, 1);
         end);
 
-        local list = CreateFrame('Frame', nil, holderButton, 'BackdropTemplate');
+        local list = CreateFrame('Frame', nil, UIParent, 'BackdropTemplate');
         PixelUtil.SetPoint(list, 'TOPLEFT', holderButton, 'TOPLEFT', 0, 0);
         PixelUtil.SetPoint(list, 'TOPRIGHT', holderButton, 'TOPRIGHT', 0, 0);
         list:SetFrameLevel(arrowButton:GetFrameLevel() + 1);
@@ -666,6 +666,10 @@ do
         holderButton.GetValue = function(self)
             return self.currentValue;
         end
+
+        hooksecurefunc(holderButton, 'SetScale', function(self, value)
+            self.list:SetScale(value);
+        end);
 
         hooksecurefunc(holderButton, 'SetEnabled', function(self, state)
             if state then
