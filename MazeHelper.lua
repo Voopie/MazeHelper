@@ -1865,11 +1865,6 @@ function MazeHelper.frame:PLAYER_TARGET_CHANGED()
     end
 end
 
-local function AutoGossip()
-    C_GossipInfo.SelectOption(1);
-    C_GossipInfo.CloseGossip();
-end
-
 function MazeHelper.frame:GOSSIP_SHOW()
     if C_GossipInfo.GetNumOptions() ~= 1 then
         return;
@@ -1889,7 +1884,8 @@ function MazeHelper.frame:GOSSIP_SHOW()
     end
 
     if isPositive then
-        AutoGossip();
+        C_GossipInfo.SelectOption(1);
+        C_GossipInfo.CloseGossip();
     end
 end
 
