@@ -76,7 +76,10 @@ local MODIFIERS_LIST = {
 };
 
 local TOUGH_CROWD_QUEST_ID = 60739;
-local EXPOSED_BOGGARD_ID = 170080;
+local EXPOSED_BOGGARD_NPC_ID = 170080;
+
+local SPRIGAN_RIOT_QUEST_ID = 60585;
+local SILKSTRIDER_CARETAKER_NPC_ID = 169273;
 
 local PASSED_COUNTER = 1;
 local SOLUTION_BUTTON_ID;
@@ -99,7 +102,6 @@ local EVENTS_INSTANCE = {
     'ENCOUNTER_START',
     'ENCOUNTER_END',
     'BOSS_KILL',
-    'GOSSIP_SHOW',
     'CHAT_MSG_MONSTER_SAY',
 };
 
@@ -1852,7 +1854,7 @@ function MazeHelper.frame:PLAYER_TARGET_CHANGED()
         return;
     end
 
-    local npcId = tonumber((select(6, strsplit('-', UnitGUID(TARGET_STRING) or EMPTY_STRING))) or '0');
+    local npcId = tonumber((select(6, strsplit('-', UnitGUID(TARGET_STRING) or EMPTY_STRING))));
     if not npcId or npcId ~= ILLUSIONARY_CLONE_ID then
         return;
     end
@@ -1863,18 +1865,32 @@ function MazeHelper.frame:PLAYER_TARGET_CHANGED()
     end
 end
 
+local function AutoGossip()
+    C_GossipInfo.SelectOption(1);
+    C_GossipInfo.CloseGossip();
+end
+
 function MazeHelper.frame:GOSSIP_SHOW()
     if C_GossipInfo.GetNumOptions() ~= 1 then
         return;
     end
 
-    local npcId = tonumber((select(6, strsplit('-', UnitGUID('npc') or EMPTY_STRING))) or '0');
-    if not npcId or not DEPLETED_ANIMA_SEED_IDS[npcId] then
+    local npcId = tonumber((select(6, strsplit('-', UnitGUID('npc') or EMPTY_STRING))));
+    if not npcId then
 		return;
     end
 
-    C_GossipInfo.SelectOption(1);
-    C_GossipInfo.CloseGossip();
+    local isPositive = false;
+
+    if inMOTS and DEPLETED_ANIMA_SEED_IDS[npcId] then
+        isPositive = true;
+    elseif npcId == SILKSTRIDER_CARETAKER_NPC_ID and C_TaskQuest.IsActive(SPRIGAN_RIOT_QUEST_ID) then
+        isPositive = true;
+    end
+
+    if isPositive then
+        AutoGossip();
+    end
 end
 
 function MazeHelper.frame:QUEST_ACCEPTED(questId)
@@ -1902,8 +1918,8 @@ function MazeHelper.frame:UPDATE_MOUSEOVER_UNIT()
         return;
     end
 
-    local npcId = tonumber((select(6, strsplit('-', UnitGUID(MOUSEOVER_STRING) or EMPTY_STRING))) or '0');
-    if not npcId or npcId ~= EXPOSED_BOGGARD_ID then
+    local npcId = tonumber((select(6, strsplit('-', UnitGUID(MOUSEOVER_STRING) or EMPTY_STRING))));
+    if not npcId or npcId ~= EXPOSED_BOGGARD_NPC_ID then
 		return;
     end
 
@@ -2093,6 +2109,7 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     self:RegisterEvent('PLAYER_ENTERING_WORLD');
     self:RegisterEvent('PLAYER_SPECIALIZATION_CHANGED');
     self:RegisterEvent('CHAT_MSG_ADDON');
+    self:RegisterEvent('GOSSIP_SHOW');
     self:RegisterEvent('QUEST_ACCEPTED');
     self:RegisterEvent('QUEST_REMOVED');
 
