@@ -6,12 +6,12 @@ local MEDIA_PATH = 'Interface\\AddOns\\' .. ADDON_NAME .. '\\Media\\';
 
 M.Path = MEDIA_PATH;
 
-M.INLINE_LEADER_ICON   = '|TInterface\\GroupFrame\\UI-Group-LeaderIcon:16|t';
-M.INLINE_TANK_ICON     = _G.INLINE_TANK_ICON;
-M.INLINE_HEALER_ICON   = _G.INLINE_HEALER_ICON;
-M.INLINE_INFINITY_ICON = '|T' .. MEDIA_PATH .. 'icons32.blp:14:14:0:0:128:128:64:96:32:64|t';
-M.INLINE_ENTRANCE_ICON = '|T' .. MEDIA_PATH .. 'icons32.blp:12:12:-1:1:128:128:96:128:32:64|t';
-M.INLINE_NEW_ICON      = '|T' .. MEDIA_PATH .. 'icons32.blp:16:16:0:0:128:128:64:96:96:128|t ';
+M.INLINE_LEADER_ICON      = '|TInterface\\GroupFrame\\UI-Group-LeaderIcon:16|t';
+M.INLINE_TANK_ICON        = _G.INLINE_TANK_ICON;
+M.INLINE_HEALER_ICON      = _G.INLINE_HEALER_ICON;
+M.INLINE_INFINITY_ICON    = '|T' .. MEDIA_PATH .. 'icons32.blp:14:14:0:0:128:128:64:96:32:64|t';
+M.INLINE_ENTRANCE_ICON    = '|T' .. MEDIA_PATH .. 'icons32.blp:12:12:-1:1:128:128:96:128:32:64|t';
+M.INLINE_NEW_ICON         = '|T' .. MEDIA_PATH .. 'icons32.blp:16:16:0:0:128:128:64:96:96:128|t ';
 M.INLINE_EXCLAMATION_MARK = '|TInterface\\OptionsFrame\\UI-OptionsFrame-NewFeatureIcon:0:0:0:0|t ';
 
 M.BACKGROUND_WHITE = MEDIA_PATH .. 'background-white.blp';
@@ -26,7 +26,8 @@ M.MazeHelper = {
     },
 };
 
-M.INLINE_LOGO = '|T' .. MEDIA_PATH .. 'mazehelper.blp:14:112:0:0:128:64:0:128:0:16|t';
+M.INLINE_LOGO      = '|T' .. MEDIA_PATH .. 'mazehelper.blp:14:112:0:0:128:64:0:128:0:16|t';
+M.INLINE_MINI_LOGO = '|T' .. MEDIA_PATH .. 'mazehelper.blp:16:16:0:-1:128:64:4:28:36:60|t';
 
 M.Rings = {
     TEXTURE = MEDIA_PATH .. 'rings.blp', -- 256x256
