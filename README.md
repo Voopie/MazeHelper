@@ -1,6 +1,6 @@
 ## Maze Helper (Mists of Tirna Scithe)
 
-[CurseForge](https://www.curseforge.com/wow/addons/maze-helper-mists-of-tirna-scithe)  
+[CurseForge](https://www.curseforge.com/wow/addons/maze-helper-mists-of-tirna-scithe) | [Wago Addons](https://addons.wago.io/addons/qv63oo6b)
 
 ---
 
@@ -19,6 +19,10 @@
 - Practice mode: practice and you will become stronger, wiser and everyone will adore you!
 - Auto activation of Depleted Anima Seeds (just one click!)
 - Auto Pass (on successful passage through the mists)
+
+### ***Features outside of Mists of Tirna Scithe:***
+
+- Auto-mark boggarts in «Tough Crowd» world quest (you just need to mouse over the mobs and the boggart will be marked with a skull)
 
 ### ***Usage:***
 
