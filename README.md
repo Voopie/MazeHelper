@@ -1,6 +1,6 @@
 ## Maze Helper (Mists of Tirna Scithe)
 
-[CurseForge](https://www.curseforge.com/wow/addons/maze-helper-mists-of-tirna-scithe) | [Wago Addons](https://addons.wago.io/addons/qv63oo6b)
+[CurseForge](https://www.curseforge.com/wow/addons/maze-helper-mists-of-tirna-scithe) | [Wago Addons](https://addons.wago.io/addons/maze-helper-mists-of-tirna-scithe)
 
 ---
 
