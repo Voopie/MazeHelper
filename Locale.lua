@@ -137,7 +137,7 @@ L['SETTINGS_USE_COLORED_SYMBOLS_TOOLTIP'] = 'Use colored symbols instead of blac
 L['SETTINGS_SHOW_SEQUENCE_NUMBERS_LABEL'] = 'Show sequence numbers';
 L['SETTINGS_SHOW_SEQUENCE_NUMBERS_TOOLTIP'] = 'Show sequence numbers when clicking on symbols (1, 2, 3, 4)';
 L['SETTINGS_PREDICT_SOLUTION_LABEL'] = 'Predict solution';
-L['SETTINGS_PREDICT_SOLUTION_TOOLTIP'] = 'Predict the solution on 2-3 steps, but |cffff6a00first|r picked symbol |cffff6a00must be|r the entrance symbol';
+L['SETTINGS_PREDICT_SOLUTION_TOOLTIP'] = 'Predict the solution on 2-3 steps, but |cffff6a00first|r picked symbol |cffff6a00must be|r the entrance symbol|n|nYou can temporarily disable the prediction by clicking on the first symbol with the SHIFT pressed';
 L['SETTINGS_SHOW_LARGE_SYMBOL_LABEL'] = 'Show large symbol';
 L['SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = 'Show a large symbol at the top of the screen if there is a ready-made solution|n|nRight click to close';
 L['SETTINGS_SCALE_LABEL'] = 'Scale';
@@ -217,7 +217,7 @@ if gameLocale == 'ruRU' then
     L['SETTINGS_SHOW_SEQUENCE_NUMBERS_LABEL'] = 'Показывать порядковые номера';
     L['SETTINGS_SHOW_SEQUENCE_NUMBERS_TOOLTIP'] = 'Показывать порядковые номера при нажатии на символы (1, 2, 3, 4)';
     L['SETTINGS_PREDICT_SOLUTION_LABEL'] = 'Предсказывать решение';
-    L['SETTINGS_PREDICT_SOLUTION_TOOLTIP'] = 'Предсказывать решение на 2–3 шагах, но |cffff6a00первый|r выбранный символ |cffff6a00должен быть|r символом входа';
+    L['SETTINGS_PREDICT_SOLUTION_TOOLTIP'] = 'Предсказывать решение на 2–3 шагах, но |cffff6a00первый|r выбранный символ |cffff6a00должен быть|r символом входа|n|nВы можете временно выключить предсказывание решения по клику по первому символу с нажатым клавишей SHIFT';
     L['SETTINGS_SHOW_LARGE_SYMBOL_LABEL'] = 'Показывать большой символ';
     L['SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = 'Показывать большой символ вверху экрана при наличии решения|n|nПравый клик, чтобы закрыть';
     L['SETTINGS_SCALE_LABEL'] = 'Масштаб';
@@ -302,7 +302,7 @@ if gameLocale == 'deDE' then
     L['SETTINGS_SHOW_SEQUENCE_NUMBERS_LABEL'] = 'Sequenznummern anzeigen';
     L['SETTINGS_SHOW_SEQUENCE_NUMBERS_TOOLTIP'] = 'Zeigen Sie Sequenznummern an, wenn Sie auf Symbole klicken (1, 2, 3, 4)';
     L['SETTINGS_PREDICT_SOLUTION_LABEL'] = 'Vorhersage der Lösung';
-    L['SETTINGS_PREDICT_SOLUTION_TOOLTIP'] = 'Sagen Sie die Lösung in 2-3 Schritten voraus, aber |cffff6a00zuerst|r ausgewähltes Symbol |cffff6a00muss|r das Eingangssymbol sein';
+    L['SETTINGS_PREDICT_SOLUTION_TOOLTIP'] = 'Sagen Sie die Lösung in 2-3 Schritten voraus, aber |cffff6a00zuerst|r ausgewähltes Symbol |cffff6a00muss|r das Eingangssymbol sein|n|nSie können die Vorhersage vorübergehend deaktivieren, indem Sie bei gedrückter UMSCHALTTASTE auf das erste Symbol klicken';
     L['SETTINGS_SHOW_LARGE_SYMBOL_LABEL'] = 'Großes Symbol anzeigen';
     L['SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = 'Zeigen Sie oben auf dem Bildschirm ein großes Symbol an, wenn eine fertige Lösung vorhanden ist|n|nRechtsklick zum Schließen';
     L['SETTINGS_SCALE_LABEL'] = 'Rahmen';
@@ -385,7 +385,7 @@ if gameLocale == 'frFR' then
     L['SETTINGS_SHOW_SEQUENCE_NUMBERS_LABEL'] = 'Afficher les numéros de séquence';
     L['SETTINGS_SHOW_SEQUENCE_NUMBERS_TOOLTIP'] = 'Afficher les numéros de séquence en cliquant sur les symboles (1, 2, 3, 4)';
     L['SETTINGS_PREDICT_SOLUTION_LABEL'] = 'Solution de prédiction';
-    L['SETTINGS_PREDICT_SOLUTION_TOOLTIP'] = 'Prédire la solution sur 2-3 étapes, mais |cffff6a00en premier|r symbole choisi |cffff6a00doit être|r le symbole d\'entrée';
+    L['SETTINGS_PREDICT_SOLUTION_TOOLTIP'] = 'Prédire la solution sur 2-3 étapes, mais |cffff6a00en premier|r symbole choisi |cffff6a00doit être|r le symbole d\'entrée|n|nVous pouvez désactiver temporairement la prédiction en cliquant sur le premier symbole avec la touche SHIFT enfoncée';
     L['SETTINGS_SHOW_LARGE_SYMBOL_LABEL'] = 'Afficher le grand symbole';
     L['SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = 'Afficher un grand symbole en haut de l\'écran s\'il existe une solution toute faite|n|nClic droit pour fermer';
     L['SETTINGS_SCALE_LABEL'] = 'Échelle';
@@ -468,7 +468,7 @@ if gameLocale == 'itIT' then
     L['SETTINGS_SHOW_SEQUENCE_NUMBERS_LABEL'] = 'Mostra i numeri di sequenza';
     L['SETTINGS_SHOW_SEQUENCE_NUMBERS_TOOLTIP'] = 'Mostra i numeri di sequenza quando si fa clic sui simboli (1, 2, 3, 4)';
     L['SETTINGS_PREDICT_SOLUTION_LABEL'] = 'Predire soluzione';
-    L['SETTINGS_PREDICT_SOLUTION_TOOLTIP'] = 'Prevedere la soluzione su 2-3 passaggi, ma |cffff6a00il primo|r scelto simbolo |cffff6a00deve essere|r il simbolo di entrata';
+    L['SETTINGS_PREDICT_SOLUTION_TOOLTIP'] = 'Prevedere la soluzione su 2-3 passaggi, ma |cffff6a00il primo|r scelto simbolo |cffff6a00deve essere|r il simbolo di entrata|n|nÈ possibile disabilitare temporaneamente la previsione facendo clic sul primo simbolo con MAIUSC premuto';
     L['SETTINGS_SHOW_LARGE_SYMBOL_LABEL'] = 'Mostra il simbolo grande';
     L['SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = 'Mostra un grande simbolo nella parte superiore dello schermo se c\'è una soluzione già pronta|n|nFare clic con il tasto destro per chiudere';
     L['SETTINGS_SCALE_LABEL'] = 'Scala';
@@ -551,7 +551,7 @@ if gameLocale == 'ptBR' then
     L['SETTINGS_SHOW_SEQUENCE_NUMBERS_LABEL'] = 'Mostrar números de sequência';
     L['SETTINGS_SHOW_SEQUENCE_NUMBERS_TOOLTIP'] = 'Mostrar números de sequência ao clicar nos símbolos (1, 2, 3, 4)';
     L['SETTINGS_PREDICT_SOLUTION_LABEL'] = 'Solução de previsão';
-    L['SETTINGS_PREDICT_SOLUTION_TOOLTIP'] = 'Preveja a solução em 2-3 etapas, mas |cffff6a00primeiro|r escolheu o símbolo |cffff6a00deve ser|r o símbolo de entrada';
+    L['SETTINGS_PREDICT_SOLUTION_TOOLTIP'] = 'Preveja a solução em 2-3 etapas, mas |cffff6a00primeiro|r escolheu o símbolo |cffff6a00deve ser|r o símbolo de entrada|n|nVocê pode desativar temporariamente a previsão clicando no primeiro símbolo com a tecla SHIFT pressionada';
     L['SETTINGS_SHOW_LARGE_SYMBOL_LABEL'] = 'Mostrar símbolo grande';
     L['SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = 'Mostra um grande símbolo no topo da tela se houver uma solução pronta|n|nClique com o botão direito para fechar';
     L['SETTINGS_SCALE_LABEL'] = 'Escala';
@@ -634,7 +634,7 @@ if gameLocale == 'esES' then
     L['SETTINGS_SHOW_SEQUENCE_NUMBERS_LABEL'] = 'Mostrar números de secuencia';
     L['SETTINGS_SHOW_SEQUENCE_NUMBERS_TOOLTIP'] = 'Mostrar números de secuencia al hacer clic en los símbolos (1, 2, 3, 4)';
     L['SETTINGS_PREDICT_SOLUTION_LABEL'] = 'Predecir solución';
-    L['SETTINGS_PREDICT_SOLUTION_TOOLTIP'] = 'Predecir la solución en 2-3 pasos, pero |cffff6a00el primer|r símbolo elegido |cffff6a00debe ser|r el símbolo de entrada';
+    L['SETTINGS_PREDICT_SOLUTION_TOOLTIP'] = 'Predecir la solución en 2-3 pasos, pero |cffff6a00el primer|r símbolo elegido |cffff6a00debe ser|r el símbolo de entrada|n|nPuede deshabilitar temporalmente la predicción haciendo clic en el primer símbolo con la tecla MAYÚS presionada';
     L['SETTINGS_SHOW_LARGE_SYMBOL_LABEL'] = 'Mostrar símbolo grande';
     L['SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = 'Muestre un símbolo grande en la parte superior de la pantalla si hay una solución preparada|n|nClick derecho para cerrar';
     L['SETTINGS_SCALE_LABEL'] = 'Escala';
@@ -726,7 +726,7 @@ if gameLocale == 'zhTW' then
     L['SETTINGS_SHOW_SEQUENCE_NUMBERS_LABEL'] = '顯示序列號';
     L['SETTINGS_SHOW_SEQUENCE_NUMBERS_TOOLTIP'] = '單擊符號時顯示序列號（1、2、3、4）';
     L['SETTINGS_PREDICT_SOLUTION_LABEL'] = '預測解決方案';
-    L['SETTINGS_PREDICT_SOLUTION_TOOLTIP'] = '在2-3步上預測解決方案，但是|cffff6a00第一個|r選擇的符號|cffff6a00必須是|r入口符號';
+    L['SETTINGS_PREDICT_SOLUTION_TOOLTIP'] = '在2-3步上預測解決方案，但是|cffff6a00第一個|r選擇的符號|cffff6a00必須是|r入口符號|n|n您可以通過按住SHIFT的方式單擊第一個符號來暫時禁用預測';
     L['SETTINGS_SHOW_LARGE_SYMBOL_LABEL'] = '顯示大符號';
     L['SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = '如果有現成的解決方案，請在屏幕頂部顯示一個大符號|n|n右鍵單擊以關閉';
     L['SETTINGS_SCALE_LABEL'] = '規模';
@@ -812,7 +812,7 @@ if gameLocale == 'zhCN' then
     L['SETTINGS_SHOW_SEQUENCE_NUMBERS_LABEL'] = '显示序号';
     L['SETTINGS_SHOW_SEQUENCE_NUMBERS_TOOLTIP'] = '单击符号时显示序号(1/2/3/4)';
     L['SETTINGS_PREDICT_SOLUTION_LABEL'] = '预测答案';
-    L['SETTINGS_PREDICT_SOLUTION_TOOLTIP'] = '在2-3步预测答案，但是|cffff6a00第一个|r选择的符号|cffff6a00必须是|r入口符号';
+    L['SETTINGS_PREDICT_SOLUTION_TOOLTIP'] = '在2-3步预测答案，但是|cffff6a00第一个|r选择的符号|cffff6a00必须是|r入口符号|n|n您可以通过按住SHIFT的方式单击第一个符号来暂时禁用预测';
     L['SETTINGS_SHOW_LARGE_SYMBOL_LABEL'] = '显示大符号';
     L['SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = '如果有现成的解决方案，请在屏幕顶部显示一个大符号|n|n右键单击以关闭';
     L['SETTINGS_SCALE_LABEL'] = '规模';
@@ -883,7 +883,7 @@ if gameLocale == 'koKR' then
     L['SETTINGS_AUTOANNOUNCER_LABEL'] = '자동 알리기 활성화';
     L['SETTINGS_AUTOANNOUNCER_TOOLTIP'] = '자동으로 완성된 정답을 파티 채팅에 보냄';
     L['SETTINGS_PREDICT_SOLUTION_LABEL'] = '정답 예측';
-    L['SETTINGS_PREDICT_SOLUTION_TOOLTIP'] = '2-3 단계로 정답을 예측할 수 있지만, |cffff6a00첫 번째|r로 선택한 모양은 |cffff6a00반드시|r 입구 방향의 모양이여야 합니다';
+    L['SETTINGS_PREDICT_SOLUTION_TOOLTIP'] = '2-3 단계로 정답을 예측할 수 있지만, |cffff6a00첫 번째|r로 선택한 모양은 |cffff6a00반드시|r 입구 방향의 모양이여야 합니다|n|nSHIFT를 누른 상태에서 첫 번째 기호를 클릭하여 예측을 일시적으로 비활성화 할 수 있습니다.';
     L['SETTINGS_REVEAL_RESETTER_LABEL'] = '퍼즐을 초기화한 사람 공개';
     L['SETTINGS_REVEAL_RESETTER_TOOLTIP'] = '채팅에 «초기화» 혹은 «통과» 버튼을 누른 사람의 이름을 넣습니다 (자신만 해당)';
     L['SETTINGS_SHOW_AT_BOSS_LABEL'] = '보스에서 나오게 하기';

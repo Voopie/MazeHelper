@@ -86,6 +86,8 @@ local QUEENS_CONSERVATORY_SOUL_NPC_ID = 176324;
 local PASSED_COUNTER = 1;
 local SOLUTION_BUTTON_ID;
 local PREDICTED_SOLUTION_BUTTON_ID;
+local isPredictedTemporaryOff = false;
+
 local ANNOUNCED_BUTTON_ID;
 
 local MOTS_INSTANCE_ID = 2290;
@@ -526,6 +528,8 @@ local function ResetAll()
     SOLUTION_BUTTON_ID = nil;
     PREDICTED_SOLUTION_BUTTON_ID = nil;
     ANNOUNCED_BUTTON_ID = nil;
+
+    isPredictedTemporaryOff = false;
 
     for i = 1, #RESERVED_BUTTONS_SEQUENCE do
         RESERVED_BUTTONS_SEQUENCE[i] = false;
@@ -1009,6 +1013,10 @@ local function Button_SetActive(button, send, sender)
 
     NUM_ACTIVE_BUTTONS = math.min(MAX_ACTIVE_BUTTONS, NUM_ACTIVE_BUTTONS + 1);
 
+    if NUM_ACTIVE_BUTTONS == 1 and IsShiftKeyDown() then
+        isPredictedTemporaryOff = true;
+    end
+
     button.state  = true;
     button.sender = sender;
 
@@ -1074,6 +1082,7 @@ local function Button_SetUnactive(button, send, sender)
 
     if NUM_ACTIVE_BUTTONS == 0 then
         MazeHelper.frame.ResetButton:SetEnabled(false);
+        isPredictedTemporaryOff = false;
     end
 
     if send then
@@ -1158,7 +1167,7 @@ function MazeHelper:CreateButton(index)
         self.sequence = GetMinimumReservedSequence();
         RESERVED_BUTTONS_SEQUENCE[self.sequence] = true;
 
-        self.SequenceText:SetText((MHMOTSConfig.PredictSolution and self.sequence == 1) and M.INLINE_ENTRANCE_ICON or self.sequence);
+        self.SequenceText:SetText((not isPredictedTemporaryOff and MHMOTSConfig.PredictSolution and self.sequence == 1) and M.INLINE_ENTRANCE_ICON or self.sequence);
     end
 
     button.ResetSequence = function(self)
@@ -1338,10 +1347,11 @@ local TryFullSolution do
     end
 end
 
+
 function MazeHelper:UpdateSolution()
     SOLUTION_BUTTON_ID = nil;
 
-    if MHMOTSConfig.PredictSolution and NUM_ACTIVE_BUTTONS < MAX_ACTIVE_BUTTONS then
+    if not isPredictedTemporaryOff and MHMOTSConfig.PredictSolution and NUM_ACTIVE_BUTTONS < MAX_ACTIVE_BUTTONS  then
         SOLUTION_BUTTON_ID = TryHeuristicSolution();
         PREDICTED_SOLUTION_BUTTON_ID = SOLUTION_BUTTON_ID or nil;
     end
