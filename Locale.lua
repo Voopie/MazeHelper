@@ -217,7 +217,7 @@ if gameLocale == 'ruRU' then
     L['SETTINGS_SHOW_SEQUENCE_NUMBERS_LABEL'] = 'Показывать порядковые номера';
     L['SETTINGS_SHOW_SEQUENCE_NUMBERS_TOOLTIP'] = 'Показывать порядковые номера при нажатии на символы (1, 2, 3, 4)';
     L['SETTINGS_PREDICT_SOLUTION_LABEL'] = 'Предсказывать решение';
-    L['SETTINGS_PREDICT_SOLUTION_TOOLTIP'] = 'Предсказывать решение на 2–3 шагах, но |cffff6a00первый|r выбранный символ |cffff6a00должен быть|r символом входа|n|nВы можете временно выключить предсказывание решения по клику по первому символу с нажатым клавишей SHIFT';
+    L['SETTINGS_PREDICT_SOLUTION_TOOLTIP'] = 'Предсказывать решение на 2–3 шагах, но |cffff6a00первый|r выбранный символ |cffff6a00должен быть|r символом входа|n|nВы можете временно выключить предсказывание решения по клику по первому символу с нажатой клавишей SHIFT';
     L['SETTINGS_SHOW_LARGE_SYMBOL_LABEL'] = 'Показывать большой символ';
     L['SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = 'Показывать большой символ вверху экрана при наличии решения|n|nПравый клик, чтобы закрыть';
     L['SETTINGS_SCALE_LABEL'] = 'Масштаб';
