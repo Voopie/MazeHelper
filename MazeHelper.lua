@@ -1004,7 +1004,14 @@ PixelUtil.SetPoint(MazeHelper.frame.Settings.VersionText, 'TOP', MazeHelper.fram
 MazeHelper.frame.Settings.VersionText:SetText(Version);
 
 -- send & sender can be nil
-local function Button_SetActive(button, send, sender)
+local function Button_SetActive(button, send, sender, isDoubleClick)
+    if isDoubleClick then
+        if button.sequence == 1 then
+            isPredictedTemporaryOff = true;
+            button.SequenceText:SetText(1);
+        end
+    end
+
     if button.state or NUM_ACTIVE_BUTTONS == MAX_ACTIVE_BUTTONS then
         return;
     end
@@ -1187,6 +1194,12 @@ function MazeHelper:CreateButton(index)
             Button_SetActive(self, true);
         elseif b == 'RightButton' then
             Button_SetUnactive(self, true);
+        end
+    end);
+
+    button:SetScript('OnDoubleClick', function(self, b)
+        if b == 'LeftButton' then
+            Button_SetActive(self, true, nil, true);
         end
     end);
 
