@@ -697,7 +697,7 @@ end);
 
 settingsScrollChild.Data.PredictSolution = E.CreateRoundedCheckButton(settingsScrollChild);
 settingsScrollChild.Data.PredictSolution:SetPosition('TOPLEFT', settingsScrollChild.Data.ShowAtBoss, 'BOTTOMLEFT', 0, 0);
-settingsScrollChild.Data.PredictSolution:SetLabel(L['SETTINGS_PREDICT_SOLUTION_LABEL']);
+settingsScrollChild.Data.PredictSolution:SetLabel(M.INLINE_NEW_ICON .. L['SETTINGS_PREDICT_SOLUTION_LABEL']);
 settingsScrollChild.Data.PredictSolution:SetTooltip(L['SETTINGS_PREDICT_SOLUTION_TOOLTIP']);
 settingsScrollChild.Data.PredictSolution:SetScript('OnClick', function(self)
     MHMOTSConfig.PredictSolution = self:GetChecked();
