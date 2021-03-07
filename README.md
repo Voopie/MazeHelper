@@ -9,7 +9,7 @@
 - Auto showing when you are Mists of Tirna Scithe's zone named "Mistveil Tangle" and boss "Mistcaller" is not killed
 - Using solo or with party
 - Synchronization with party
-- Predicting a solution after three or even two choices!
+- Predicting a solution after three or even two choices! (you can temporarily disable it by shift+click or double-click)
 - Auto announcer with right solution (you can even configure the cases in which this will work)
 - Sequence numbers
 - Large symbol: with right solution and sound notification (movable & scalable)
