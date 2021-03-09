@@ -174,8 +174,8 @@ L['SETTINGS_PREDICTED_COLORPICKER'] = 'Predicted';
 L['SETTINGS_SKULLMARKER_CLONE_LABEL'] = 'Skull on Clone';
 L['SETTINGS_SKULLMARKER_CLONE_TOOLTIP'] = 'Automatically set the skull marker |TInterface\\TargetingFrame\\UI-RaidTargetingIcon_8:0|t to the targeted Illusionary Clone';
 L['SETTINGS_SKULLMARKER_USE_MODIFIER_TOOLTIP'] = 'Use modifier key';
-L['SETTINGS_AUTO_SHOW_LABEL'] = 'Auto show/hide';
-L['SETTINGS_AUTO_SHOW_TOOLTIP'] = 'Automatically toggle the visibility of the main window';
+L['SETTINGS_AUTO_TOGGLE_VISIBILITY_LABEL'] = 'Auto show/hide';
+L['SETTINGS_AUTO_TOGGLE_VISIBILITY_TOOLTIP'] = 'Automatically toggle the visibility of the main window';
 
 -- Русский (я)
 if gameLocale == 'ruRU' then
@@ -256,8 +256,8 @@ if gameLocale == 'ruRU' then
     L['SETTINGS_SKULLMARKER_CLONE_LABEL'] = 'Череп на Клона';
     L['SETTINGS_SKULLMARKER_CLONE_TOOLTIP'] = 'Автоматически ставить метку черепа |TInterface\\TargetingFrame\\UI-RaidTargetingIcon_8:0|t на Иллюзорного клона, при взятии его в цель';
     L['SETTINGS_SKULLMARKER_USE_MODIFIER_TOOLTIP'] = 'Использовать клавишу-модификатор';
-    L['SETTINGS_AUTO_SHOW_LABEL'] = 'Авто показ/скрытие';
-    L['SETTINGS_AUTO_SHOW_TOOLTIP'] = 'Автоматически управлять видимостью главного окна';
+    L['SETTINGS_AUTO_TOGGLE_VISIBILITY_LABEL'] = 'Авто показ/скрытие';
+    L['SETTINGS_AUTO_TOGGLE_VISIBILITY_TOOLTIP'] = 'Автоматически управлять видимостью главного окна';
 
     return;
 end
@@ -343,8 +343,8 @@ if gameLocale == 'deDE' then
     L['SETTINGS_SKULLMARKER_CLONE_LABEL'] = 'Schädel auf Klon';
     L['SETTINGS_SKULLMARKER_CLONE_TOOLTIP'] = 'Setze den Schädelmarker |TInterface\\TargetingFrame\\UI-RaidTargetingIcon_8:0|t automatisch auf den Ziel-Illusionärer Klon';
     L['SETTINGS_SKULLMARKER_USE_MODIFIER_TOOLTIP'] = 'Verwenden Sie die Modifizierertaste';
-    L['SETTINGS_AUTO_SHOW_LABEL'] = 'Auto ein-/ausblenden';
-    L['SETTINGS_AUTO_SHOW_TOOLTIP'] = 'Schaltet die Sichtbarkeit des Hauptfensters automatisch um';
+    L['SETTINGS_AUTO_TOGGLE_VISIBILITY_LABEL'] = 'Auto ein-/ausblenden';
+    L['SETTINGS_AUTO_TOGGLE_VISIBILITY_TOOLTIP'] = 'Schaltet die Sichtbarkeit des Hauptfensters automatisch um';
 
     return;
 end
@@ -428,8 +428,8 @@ if gameLocale == 'frFR' then
     L['SETTINGS_SKULLMARKER_CLONE_LABEL'] = 'Crâne sur Clone';
     L['SETTINGS_SKULLMARKER_CLONE_TOOLTIP'] = 'Définissez automatiquement le marqueur de crâne |TInterface\\TargetingFrame\\UI-RaidTargetingIcon_8:0|t sur le Clone illusoire ciblé';
     L['SETTINGS_SKULLMARKER_USE_MODIFIER_TOOLTIP'] = 'Utiliser la touche de modification';
-    L['SETTINGS_AUTO_SHOW_LABEL'] = 'Afficher/masquer automatiquement';
-    L['SETTINGS_AUTO_SHOW_TOOLTIP'] = 'Basculer automatiquement la visibilité de la fenêtre principale';
+    L['SETTINGS_AUTO_TOGGLE_VISIBILITY_LABEL'] = 'Afficher/masquer automatiquement';
+    L['SETTINGS_AUTO_TOGGLE_VISIBILITY_TOOLTIP'] = 'Basculer automatiquement la visibilité de la fenêtre principale';
 
     return;
 end
@@ -513,8 +513,8 @@ if gameLocale == 'itIT' then
     L['SETTINGS_SKULLMARKER_CLONE_LABEL'] = 'Teschio su Clone';
     L['SETTINGS_SKULLMARKER_CLONE_TOOLTIP'] = 'Imposta automaticamente l\'indicatore del teschio |TInterface\\TargetingFrame\\UI-RaidTargetingIcon_8:0|t sul Clone Illusorio scelto';
     L['SETTINGS_SKULLMARKER_USE_MODIFIER_TOOLTIP'] = 'Usa il tasto modificatore';
-    L['SETTINGS_AUTO_SHOW_LABEL'] = 'Mostra/nascondi automaticamente';
-    L['SETTINGS_AUTO_SHOW_TOOLTIP'] = 'Attiva/disattiva automaticamente la visibilità della finestra principale';
+    L['SETTINGS_AUTO_TOGGLE_VISIBILITY_LABEL'] = 'Mostra/nascondi automaticamente';
+    L['SETTINGS_AUTO_TOGGLE_VISIBILITY_TOOLTIP'] = 'Attiva/disattiva automaticamente la visibilità della finestra principale';
 
     return;
 end
@@ -598,8 +598,8 @@ if gameLocale == 'ptBR' then
     L['SETTINGS_SKULLMARKER_CLONE_LABEL'] = 'Crânio em um Clone';
     L['SETTINGS_SKULLMARKER_CLONE_TOOLTIP'] = 'Defina automaticamente o marcador de caveira |TInterface\\TargetingFrame\\UI-RaidTargetingIcon_8:0|t para o Clone Ilusório visado';
     L['SETTINGS_SKULLMARKER_USE_MODIFIER_TOOLTIP'] = 'Use a tecla modificadora';
-    L['SETTINGS_AUTO_SHOW_LABEL'] = 'Mostrar/ocultar automaticamente';
-    L['SETTINGS_AUTO_SHOW_TOOLTIP'] = 'Alterna automaticamente a visibilidade da janela principal';
+    L['SETTINGS_AUTO_TOGGLE_VISIBILITY_LABEL'] = 'Mostrar/ocultar automaticamente';
+    L['SETTINGS_AUTO_TOGGLE_VISIBILITY_TOOLTIP'] = 'Alterna automaticamente a visibilidade da janela principal';
 
     return;
 end
@@ -683,8 +683,8 @@ if gameLocale == 'esES' then
     L['SETTINGS_SKULLMARKER_CLONE_LABEL'] = 'Cráneo en Clon';
     L['SETTINGS_SKULLMARKER_CLONE_TOOLTIP'] = 'Establece automáticamente el marcador de cráneo |TInterface\\TargetingFrame\\UI-RaidTargetingIcon_8:0|t en el Clon ilusorio objetivo';
     L['SETTINGS_SKULLMARKER_USE_MODIFIER_TOOLTIP'] = 'Usar tecla modificadora';
-    L['SETTINGS_AUTO_SHOW_LABEL'] = 'Mostrar/ocultar automáticamente';
-    L['SETTINGS_AUTO_SHOW_TOOLTIP'] = 'Alternar automáticamente la visibilidad de la ventana principal';
+    L['SETTINGS_AUTO_TOGGLE_VISIBILITY_LABEL'] = 'Mostrar/ocultar automáticamente';
+    L['SETTINGS_AUTO_TOGGLE_VISIBILITY_TOOLTIP'] = 'Alternar automáticamente la visibilidad de la ventana principal';
 
     return;
 end
@@ -777,8 +777,8 @@ if gameLocale == 'zhTW' then
     L['SETTINGS_SKULLMARKER_CLONE_LABEL'] = '複製體上骷髏標記';
     L['SETTINGS_SKULLMARKER_CLONE_TOOLTIP'] = '自動將頭骨標記|TInterface\\TargetingFrame\\UI-RaidTargetingIcon_8:0|t設置為目標幻影克隆';
     L['SETTINGS_SKULLMARKER_USE_MODIFIER_TOOLTIP'] = '使用修飾鍵';
-    L['SETTINGS_AUTO_SHOW_LABEL'] = '自動顯示/隱藏';
-    L['SETTINGS_AUTO_SHOW_TOOLTIP'] = '自動切換主窗口的可見性';
+    L['SETTINGS_AUTO_TOGGLE_VISIBILITY_LABEL'] = '自動顯示/隱藏';
+    L['SETTINGS_AUTO_TOGGLE_VISIBILITY_TOOLTIP'] = '自動切換主窗口的可見性';
 
     return;
 end
@@ -865,8 +865,8 @@ if gameLocale == 'zhCN' then
     L['SETTINGS_SKULLMARKER_CLONE_LABEL'] = '头骨上克隆';
     L['SETTINGS_SKULLMARKER_CLONE_TOOLTIP'] = '自动将头骨标记|TInterface\\TargetingFrame\\UI-RaidTargetingIcon_8:0|t设置为目标幻影克隆';
     L['SETTINGS_SKULLMARKER_USE_MODIFIER_TOOLTIP'] = '使用修饰键';
-    L['SETTINGS_AUTO_SHOW_LABEL'] = '自动显示/隐藏';
-    L['SETTINGS_AUTO_SHOW_TOOLTIP'] = '自动切换主窗口的可见性';
+    L['SETTINGS_AUTO_TOGGLE_VISIBILITY_LABEL'] = '自动显示/隐藏';
+    L['SETTINGS_AUTO_TOGGLE_VISIBILITY_TOOLTIP'] = '自动切换主窗口的可见性';
 
     return;
 end
@@ -951,8 +951,8 @@ if gameLocale == 'koKR' then
     L['SETTINGS_SKULLMARKER_CLONE_LABEL'] = '분신에 해골';
     L['SETTINGS_SKULLMARKER_CLONE_TOOLTIP'] = '해골 징표 |TInterface\\TargetingFrame\\UI-RaidTargetingIcon_8:0|t를 대상으로 지정한 환영 분신에 자동으로 설정합니다';
     L['SETTINGS_SKULLMARKER_USE_MODIFIER_TOOLTIP'] = '모드 키 사용';
-    L['SETTINGS_AUTO_SHOW_LABEL'] = '자동 표시 / 숨기기';
-    L['SETTINGS_AUTO_SHOW_TOOLTIP'] = '기본 창의 가시성을 자동으로 전환';
+    L['SETTINGS_AUTO_TOGGLE_VISIBILITY_LABEL'] = '자동 표시 / 숨기기';
+    L['SETTINGS_AUTO_TOGGLE_VISIBILITY_TOOLTIP'] = '기본 창의 가시성을 자동으로 전환';
 
     return;
 end

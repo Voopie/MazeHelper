@@ -681,8 +681,8 @@ local settingsScrollChild = E.CreateScrollFrame(MazeHelper.frame.Settings, 26);
 
 settingsScrollChild.Data.AutoToggleVisibility = E.CreateRoundedCheckButton(settingsScrollChild);
 settingsScrollChild.Data.AutoToggleVisibility:SetPosition('TOPLEFT', settingsScrollChild, 'TOPLEFT', 12, 0);
-settingsScrollChild.Data.AutoToggleVisibility:SetLabel(M.INLINE_NEW_ICON .. L['SETTINGS_AUTO_SHOW_LABEL']);
-settingsScrollChild.Data.AutoToggleVisibility:SetTooltip(L['SETTINGS_AUTO_SHOW_TOOLTIP']);
+settingsScrollChild.Data.AutoToggleVisibility:SetLabel(M.INLINE_NEW_ICON .. L['SETTINGS_AUTO_TOGGLE_VISIBILITY_LABEL']);
+settingsScrollChild.Data.AutoToggleVisibility:SetTooltip(L['SETTINGS_AUTO_TOGGLE_VISIBILITY_TOOLTIP']);
 settingsScrollChild.Data.AutoToggleVisibility:SetScript('OnClick', function(self)
     MHMOTSConfig.AutoToggleVisibility = self:GetChecked();
 end);
