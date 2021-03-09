@@ -679,8 +679,16 @@ MazeHelper.frame.PracticeModeButton.Background:SetTexCoord(unpack(M.Rings.COORDS
 
 local settingsScrollChild = E.CreateScrollFrame(MazeHelper.frame.Settings, 26);
 
+settingsScrollChild.Data.AutoToggleVisibility = E.CreateRoundedCheckButton(settingsScrollChild);
+settingsScrollChild.Data.AutoToggleVisibility:SetPosition('TOPLEFT', settingsScrollChild, 'TOPLEFT', 12, 0);
+settingsScrollChild.Data.AutoToggleVisibility:SetLabel(M.INLINE_NEW_ICON .. L['SETTINGS_AUTO_SHOW_LABEL']);
+settingsScrollChild.Data.AutoToggleVisibility:SetTooltip(L['SETTINGS_AUTO_SHOW_TOOLTIP']);
+settingsScrollChild.Data.AutoToggleVisibility:SetScript('OnClick', function(self)
+    MHMOTSConfig.AutoToggleVisibility = self:GetChecked();
+end);
+
 settingsScrollChild.Data.SyncEnabled = E.CreateRoundedCheckButton(settingsScrollChild);
-settingsScrollChild.Data.SyncEnabled:SetPosition('TOPLEFT', settingsScrollChild, 'TOPLEFT', 12, 0);
+settingsScrollChild.Data.SyncEnabled:SetPosition('TOPLEFT', settingsScrollChild.Data.AutoToggleVisibility, 'BOTTOMLEFT', 0, 0);
 settingsScrollChild.Data.SyncEnabled:SetLabel(L['SETTINGS_SYNC_ENABLED_LABEL']);
 settingsScrollChild.Data.SyncEnabled:SetTooltip(L['SETTINGS_SYNC_ENABLED_TOOLTIP']);
 settingsScrollChild.Data.SyncEnabled:SetScript('OnClick', function(self)
@@ -1612,16 +1620,18 @@ local function UpdateUsedMarkers()
 end
 
 local function UpdateShown()
-    if MHMOTSConfig.ShowAtBoss then
-        MazeHelper.frame:SetShown((not bossKilled and inMOTS and GetMinimapZoneText() == L['ZONE_NAME']));
-    else
-        MazeHelper.frame:SetShown((not inEncounter and inMOTS and GetMinimapZoneText() == L['ZONE_NAME']));
-    end
+    if MHMOTSConfig.AutoToggleVisibility then
+        if MHMOTSConfig.ShowAtBoss then
+            MazeHelper.frame:SetShown((not bossKilled and inMOTS and GetMinimapZoneText() == L['ZONE_NAME']));
+        else
+            MazeHelper.frame:SetShown((not inEncounter and inMOTS and GetMinimapZoneText() == L['ZONE_NAME']));
+        end
 
-    if MazeHelper.frame:IsShown() then
-        if MHMOTSConfig.StartInMinMode and not startedInMinMode then
-            MazeHelper.frame.MinButton:Click();
-            startedInMinMode = true;
+        if MazeHelper.frame:IsShown() then
+            if MHMOTSConfig.StartInMinMode and not startedInMinMode then
+                MazeHelper.frame.MinButton:Click();
+                startedInMinMode = true;
+            end
         end
     end
 
@@ -2042,6 +2052,7 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     MHMOTSConfig.SavedBackgroundAlpha            = MHMOTSConfig.SavedBackgroundAlpha or 0.85;
     MHMOTSConfig.SavedBackgroundAlphaLargeSymbol = MHMOTSConfig.SavedBackgroundAlphaLargeSymbol or 0.8;
 
+    MHMOTSConfig.AutoToggleVisibility    = MHMOTSConfig.AutoToggleVisibility == nil and true or MHMOTSConfig.AutoToggleVisibility;
     MHMOTSConfig.SyncEnabled             = MHMOTSConfig.SyncEnabled == nil and true or MHMOTSConfig.SyncEnabled;
     MHMOTSConfig.PredictSolution         = MHMOTSConfig.PredictSolution == nil and false or MHMOTSConfig.PredictSolution;
     MHMOTSConfig.PrintResettedPlayerName = MHMOTSConfig.PrintResettedPlayerName == nil and true or MHMOTSConfig.PrintResettedPlayerName;
@@ -2073,6 +2084,7 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
 
     MHMOTSConfig.MinimapButton = MHMOTSConfig.MinimapButton or { hide = false };
 
+    settingsScrollChild.Data.AutoToggleVisibility:SetChecked(MHMOTSConfig.AutoToggleVisibility);
     settingsScrollChild.Data.SyncEnabled:SetChecked(MHMOTSConfig.SyncEnabled);
     settingsScrollChild.Data.PredictSolution:SetChecked(MHMOTSConfig.PredictSolution);
     settingsScrollChild.Data.UseColoredSymbols:SetChecked(MHMOTSConfig.UseColoredSymbols);
