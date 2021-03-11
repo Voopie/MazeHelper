@@ -105,7 +105,6 @@ local EVENTS_INSTANCE = {
     'ZONE_CHANGED_NEW_AREA',
     'ENCOUNTER_START',
     'ENCOUNTER_END',
-    'BOSS_KILL',
     'CHAT_MSG_MONSTER_SAY',
 };
 
@@ -1621,10 +1620,18 @@ end
 
 local function UpdateShown()
     if MHMOTSConfig.AutoToggleVisibility then
-        if MHMOTSConfig.ShowAtBoss then
-            MazeHelper.frame:SetShown((not bossKilled and inMOTS and GetMinimapZoneText() == L['ZONE_NAME']));
+        if inMOTS and GetMinimapZoneText() == L['ZONE_NAME'] then
+            if bossKilled then
+                MazeHelper.frame:SetShown(false);
+            else
+                if inEncounter then
+                    MazeHelper.frame:SetShown(MHMOTSConfig.ShowAtBoss);
+                else
+                    MazeHelper.frame:SetShown(true);
+                end
+            end
         else
-            MazeHelper.frame:SetShown((not inEncounter and inMOTS and GetMinimapZoneText() == L['ZONE_NAME']));
+            MazeHelper.frame:SetShown(false);
         end
 
         if MazeHelper.frame:IsShown() then
@@ -1845,10 +1852,6 @@ end
 
 function MazeHelper.frame:ENCOUNTER_END(encounterId, _, _, _, success)
     UpdateBossState(encounterId, false, success);
-end
-
-function MazeHelper.frame:BOSS_KILL(encounterId)
-    UpdateBossState(encounterId, false, true);
 end
 
 function MazeHelper.frame:NAME_PLATE_UNIT_ADDED(unit)
