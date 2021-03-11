@@ -1671,7 +1671,7 @@ local function UpdateState()
     bossKilled  = inMOTS and (select(3, GetInstanceLockTimeRemainingEncounter(2))) or false;
     inEncounter = inMOTS and not bossKilled and UnitExists('boss1');
 
-    PASSED_COUNTER = 1;
+    PASSED_COUNTER = (inMOTS and (select(3, GetInstanceLockTimeRemainingEncounter(1)))) and PASSED_COUNTER or 1;
     MazeHelper.frame.PassedCounter.Text:SetText(PASSED_COUNTER);
     PixelUtil.SetPoint(MazeHelper.frame.PassedCounter.Text, 'CENTER', MazeHelper.frame.PassedCounter, 'CENTER', (PASSED_COUNTER == 1) and -2 or 0, isMinimized and 0 or -1);
 
