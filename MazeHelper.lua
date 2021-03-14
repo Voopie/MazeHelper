@@ -1857,7 +1857,7 @@ function MazeHelper.frame:NAME_PLATE_UNIT_ADDED(unit)
         return;
     end
 
-    local npcId = tonumber((select(6, strsplit('-', UnitGUID(unit) or ''))) or '0');
+    local npcId = tonumber((select(6, strsplit('-', UnitGUID(unit) or EMPTY_STRING))));
     if not npcId or npcId ~= ILLUSIONARY_CLONE_ID then
         return;
     end
