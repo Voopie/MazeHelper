@@ -81,8 +81,6 @@ local EXPOSED_BOGGARD_NPC_ID = 170080;
 local SPRIGAN_RIOT_QUEST_ID = 60585;
 local SILKSTRIDER_CARETAKER_NPC_ID = 169273;
 
-local QUEENS_CONSERVATORY_SOUL_NPC_ID = 176324;
-
 local PASSED_COUNTER = 1;
 local SOLUTION_BUTTON_ID;
 local PREDICTED_SOLUTION_BUTTON_ID;
@@ -1918,8 +1916,6 @@ function MazeHelper.frame:GOSSIP_SHOW()
     if inMOTS and DEPLETED_ANIMA_SEED_IDS[npcId] then
         isPositive = true;
     elseif npcId == SILKSTRIDER_CARETAKER_NPC_ID and C_TaskQuest.IsActive(SPRIGAN_RIOT_QUEST_ID) then
-        isPositive = true;
-    elseif npcId == QUEENS_CONSERVATORY_SOUL_NPC_ID then
         isPositive = true;
     end
 
