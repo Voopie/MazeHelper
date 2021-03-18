@@ -1691,7 +1691,7 @@ local function UpdateState()
     startedInMinMode = false;
 
     if inMOTS then
-        MazeHelper:RequestPassedCounter(); -- if you were dc'ed or reloading ui
+        MazeHelper:RequestPassedCounter(); -- if you were dc'ed or reloaded ui
 
         for _, event in ipairs(EVENTS_INSTANCE) do
             MazeHelper.frame:RegisterEvent(event);
