@@ -692,6 +692,7 @@ end
  -- Latin American Spanish
 if gameLocale == 'esMX' then
     L['ZONE_NAME'] = 'Espesura Veloniebla';
+    L['MISTCALLER_NAME'] = 'Clamaneblina';
 
     return;
 end
