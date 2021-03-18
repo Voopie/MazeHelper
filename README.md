@@ -24,7 +24,6 @@
 
 - Auto-mark boggarts in «Tough Crowd» world quest (you just need to mouse over the mobs and the boggart will be marked with a skull)
 - Auto gossip with Silkstrider Caretakers in «Sprigan Riot» world quest
-- Auto gossip with Souls in Queen's Conservatory
 
 ### ***Usage:***
 
