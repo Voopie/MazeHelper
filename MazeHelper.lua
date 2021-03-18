@@ -248,6 +248,11 @@ local function BorderColor_UpdateAll()
     end
 end
 
+local function PassedCounter_Update()
+    MazeHelper.frame.PassedCounter.Text:SetText(PASSED_COUNTER);
+    PixelUtil.SetPoint(MazeHelper.frame.PassedCounter.Text, 'CENTER', MazeHelper.frame.PassedCounter, 'CENTER', (PASSED_COUNTER == 1) and -2 or 0, isMinimized and 0 or -1);
+end
+
 local function BetterOnDragStop(frame, saveTable)
     local point, relativeTo, relativePoint, xOfs, yOfs = frame:GetPoint();
 
@@ -391,7 +396,7 @@ MazeHelper.frame.MinButton:SetScript('OnClick', function()
     MazeHelper.frame.PassedCounter:ClearAllPoints();
     PixelUtil.SetPoint(MazeHelper.frame.PassedCounter, 'LEFT', MazeHelper.frame, 'LEFT', -18, 5);
     MazeHelper.frame.PassedCounter:SetScale(1);
-    PixelUtil.SetPoint(MazeHelper.frame.PassedCounter.Text, 'CENTER', MazeHelper.frame.PassedCounter, 'CENTER', (PASSED_COUNTER == 1) and -2 or 0, 0);
+    PassedCounter_Update();
 
     if SOLUTION_BUTTON_ID then
         MazeHelper.frame.MiniSolution:SetShown(true);
@@ -449,8 +454,8 @@ MazeHelper.frame.InvisibleMaxButton:SetScript('OnClick', function()
     MazeHelper.frame.PassedCounter:ClearAllPoints();
     PixelUtil.SetPoint(MazeHelper.frame.PassedCounter, 'BOTTOM', MazeHelper.frame, 'TOP', 0, -32);
     MazeHelper.frame.PassedCounter:SetScale(1.25);
-    PixelUtil.SetPoint(MazeHelper.frame.PassedCounter.Text, 'CENTER', MazeHelper.frame.PassedCounter, 'CENTER', (PASSED_COUNTER == 1) and -2 or 0, -1);
     MazeHelper.frame.PassedCounter:SetShown(true);
+    PassedCounter_Update();
 
     MazeHelper.frame.MiniSolution:SetShown(false);
 
@@ -585,9 +590,7 @@ MazeHelper.frame.PassedButton:SetText(L['PASSED']);
 PixelUtil.SetSize(MazeHelper.frame.PassedButton, tonumber(MazeHelper.frame.PassedButton:GetTextWidth()) + 20, 22);
 MazeHelper.frame.PassedButton:SetScript('OnClick', function()
     PASSED_COUNTER = PASSED_COUNTER + 1;
-
-    MazeHelper.frame.PassedCounter.Text:SetText(PASSED_COUNTER);
-    PixelUtil.SetPoint(MazeHelper.frame.PassedCounter.Text, 'CENTER', MazeHelper.frame.PassedCounter, 'CENTER', 0, isMinimized and 0 or -1);
+    PassedCounter_Update();
 
     MazeHelper:SendPassedCommand(PASSED_COUNTER);
     ResetAll();
@@ -610,6 +613,7 @@ PixelUtil.SetPoint(MazeHelper.frame.PassedCounter.Text, 'CENTER', MazeHelper.fra
 MazeHelper.frame.PassedCounter.Text:SetShadowColor(0.15, 0.15, 0.15);
 MazeHelper.frame.PassedCounter.Text:SetText(PASSED_COUNTER);
 MazeHelper.frame.PassedCounter.Text:SetJustifyH('CENTER');
+
 
 -- Mini solution icon
 MazeHelper.frame.MiniSolution = CreateFrame('Frame', nil, MazeHelper.frame.MainHolder);
@@ -1524,9 +1528,7 @@ end
 
 function MazeHelper:ReceivePassedCommand(step)
     PASSED_COUNTER = step;
-
-    MazeHelper.frame.PassedCounter.Text:SetText(PASSED_COUNTER);
-    PixelUtil.SetPoint(MazeHelper.frame.PassedCounter.Text, 'CENTER', MazeHelper.frame.PassedCounter, 'CENTER', (PASSED_COUNTER == 1) and -2 or 0, isMinimized and 0 or -1);
+    PassedCounter_Update();
 
     ResetAll();
 end
@@ -1537,9 +1539,7 @@ function MazeHelper:ReceivePassedCounter(step)
     end
 
     PASSED_COUNTER = step;
-
-    MazeHelper.frame.PassedCounter.Text:SetText(PASSED_COUNTER);
-    PixelUtil.SetPoint(MazeHelper.frame.PassedCounter.Text, 'CENTER', MazeHelper.frame.PassedCounter, 'CENTER', (PASSED_COUNTER == 1) and -2 or 0, isMinimized and 0 or -1);
+    PassedCounter_Update();
 end
 
 function MazeHelper:ReceiveActiveButtonID(buttonID, sender)
@@ -1670,8 +1670,7 @@ local function UpdateState()
     inEncounter = inMOTS and not bossKilled and UnitExists('boss1');
 
     PASSED_COUNTER = (inMOTS and (select(3, GetInstanceLockTimeRemainingEncounter(1)))) and PASSED_COUNTER or 1;
-    MazeHelper.frame.PassedCounter.Text:SetText(PASSED_COUNTER);
-    PixelUtil.SetPoint(MazeHelper.frame.PassedCounter.Text, 'CENTER', MazeHelper.frame.PassedCounter, 'CENTER', (PASSED_COUNTER == 1) and -2 or 0, isMinimized and 0 or -1);
+    PassedCounter_Update();
 
     startedInMinMode = false;
 
@@ -1980,9 +1979,7 @@ function MazeHelper.frame:CHAT_MSG_MONSTER_SAY(message, npcName)
 
     if MazeHelper.MISTCALLER_QUOTES_CURRENT and tContains(MazeHelper.MISTCALLER_QUOTES_CURRENT, message) then
         PASSED_COUNTER = PASSED_COUNTER + 1;
-
-        MazeHelper.frame.PassedCounter.Text:SetText(PASSED_COUNTER);
-        PixelUtil.SetPoint(MazeHelper.frame.PassedCounter.Text, 'CENTER', MazeHelper.frame.PassedCounter, 'CENTER', 0, isMinimized and 0 or -1);
+        PassedCounter_Update();
 
         MazeHelper:SendPassedCommand(PASSED_COUNTER, true);
         ResetAll();
