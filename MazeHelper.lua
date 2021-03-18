@@ -1020,10 +1020,14 @@ MazeHelper.frame.Settings.VersionText:SetText(Version);
 
 -- send & sender can be nil
 local function Button_SetActive(button, send, sender, isDoubleClick)
-    if isDoubleClick then
+    if isDoubleClick or IsShiftKeyDown() then
         if button.sequence == 1 then
             isPredictedTemporaryOff = true;
             button.SequenceText:SetText(1);
+
+            if send then
+                MazeHelper:SendButtonID(button.id, 'ACTIVE', isPredictedTemporaryOff);
+            end
         end
     end
 
@@ -1048,7 +1052,7 @@ local function Button_SetActive(button, send, sender, isDoubleClick)
     MazeHelper.frame.SolutionText:SetText(L['CHOOSE_SYMBOLS_' .. (MAX_ACTIVE_BUTTONS - NUM_ACTIVE_BUTTONS)]);
 
     if send then
-        MazeHelper:SendButtonID(button.id, 'ACTIVE');
+        MazeHelper:SendButtonID(button.id, 'ACTIVE', isPredictedTemporaryOff);
     end
 
     MazeHelper:UpdateSolution();
@@ -1108,7 +1112,7 @@ local function Button_SetUnactive(button, send, sender)
     end
 
     if send then
-        MazeHelper:SendButtonID(button.id, 'UNACTIVE');
+        MazeHelper:SendButtonID(button.id, 'UNACTIVE', isPredictedTemporaryOff);
     end
 end
 
@@ -1515,7 +1519,7 @@ function MazeHelper:RequestPassedCounter()
     ChatThrottleLib:SendAddonMessage(ADDON_COMM_MODE, ADDON_COMM_PREFIX, string.format('REQPC|%s', PASSED_COUNTER), partyChatType);
 end
 
-function MazeHelper:SendButtonID(buttonID, mode)
+function MazeHelper:SendButtonID(buttonID, mode, isPredictedOff)
     if not MHMOTSConfig.SyncEnabled then
         return;
     end
@@ -1525,7 +1529,7 @@ function MazeHelper:SendButtonID(buttonID, mode)
         return;
     end
 
-    ChatThrottleLib:SendAddonMessage(ADDON_COMM_MODE, ADDON_COMM_PREFIX, string.format('SendButtonID|%s|%s', buttonID, mode), partyChatType);
+    ChatThrottleLib:SendAddonMessage(ADDON_COMM_MODE, ADDON_COMM_PREFIX, string.format('SendButtonID|%s|%s|%s', buttonID, mode, isPredictedOff and 'POFF' or 'PON'), partyChatType);
 end
 
 function MazeHelper:ReceiveResetCommand()
@@ -1554,6 +1558,12 @@ function MazeHelper:ReceiveActiveButtonID(buttonID, sender)
     end
 
     Button_SetActive(buttons[buttonID], false, sender);
+
+    for i = 1, MAX_BUTTONS do
+        if buttons[i].state and buttons[i].sequence == 1 then
+            buttons[i].SequenceText:SetText(isPredictedTemporaryOff and 1 or M.INLINE_ENTRANCE_ICON);
+        end
+    end
 end
 
 function MazeHelper:ReceiveUnactiveButtonID(buttonID, sender)
@@ -2000,10 +2010,18 @@ function MazeHelper.frame:CHAT_MSG_ADDON(prefix, message, _, sender)
     end
 
     if prefix == ADDON_COMM_PREFIX then
-        local command, arg1, arg2 = strsplit('|', message);
+        local command, arg1, arg2, arg3 = strsplit('|', message);
 
         if command == 'SendButtonID' then
-            local buttonId, buttonMode = arg1, arg2;
+            local buttonId, buttonMode, isPredictedOff = arg1, arg2, arg3;
+
+            if isPredictedOff then
+                if isPredictedOff == 'POFF' then
+                    isPredictedTemporaryOff = true;
+                elseif isPredictedOff == 'PON' then
+                    isPredictedTemporaryOff = false;
+                end
+            end
 
             if buttonMode == 'ACTIVE' then
                 MazeHelper:ReceiveActiveButtonID(tonumber(buttonId), sender);
