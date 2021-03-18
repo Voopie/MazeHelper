@@ -873,6 +873,7 @@ end
 
 -- Korean
 -- hinski (https://www.curseforge.com/members/hinski)
+-- 적셔줄게 (yuk6196) (https://www.curseforge.com/members/yuk6196)
 if gameLocale == 'koKR' then
     L['ZONE_NAME'] = '안개장막 덩굴숲';
     L['MISTCALLER_NAME'] = '미스트콜러';
@@ -890,9 +891,9 @@ if gameLocale == 'koKR' then
     L['LEAF_NOFULL_CIRCLE'] = '원 안의 빈 잎';
     L['LEAF_NOFULL_NOCIRCLE'] = '원 없는 빈 잎';
     L['PASSED'] = '통과';
-    L['PASSED_PLAYER'] = '%s이(가) «|cff66ff6e통과|r» 버튼을 눌렀습니다';
+    L['PASSED_PLAYER'] = '%s|1이;가; «|cff66ff6e통과|r» 버튼을 눌렀습니다';
     L['RESET'] = '초기화';
-    L['RESETED_PLAYER'] = '%s이(가) 이 퍼즐을 |cffff0537초기화|r했습니다';
+    L['RESETED_PLAYER'] = '%s|1이;가; «|cff66ff6e통과|r» 버튼을 눌렀습니다';
     L['SENDED_BY'] = '%s의 전송';
     L['SETTINGS_AA_ALWAYS'] = '항상';
     L['SETTINGS_AA_HEALER'] = '힐러';
