@@ -17,9 +17,11 @@ local startedInMinMode = false;
 
 -- NANO-OPTIMIZATIONS!
 local EMPTY_STRING = '';
-local PLAYER_STRING = 'player';
-local TARGET_STRING = 'target';
+
+local PLAYER_STRING    = 'player';
+local TARGET_STRING    = 'target';
 local MOUSEOVER_STRING = 'mouseover';
+local NPC_STRING       = 'npc';
 
 local MAX_BUTTONS = 8;
 local MAX_ACTIVE_BUTTONS = 4;
@@ -214,6 +216,10 @@ local function mhPrint(message)
     end
 
     print(string.format(L['MAZE_HELPER_PRINT'], message));
+end
+
+local function GetNpcId(unit)
+    return tonumber((select(6, strsplit('-', UnitGUID(unit) or EMPTY_STRING))));
 end
 
 local function GetPartyChatType()
@@ -1856,7 +1862,7 @@ function MazeHelper.frame:NAME_PLATE_UNIT_ADDED(unit)
         return;
     end
 
-    local npcId = tonumber((select(6, strsplit('-', UnitGUID(unit) or EMPTY_STRING))));
+    local npcId = GetNpcId(unit);
     if not npcId or npcId ~= ILLUSIONARY_CLONE_ID then
         return;
     end
@@ -1889,7 +1895,7 @@ function MazeHelper.frame:PLAYER_TARGET_CHANGED()
         return;
     end
 
-    local npcId = tonumber((select(6, strsplit('-', UnitGUID(TARGET_STRING) or EMPTY_STRING))));
+    local npcId = GetNpcId(TARGET_STRING);
     if not npcId or npcId ~= ILLUSIONARY_CLONE_ID then
         return;
     end
@@ -1905,7 +1911,7 @@ function MazeHelper.frame:GOSSIP_SHOW()
         return;
     end
 
-    local npcId = tonumber((select(6, strsplit('-', UnitGUID('npc') or EMPTY_STRING))));
+    local npcId = GetNpcId(NPC_STRING);
     if not npcId then
 		return;
     end
@@ -1949,7 +1955,7 @@ function MazeHelper.frame:UPDATE_MOUSEOVER_UNIT()
         return;
     end
 
-    local npcId = tonumber((select(6, strsplit('-', UnitGUID(MOUSEOVER_STRING) or EMPTY_STRING))));
+    local npcId = GetNpcId(MOUSEOVER_STRING);
     if not npcId or npcId ~= EXPOSED_BOGGARD_NPC_ID then
 		return;
     end
