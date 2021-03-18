@@ -598,7 +598,7 @@ MazeHelper.frame.PassedButton:SetScript('OnClick', function()
     PASSED_COUNTER = PASSED_COUNTER + 1;
     PassedCounter_Update();
 
-    MazeHelper:SendPassedCommand(PASSED_COUNTER);
+    MazeHelper:SendPassedCommand();
     ResetAll();
 end);
 MazeHelper.frame.PassedButton:SetEnabled(false);
@@ -1472,7 +1472,7 @@ function MazeHelper:SendResetCommand()
     ChatThrottleLib:SendAddonMessage(ADDON_COMM_MODE, ADDON_COMM_PREFIX, 'SendReset', partyChatType);
 end
 
-function MazeHelper:SendPassedCommand(step, isAutoPass)
+function MazeHelper:SendPassedCommand(isAutoPass)
     if not MHMOTSConfig.SyncEnabled then
         return;
     end
@@ -1482,7 +1482,7 @@ function MazeHelper:SendPassedCommand(step, isAutoPass)
         return;
     end
 
-    ChatThrottleLib:SendAddonMessage(ADDON_COMM_MODE, ADDON_COMM_PREFIX, isAutoPass and string.format('SendPassed|%s|%s', step, 'AP') or string.format('SendPassed|%s', step), partyChatType);
+    ChatThrottleLib:SendAddonMessage(ADDON_COMM_MODE, ADDON_COMM_PREFIX, isAutoPass and string.format('SendPassed|%s|%s', PASSED_COUNTER, 'AP') or string.format('SendPassed|%s', PASSED_COUNTER), partyChatType);
 end
 
 function MazeHelper:SendPassedCounter(step)
@@ -1983,7 +1983,7 @@ function MazeHelper.frame:CHAT_MSG_MONSTER_SAY(message, npcName)
         PASSED_COUNTER = PASSED_COUNTER + 1;
         PassedCounter_Update();
 
-        MazeHelper:SendPassedCommand(PASSED_COUNTER, true);
+        MazeHelper:SendPassedCommand(true);
         ResetAll();
 
         mhPrint(L['AUTO_PASS']);
