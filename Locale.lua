@@ -232,10 +232,10 @@ if gameLocale == 'ruRU' then
     L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP'] = 'Отправлять решение в чат вместе с английскими фразами, например, «Пустой цветок без круга / Empty flower without a circle»';
     L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_LABEL'] = 'Ставить метку на игрока';
     L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_TOOLTIP'] = 'Автоматически ставить метку на игрока, если он кликнул по символу, который стал решением';
-    L['SETTINGS_ALPHA_BACKGROUND_LABEL'] = 'Непрозрачность фона';
-    L['SETTINGS_ALPHA_BACKGROUND_TOOLTIP'] = 'Задать непрозрачность фона главного окна';
-    L['SETTINGS_ALPHA_BACKGROUND_LARGE_SYMBOL_LABEL'] = 'Непрозрачность фона большого символа';
-    L['SETTINGS_ALPHA_BACKGROUND_LARGE_SYMBOL_TOOLTIP'] = 'Задать непрозрачность фона большого символа';
+    L['SETTINGS_ALPHA_BACKGROUND_LABEL'] = 'Видимость фона';
+    L['SETTINGS_ALPHA_BACKGROUND_TOOLTIP'] = 'Задать видимость фона главного окна';
+    L['SETTINGS_ALPHA_BACKGROUND_LARGE_SYMBOL_LABEL'] = 'Видимость фона большого символа';
+    L['SETTINGS_ALPHA_BACKGROUND_LARGE_SYMBOL_TOOLTIP'] = 'Задать видимость фона большого символа';
     L['PRACTICE_TITLE'] = 'Выберите символ, отличающийся чем-то одним от других';
     L['PRACTICE_PLAY_AGAIN'] = 'Сыграть ещё';
     L['PRACTICE_BUTTON_TOOLTIP'] = 'Практика';
@@ -244,7 +244,7 @@ if gameLocale == 'ruRU' then
     L['MINIMAP_BUTTON_RMB'] = 'ПКМ';
     L['MINIMAP_BUTTON_TOGGLE_MAZEHELPER'] = 'Открыть / закрыть окно помощника';
     L['MINIMAP_BUTTON_HIDE'] = 'Скрыть кнопку у миникарты';
-    L['MINIMAP_BUTTON_COMMAND_SHOW'] = 'Используйте /mh minimap, чтобы снова показать кнопку у миникарты';
+    L['MINIMAP_BUTTON_COMMAND_SHOW'] = 'Напишите в чате /mh minimap, чтобы снова показать кнопку у миникарты';
     L['AUTO_PASS'] = 'Авто-проход!';
     L['SETTINGS_AUTO_PASS_LABEL'] = 'Авто-проход';
     L['SETTINGS_AUTO_PASS_TOOLTIP'] = 'Авто «|cff66ff6eПрошли|r» при успешном прохождении сквозь туманы';
@@ -257,7 +257,7 @@ if gameLocale == 'ruRU' then
     L['SETTINGS_SKULLMARKER_CLONE_TOOLTIP'] = 'Автоматически ставить метку черепа |TInterface\\TargetingFrame\\UI-RaidTargetingIcon_8:0|t на Иллюзорного клона, при взятии его в цель';
     L['SETTINGS_SKULLMARKER_USE_MODIFIER_TOOLTIP'] = 'Использовать клавишу-модификатор';
     L['SETTINGS_AUTO_TOGGLE_VISIBILITY_LABEL'] = 'Авто показ/скрытие';
-    L['SETTINGS_AUTO_TOGGLE_VISIBILITY_TOOLTIP'] = 'Автоматически управлять видимостью главного окна';
+    L['SETTINGS_AUTO_TOGGLE_VISIBILITY_TOOLTIP'] = 'Автоматически управлять отображением главного окна';
 
     return;
 end
