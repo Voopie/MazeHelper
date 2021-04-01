@@ -580,7 +580,7 @@ do
         end
 
         holderButton.SetList = function(self, itemsTable)
-            local itemButton, lastButton;
+            local itemButton, isNew, lastButton;
             local itemCounter = 0;
             local listFrame = self.list;
 
@@ -588,7 +588,7 @@ do
 
             for key, value in ipairs(itemsTable) do
                 itemCounter = itemCounter + 1;
-                itemButton  = list.buttonPool:Acquire();
+                itemButton, isNew = list.buttonPool:Acquire();
 
                 if itemCounter == 1 then
                     PixelUtil.SetPoint(itemButton, 'TOPLEFT', listFrame, 'TOPLEFT', 0, 0);
@@ -600,40 +600,18 @@ do
 
                 lastButton = itemButton;
 
-                itemButton:SetBackdrop(DROPDOWN_ITEMBUTTON_BACKDROP);
-                itemButton:SetBackdropColor(0, 0, 0, 1);
+                if isNew then
+                    itemButton:SetBackdrop(DROPDOWN_ITEMBUTTON_BACKDROP);
+                    itemButton:SetBackdropColor(0, 0, 0, 1);
 
-                if not itemButton.SelectedIcon then
                     itemButton.SelectedIcon = itemButton:CreateTexture(nil, 'ARTWORK');
                     PixelUtil.SetPoint(itemButton.SelectedIcon, 'LEFT', itemButton, 'LEFT', 2, 0);
                     itemButton.SelectedIcon:SetTexture('Interface\\Buttons\\UI-CheckBox-Check');
                     itemButton.SelectedIcon:SetShown(false);
-                end
 
-                if not itemButton.Text then
                     itemButton.Text = itemButton:CreateFontString(nil, 'ARTWORK', 'GameFontHighlight');
                     PixelUtil.SetPoint(itemButton.Text, 'LEFT', itemButton.SelectedIcon, 'RIGHT', 2, 0);
-                end
 
-                PixelUtil.SetHeight(itemButton, self.HeightValue);
-                PixelUtil.SetSize(itemButton.SelectedIcon, self.HeightValue / 1.5, self.HeightValue / 1.5);
-                itemButton.Text:SetText(value);
-
-                itemButton.Key   = key;
-                itemButton.Value = value;
-
-                itemButton:SetScript('OnClick', function(self)
-                    PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
-
-                    holderButton:SetValue(self.Key);
-                    listFrame:SetShown(false);
-
-                    if holderButton.OnValueChangedCallback then
-                        holderButton:OnValueChangedCallback(self.Key);
-                    end
-                end);
-
-                if not itemButton.HookedOnEnterOnLeave then
                     itemButton:HookScript('OnEnter', function(self)
                         self:SetBackdropColor(1, 0.72, 0.2, 0.65);
                     end);
@@ -642,8 +620,24 @@ do
                         self:SetBackdropColor(0, 0, 0, 1);
                     end);
 
-                    itemButton.HookedOnEnterOnLeave = true;
+                    itemButton:SetScript('OnClick', function(self)
+                        PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
+
+                        holderButton:SetValue(self.Key);
+                        listFrame:SetShown(false);
+
+                        if holderButton.OnValueChangedCallback then
+                            holderButton:OnValueChangedCallback(self.Key);
+                        end
+                    end);
                 end
+
+                PixelUtil.SetHeight(itemButton, self.HeightValue);
+                PixelUtil.SetSize(itemButton.SelectedIcon, self.HeightValue / 1.5, self.HeightValue / 1.5);
+                itemButton.Text:SetText(value);
+
+                itemButton.Key   = key;
+                itemButton.Value = value;
 
                 itemButton:SetShown(true);
             end
