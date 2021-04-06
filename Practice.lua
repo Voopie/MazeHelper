@@ -202,7 +202,7 @@ local function UpdateButtons()
         end
 
         buttons[i].Icon:SetTexCoord(unpack(set.buttons[i].coords));
-        buttons[i]:SetUnactive();
+        buttons[i]:SetUnactiveBorder();
     end
 
     MazeHelper.PracticeFrame.PlayAgainButton:SetShown(false);
@@ -316,19 +316,19 @@ local function CreateButton(index)
         edgeSize = 2,
     });
 
-    button.SetUnactive = function(self)
+    button.SetUnactiveBorder = function(self)
         self:SetBackdropBorderColor(0, 0, 0, 0);
     end
 
-    button.SetError = function(self)
+    button.SetErrorBorder = function(self)
         self:SetBackdropBorderColor(0.8, 0.2, 0.4, 1);
     end
 
-    button.SetSolution = function(self)
+    button.SetSolutionBorder = function(self)
         self:SetBackdropBorderColor(0.2, 0.8, 0.4, 1);
     end
 
-    button:SetUnactive();
+    button:SetUnactiveBorder();
     button:RegisterForClicks('LeftButtonUp');
 
     button:SetScript('OnClick', function(self)
@@ -339,13 +339,13 @@ local function CreateButton(index)
         isLocked = true;
 
         if self.isSolution then
-            self:SetSolution();
+            self:SetSolutionBorder();
             PlayRandomSuccessSound();
         else
-            self:SetError();
+            self:SetErrorBorder();
             PlayRandomErrorSound();
 
-            buttons[solutionButtonIndex]:SetSolution();
+            buttons[solutionButtonIndex]:SetSolutionBorder();
         end
 
         MazeHelper.PracticeFrame.PlayAgainButton:SetShown(true);
