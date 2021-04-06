@@ -250,7 +250,7 @@ local function BorderColor_UpdateAll()
     end
 
     if PREDICTED_SOLUTION_BUTTON_ID and buttons[PREDICTED_SOLUTION_BUTTON_ID] then
-        buttons[PREDICTED_SOLUTION_BUTTON_ID]:SetPredicted();
+        buttons[PREDICTED_SOLUTION_BUTTON_ID]:SetPredictedBorder();
     end
 end
 
@@ -544,7 +544,7 @@ local function ResetAll()
     end
 
     for i = 1, MAX_BUTTONS do
-        buttons[i]:SetUnactive();
+        buttons[i]:SetUnactiveBorder();
         buttons[i]:ResetSequence();
 
         buttons[i].state = false;
@@ -1077,14 +1077,14 @@ local function Button_SetUnactive(button, send, sender)
     button.state  = false;
     button.sender = sender;
 
-    button:SetUnactive();
+    button:SetUnactiveBorder();
     button:ResetSequence();
 
     if NUM_ACTIVE_BUTTONS < MAX_ACTIVE_BUTTONS then
         MazeHelper.frame.SolutionText:SetText(L['CHOOSE_SYMBOLS_' .. (MAX_ACTIVE_BUTTONS - NUM_ACTIVE_BUTTONS)]);
 
         if SOLUTION_BUTTON_ID then
-            buttons[SOLUTION_BUTTON_ID]:SetUnactive();
+            buttons[SOLUTION_BUTTON_ID]:SetUnactiveBorder();
         end
 
         for i = 1, MAX_BUTTONS do
@@ -1157,35 +1157,35 @@ function MazeHelper:CreateButton(index)
         edgeSize = 2,
     });
 
-    button.SetActive = function(self)
+    button.SetActiveBorder = function(self)
         self:SetBackdropBorderColor(unpack(MHMOTSConfig.ActiveColor));
     end
 
-    button.SetUnactive = function(self)
+    button.SetUnactiveBorder = function(self)
         self:SetBackdropBorderColor(0, 0, 0, 0);
     end
 
-    button.SetReceived = function(self)
+    button.SetReceivedBorder = function(self)
         self:SetBackdropBorderColor(unpack(MHMOTSConfig.ReceivedColor));
     end
 
-    button.SetSolution = function(self)
+    button.SetSolutionBorder = function(self)
         self:SetBackdropBorderColor(unpack(MHMOTSConfig.SolutionColor));
     end
 
-    button.SetPredicted = function(self)
+    button.SetPredictedBorder = function(self)
         self:SetBackdropBorderColor(unpack(MHMOTSConfig.PredictedColor));
     end
 
     button.UpdateBorder = function(self)
         if self.state then
             if self.sender then
-                self:SetReceived();
+                self:SetReceivedBorder();
             else
-                self:SetActive();
+                self:SetActiveBorder();
             end
         else
-            self:SetUnactive();
+            self:SetUnactiveBorder();
         end
     end
 
@@ -1205,7 +1205,7 @@ function MazeHelper:CreateButton(index)
         self.SequenceText:SetText(EMPTY_STRING);
     end
 
-    button:SetUnactive();
+    button:SetUnactiveBorder();
     button:RegisterForClicks('LeftButtonUp', 'RightButtonUp');
 
     button:SetScript('OnClick', function(self, b)
@@ -1403,14 +1403,14 @@ function MazeHelper:UpdateSolution()
 
         for i = 1, MAX_BUTTONS do
             if not buttons[i].state then
-                buttons[i]:SetUnactive();
+                buttons[i]:SetUnactiveBorder();
             end
         end
 
         if PREDICTED_SOLUTION_BUTTON_ID then
-            buttons[PREDICTED_SOLUTION_BUTTON_ID]:SetPredicted();
+            buttons[PREDICTED_SOLUTION_BUTTON_ID]:SetPredictedBorder();
         else
-            buttons[SOLUTION_BUTTON_ID]:SetSolution();
+            buttons[SOLUTION_BUTTON_ID]:SetSolutionBorder();
         end
 
         MazeHelper.frame.LargeSymbol.Icon:SetTexCoord(unpack(MHMOTSConfig.UseColoredSymbols and buttonsData[SOLUTION_BUTTON_ID].coords or buttonsData[SOLUTION_BUTTON_ID].coords_white));
