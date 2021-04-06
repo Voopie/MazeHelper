@@ -104,7 +104,7 @@ L['CHOOSE_SYMBOLS_4'] = 'Select 4 symbols';
 L['CHOOSE_SYMBOLS_3'] = 'Select 3 more symbols';
 L['CHOOSE_SYMBOLS_2'] = 'Select 2 more symbols';
 L['CHOOSE_SYMBOLS_1'] = 'Select 1 more symbol';
-L['SOLUTION_NA'] = '|cffffb833There is no solution...|r';
+L['SOLUTION_NA'] = '|cffffb833There is no solution|r';
 L['LEAF_FULL_CIRCLE'] = 'Filled leaf in a circle';
 L['LEAF_FULL_NOCIRCLE'] = 'Filled leaf without a circle';
 L['LEAF_NOFULL_CIRCLE'] = 'Empty leaf in a circle';
@@ -186,7 +186,7 @@ if gameLocale == 'ruRU' then
     L['CHOOSE_SYMBOLS_3'] = 'Выберите еще 3 символа';
     L['CHOOSE_SYMBOLS_2'] = 'Выберите еще 2 символа';
     L['CHOOSE_SYMBOLS_1'] = 'Выберите еще 1 символ';
-    L['SOLUTION_NA'] = '|cffffb833Решение отсутствует...|r';
+    L['SOLUTION_NA'] = '|cffffb833Решение отсутствует|r';
     L['LEAF_FULL_CIRCLE'] = 'Полный листок в круге';
     L['LEAF_FULL_NOCIRCLE'] = 'Полный листок без круга';
     L['LEAF_NOFULL_CIRCLE'] = 'Пустой листок в круге';
@@ -198,9 +198,9 @@ if gameLocale == 'ruRU' then
     L['SENDED_BY'] = 'Отправлено: %s';
     L['CLEARED_BY'] = 'Очищено: %s';
     L['PASSED'] = 'Прошли';
-    L['RESETED_PLAYER'] = '%s |cffff0537сбросил|r мини-игру';
+    L['RESETED_PLAYER'] = '%s |cffff0537сбросил|r символы';
     L['PASSED_PLAYER'] = '%s кликнул на кнопку «|cff66ff6eПрошли|r»';
-    L['SETTINGS_REVEAL_RESETTER_LABEL'] = 'Имя игрока, сбросившего мини-игру';
+    L['SETTINGS_REVEAL_RESETTER_LABEL'] = 'Имя игрока, сбросившего символы';
     L['SETTINGS_REVEAL_RESETTER_TOOLTIP'] = 'Писать в чате имя игрока, который нажал на кнопку «Сброс» или «Прошли» (будет видно только Вам)';
     L['SETTINGS_AUTOANNOUNCER_LABEL'] = 'Включить авто-оповещатель';
     L['SETTINGS_AUTOANNOUNCER_TOOLTIP'] = 'Автоматически отправлять в чат группы готовое решение';
@@ -273,7 +273,7 @@ if gameLocale == 'deDE' then
     L['CHOOSE_SYMBOLS_3'] = 'Wählen Sie 3 weitere Symbole';
     L['CHOOSE_SYMBOLS_2'] = 'Wählen Sie 2 weitere Symbole';
     L['CHOOSE_SYMBOLS_1'] = 'Wählen Sie 1 weiteres symbol';
-    L['SOLUTION_NA'] = '|cffffb833Keine Lösung gefunden...|r';
+    L['SOLUTION_NA'] = '|cffffb833Keine Lösung gefunden|r';
     L['LEAF_FULL_CIRCLE'] = 'Gefülltes Blatt im Kreis';
     L['LEAF_FULL_NOCIRCLE'] = 'Gefülltes Blatt ohne Kreis';
     L['LEAF_NOFULL_CIRCLE'] = 'Leeres Blatt im Kreis';
@@ -358,7 +358,7 @@ if gameLocale == 'frFR' then
     L['CHOOSE_SYMBOLS_3'] = 'Sélectionnez 3 autres symboles';
     L['CHOOSE_SYMBOLS_2'] = 'Sélectionnez 2 autres symboles';
     L['CHOOSE_SYMBOLS_1'] = 'Sélectionnez 1 autre symbole';
-    L['SOLUTION_NA'] = '|cffffb833Il n\'y a pas de solution...|r';
+    L['SOLUTION_NA'] = '|cffffb833Il n\'y a pas de solution|r';
     L['LEAF_FULL_CIRCLE'] = 'Feuille remplie dans un cercle';
     L['LEAF_FULL_NOCIRCLE'] = 'Feuille remplie sans cercle';
     L['LEAF_NOFULL_CIRCLE'] = 'Feuille vide dans un cercle';
@@ -443,7 +443,7 @@ if gameLocale == 'itIT' then
     L['CHOOSE_SYMBOLS_3'] = 'Seleziona altri 3 simboli';
     L['CHOOSE_SYMBOLS_2'] = 'Seleziona altri 2 simboli';
     L['CHOOSE_SYMBOLS_1'] = 'Seleziona 1 altro simbolo';
-    L['SOLUTION_NA'] = '|cffffb833Non c\'è soluzione...|r';
+    L['SOLUTION_NA'] = '|cffffb833Non c\'è soluzione|r';
     L['LEAF_FULL_CIRCLE'] = 'Foglia piena in un cerchio';
     L['LEAF_FULL_NOCIRCLE'] = 'Foglia piena senza cerchio';
     L['LEAF_NOFULL_CIRCLE'] = 'Foglia vuota in un cerchio';
@@ -528,7 +528,7 @@ if gameLocale == 'ptBR' then
     L['CHOOSE_SYMBOLS_3'] = 'Selecione mais 3 símbolos';
     L['CHOOSE_SYMBOLS_2'] = 'Selecione mais 2 símbolos';
     L['CHOOSE_SYMBOLS_1'] = 'Selecione mais 1 símbolo';
-    L['SOLUTION_NA'] = '|cffffb833Não há solução...|r';
+    L['SOLUTION_NA'] = '|cffffb833Não há solução|r';
     L['LEAF_FULL_CIRCLE'] = 'Folha preenchida em um círculo';
     L['LEAF_FULL_NOCIRCLE'] = 'Folha preenchida sem círculo';
     L['LEAF_NOFULL_CIRCLE'] = 'Folha vazia em um círculo';
@@ -613,7 +613,7 @@ if gameLocale == 'esES' then
     L['CHOOSE_SYMBOLS_3'] = 'Seleccione 3 símbolos más';
     L['CHOOSE_SYMBOLS_2'] = 'Seleccione 2 símbolos más';
     L['CHOOSE_SYMBOLS_1'] = 'Seleccione 1 símbolo más';
-    L['SOLUTION_NA'] = '|cffffb833No hay solución...|r';
+    L['SOLUTION_NA'] = '|cffffb833No hay solución|r';
     L['LEAF_FULL_CIRCLE'] = 'Hoja llena en un círculo';
     L['LEAF_FULL_NOCIRCLE'] = 'Hoja llena sin círculo';
     L['LEAF_NOFULL_CIRCLE'] = 'Hoja vacía en un círculo';
@@ -733,7 +733,7 @@ if gameLocale == 'zhTW' then
     L['SETTINGS_SHOW_AT_BOSS_TOOLTIP'] = '與«喚霧者»戰鬥時顯示此助手';
     L['SETTINGS_START_IN_MINMODE_LABEL'] = '以最小化模式啟動';
     L['SETTINGS_START_IN_MINMODE_TOOLTIP'] = '首次出現將以最小化模式進行';
-    L['SOLUTION_NA'] = '|cffffb833沒有解決方案...|r';
+    L['SOLUTION_NA'] = '|cffffb833沒有解決方案|r';
     L['SETTINGS_SYNC_ENABLED_LABEL'] = '組同步';
     L['SETTINGS_SYNC_ENABLED_TOOLTIP'] = '啟用符號選擇與其他組成員的同步|n|n|cffff6a00不建議關閉|r';
     L['SETTINGS_USE_COLORED_SYMBOLS_LABEL'] = '使用彩色符號';
@@ -825,7 +825,7 @@ if gameLocale == 'zhCN' then
     L['SETTINGS_SYNC_ENABLED_TOOLTIP'] = '启用符号选择与其他队伍成员的同步|n|n|cffff6a00不建议关闭|r';
     L['SETTINGS_USE_COLORED_SYMBOLS_LABEL'] = '使用彩色符号';
     L['SETTINGS_USE_COLORED_SYMBOLS_TOOLTIP'] = '使用彩色符号代替黑白';
-    L['SOLUTION_NA'] = '|cffffb833没有答案...|r';
+    L['SOLUTION_NA'] = '|cffffb833没有答案|r';
     L['SETTINGS_SHOW_SEQUENCE_NUMBERS_LABEL'] = '显示序号';
     L['SETTINGS_SHOW_SEQUENCE_NUMBERS_TOOLTIP'] = '单击符号时显示序号(1/2/3/4)';
     L['SETTINGS_PREDICT_SOLUTION_LABEL'] = '预测答案';
@@ -915,7 +915,7 @@ if gameLocale == 'koKR' then
     L['SETTINGS_SYNC_ENABLED_TOOLTIP'] = '다른 파티원과 선택한 모양 공유 활성화|n|n|cffff6a00끄지 않는 것을 권장합니다|r';
     L['SETTINGS_USE_COLORED_SYMBOLS_LABEL'] = '색이 있는 모양 사용';
     L['SETTINGS_USE_COLORED_SYMBOLS_TOOLTIP'] = '흑백 대신 색칠된 모양 사용';
-    L['SOLUTION_NA'] = '|cffffb833정답이 없습니다...|r';
+    L['SOLUTION_NA'] = '|cffffb833정답이 없습니다|r';
     L['SETTINGS_SHOW_LARGE_SYMBOL_LABEL'] = '큰 기호 표시';
     L['SETTINGS_SHOW_LARGE_SYMBOL_TOOLTIP'] = '기성 솔루션이있는 경우 화면 상단에 큰 기호 표시|n|n닫으려면 오른쪽 클릭';
     L['SETTINGS_SCALE_LABEL'] = '비율';
