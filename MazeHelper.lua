@@ -1988,7 +1988,7 @@ function MazeHelper.frame:CHAT_MSG_MONSTER_SAY(message, npcName)
         MazeHelper:SendPassedCommand(true);
         ResetAll();
 
-        mhPrint(L['AUTO_PASS']);
+        mhPrint(L['SETTINGS_AUTO_PASS_LABEL']);
     end
 end
 
