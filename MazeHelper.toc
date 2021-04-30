@@ -1,6 +1,6 @@
 ## Interface: 90005
 ## Author: Voopie
-## Title: + |TInterface\AddOns\MazeHelper\Media\mazehelper:14:112:0:1:128:64:0:128:0:16|t
+## Title: Maze Helper [|cff235be8Mists of Tirna Scithe|r]
 ## Notes: Your favorite helper for «Mists of Tirna Scithe»
 ## Notes-ruRU: Ваш любимый помощник для подземелья «Туманы Тирна Скитта»
 ## Notes-deDE: Ihr Lieblingshelfer für «Die Nebel von Tirna Scithe»
