@@ -261,6 +261,7 @@ end
 -- German
 -- Udaberrico (https://github.com/Udaberrico)
 -- robozu (https://github.com/robozu)
+-- HalbHorst (https://www.curseforge.com/members/halbhorst)
 if gameLocale == 'deDE' then
     L['ZONE_NAME'] = 'Nebelschleierdickicht';
     L['MISTCALLER_NAME'] = 'Nebelruferin';
@@ -268,7 +269,7 @@ if gameLocale == 'deDE' then
     L['CHOOSE_SYMBOLS_4'] = 'Wählen Sie 4 Symbole';
     L['CHOOSE_SYMBOLS_3'] = 'Wählen Sie 3 weitere Symbole';
     L['CHOOSE_SYMBOLS_2'] = 'Wählen Sie 2 weitere Symbole';
-    L['CHOOSE_SYMBOLS_1'] = 'Wählen Sie 1 weiteres symbol';
+    L['CHOOSE_SYMBOLS_1'] = 'Wählen Sie 1 weiteres Symbol';
     L['SOLUTION_NA'] = '|cffffb833Keine Lösung gefunden|r';
     L['LEAF_FULL_CIRCLE'] = 'Gefülltes Blatt im Kreis';
     L['LEAF_FULL_NOCIRCLE'] = 'Gefülltes Blatt ohne Kreis';
@@ -315,21 +316,21 @@ if gameLocale == 'deDE' then
     L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP'] = 'Senden Sie die Lösung zusammen mit englischen Phrasen an den Chat, z. B. «Leere Blume ohne Kreis / Empty flower without a circle»';
     L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_LABEL'] = 'Setzen Sie einen Marker auf den Player';
     L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_TOOLTIP'] = 'Setzen Sie automatisch eine grüne Markierung auf den Spieler, wenn er auf das Symbol klickt, das zur Lösung wurde';
-    L['SETTINGS_ALPHA_BACKGROUND_LABEL'] = 'Hintergrundopazität';
+    L['SETTINGS_ALPHA_BACKGROUND_LABEL'] = 'Hintergrundtransparenz';
     L['SETTINGS_ALPHA_BACKGROUND_TOOLTIP'] = 'Stellen Sie die Deckkraft für den Hintergrund des Hauptfensters ein';
-    L['SETTINGS_ALPHA_BACKGROUND_LARGE_SYMBOL_LABEL'] = 'Hintergrundopazität des großen Symbols';
+    L['SETTINGS_ALPHA_BACKGROUND_LARGE_SYMBOL_LABEL'] = 'Hintergrundtransparenz des großen Symbols';
     L['SETTINGS_ALPHA_BACKGROUND_LARGE_SYMBOL_TOOLTIP'] = 'Stellen Sie die Deckkraft für den Hintergrund des großen Symbols ein';
     L['PRACTICE_TITLE'] = 'Wählen Sie ein Symbol aus, das sich in einer Hinsicht von den anderen unterscheidet';
     L['PRACTICE_PLAY_AGAIN'] = 'Nochmal abspielen';
     L['PRACTICE_BUTTON_TOOLTIP'] = 'Trainieren';
     L['MINIMAP_BUTTON_LMB'] = 'Linke Maustaste';
     L['MINIMAP_BUTTON_RMB'] = 'Rechte Maustaste';
-    L['MINIMAP_BUTTON_TOGGLE_MAZEHELPER'] = 'Schalter «Maze Helper» Rahmen';
+    L['MINIMAP_BUTTON_TOGGLE_MAZEHELPER'] = '«Maze Helper» Rahmen an/aus';
     L['MINIMAP_BUTTON_HIDE'] = 'Minikartenschaltfläche ausblenden';
-    L['MINIMAP_BUTTON_COMMAND_SHOW'] = 'Verwenden Sie /mh minimap, um das Minikartensymbol erneut anzuzeigen';
+    L['MINIMAP_BUTTON_COMMAND_SHOW'] = 'Verwenden Sie /mh minimap, um das Minikartensymbol erneut anzuzeigen.';
     L['SETTINGS_AUTO_PASS_LABEL'] = 'Auto-pass';
     L['SETTINGS_AUTO_PASS_TOOLTIP'] = 'Auto «|cff66ff6eBestanden|r» bei erfolgreichem Durchgang durch die Nebel';
-    L['SETTINGS_BORDERS_COLORS'] = 'Grenzen Farben';
+    L['SETTINGS_BORDERS_COLORS'] = 'Farben der Umrandung';
     L['SETTINGS_ACTIVE_COLORPICKER'] = 'Ausgewählt';
     L['SETTINGS_RECEIVED_COLORPICKER'] = 'Empfangen';
     L['SETTINGS_SOLUTION_COLORPICKER'] = 'Lösung';
