@@ -245,31 +245,8 @@ local function SliderRound(val, minVal, valueStep)
     return math.floor((val - minVal) / valueStep + 0.5) * valueStep + minVal;
 end
 
-E.CreateSlider = function(name, parent)
-    local slider  = CreateFrame('Slider', 'MazeHelper_Settings_' .. name .. 'Slider', parent, 'OptionsSliderTemplate');
-    local editbox = CreateFrame('EditBox', '$parentEditBox', slider, 'InputBoxTemplate');
-
-    slider:SetOrientation('HORIZONTAL');
-
-    PixelUtil.SetPoint(slider.Low, 'TOPLEFT', slider, 'BOTTOMLEFT', 1, -1);
-    PixelUtil.SetPoint(slider.High, 'TOPRIGHT', slider, 'BOTTOMRIGHT', -1, -1);
-    PixelUtil.SetPoint(slider.Text, 'BOTTOMLEFT', slider, 'TOPLEFT', 1, 0);
-
-    slider.Text:SetFontObject(GameFontNormal);
-
-    slider.Thumb:SetSize(26, 26);
-    slider.Thumb:SetTexture(M.Icons.TEXTURE);
-    slider.Thumb:SetTexCoord(unpack(M.Icons.COORDS.CIRCLE_NORMAL));
-
-    slider:HookScript('OnEnter', function(self)
-        self.Thumb:SetTexCoord(unpack(M.Icons.COORDS.CIRCLE_HIGHLIGHT));
-    end);
-
-    slider:HookScript('OnLeave', function(self)
-        self.Thumb:SetTexCoord(unpack(M.Icons.COORDS.CIRCLE_NORMAL));
-    end);
-
-    slider:SetBackdrop({
+do
+    local SLIDER_BACKDROP = {
         bgFile   = 'Interface\\Buttons\\UI-SliderBar-Background',
         edgeFile = M.SLIDER_BORDER,
         tile     = true,
@@ -277,160 +254,189 @@ E.CreateSlider = function(name, parent)
         tileSize = 8,
         edgeSize = 8,
         insets   = { left = 3, right = 3, top = 6, bottom = 6 },
-    });
+    };
 
-    slider.SetPosition = function(self, point, relativeTo, relativePoint, offsetX, offsetY, minOffsetXPixels, minOffsetYPixels)
-        PixelUtil.SetPoint(self, point, relativeTo, relativePoint, offsetX, offsetY, minOffsetXPixels, minOffsetYPixels);
-    end
-
-    hooksecurefunc(slider, 'SetValue', function(self, value)
-        self.currentValue = value;
-    end);
-
-    slider.SetTooltip = function(self, tooltip)
-        self.tooltip = tooltip;
-    end
-
-    slider.SetLabel = function(self, label)
-        self.Text:SetText(label);
-    end
-
-    slider.SetValues = function(self, currentValue, minValue, maxValue, stepValue)
-        self.currentValue = currentValue or 0;
-        self.minValue     = minValue or 0;
-        self.maxValue     = maxValue or 100;
-        self.stepValue    = stepValue or 1;
-
-        self:SetMinMaxValues(self.minValue, self.maxValue);
-        self:SetStepsPerPage(self.stepValue);
-        self:SetValueStep(self.stepValue);
-        self:SetValue(SliderRound(self.currentValue, self.minValue, self.stepValue));
-
-        self.Low:SetText(self.minValue);
-        self.High:SetText(self.maxValue);
-
-        self.editbox:SetText(SliderRound(self.currentValue, self.minValue, self.stepValue));
-    end
-
-    slider:SetScript('OnValueChanged', function(self, value)
-        value = SliderRound(value, self.minValue, self.stepValue);
-        self.currentValue = value;
-
-        self.editbox:SetText(self.currentValue);
-
-        if slider:IsDraggingThumb() and self.editbox:HasFocus() then
-            self.editbox:ClearFocus();
-        end
-
-        if self.OnValueChangedCallback then
-            self:OnValueChangedCallback(self.currentValue);
-        end
-    end);
-
-    slider:SetScript('OnMouseUp', function(self)
-        if self.OnMouseUpCallback then
-            self:OnMouseUpCallback(self.currentValue);
-        end
-    end);
-
-    editbox:ClearAllPoints();
-    PixelUtil.SetPoint(editbox, 'TOP', slider, 'BOTTOM', 4, 2);
-    PixelUtil.SetSize(editbox, 40, 30);
-
-    editbox:SetFontObject(GameFontHighlight);
-    editbox:SetAutoFocus(false);
-
-    editbox.Left:Hide();
-    editbox.Middle:Hide();
-    editbox.Right:Hide();
-
-    editbox.Background = CreateFrame('Frame', '$parentBackground', editbox, 'BackdropTemplate');
-    PixelUtil.SetPoint(editbox.Background, 'TOPLEFT', editbox, 'TOPLEFT', -5, -4);
-    PixelUtil.SetSize(editbox.Background, 41, 21);
-    editbox.Background:SetFrameLevel(editbox:GetFrameLevel() - 1);
-    editbox.Background:SetBackdrop({
+    local EDITBOX_BACKDROP = {
         bgFile   = 'Interface\\Buttons\\WHITE8x8',
         insets   = { top = 1, left = 1, bottom = 1, right = 1 },
         edgeFile = 'Interface\\Buttons\\WHITE8x8',
         edgeSize = 1,
-    });
+    };
 
-    editbox.Background:SetBackdropColor(0.05, 0.05, 0.05, 1);
-    editbox.Background:SetBackdropBorderColor(0.3, 0.3, 0.3, 1);
+    E.CreateSlider = function(name, parent)
+        local slider  = CreateFrame('Slider', 'MazeHelper_Settings_' .. name .. 'Slider', parent, 'OptionsSliderTemplate');
+        local editbox = CreateFrame('EditBox', '$parentEditBox', slider, 'InputBoxTemplate');
 
-    editbox:SetScript('OnEnterPressed', function(self)
-        self.lastValue = nil;
-        self:ClearFocus();
+        slider:SetOrientation('HORIZONTAL');
 
-        local value = tonumber(self:GetText());
-        if value then
-            value = math.min(value, self:GetParent().maxValue);
-            value = math.max(value, self:GetParent().minValue);
-        else
-            value = self:GetParent().currentValue;
+        PixelUtil.SetPoint(slider.Low, 'TOPLEFT', slider, 'BOTTOMLEFT', 1, -1);
+        PixelUtil.SetPoint(slider.High, 'TOPRIGHT', slider, 'BOTTOMRIGHT', -1, -1);
+        PixelUtil.SetPoint(slider.Text, 'BOTTOMLEFT', slider, 'TOPLEFT', 1, 0);
+
+        slider.Text:SetFontObject(GameFontNormal);
+
+        slider.Thumb:SetSize(26, 26);
+        slider.Thumb:SetTexture(M.Icons.TEXTURE);
+        slider.Thumb:SetTexCoord(unpack(M.Icons.COORDS.CIRCLE_NORMAL));
+
+        slider:HookScript('OnEnter', function(self)
+            self.Thumb:SetTexCoord(unpack(M.Icons.COORDS.CIRCLE_HIGHLIGHT));
+        end);
+
+        slider:HookScript('OnLeave', function(self)
+            self.Thumb:SetTexCoord(unpack(M.Icons.COORDS.CIRCLE_NORMAL));
+        end);
+
+        slider:SetBackdrop(SLIDER_BACKDROP);
+
+        slider.SetPosition = function(self, point, relativeTo, relativePoint, offsetX, offsetY, minOffsetXPixels, minOffsetYPixels)
+            PixelUtil.SetPoint(self, point, relativeTo, relativePoint, offsetX, offsetY, minOffsetXPixels, minOffsetYPixels);
         end
 
-        self:GetParent():SetValue(SliderRound(value, self:GetParent().minValue, self:GetParent().stepValue));
-        self:SetText(value);
+        hooksecurefunc(slider, 'SetValue', function(self, value)
+            self.currentValue = value;
+        end);
 
-        if self:GetParent().OnValueChangedCallback then
-            self:GetParent():OnValueChangedCallback(value);
+        slider.SetTooltip = function(self, tooltip)
+            self.tooltip = tooltip;
         end
 
-        if self:GetParent().OnMouseUpCallback then
-            self:GetParent():OnMouseUpCallback(value);
+        slider.SetLabel = function(self, label)
+            self.Text:SetText(label);
         end
 
-        PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
-    end);
+        slider.SetValues = function(self, currentValue, minValue, maxValue, stepValue)
+            self.currentValue = currentValue or 0;
+            self.minValue     = minValue or 0;
+            self.maxValue     = maxValue or 100;
+            self.stepValue    = stepValue or 1;
 
-    editbox:SetScript('OnEditFocusGained', function(self)
-        self.isFocused = true;
-        self.lastValue = tonumber(self:GetNumber());
-        self:HighlightText();
-        self.Background:SetBackdropBorderColor(0.8, 0.8, 0.8, 1);
-    end);
+            self:SetMinMaxValues(self.minValue, self.maxValue);
+            self:SetStepsPerPage(self.stepValue);
+            self:SetValueStep(self.stepValue);
+            self:SetValue(SliderRound(self.currentValue, self.minValue, self.stepValue));
 
-    editbox:SetScript('OnEditFocusLost', function(self)
-        self.isFocused = false;
-        if self.lastValue then
-            self:SetText(SliderRound(self.lastValue, self:GetParent().minValue, self:GetParent().stepValue));
+            self.Low:SetText(self.minValue);
+            self.High:SetText(self.maxValue);
+
+            self.editbox:SetText(SliderRound(self.currentValue, self.minValue, self.stepValue));
         end
 
-        EditBox_ClearHighlight(self);
-        self.Background:SetBackdropBorderColor(0.3, 0.3, 0.3, 1);
-    end);
+        slider:SetScript('OnValueChanged', function(self, value)
+            value = SliderRound(value, self.minValue, self.stepValue);
+            self.currentValue = value;
 
-    editbox:HookScript('OnEnter', function(self)
-        if not self.isFocused then
-            self.Background:SetBackdropBorderColor(0.5, 0.5, 0.5, 1);
-        end
+            self.editbox:SetText(self.currentValue);
 
-        if not self:GetParent().tooltip then
-            return;
-        end
+            if slider:IsDraggingThumb() and self.editbox:HasFocus() then
+                self.editbox:ClearFocus();
+            end
 
-        GameTooltip:SetOwner(self:GetParent(), 'ANCHOR_RIGHT');
-        GameTooltip:AddLine(self:GetParent().tooltip, 1, 0.85, 0, true);
-        GameTooltip:Show();
-    end);
+            if self.OnValueChangedCallback then
+                self:OnValueChangedCallback(self.currentValue);
+            end
+        end);
 
-    editbox:HookScript('OnLeave', function(self)
-        if not self.isFocused then
+        slider:SetScript('OnMouseUp', function(self)
+            if self.OnMouseUpCallback then
+                self:OnMouseUpCallback(self.currentValue);
+            end
+        end);
+
+        editbox:ClearAllPoints();
+        PixelUtil.SetPoint(editbox, 'TOP', slider, 'BOTTOM', 4, 2);
+        PixelUtil.SetSize(editbox, 40, 30);
+
+        editbox:SetFontObject(GameFontHighlight);
+        editbox:SetAutoFocus(false);
+
+        editbox.Left:Hide();
+        editbox.Middle:Hide();
+        editbox.Right:Hide();
+
+        editbox.Background = CreateFrame('Frame', '$parentBackground', editbox, 'BackdropTemplate');
+        PixelUtil.SetPoint(editbox.Background, 'TOPLEFT', editbox, 'TOPLEFT', -5, -4);
+        PixelUtil.SetSize(editbox.Background, 41, 21);
+        editbox.Background:SetFrameLevel(editbox:GetFrameLevel() - 1);
+        editbox.Background:SetBackdrop(EDITBOX_BACKDROP);
+
+        editbox.Background:SetBackdropColor(0.05, 0.05, 0.05, 1);
+        editbox.Background:SetBackdropBorderColor(0.3, 0.3, 0.3, 1);
+
+        editbox:SetScript('OnEnterPressed', function(self)
+            self.lastValue = nil;
+            self:ClearFocus();
+
+            local value = tonumber(self:GetText());
+            if value then
+                value = math.min(value, self:GetParent().maxValue);
+                value = math.max(value, self:GetParent().minValue);
+            else
+                value = self:GetParent().currentValue;
+            end
+
+            self:GetParent():SetValue(SliderRound(value, self:GetParent().minValue, self:GetParent().stepValue));
+            self:SetText(value);
+
+            if self:GetParent().OnValueChangedCallback then
+                self:GetParent():OnValueChangedCallback(value);
+            end
+
+            if self:GetParent().OnMouseUpCallback then
+                self:GetParent():OnMouseUpCallback(value);
+            end
+
+            PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
+        end);
+
+        editbox:SetScript('OnEditFocusGained', function(self)
+            self.isFocused = true;
+            self.lastValue = tonumber(self:GetNumber());
+            self:HighlightText();
+            self.Background:SetBackdropBorderColor(0.8, 0.8, 0.8, 1);
+        end);
+
+        editbox:SetScript('OnEditFocusLost', function(self)
+            self.isFocused = false;
+            if self.lastValue then
+                self:SetText(SliderRound(self.lastValue, self:GetParent().minValue, self:GetParent().stepValue));
+            end
+
+            EditBox_ClearHighlight(self);
             self.Background:SetBackdropBorderColor(0.3, 0.3, 0.3, 1);
-        end
+        end);
 
-        GameTooltip_Hide();
-    end);
+        editbox:HookScript('OnEnter', function(self)
+            if not self.isFocused then
+                self.Background:SetBackdropBorderColor(0.5, 0.5, 0.5, 1);
+            end
+
+            if not self:GetParent().tooltip then
+                return;
+            end
+
+            GameTooltip:SetOwner(self:GetParent(), 'ANCHOR_RIGHT');
+            GameTooltip:AddLine(self:GetParent().tooltip, 1, 0.85, 0, true);
+            GameTooltip:Show();
+        end);
+
+        editbox:HookScript('OnLeave', function(self)
+            if not self.isFocused then
+                self.Background:SetBackdropBorderColor(0.3, 0.3, 0.3, 1);
+            end
+
+            GameTooltip_Hide();
+        end);
 
 
-    slider.editbox = editbox;
+        slider.editbox = editbox;
 
-    E.CreateTooltip(slider);
+        E.CreateTooltip(slider);
 
-    slider:Show();
+        slider:Show();
 
-    return slider;
+        return slider;
+    end
 end
 
 E.CreateHeader = function(parent, text)
