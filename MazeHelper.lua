@@ -1006,10 +1006,6 @@ settingsScrollChild.Data.SavedBackgroundAlphaLargeSymbol.OnValueChangedCallback 
     MazeHelper.frame.LargeSymbol.Background:SetAlpha(MHMOTSConfig.SavedBackgroundAlphaLargeSymbol);
 end
 
-MazeHelper.frame.Settings.VersionText = MazeHelper.frame.Settings:CreateFontString(nil, 'ARTWORK', 'GameFontDisable');
-PixelUtil.SetPoint(MazeHelper.frame.Settings.VersionText, 'TOP', MazeHelper.frame.Settings, 'BOTTOM', 0, 12);
-MazeHelper.frame.Settings.VersionText:SetText(Version);
-
 -- send & sender can be nil
 local function Button_SetActive(button, send, sender, isDoubleClick)
     if isDoubleClick or IsShiftKeyDown() then
