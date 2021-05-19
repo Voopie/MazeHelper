@@ -580,6 +580,8 @@ do
             end
 
             PixelUtil.SetSize(self, width, height);
+            PixelUtil.SetSize(arrowButton, height, height);
+            PixelUtil.SetSize(arrowButton.Icon, height / 1.2, height / 1.2);
 
             self.WidthValue  = width;
             self.HeightValue = height;
@@ -682,6 +684,20 @@ do
                 self.arrowButton.Icon:SetVertexColor(0.5, 0.5, 0.5, 1);
             end
         end);
+
+        holderButton.Label = holderButton:CreateFontString(nil, 'ARTWORK', 'GameFontHighlight');
+        PixelUtil.SetPoint(holderButton.Label, 'LEFT', holderButton, 'RIGHT', 6, 0);
+        holderButton.Label:SetJustifyH('LEFT');
+
+        holderButton.SetLabel = function(self, label)
+            self.Label:SetText(label);
+        end
+
+        holderButton.SetTooltip = function(self, tooltip)
+            self.tooltip = tooltip;
+        end
+
+        E.CreateTooltip(holderButton);
 
         return holderButton;
     end

@@ -77,6 +77,18 @@ local MODIFIERS_LIST = {
     [3] = 'SHIFT',
 };
 
+local CHANNELS_LIST = {
+    [1] = 'PARTY',
+    [2] = 'SAY',
+    [3] = 'YELL',
+};
+
+local CHANNELS_LIST_LOCALIZED = {
+    [1] = CHAT_MSG_PARTY,
+    [2] = CHAT_MSG_SAY,
+    [3] = CHAT_MSG_YELL,
+};
+
 local TOUGH_CROWD_QUEST_ID = 60739;
 local EXPOSED_BOGGARD_NPC_ID = 170080;
 
@@ -222,15 +234,23 @@ local function GetPartyChatType()
     return IsInGroup(LE_PARTY_CATEGORY_INSTANCE) and 'INSTANCE_CHAT' or (IsInGroup(LE_PARTY_CATEGORY_HOME) and 'PARTY' or false);
 end
 
-local function AnnounceInChat(partyChatType)
+local function AnnounceInChat(partyChatType, fromButton)
     if not SOLUTION_BUTTON_ID or not partyChatType then
         return;
     end
 
-    if MHMOTSConfig.AnnounceWithEnglish and MazeHelper.currentLocale ~= 'enUS' then
-        SendChatMessage(string.format(L['ANNOUNCE_SOLUTION_WITH_ENGLISH'], buttons[SOLUTION_BUTTON_ID].data.name, buttons[SOLUTION_BUTTON_ID].data.ename), partyChatType);
+    local announceChannel;
+
+    if fromButton then
+        announceChannel = MHMOTSConfig.AutoAnnouncerChannel;
     else
-        SendChatMessage(string.format(L['ANNOUNCE_SOLUTION'], buttons[SOLUTION_BUTTON_ID].data.name), partyChatType);
+        announceChannel = IsInInstance() and MHMOTSConfig.AutoAnnouncerChannel or 1;
+    end
+
+    if MHMOTSConfig.AnnounceWithEnglish and MazeHelper.currentLocale ~= 'enUS' then
+        SendChatMessage(string.format(L['ANNOUNCE_SOLUTION_WITH_ENGLISH'], buttons[SOLUTION_BUTTON_ID].data.name, buttons[SOLUTION_BUTTON_ID].data.ename), CHANNELS_LIST[announceChannel]);
+    else
+        SendChatMessage(string.format(L['ANNOUNCE_SOLUTION'], buttons[SOLUTION_BUTTON_ID].data.name), CHANNELS_LIST[announceChannel]);
     end
 end
 
@@ -643,7 +663,7 @@ MazeHelper.frame.AnnounceButton:SetScript('OnClick', function(self)
         return;
     end
 
-    AnnounceInChat(GetPartyChatType());
+    AnnounceInChat(GetPartyChatType(), true);
 
     self.clicked = true;
     self:SetShown(false);
@@ -680,7 +700,7 @@ local settingsScrollChild = E.CreateScrollFrame(MazeHelper.frame.Settings, 26);
 
 settingsScrollChild.Data.AutoToggleVisibility = E.CreateRoundedCheckButton(settingsScrollChild);
 settingsScrollChild.Data.AutoToggleVisibility:SetPosition('TOPLEFT', settingsScrollChild, 'TOPLEFT', 12, 0);
-settingsScrollChild.Data.AutoToggleVisibility:SetLabel(M.INLINE_NEW_ICON .. L['SETTINGS_AUTO_TOGGLE_VISIBILITY_LABEL']);
+settingsScrollChild.Data.AutoToggleVisibility:SetLabel(L['SETTINGS_AUTO_TOGGLE_VISIBILITY_LABEL']);
 settingsScrollChild.Data.AutoToggleVisibility:SetTooltip(L['SETTINGS_AUTO_TOGGLE_VISIBILITY_TOOLTIP']);
 settingsScrollChild.Data.AutoToggleVisibility:SetScript('OnClick', function(self)
     MHMOTSConfig.AutoToggleVisibility = self:GetChecked();
@@ -897,8 +917,19 @@ settingsScrollChild.Data.AutoAnnouncerAsHealer:SetScript('OnClick', function(sel
     MHMOTSConfig.AutoAnnouncerAsHealer = self:GetChecked();
 end);
 
+settingsScrollChild.Data.AutoAnnouncerChannel = E.CreateDropdown(settingsScrollChild);
+settingsScrollChild.Data.AutoAnnouncerChannel:SetPoint('TOPLEFT', settingsScrollChild.Data.AutoAnnouncerAsPartyLeader, 'BOTTOMLEFT', 3, -6);
+settingsScrollChild.Data.AutoAnnouncerChannel:SetSize(90, 20);
+settingsScrollChild.Data.AutoAnnouncerChannel:SetScale(1);
+settingsScrollChild.Data.AutoAnnouncerChannel:SetLabel(M.INLINE_NEW_ICON .. L['SETTINGS_AUTOANNOUNCE_CHANNEL']);
+settingsScrollChild.Data.AutoAnnouncerChannel:SetTooltip(L['SETTINGS_AUTOANNOUNCE_CHANNEL_TOOLTIP']);
+settingsScrollChild.Data.AutoAnnouncerChannel:SetList(CHANNELS_LIST_LOCALIZED);
+settingsScrollChild.Data.AutoAnnouncerChannel.OnValueChangedCallback = function(_, value)
+    MHMOTSConfig.AutoAnnouncerChannel = tonumber(value);
+end
+
 settingsScrollChild.Data.ColorsHeader = E.CreateHeader(settingsScrollChild, L['SETTINGS_BORDERS_COLORS']);
-settingsScrollChild.Data.ColorsHeader:SetPosition('TOPLEFT', settingsScrollChild.Data.AutoAnnouncer, 'BOTTOMLEFT', 0, -32);
+settingsScrollChild.Data.ColorsHeader:SetPosition('TOPLEFT', settingsScrollChild.Data.AutoAnnouncer, 'BOTTOMLEFT', 0, -56);
 settingsScrollChild.Data.ColorsHeader:SetSize(settingsScrollChild:GetWidth() - 4, 18);
 
 settingsScrollChild.Data.ActiveColorPicker = E.CreateColorPicker(settingsScrollChild, DEFAULT_COLORS.Active)
@@ -2078,6 +2109,7 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     MHMOTSConfig.AutoAnnouncerAsAlways      = MHMOTSConfig.AutoAnnouncerAsAlways == nil and false or MHMOTSConfig.AutoAnnouncerAsAlways;
     MHMOTSConfig.AutoAnnouncerAsTank        = MHMOTSConfig.AutoAnnouncerAsTank == nil and false or MHMOTSConfig.AutoAnnouncerAsTank;
     MHMOTSConfig.AutoAnnouncerAsHealer      = MHMOTSConfig.AutoAnnouncerAsHealer == nil and false or MHMOTSConfig.AutoAnnouncerAsHealer;
+    MHMOTSConfig.AutoAnnouncerChannel       = MHMOTSConfig.AutoAnnouncerChannel == nil and 1 or MHMOTSConfig.AutoAnnouncerChannel;
 
     MHMOTSConfig.ActiveColor    = MHMOTSConfig.ActiveColor    or DEFAULT_COLORS.Active;
     MHMOTSConfig.ReceivedColor  = MHMOTSConfig.ReceivedColor  or DEFAULT_COLORS.Received;
@@ -2115,6 +2147,7 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     settingsScrollChild.Data.AutoAnnouncerAsAlways:SetEnabled(MHMOTSConfig.AutoAnnouncer);
     settingsScrollChild.Data.AutoAnnouncerAsTank:SetEnabled(MHMOTSConfig.AutoAnnouncer);
     settingsScrollChild.Data.AutoAnnouncerAsHealer:SetEnabled(MHMOTSConfig.AutoAnnouncer);
+    settingsScrollChild.Data.AutoAnnouncerChannel:SetValue(tonumber(MHMOTSConfig.AutoAnnouncerChannel));
 
     settingsScrollChild.Data.Scale:SetValues(MHMOTSConfig.SavedScale, 0.25, 3, 0.05);
     settingsScrollChild.Data.ScaleLargeSymbol:SetValues(MHMOTSConfig.SavedScaleLargeSymbol, 0.25, 3, 0.05);

@@ -174,6 +174,8 @@ L['SETTINGS_SKULLMARKER_CLONE_TOOLTIP'] = 'Automatically set the skull marker |T
 L['SETTINGS_SKULLMARKER_USE_MODIFIER_TOOLTIP'] = 'Use modifier key';
 L['SETTINGS_AUTO_TOGGLE_VISIBILITY_LABEL'] = 'Auto show/hide';
 L['SETTINGS_AUTO_TOGGLE_VISIBILITY_TOOLTIP'] = 'Automatically toggle the visibility of the main window';
+L['SETTINGS_AUTOANNOUNCE_CHANNEL'] = 'Chat channel';
+L['SETTINGS_AUTOANNOUNCE_CHANNEL_TOOLTIP'] = 'Select the chat channel to which the solution will be sent';
 
 -- Русский (я)
 if gameLocale == 'ruRU' then
@@ -254,6 +256,8 @@ if gameLocale == 'ruRU' then
     L['SETTINGS_SKULLMARKER_USE_MODIFIER_TOOLTIP'] = 'Использовать клавишу-модификатор';
     L['SETTINGS_AUTO_TOGGLE_VISIBILITY_LABEL'] = 'Авто показ/скрытие';
     L['SETTINGS_AUTO_TOGGLE_VISIBILITY_TOOLTIP'] = 'Автоматически управлять отображением главного окна';
+    L['SETTINGS_AUTOANNOUNCE_CHANNEL'] = 'Канал чата';
+    L['SETTINGS_AUTOANNOUNCE_CHANNEL_TOOLTIP'] = 'Выберите канал чата, в который будет отправляться решение';
 
     return;
 end
@@ -340,6 +344,8 @@ if gameLocale == 'deDE' then
     L['SETTINGS_SKULLMARKER_USE_MODIFIER_TOOLTIP'] = 'Verwenden Sie die Modifizierertaste';
     L['SETTINGS_AUTO_TOGGLE_VISIBILITY_LABEL'] = 'Auto ein-/ausblenden';
     L['SETTINGS_AUTO_TOGGLE_VISIBILITY_TOOLTIP'] = 'Schaltet die Sichtbarkeit des Hauptfensters automatisch um';
+    L['SETTINGS_AUTOANNOUNCE_CHANNEL'] = 'Chat-Kanal';
+    L['SETTINGS_AUTOANNOUNCE_CHANNEL_TOOLTIP'] = 'Wählen Sie den Chat-Kanal, an den die Lösung gesendet werden soll';
 
     return;
 end
@@ -423,6 +429,8 @@ if gameLocale == 'frFR' then
     L['SETTINGS_SKULLMARKER_USE_MODIFIER_TOOLTIP'] = 'Utiliser la touche de modification';
     L['SETTINGS_AUTO_TOGGLE_VISIBILITY_LABEL'] = 'Afficher/masquer automatiquement';
     L['SETTINGS_AUTO_TOGGLE_VISIBILITY_TOOLTIP'] = 'Basculer automatiquement la visibilité de la fenêtre principale';
+    L['SETTINGS_AUTOANNOUNCE_CHANNEL'] = 'Canal de chat';
+    L['SETTINGS_AUTOANNOUNCE_CHANNEL_TOOLTIP'] = 'Sélectionnez le canal de chat auquel la solution sera envoyée.';
 
     return;
 end
@@ -506,6 +514,8 @@ if gameLocale == 'itIT' then
     L['SETTINGS_SKULLMARKER_USE_MODIFIER_TOOLTIP'] = 'Usa il tasto modificatore';
     L['SETTINGS_AUTO_TOGGLE_VISIBILITY_LABEL'] = 'Mostra/nascondi automaticamente';
     L['SETTINGS_AUTO_TOGGLE_VISIBILITY_TOOLTIP'] = 'Attiva/disattiva automaticamente la visibilità della finestra principale';
+    L['SETTINGS_AUTOANNOUNCE_CHANNEL'] = 'Canale chat';
+    L['SETTINGS_AUTOANNOUNCE_CHANNEL_TOOLTIP'] = 'Seleziona il canale di chat a cui verrà inviata la soluzione';
 
     return;
 end
@@ -589,6 +599,8 @@ if gameLocale == 'ptBR' then
     L['SETTINGS_SKULLMARKER_USE_MODIFIER_TOOLTIP'] = 'Use a tecla modificadora';
     L['SETTINGS_AUTO_TOGGLE_VISIBILITY_LABEL'] = 'Mostrar/ocultar automaticamente';
     L['SETTINGS_AUTO_TOGGLE_VISIBILITY_TOOLTIP'] = 'Alterna automaticamente a visibilidade da janela principal';
+    L['SETTINGS_AUTOANNOUNCE_CHANNEL'] = 'Canal de bate-papo';
+    L['SETTINGS_AUTOANNOUNCE_CHANNEL_TOOLTIP'] = 'Selecione o canal de bate-papo para o qual a solução será enviada';
 
     return;
 end
@@ -672,6 +684,8 @@ if gameLocale == 'esES' then
     L['SETTINGS_SKULLMARKER_USE_MODIFIER_TOOLTIP'] = 'Usar tecla modificadora';
     L['SETTINGS_AUTO_TOGGLE_VISIBILITY_LABEL'] = 'Mostrar/ocultar automáticamente';
     L['SETTINGS_AUTO_TOGGLE_VISIBILITY_TOOLTIP'] = 'Alternar automáticamente la visibilidad de la ventana principal';
+    L['SETTINGS_AUTOANNOUNCE_CHANNEL'] = 'Canal de chat';
+    L['SETTINGS_AUTOANNOUNCE_CHANNEL_TOOLTIP'] = 'Seleccione el canal de chat al que se enviará la solución';
 
     return;
 end
@@ -765,6 +779,8 @@ if gameLocale == 'zhTW' then
     L['SETTINGS_SKULLMARKER_USE_MODIFIER_TOOLTIP'] = '使用修飾鍵';
     L['SETTINGS_AUTO_TOGGLE_VISIBILITY_LABEL'] = '自動顯示/隱藏';
     L['SETTINGS_AUTO_TOGGLE_VISIBILITY_TOOLTIP'] = '自動切換主窗口的可見性';
+    L['SETTINGS_AUTOANNOUNCE_CHANNEL'] = '聊天頻道';
+    L['SETTINGS_AUTOANNOUNCE_CHANNEL_TOOLTIP'] = '選擇解決方案將發送到的聊天頻道';
 
     return;
 end
@@ -851,6 +867,8 @@ if gameLocale == 'zhCN' then
     L['SETTINGS_SKULLMARKER_USE_MODIFIER_TOOLTIP'] = '使用修饰键';
     L['SETTINGS_AUTO_TOGGLE_VISIBILITY_LABEL'] = '自动显示/隐藏';
     L['SETTINGS_AUTO_TOGGLE_VISIBILITY_TOOLTIP'] = '自动切换主窗口的可见性';
+    L['SETTINGS_AUTOANNOUNCE_CHANNEL'] = '聊天频道';
+    L['SETTINGS_AUTOANNOUNCE_CHANNEL_TOOLTIP'] = '选择解决方案将发送到的聊天频道';
 
     return;
 end
@@ -935,6 +953,8 @@ if gameLocale == 'koKR' then
     L['SETTINGS_SKULLMARKER_USE_MODIFIER_TOOLTIP'] = '모드 키 사용';
     L['SETTINGS_AUTO_TOGGLE_VISIBILITY_LABEL'] = '자동 표시 / 숨기기';
     L['SETTINGS_AUTO_TOGGLE_VISIBILITY_TOOLTIP'] = '기본 창의 가시성을 자동으로 전환';
+    L['SETTINGS_AUTOANNOUNCE_CHANNEL'] = '채팅 채널';
+    L['SETTINGS_AUTOANNOUNCE_CHANNEL_TOOLTIP'] = '솔루션을 보낼 채팅 채널을 선택하십시오.';
 
     return;
 end
