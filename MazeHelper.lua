@@ -242,15 +242,19 @@ local function AnnounceInChat(partyChatType, fromButton)
     local announceChannel;
 
     if fromButton then
-        announceChannel = MHMOTSConfig.AutoAnnouncerChannel;
+        announceChannel = CHANNELS_LIST[MHMOTSConfig.AutoAnnouncerChannel];
     else
-        announceChannel = IsInInstance() and MHMOTSConfig.AutoAnnouncerChannel or 1;
+        if MHMOTSConfig.AutoAnnouncerChannel == 1 then -- PARTY
+            announceChannel = partyChatType;
+        else
+            announceChannel = IsInInstance() and CHANNELS_LIST[MHMOTSConfig.AutoAnnouncerChannel] or CHANNELS_LIST[1];
+        end
     end
 
     if MHMOTSConfig.AnnounceWithEnglish and MazeHelper.currentLocale ~= 'enUS' then
-        SendChatMessage(string.format(L['ANNOUNCE_SOLUTION_WITH_ENGLISH'], buttons[SOLUTION_BUTTON_ID].data.name, buttons[SOLUTION_BUTTON_ID].data.ename), CHANNELS_LIST[announceChannel]);
+        SendChatMessage(string.format(L['ANNOUNCE_SOLUTION_WITH_ENGLISH'], buttons[SOLUTION_BUTTON_ID].data.name, buttons[SOLUTION_BUTTON_ID].data.ename), announceChannel);
     else
-        SendChatMessage(string.format(L['ANNOUNCE_SOLUTION'], buttons[SOLUTION_BUTTON_ID].data.name), CHANNELS_LIST[announceChannel]);
+        SendChatMessage(string.format(L['ANNOUNCE_SOLUTION'], buttons[SOLUTION_BUTTON_ID].data.name), announceChannel);
     end
 end
 
