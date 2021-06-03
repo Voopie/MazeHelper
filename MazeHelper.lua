@@ -875,7 +875,7 @@ end);
 
 settingsScrollChild.Data.AnnounceOnlyEnglish = E.CreateRoundedCheckButton(settingsScrollChild);
 settingsScrollChild.Data.AnnounceOnlyEnglish:SetPosition('TOPLEFT', settingsScrollChild.Data.PrintResettedPlayerName, 'BOTTOMLEFT', 0, 0);
-settingsScrollChild.Data.AnnounceOnlyEnglish:SetLabel(L['SETTINGS_ANNOUNCE_ONLY_ENGLISH_LABEL']);
+settingsScrollChild.Data.AnnounceOnlyEnglish:SetLabel(M.INLINE_NEW_ICON .. L['SETTINGS_ANNOUNCE_ONLY_ENGLISH_LABEL']);
 settingsScrollChild.Data.AnnounceOnlyEnglish:SetTooltip(L['SETTINGS_ANNOUNCE_ONLY_ENGLISH_TOOLTIP']);
 settingsScrollChild.Data.AnnounceOnlyEnglish:SetScript('OnClick', function(self)
     MHMOTSConfig.AnnounceOnlyEnglish = self:GetChecked();
