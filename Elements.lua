@@ -58,6 +58,18 @@ E.CreateRoundedCheckButton = function(parent)
         PixelUtil.SetSize(self, width, height);
     end
 
+    hooksecurefunc(b, 'SetEnabled', function(self, state)
+        if state then
+            self.Label:SetFontObject('GameFontNormal');
+            self:GetNormalTexture():SetDesaturated(false);
+            self:GetCheckedTexture():SetDesaturated(false);
+        else
+            self.Label:SetFontObject('GameFontDisable');
+            self:GetNormalTexture():SetDesaturated(true);
+            self:GetCheckedTexture():SetDesaturated(true);
+        end
+    end);
+
     E.CreateTooltip(b);
 
     b:SetSize(26, 26);
