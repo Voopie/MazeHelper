@@ -148,6 +148,8 @@ L['SETTINGS_USE_CLONE_AUTOMARKER_LABEL'] = 'Auto marker';
 L['SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = 'Automatically put markers on Illusionary Clones in a boss fight';
 L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL'] = 'Duplicate solution in English';
 L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP'] = 'Send the solution to the chat along with English phrases, for example, «Empty flower without a circle / Empty flower without a circle»|n|n|cffff6a00Ha-ha! Nevermind, it\'s only for non enUS/enGB locales|r';
+L['SETTINGS_ANNOUNCE_ONLY_ENGLISH_LABEL'] = 'Solution in English only';
+L['SETTINGS_ANNOUNCE_ONLY_ENGLISH_TOOLTIP'] = 'Send the solution to the chat in English only';
 L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_LABEL'] = 'Set marker on player';
 L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_TOOLTIP'] = 'Automatically set green marker on player if he clicked on symbol that became the solution';
 L['SETTINGS_ALPHA_BACKGROUND_LABEL'] = 'Background alpha';
@@ -230,6 +232,8 @@ if gameLocale == 'ruRU' then
     L['SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = 'Автоматически ставить метки на Иллюзорных клонов в бою с боссом';
     L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL'] = 'Дублировать решение на английском';
     L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP'] = 'Отправлять решение в чат вместе с английскими фразами, например, «Пустой цветок без круга / Empty flower without a circle»';
+    L['SETTINGS_ANNOUNCE_ONLY_ENGLISH_LABEL'] = 'Решение только на английском';
+    L['SETTINGS_ANNOUNCE_ONLY_ENGLISH_TOOLTIP'] = 'Отправлять решение в чат только на английском языке';
     L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_LABEL'] = 'Ставить метку на игрока';
     L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_TOOLTIP'] = 'Автоматически ставить метку на игрока, если он кликнул по символу, который стал решением';
     L['SETTINGS_ALPHA_BACKGROUND_LABEL'] = 'Видимость фона';
@@ -318,6 +322,8 @@ if gameLocale == 'deDE' then
     L['SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = 'Setze in einem Bosskampf automatisch Marker auf Illusionärer Klon';
     L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL'] = 'Doppelte Lösung in Englisch';
     L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP'] = 'Senden Sie die Lösung zusammen mit englischen Phrasen an den Chat, z. B. «Leere Blume ohne Kreis / Empty flower without a circle»';
+    L['SETTINGS_ANNOUNCE_ONLY_ENGLISH_LABEL'] = 'Lösung nur auf Englisch';
+    L['SETTINGS_ANNOUNCE_ONLY_ENGLISH_TOOLTIP'] = 'Senden Sie die Lösung nur auf Englisch an den Chat';
     L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_LABEL'] = 'Setzen Sie einen Marker auf den Player';
     L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_TOOLTIP'] = 'Setzen Sie automatisch eine grüne Markierung auf den Spieler, wenn er auf das Symbol klickt, das zur Lösung wurde';
     L['SETTINGS_ALPHA_BACKGROUND_LABEL'] = 'Hintergrundtransparenz';
@@ -403,6 +409,8 @@ if gameLocale == 'frFR' then
     L['SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = 'Mettre automatiquement des marqueurs sur les Clones illusoires dans un combat de boss';
     L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL'] = 'Dupliquer la solution en anglais';
     L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP'] = 'Envoyez la solution au chat avec des phrases en anglais, par exemple, «Fleur vide sans cercle / Empty flower without a circle»';
+    L['SETTINGS_ANNOUNCE_ONLY_ENGLISH_LABEL'] = 'Solution en anglais uniquement';
+    L['SETTINGS_ANNOUNCE_ONLY_ENGLISH_TOOLTIP'] = 'Envoyez la solution au chat en anglais uniquement';
     L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_LABEL'] = 'Placer un marqueur sur le joueur';
     L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_TOOLTIP'] = 'Définir automatiquement le marqueur vert sur le joueur s\'il clique sur le symbole qui est devenu la solution';
     L['SETTINGS_ALPHA_BACKGROUND_LABEL'] = 'Opacité de l\'arrière-plan';
@@ -488,6 +496,8 @@ if gameLocale == 'itIT' then
     L['SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = 'Metti automaticamente i segnalini sui Clone Illusorio in una lotta con un boss';
     L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL'] = 'Soluzione duplicata in inglese';
     L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP'] = 'Invia la soluzione alla chat insieme a frasi in inglese, ad esempio, «Fiore vuoto senza cerchio / Empty flower without a circle»';
+    L['SETTINGS_ANNOUNCE_ONLY_ENGLISH_LABEL'] = 'Soluzione solo in inglese';
+    L['SETTINGS_ANNOUNCE_ONLY_ENGLISH_TOOLTIP'] = 'Invia la soluzione alla chat solo in inglese';
     L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_LABEL'] = 'Imposta un indicatore sul giocatore';
     L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_TOOLTIP'] = 'Imposta automaticamente l\'indicatore verde sul giocatore se ha cliccato sul simbolo che è diventato la soluzione';
     L['SETTINGS_ALPHA_BACKGROUND_LABEL'] = 'Opacità dello sfondo';
@@ -573,6 +583,8 @@ if gameLocale == 'ptBR' then
     L['SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = 'Colocar marcadores automaticamente em Clones Ilusórios em uma luta de chefe';
     L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL'] = 'Solução duplicada em inglês';
     L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP'] = 'Envie a solução para o chat junto com frases em inglês, por exemplo, «Flor vazia sem círculo / Empty flower without a circle»';
+    L['SETTINGS_ANNOUNCE_ONLY_ENGLISH_LABEL'] = 'Solução apenas em inglês';
+    L['SETTINGS_ANNOUNCE_ONLY_ENGLISH_TOOLTIP'] = 'Envie a solução para o chat apenas em inglês';
     L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_LABEL'] = 'Definir marcador no jogador';
     L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_TOOLTIP'] = 'Definir marcador verde automaticamente no jogador se ele clicar no símbolo que se tornou a solução';
     L['SETTINGS_ALPHA_BACKGROUND_LABEL'] = 'Opacidade de fundo';
@@ -658,6 +670,8 @@ if gameLocale == 'esES' then
     L['SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = 'Coloca marcadores automáticamente en Clones ilusorios en una pelea de jefes';
     L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL'] = 'Solución duplicada en inglés';
     L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP'] = 'Envía la solución al chat junto con frases en inglés, por ejemplo, «Flor vacía sin círculo / Empty flower without a circle»';
+    L['SETTINGS_ANNOUNCE_ONLY_ENGLISH_LABEL'] = 'Solución sólo en inglés';
+    L['SETTINGS_ANNOUNCE_ONLY_ENGLISH_TOOLTIP'] = 'Enviar la solución al chat sólo en inglés';
     L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_LABEL'] = 'Establecer marcador en el jugador';
     L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_TOOLTIP'] = 'Establece automáticamente un marcador verde en el jugador si hace clic en el símbolo que se convirtió en la solución';
     L['SETTINGS_ALPHA_BACKGROUND_LABEL'] = 'Opacidad de fondo';
@@ -753,6 +767,8 @@ if gameLocale == 'zhTW' then
     L['SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = '在老闆戰鬥中自動在幻影克隆上放置標記';
     L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL'] = '英文重複解決方案';
     L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP'] = '將解決方案與英語短語一起發送至聊天，例如，“無外環空心的花/Empty flower without a circle”';
+    L['SETTINGS_ANNOUNCE_ONLY_ENGLISH_LABEL'] = '解決方案僅用英文';
+    L['SETTINGS_ANNOUNCE_ONLY_ENGLISH_TOOLTIP'] = '僅用英語發送解決方案';
     L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_LABEL'] = '在玩家上設置標記';
     L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_TOOLTIP'] = '如果玩家點擊成為解決方案的標誌，則自動在他身上設置綠色標記';
     L['SETTINGS_ALPHA_BACKGROUND_LABEL'] = '背景不透明度';
@@ -841,6 +857,8 @@ if gameLocale == 'zhCN' then
     L['SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = '在老板战斗中自动在幻影克隆上放置标记';
     L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL'] = '英文重复解决方案';
     L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP'] = '将解决方案与英语短语一起发送给聊天，例如，“无环 空心 花/Empty flower without a circle”';
+    L['SETTINGS_ANNOUNCE_ONLY_ENGLISH_LABEL'] = '仅有英文版本的解决方案';
+    L['SETTINGS_ANNOUNCE_ONLY_ENGLISH_TOOLTIP'] = '只用英语发送聊天的解决方案';
     L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_LABEL'] = '在播放器上设置标记';
     L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_TOOLTIP'] = '如果他单击成为解决方案的符号，则自动在玩家上设置绿色标记';
     L['SETTINGS_ALPHA_BACKGROUND_LABEL'] = '背景不透明度';
@@ -927,6 +945,8 @@ if gameLocale == 'koKR' then
     L['SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = '보스전에서 환영 분신들에 징표를 자동으로 분배';
     L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL'] = '영어로도 중복해서 표시';
     L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP'] = '예를 들어 «원 없는 빈 꽃 / Empty flower without a circle»과 같이 영어 구문과 함께 정답을 채팅에 보냅니다';
+    L['SETTINGS_ANNOUNCE_ONLY_ENGLISH_LABEL'] = '영어로만 솔루션';
+    L['SETTINGS_ANNOUNCE_ONLY_ENGLISH_TOOLTIP'] = '영어로만 채팅에 솔루션을 보냅니다';
     L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_LABEL'] = '플레이어에 징표 설정';
     L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_TOOLTIP'] = '답을 고르면 플레이어에게 자동으로 녹색 징표가 설정됩니다';
     L['SETTINGS_ALPHA_BACKGROUND_LABEL'] = '배경 불투명도';

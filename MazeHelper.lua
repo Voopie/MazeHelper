@@ -251,8 +251,14 @@ local function AnnounceInChat(partyChatType, fromButton)
         end
     end
 
-    if MHMOTSConfig.AnnounceWithEnglish and MazeHelper.currentLocale ~= 'enUS' then
-        SendChatMessage(string.format(L['ANNOUNCE_SOLUTION_WITH_ENGLISH'], buttons[SOLUTION_BUTTON_ID].data.name, buttons[SOLUTION_BUTTON_ID].data.ename), announceChannel);
+    if MazeHelper.currentLocale ~= 'enUS' then
+        if MHMOTSConfig.AnnounceOnlyEnglish then
+            SendChatMessage(string.format(L['ANNOUNCE_SOLUTION'], buttons[SOLUTION_BUTTON_ID].data.ename), announceChannel);
+        elseif MHMOTSConfig.AnnounceWithEnglish then
+            SendChatMessage(string.format(L['ANNOUNCE_SOLUTION_WITH_ENGLISH'], buttons[SOLUTION_BUTTON_ID].data.name, buttons[SOLUTION_BUTTON_ID].data.ename), announceChannel);
+        else
+            SendChatMessage(string.format(L['ANNOUNCE_SOLUTION'], buttons[SOLUTION_BUTTON_ID].data.name), announceChannel);
+        end
     else
         SendChatMessage(string.format(L['ANNOUNCE_SOLUTION'], buttons[SOLUTION_BUTTON_ID].data.name), announceChannel);
     end
@@ -867,9 +873,18 @@ settingsScrollChild.Data.PrintResettedPlayerName:SetScript('OnClick', function(s
     MHMOTSConfig.PrintResettedPlayerName = self:GetChecked();
 end);
 
+settingsScrollChild.Data.AnnounceOnlyEnglish = E.CreateRoundedCheckButton(settingsScrollChild);
+settingsScrollChild.Data.AnnounceOnlyEnglish:SetPosition('TOPLEFT', settingsScrollChild.Data.PrintResettedPlayerName, 'BOTTOMLEFT', 0, 0);
+settingsScrollChild.Data.AnnounceOnlyEnglish:SetLabel(L['SETTINGS_ANNOUNCE_ONLY_ENGLISH_LABEL']);
+settingsScrollChild.Data.AnnounceOnlyEnglish:SetTooltip(L['SETTINGS_ANNOUNCE_ONLY_ENGLISH_TOOLTIP']);
+settingsScrollChild.Data.AnnounceOnlyEnglish:SetScript('OnClick', function(self)
+    MHMOTSConfig.AnnounceOnlyEnglish = self:GetChecked();
+
+    settingsScrollChild.Data.AnnounceWithEnglish:SetEnabled(not MHMOTSConfig.AnnounceOnlyEnglish);
+end);
 
 settingsScrollChild.Data.AnnounceWithEnglish = E.CreateRoundedCheckButton(settingsScrollChild);
-settingsScrollChild.Data.AnnounceWithEnglish:SetPosition('TOPLEFT', settingsScrollChild.Data.PrintResettedPlayerName, 'BOTTOMLEFT', 0, 0);
+settingsScrollChild.Data.AnnounceWithEnglish:SetPosition('TOPLEFT', settingsScrollChild.Data.AnnounceOnlyEnglish, 'BOTTOMLEFT', 0, 0);
 settingsScrollChild.Data.AnnounceWithEnglish:SetLabel(L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL']);
 settingsScrollChild.Data.AnnounceWithEnglish:SetTooltip(L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP']);
 settingsScrollChild.Data.AnnounceWithEnglish:SetScript('OnClick', function(self)
@@ -2102,6 +2117,7 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     MHMOTSConfig.ShowLargeSymbol         = MHMOTSConfig.ShowLargeSymbol == nil and true or MHMOTSConfig.ShowLargeSymbol;
     MHMOTSConfig.UseCloneAutoMarker      = MHMOTSConfig.UseCloneAutoMarker == nil and true or MHMOTSConfig.UseCloneAutoMarker;
     MHMOTSConfig.AnnounceWithEnglish     = MHMOTSConfig.AnnounceWithEnglish == nil and true or MHMOTSConfig.AnnounceWithEnglish;
+    MHMOTSConfig.AnnounceOnlyEnglish     = MHMOTSConfig.AnnounceOnlyEnglish == nil and false or MHMOTSConfig.AnnounceOnlyEnglish;
     MHMOTSConfig.SetMarkerSolutionPlayer = MHMOTSConfig.SetMarkerSolutionPlayer == nil and false or MHMOTSConfig.SetMarkerSolutionPlayer;
 
     MHMOTSConfig.SetMarkerOnTargetClone            = MHMOTSConfig.SetMarkerOnTargetClone == nil and true or MHMOTSConfig.SetMarkerOnTargetClone;
@@ -2135,6 +2151,8 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     settingsScrollChild.Data.StartInMinMode:SetChecked(MHMOTSConfig.StartInMinMode);
     settingsScrollChild.Data.UseCloneAutoMarker:SetChecked(MHMOTSConfig.UseCloneAutoMarker);
     settingsScrollChild.Data.AnnounceWithEnglish:SetChecked(MHMOTSConfig.AnnounceWithEnglish);
+    settingsScrollChild.Data.AnnounceWithEnglish:SetEnabled(not MHMOTSConfig.AnnounceOnlyEnglish);
+    settingsScrollChild.Data.AnnounceOnlyEnglish:SetChecked(MHMOTSConfig.AnnounceOnlyEnglish);
     settingsScrollChild.Data.SetMarkerSolutionPlayer:SetChecked(MHMOTSConfig.SetMarkerSolutionPlayer);
     settingsScrollChild.Data.SetMarkerOnTargetClone:SetChecked(MHMOTSConfig.SetMarkerOnTargetClone);
     settingsScrollChild.Data.SetMarkerOnTargetCloneUseModifier:SetChecked(MHMOTSConfig.SetMarkerOnTargetCloneUseModifier);
@@ -2175,6 +2193,7 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
 
     if MazeHelper.currentLocale == 'enUS' then
         settingsScrollChild.Data.AnnounceWithEnglish:SetShown(false);
+        settingsScrollChild.Data.AnnounceOnlyEnglish:SetShown(false);
         settingsScrollChild.Data.AutoAnnouncer:SetPosition('TOPLEFT', settingsScrollChild.Data.PrintResettedPlayerName, 'BOTTOMLEFT', 0, 0);
     end
 
