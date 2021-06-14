@@ -178,6 +178,8 @@ L['SETTINGS_AUTO_TOGGLE_VISIBILITY_LABEL'] = 'Auto show/hide';
 L['SETTINGS_AUTO_TOGGLE_VISIBILITY_TOOLTIP'] = 'Automatically toggle the visibility of the main window';
 L['SETTINGS_AUTOANNOUNCE_CHANNEL'] = 'Chat channel';
 L['SETTINGS_AUTOANNOUNCE_CHANNEL_TOOLTIP'] = 'Select the chat channel to which the solution will be sent';
+L['LOCKED_DRAG_BUTTON_TOOLTIP'] = 'Dragging is locked';
+L['UNLOCKED_DRAG_BUTTON_TOOLTIP'] = 'Dragging is unlocked';
 
 -- Русский (я)
 if gameLocale == 'ruRU' then
@@ -262,6 +264,8 @@ if gameLocale == 'ruRU' then
     L['SETTINGS_AUTO_TOGGLE_VISIBILITY_TOOLTIP'] = 'Автоматически управлять отображением главного окна';
     L['SETTINGS_AUTOANNOUNCE_CHANNEL'] = 'Канал чата';
     L['SETTINGS_AUTOANNOUNCE_CHANNEL_TOOLTIP'] = 'Выберите канал чата, в который будет отправляться решение';
+    L['LOCKED_DRAG_BUTTON_TOOLTIP'] = 'Перетаскивание заблокировано';
+    L['UNLOCKED_DRAG_BUTTON_TOOLTIP'] = 'Перетаскивание разблокировано';
 
     return;
 end
@@ -352,6 +356,8 @@ if gameLocale == 'deDE' then
     L['SETTINGS_AUTO_TOGGLE_VISIBILITY_TOOLTIP'] = 'Schaltet die Sichtbarkeit des Hauptfensters automatisch um';
     L['SETTINGS_AUTOANNOUNCE_CHANNEL'] = 'Chat-Kanal';
     L['SETTINGS_AUTOANNOUNCE_CHANNEL_TOOLTIP'] = 'Wählen Sie den Chat-Kanal, an den die Lösung gesendet werden soll';
+    L['LOCKED_DRAG_BUTTON_TOOLTIP'] = 'Ziehen ist gesperrt';
+    L['UNLOCKED_DRAG_BUTTON_TOOLTIP'] = 'Ziehen ist freigeschaltet';
 
     return;
 end
@@ -439,6 +445,8 @@ if gameLocale == 'frFR' then
     L['SETTINGS_AUTO_TOGGLE_VISIBILITY_TOOLTIP'] = 'Basculer automatiquement la visibilité de la fenêtre principale';
     L['SETTINGS_AUTOANNOUNCE_CHANNEL'] = 'Canal de chat';
     L['SETTINGS_AUTOANNOUNCE_CHANNEL_TOOLTIP'] = 'Sélectionnez le canal de chat auquel la solution sera envoyée.';
+    L['LOCKED_DRAG_BUTTON_TOOLTIP'] = 'La drague est verrouillée';
+    L['UNLOCKED_DRAG_BUTTON_TOOLTIP'] = 'Le glisser est déverrouillé';
 
     return;
 end
@@ -526,6 +534,8 @@ if gameLocale == 'itIT' then
     L['SETTINGS_AUTO_TOGGLE_VISIBILITY_TOOLTIP'] = 'Attiva/disattiva automaticamente la visibilità della finestra principale';
     L['SETTINGS_AUTOANNOUNCE_CHANNEL'] = 'Canale chat';
     L['SETTINGS_AUTOANNOUNCE_CHANNEL_TOOLTIP'] = 'Seleziona il canale di chat a cui verrà inviata la soluzione';
+    L['LOCKED_DRAG_BUTTON_TOOLTIP'] = 'Il trascinamento è bloccato';
+    L['UNLOCKED_DRAG_BUTTON_TOOLTIP'] = 'Il trascinamento è sbloccato';
 
     return;
 end
@@ -613,6 +623,8 @@ if gameLocale == 'ptBR' then
     L['SETTINGS_AUTO_TOGGLE_VISIBILITY_TOOLTIP'] = 'Alterna automaticamente a visibilidade da janela principal';
     L['SETTINGS_AUTOANNOUNCE_CHANNEL'] = 'Canal de bate-papo';
     L['SETTINGS_AUTOANNOUNCE_CHANNEL_TOOLTIP'] = 'Selecione o canal de bate-papo para o qual a solução será enviada';
+    L['LOCKED_DRAG_BUTTON_TOOLTIP'] = 'O arrasto está bloqueado';
+    L['UNLOCKED_DRAG_BUTTON_TOOLTIP'] = 'O arrasto é desbloqueado';
 
     return;
 end
@@ -700,6 +712,8 @@ if gameLocale == 'esES' then
     L['SETTINGS_AUTO_TOGGLE_VISIBILITY_TOOLTIP'] = 'Alternar automáticamente la visibilidad de la ventana principal';
     L['SETTINGS_AUTOANNOUNCE_CHANNEL'] = 'Canal de chat';
     L['SETTINGS_AUTOANNOUNCE_CHANNEL_TOOLTIP'] = 'Seleccione el canal de chat al que se enviará la solución';
+    L['LOCKED_DRAG_BUTTON_TOOLTIP'] = 'El arrastre está bloqueado';
+    L['UNLOCKED_DRAG_BUTTON_TOOLTIP'] = 'El arrastre está desbloqueado';
 
     return;
 end
@@ -797,6 +811,8 @@ if gameLocale == 'zhTW' then
     L['SETTINGS_AUTO_TOGGLE_VISIBILITY_TOOLTIP'] = '自動切換主窗口的可見性';
     L['SETTINGS_AUTOANNOUNCE_CHANNEL'] = '聊天頻道';
     L['SETTINGS_AUTOANNOUNCE_CHANNEL_TOOLTIP'] = '選擇解決方案將發送到的聊天頻道';
+    L['LOCKED_DRAG_BUTTON_TOOLTIP'] = '拖動被鎖定';
+    L['UNLOCKED_DRAG_BUTTON_TOOLTIP'] = '拖動已解鎖';
 
     return;
 end
@@ -887,6 +903,8 @@ if gameLocale == 'zhCN' then
     L['SETTINGS_AUTO_TOGGLE_VISIBILITY_TOOLTIP'] = '自动切换主窗口的可见性';
     L['SETTINGS_AUTOANNOUNCE_CHANNEL'] = '聊天频道';
     L['SETTINGS_AUTOANNOUNCE_CHANNEL_TOOLTIP'] = '选择解决方案将发送到的聊天频道';
+    L['LOCKED_DRAG_BUTTON_TOOLTIP'] = '拖动被锁定';
+    L['UNLOCKED_DRAG_BUTTON_TOOLTIP'] = '拖动已解锁';
 
     return;
 end
@@ -975,6 +993,8 @@ if gameLocale == 'koKR' then
     L['SETTINGS_AUTO_TOGGLE_VISIBILITY_TOOLTIP'] = '기본 창의 가시성을 자동으로 전환';
     L['SETTINGS_AUTOANNOUNCE_CHANNEL'] = '채팅 채널';
     L['SETTINGS_AUTOANNOUNCE_CHANNEL_TOOLTIP'] = '솔루션을 보낼 채팅 채널을 선택하십시오.';
+    L['LOCKED_DRAG_BUTTON_TOOLTIP'] = '드래그가 잠겨 있습니다.';
+    L['UNLOCKED_DRAG_BUTTON_TOOLTIP'] = '드래그가 잠금 해제되었습니다.';
 
     return;
 end

@@ -331,7 +331,7 @@ MazeHelper.frame:SetClampedToScreen(true);
 MazeHelper.frame:SetClampRectInsets(-4, 4, 24, 0);
 MazeHelper.frame:RegisterForDrag('LeftButton');
 MazeHelper.frame:SetScript('OnDragStart', function(self)
-    if self:IsMovable() then
+    if self:IsMovable() and not MHMOTSConfig.LockedDrag then
         self:StartMoving();
     end
 end);
@@ -443,6 +443,8 @@ MazeHelper.frame.MinButton:SetScript('OnClick', function()
 
     MazeHelper.frame.MinButton:SetShown(false);
 
+    MazeHelper.frame.LockDragButton:SetShown(false);
+
     MazeHelper.frame:SetClampRectInsets(-8, 4, 4, 0);
 end);
 MazeHelper.frame.MinButton:SetScript('OnEnter', function(self) self.icon:SetVertexColor(1, 0.85, 0, 1); end);
@@ -495,11 +497,13 @@ MazeHelper.frame.InvisibleMaxButton:SetScript('OnClick', function()
 
     MazeHelper.frame.MinButton:SetShown(true);
 
+    MazeHelper.frame.LockDragButton:SetShown(true);
+
     MazeHelper.frame:SetClampRectInsets(-4, 4, 24, 0);
 end);
 MazeHelper.frame.InvisibleMaxButton:RegisterForDrag('LeftButton');
 MazeHelper.frame.InvisibleMaxButton:SetScript('OnDragStart', function()
-    if MazeHelper.frame:IsMovable() then
+    if MazeHelper.frame:IsMovable() and not MHMOTSConfig.LockedDrag then
         MazeHelper.frame:StartMoving();
     end
 end);
@@ -679,6 +683,37 @@ MazeHelper.frame.AnnounceButton:SetScript('OnClick', function(self)
     self:SetShown(false);
 end);
 MazeHelper.frame.AnnounceButton:SetShown(false);
+
+local function GameTooltip_LockDragButton_Show(self)
+    GameTooltip:SetOwner(self, 'ANCHOR_RIGHT');
+    GameTooltip:AddLine(MHMOTSConfig.LockedDrag and L['LOCKED_DRAG_BUTTON_TOOLTIP'] or L['UNLOCKED_DRAG_BUTTON_TOOLTIP'], 1, 0.85, 0, true);
+    GameTooltip:Show();
+end
+
+MazeHelper.frame.LockDragButton = CreateFrame('CheckButton', nil, MazeHelper.frame.MainHolder);
+PixelUtil.SetPoint(MazeHelper.frame.LockDragButton, 'BOTTOMLEFT', MazeHelper.frame, 'BOTTOMLEFT', 10, 28);
+PixelUtil.SetSize(MazeHelper.frame.LockDragButton, 14, 14);
+MazeHelper.frame.LockDragButton:SetNormalTexture(M.Icons.TEXTURE);
+MazeHelper.frame.LockDragButton.SetTurned = function(self, state)
+    if state then
+        self:GetNormalTexture():SetVertexColor(0.8, 0.2, 0.4, 1);
+        self:GetNormalTexture():SetTexCoord(unpack(M.Icons.COORDS.LOCKED_WHITE));
+    else
+        self:GetNormalTexture():SetVertexColor(0.2, 0.8, 0.4, 1);
+        self:GetNormalTexture():SetTexCoord(unpack(M.Icons.COORDS.UNLOCKED_WHITE));
+    end
+end
+MazeHelper.frame.LockDragButton:SetScript('OnClick', function(self)
+    MHMOTSConfig.LockedDrag = self:GetChecked();
+
+    self:SetTurned(MHMOTSConfig.LockedDrag);
+
+    if GameTooltip:IsOwned(self) then
+        GameTooltip_LockDragButton_Show(self);
+    end
+end);
+MazeHelper.frame.LockDragButton:HookScript('OnEnter', GameTooltip_LockDragButton_Show);
+MazeHelper.frame.LockDragButton:HookScript('OnLeave', GameTooltip_Hide);
 
 MazeHelper.frame.Settings = CreateFrame('Frame', nil, MazeHelper.frame);
 MazeHelper.frame.Settings:SetAllPoints();
@@ -1272,7 +1307,7 @@ function MazeHelper:CreateButton(index)
 
     button:RegisterForDrag('LeftButton');
     button:SetScript('OnDragStart', function()
-        if MazeHelper.frame:IsMovable() then
+        if MazeHelper.frame:IsMovable() and not MHMOTSConfig.LockedDrag then
             MazeHelper.frame:StartMoving();
         end
     end);
@@ -2106,6 +2141,8 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     MHMOTSConfig.SavedBackgroundAlpha            = MHMOTSConfig.SavedBackgroundAlpha or 0.85;
     MHMOTSConfig.SavedBackgroundAlphaLargeSymbol = MHMOTSConfig.SavedBackgroundAlphaLargeSymbol or 0.8;
 
+    MHMOTSConfig.LockedDrag = MHMOTSConfig.LockedDrag == nil and false or MHMOTSConfig.LockedDrag;
+
     MHMOTSConfig.AutoToggleVisibility    = MHMOTSConfig.AutoToggleVisibility == nil and true or MHMOTSConfig.AutoToggleVisibility;
     MHMOTSConfig.SyncEnabled             = MHMOTSConfig.SyncEnabled == nil and true or MHMOTSConfig.SyncEnabled;
     MHMOTSConfig.PredictSolution         = MHMOTSConfig.PredictSolution == nil and false or MHMOTSConfig.PredictSolution;
@@ -2139,6 +2176,8 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     MHMOTSConfig.PracticeNoSound = MHMOTSConfig.PracticeNoSound == nil and false or MHMOTSConfig.PracticeNoSound;
 
     MHMOTSConfig.MinimapButton = MHMOTSConfig.MinimapButton or { hide = false };
+
+    MazeHelper.frame.LockDragButton:SetTurned(MHMOTSConfig.LockedDrag);
 
     settingsScrollChild.Data.AutoToggleVisibility:SetChecked(MHMOTSConfig.AutoToggleVisibility);
     settingsScrollChild.Data.SyncEnabled:SetChecked(MHMOTSConfig.SyncEnabled);
