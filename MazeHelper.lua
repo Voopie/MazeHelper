@@ -344,6 +344,14 @@ MazeHelper.frame:HookScript('OnShow', function(self)
     end
 end)
 E.CreateSmoothShowing(MazeHelper.frame);
+MazeHelper.frame:HookScript('OnEnter', function()
+    MazeHelper.frame.LockDragButton:SetShown(not isMinimized);
+end);
+MazeHelper.frame:HookScript('OnLeave', function()
+    if not MazeHelper.frame.LockDragButton:IsMouseOver() then
+        MazeHelper.frame.LockDragButton:SetShown(false);
+    end
+end);
 
 -- Background
 MazeHelper.frame.background = MazeHelper.frame:CreateTexture(nil, 'BACKGROUND');
@@ -374,6 +382,14 @@ MazeHelper.frame.CloseButton:SetScript('OnClick', function()
 
     MazeHelper.frame:SetShown(false);
 end);
+MazeHelper.frame.CloseButton:HookScript('OnEnter', function()
+    MazeHelper.frame.LockDragButton:SetShown(not isMinimized);
+end);
+MazeHelper.frame.CloseButton:HookScript('OnLeave', function()
+    if not MazeHelper.frame.LockDragButton:IsMouseOver() then
+        MazeHelper.frame.LockDragButton:SetShown(false);
+    end
+end);
 
 -- Settings Button
 MazeHelper.frame.SettingsButton = CreateFrame('Button', nil, MazeHelper.frame);
@@ -393,6 +409,14 @@ MazeHelper.frame.SettingsButton:SetScript('OnClick', function(self)
     MazeHelper.frame.Settings:SetShown(not settingsIsShown);
     MazeHelper.frame.MainHolder:SetShown(settingsIsShown);
     MazeHelper.frame.MinButton:SetShown(settingsIsShown);
+end);
+MazeHelper.frame.SettingsButton:HookScript('OnEnter', function()
+    MazeHelper.frame.LockDragButton:SetShown(not isMinimized);
+end);
+MazeHelper.frame.SettingsButton:HookScript('OnLeave', function()
+    if not MazeHelper.frame.LockDragButton:IsMouseOver() then
+        MazeHelper.frame.LockDragButton:SetShown(false);
+    end
 end);
 
 -- Minimize Button
@@ -449,6 +473,14 @@ MazeHelper.frame.MinButton:SetScript('OnClick', function()
 end);
 MazeHelper.frame.MinButton:SetScript('OnEnter', function(self) self.icon:SetVertexColor(1, 0.85, 0, 1); end);
 MazeHelper.frame.MinButton:SetScript('OnLeave', function(self) self.icon:SetVertexColor(0.7, 0.7, 0.7, 1); end);
+MazeHelper.frame.MinButton:HookScript('OnEnter', function()
+    MazeHelper.frame.LockDragButton:SetShown(not isMinimized);
+end);
+MazeHelper.frame.MinButton:HookScript('OnLeave', function()
+    if not MazeHelper.frame.LockDragButton:IsMouseOver() then
+        MazeHelper.frame.LockDragButton:SetShown(false);
+    end
+end);
 
 -- Invisible Maximize Button
 MazeHelper.frame.InvisibleMaxButton = CreateFrame('Button', nil, MazeHelper.frame);
@@ -529,7 +561,7 @@ MazeHelper.frame.LargeSymbol:SetScript('OnClick', function(self)
 end);
 MazeHelper.frame.LargeSymbol:RegisterForDrag('LeftButton');
 MazeHelper.frame.LargeSymbol:SetScript('OnDragStart', function(self)
-    if self:IsMovable() then
+    if self:IsMovable() and not MHMOTSConfig.LockedDrag then
         self:StartMoving();
     end
 end);
@@ -614,6 +646,15 @@ MazeHelper.frame.ResetButton:SetScript('OnClick', function()
     ResetAll();
 end);
 MazeHelper.frame.ResetButton:SetEnabled(false);
+MazeHelper.frame.ResetButton:HookScript('OnEnter', function()
+    MazeHelper.frame.LockDragButton:SetShown(not isMinimized);
+end);
+MazeHelper.frame.ResetButton:HookScript('OnLeave', function()
+    if not MazeHelper.frame.LockDragButton:IsMouseOver() then
+        MazeHelper.frame.LockDragButton:SetShown(false);
+    end
+end);
+
 
 -- Passed Button
 MazeHelper.frame.PassedButton = CreateFrame('Button', nil, MazeHelper.frame.BottomButtonsHolder, 'SharedButtonSmallTemplate');
@@ -628,6 +669,14 @@ MazeHelper.frame.PassedButton:SetScript('OnClick', function()
     ResetAll();
 end);
 MazeHelper.frame.PassedButton:SetEnabled(false);
+MazeHelper.frame.PassedButton:HookScript('OnEnter', function()
+    MazeHelper.frame.LockDragButton:SetShown(not isMinimized);
+end);
+MazeHelper.frame.PassedButton:HookScript('OnLeave', function()
+    if not MazeHelper.frame.LockDragButton:IsMouseOver() then
+        MazeHelper.frame.LockDragButton:SetShown(false);
+    end
+end);
 
 PixelUtil.SetSize(MazeHelper.frame.BottomButtonsHolder, MazeHelper.frame.ResetButton:GetWidth() + MazeHelper.frame.PassedButton:GetWidth() + 8, 22);
 
@@ -1313,6 +1362,16 @@ function MazeHelper:CreateButton(index)
     end);
     button:SetScript('OnDragStop', function()
         BetterOnDragStop(MazeHelper.frame, MHMOTSConfig.SavedPosition);
+    end);
+
+    button:HookScript('OnEnter', function()
+        MazeHelper.frame.LockDragButton:SetShown(not isMinimized);
+    end);
+
+    button:HookScript('OnLeave', function()
+        if not MazeHelper.frame.LockDragButton:IsMouseOver() then
+            MazeHelper.frame.LockDragButton:SetShown(false);
+        end
     end);
 
     table.insert(buttons, index, button); -- index for just to be sure
