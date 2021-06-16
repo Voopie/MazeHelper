@@ -763,6 +763,7 @@ MazeHelper.frame.LockDragButton:SetScript('OnClick', function(self)
 end);
 MazeHelper.frame.LockDragButton:HookScript('OnEnter', GameTooltip_LockDragButton_Show);
 MazeHelper.frame.LockDragButton:HookScript('OnLeave', GameTooltip_Hide);
+MazeHelper.frame.LockDragButton:SetShown(false);
 
 MazeHelper.frame.Settings = CreateFrame('Frame', nil, MazeHelper.frame);
 MazeHelper.frame.Settings:SetAllPoints();
