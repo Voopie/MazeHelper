@@ -362,7 +362,8 @@ if gameLocale == 'deDE' then
     return;
 end
 
--- French (Google Translate)
+-- French
+-- BlondeLegendaire (https://www.curseforge.com/members/blondelegendaire/)
 if gameLocale == 'frFR' then
     L['ZONE_NAME'] = 'Maquis Voile-de-Brume';
     L['MISTCALLER_NAME'] = 'Mandebrume';
@@ -430,7 +431,7 @@ if gameLocale == 'frFR' then
     L['MINIMAP_BUTTON_RMB'] = 'Bouton de droite';
     L['MINIMAP_BUTTON_TOGGLE_MAZEHELPER'] = 'Basculer la fenêtre «Maze Helper»';
     L['MINIMAP_BUTTON_HIDE'] = 'Masquer le bouton de la minicarte';
-    L['MINIMAP_BUTTON_COMMAND_SHOW'] = 'Utilisez /mh minimap pour afficher à nouveau l\'icône de minicarte';
+    L['MINIMAP_BUTTON_COMMAND_SHOW'] = 'Utiliser /mh minimap pour afficher à nouveau l\'icône de minicarte';
     L['SETTINGS_AUTO_PASS_LABEL'] = 'Auto pass';
     L['SETTINGS_AUTO_PASS_TOOLTIP'] = 'Auto «|cff66ff6ePasser|r» sur un passage réussi dans les brumes';
     L['SETTINGS_BORDERS_COLORS'] = 'Couleurs des bordures';
@@ -540,7 +541,8 @@ if gameLocale == 'itIT' then
     return;
 end
 
--- Brazilian Portuguese (Google Translate)
+-- Brazilian Portuguese
+-- edsonsv1 (https://www.curseforge.com/members/edsonsv1)
 if gameLocale == 'ptBR' then
     L['ZONE_NAME'] = 'Enleio do Véu da Névoa';
     L['MISTCALLER_NAME'] = 'Chamabruma';
@@ -597,7 +599,7 @@ if gameLocale == 'ptBR' then
     L['SETTINGS_ANNOUNCE_ONLY_ENGLISH_TOOLTIP'] = 'Envie a solução para o chat apenas em inglês';
     L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_LABEL'] = 'Definir marcador no jogador';
     L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_TOOLTIP'] = 'Definir marcador verde automaticamente no jogador se ele clicar no símbolo que se tornou a solução';
-    L['SETTINGS_ALPHA_BACKGROUND_LABEL'] = 'Opacidade de fundo';
+    L['SETTINGS_ALPHA_BACKGROUND_LABEL'] = 'Opacidade de Fundo';
     L['SETTINGS_ALPHA_BACKGROUND_TOOLTIP'] = 'Defina a opacidade do plano de fundo da janela principal';
     L['SETTINGS_ALPHA_BACKGROUND_LARGE_SYMBOL_LABEL'] = 'Opacidade de fundo do símbolo grande';
     L['SETTINGS_ALPHA_BACKGROUND_LARGE_SYMBOL_TOOLTIP'] = 'Defina a opacidade do fundo do símbolo grande';
@@ -608,10 +610,10 @@ if gameLocale == 'ptBR' then
     L['MINIMAP_BUTTON_RMB'] = 'Botão direito';
     L['MINIMAP_BUTTON_TOGGLE_MAZEHELPER'] = 'Alternar a janela «Maze Helper»';
     L['MINIMAP_BUTTON_HIDE'] = 'Ocultar botão de minimapa';
-    L['MINIMAP_BUTTON_COMMAND_SHOW'] = 'Use /mh minimap para mostrar o ícone do minimapa novamente';
+    L['MINIMAP_BUTTON_COMMAND_SHOW'] = 'Use /mh minimap para mostrar o ícone do mini mapa novamente';
     L['SETTINGS_AUTO_PASS_LABEL'] = 'Passe automático';
-    L['SETTINGS_AUTO_PASS_TOOLTIP'] = 'Automático «|cff66ff6ePassado|r» na passagem bem-sucedida pelas brumas';
-    L['SETTINGS_BORDERS_COLORS'] = 'Cores das bordas';
+    L['SETTINGS_AUTO_PASS_TOOLTIP'] = 'Automático «|cff66ff6ePassado|r» na passagem bem sucedida pelas brumas';
+    L['SETTINGS_BORDERS_COLORS'] = 'Cor das bordas';
     L['SETTINGS_ACTIVE_COLORPICKER'] = 'Selecionado';
     L['SETTINGS_RECEIVED_COLORPICKER'] = 'Recebido';
     L['SETTINGS_SOLUTION_COLORPICKER'] = 'Solução';
