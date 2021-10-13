@@ -1247,6 +1247,12 @@ local function GetMinimumReservedSequence()
     end
 end
 
+local BUTTON_BACKDROP = {
+    insets   = { top = 1, left = 1, bottom = 1, right = 1 },
+    edgeFile = 'Interface\\Buttons\\WHITE8x8',
+    edgeSize = 2,
+};
+
 function MazeHelper:CreateButton(index)
     local button = CreateFrame('Button', nil, MazeHelper.frame.MainHolder, 'BackdropTemplate');
 
@@ -1274,11 +1280,7 @@ function MazeHelper:CreateButton(index)
     PixelUtil.SetPoint(button.SequenceText, 'BOTTOMRIGHT', button, 'BOTTOMRIGHT', -2, 2);
     button.SequenceText:SetShown(MHMOTSConfig.ShowSequenceNumbers);
 
-    button:SetBackdrop({
-        insets   = { top = 1, left = 1, bottom = 1, right = 1 },
-        edgeFile = 'Interface\\Buttons\\WHITE8x8',
-        edgeSize = 2,
-    });
+    button:SetBackdrop(BUTTON_BACKDROP);
 
     button.SetActiveBorder = function(self)
         self:SetBackdropBorderColor(unpack(MHMOTSConfig.ActiveColor));

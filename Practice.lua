@@ -294,6 +294,12 @@ PixelUtil.SetSize(MazeHelper.PracticeFrame.PlayAgainButton, tonumber(MazeHelper.
 MazeHelper.PracticeFrame.PlayAgainButton:SetShown(false);
 MazeHelper.PracticeFrame.PlayAgainButton:SetScript('OnClick', UpdateButtons);
 
+local PRACTICE_BUTTON_BACKDROP = {
+    insets   = { top = 1, left = 1, bottom = 1, right = 1 },
+    edgeFile = 'Interface\\Buttons\\WHITE8x8',
+    edgeSize = 2,
+};
+
 local function CreateButton(index)
     local button = CreateFrame('Button', nil, MazeHelper.PracticeFrame, 'BackdropTemplate');
 
@@ -310,11 +316,7 @@ local function CreateButton(index)
     PixelUtil.SetPoint(button.Icon, 'BOTTOMRIGHT', button, 'BOTTOMRIGHT', -4, 4);
     button.Icon:SetTexture(M.Symbols.TEXTURE);
 
-    button:SetBackdrop({
-        insets   = { top = 1, left = 1, bottom = 1, right = 1 },
-        edgeFile = 'Interface\\Buttons\\WHITE8x8',
-        edgeSize = 2,
-    });
+    button:SetBackdrop(PRACTICE_BUTTON_BACKDROP);
 
     button.SetUnactiveBorder = function(self)
         self:SetBackdropBorderColor(0, 0, 0, 0);

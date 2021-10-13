@@ -147,7 +147,7 @@ L['SETTINGS_SCALE_LARGE_SYMBOL_TOOLTIP'] = 'Set the scale of the large symbol';
 L['SETTINGS_USE_CLONE_AUTOMARKER_LABEL'] = 'Auto marker';
 L['SETTINGS_USE_CLONE_AUTOMARKER_TOOLTIP'] = 'Automatically put markers on Illusionary Clones in a boss fight';
 L['SETTINGS_ANNOUNCE_WITH_ENGLISH_LABEL'] = 'Duplicate solution in English';
-L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP'] = 'Send the solution to the chat along with English phrases, for example, «Empty flower without a circle / Empty flower without a circle»|n|n|cffff6a00Ha-ha! Nevermind, it\'s only for non enUS/enGB locales|r';
+L['SETTINGS_ANNOUNCE_WITH_ENGLISH_TOOLTIP'] = 'Send the solution to the chat along with English phrases, for example, «Empty flower without a circle / Empty flower without a circle»';
 L['SETTINGS_ANNOUNCE_ONLY_ENGLISH_LABEL'] = 'Solution in English only';
 L['SETTINGS_ANNOUNCE_ONLY_ENGLISH_TOOLTIP'] = 'Send the solution to the chat in English only';
 L['SETTINGS_SET_MARKER_SOLUTION_PLAYER_LABEL'] = 'Set marker on player';
@@ -205,7 +205,7 @@ if gameLocale == 'ruRU' then
     L['RESETED_PLAYER'] = '%s |cffff0537сбросил|r символы';
     L['PASSED_PLAYER'] = '%s кликнул на кнопку «|cff66ff6eПрошли|r»';
     L['SETTINGS_REVEAL_RESETTER_LABEL'] = 'Имя игрока, сбросившего символы';
-    L['SETTINGS_REVEAL_RESETTER_TOOLTIP'] = 'Писать в чате имя игрока, который нажал на кнопку «Сброс» или «Прошли» (будет видно только Вам)';
+    L['SETTINGS_REVEAL_RESETTER_TOOLTIP'] = 'Писать в чате имя игрока, который нажал на кнопку «Сбросить» или «Прошли» (будет видно только Вам)';
     L['SETTINGS_AUTOANNOUNCER_LABEL'] = 'Включить авто-оповещатель';
     L['SETTINGS_AUTOANNOUNCER_TOOLTIP'] = 'Автоматически отправлять в чат группы готовое решение';
     L['SETTINGS_START_IN_MINMODE_LABEL'] = 'Запускать в свернутом режиме';
