@@ -68,7 +68,9 @@ MazeHelper.MISTCALLER_QUOTES = {
     },
 
     zhCN = {
-
+        '被你看穿了！ ',
+        '你成功了！猜得真准！',
+        '噢耶！你快赢了！',
     },
 
     koKR = {
