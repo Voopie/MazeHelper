@@ -67,6 +67,7 @@ MazeHelper.MISTCALLER_QUOTES = {
         '好棒！你快到了！',
     },
 
+    -- nanjuekaien1 (https://github.com/nanjuekaien1)
     zhCN = {
         '被你看穿了！ ',
         '你成功了！猜得真准！',
