@@ -2,6 +2,8 @@ local ADDON_NAME, MazeHelper = ...;
 local L, E, M = MazeHelper.L, MazeHelper.E, MazeHelper.M;
 local Version = GetAddOnMetadata(ADDON_NAME, 'Version');
 
+-- Happy New 2022 Year!
+
 -- Lua API
 local tonumber = tonumber;
 
