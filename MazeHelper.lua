@@ -2002,7 +2002,7 @@ function MazeHelper.frame:ENCOUNTER_START(encounterId)
 end
 
 function MazeHelper.frame:ENCOUNTER_END(encounterId, _, _, _, success)
-    UpdateBossState(encounterId, false, success);
+    UpdateBossState(encounterId, false, success == 1);
 end
 
 function MazeHelper.frame:NAME_PLATE_UNIT_ADDED(unit)
