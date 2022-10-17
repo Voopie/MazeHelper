@@ -276,7 +276,7 @@ do
     };
 
     E.CreateSlider = function(name, parent)
-        local slider  = CreateFrame('Slider', 'MazeHelper_Settings_' .. name .. 'Slider', parent, 'OptionsSliderTemplate');
+        local slider  = CreateFrame('Slider', 'MazeHelper_Settings_' .. name .. 'Slider', parent, 'OptionsSliderTemplate, BackdropTemplate');
         local editbox = CreateFrame('EditBox', '$parentEditBox', slider, 'InputBoxTemplate');
 
         slider:SetOrientation('HORIZONTAL');
