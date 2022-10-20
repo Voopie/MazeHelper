@@ -2055,7 +2055,7 @@ function MazeHelper.frame:PLAYER_TARGET_CHANGED()
 end
 
 function MazeHelper.frame:GOSSIP_SHOW()
-    if C_GossipInfo.GetNumOptions() ~= 1 then
+    if #C_GossipInfo.GetOptions() ~= 1 then
         return;
     end
 
