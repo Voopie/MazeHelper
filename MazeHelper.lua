@@ -2055,10 +2055,6 @@ function MazeHelper.frame:PLAYER_TARGET_CHANGED()
 end
 
 function MazeHelper.frame:GOSSIP_SHOW()
-    if #C_GossipInfo.GetOptions() ~= 1 then
-        return;
-    end
-
     local npcId = GetNpcId(NPC_STRING);
     if not npcId then
 		return;
@@ -2073,8 +2069,11 @@ function MazeHelper.frame:GOSSIP_SHOW()
     end
 
     if isPositive then
-        C_GossipInfo.SelectOption(1);
-        C_GossipInfo.CloseGossip();
+        local options = C_GossipInfo.GetOptions();
+        if options and options[1] then
+            C_GossipInfo.SelectOption(options[1].gossipOptionID);
+            C_GossipInfo.CloseGossip();
+        end
     end
 end
 
