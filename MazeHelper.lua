@@ -17,14 +17,6 @@ C_ChatInfo.RegisterAddonMessagePrefix(ADDON_COMM_PREFIX);
 local playerNameWithRealm, playerRole, inInstance, inMOTS, bossKilled, inEncounter, isMinimized;
 local startedInMinMode = false;
 
--- NANO-OPTIMIZATIONS!
-local EMPTY_STRING = '';
-
-local PLAYER_STRING    = 'player';
-local TARGET_STRING    = 'target';
-local MOUSEOVER_STRING = 'mouseover';
-local NPC_STRING       = 'npc';
-
 local MAX_BUTTONS = 8;
 local MAX_ACTIVE_BUTTONS = 4;
 local NUM_ACTIVE_BUTTONS = 0;
@@ -225,7 +217,7 @@ local function mhPrint(message)
 end
 
 local function GetNpcId(unit)
-    return tonumber((select(6, strsplit('-', UnitGUID(unit) or EMPTY_STRING))));
+    return tonumber((select(6, strsplit('-', UnitGUID(unit) or ''))));
 end
 
 local function GetPartyChatType()
@@ -624,8 +616,8 @@ local function ResetAll()
     MazeHelper.frame.ResetButton:SetEnabled(false);
 
     if MHMOTSConfig.SetMarkerSolutionPlayer then
-        if GetRaidTargetIndex(PLAYER_STRING) == SOLUTION_PLAYER_MARKER then
-            SetRaidTarget(PLAYER_STRING, 0);
+        if GetRaidTargetIndex('player') == SOLUTION_PLAYER_MARKER then
+            SetRaidTarget('player', 0);
         end
     end
 end
@@ -848,8 +840,8 @@ settingsScrollChild.Data.SetMarkerSolutionPlayer:SetScript('OnClick', function(s
     MHMOTSConfig.SetMarkerSolutionPlayer = self:GetChecked();
 
     if not MHMOTSConfig.SetMarkerSolutionPlayer then
-        if GetRaidTargetIndex(PLAYER_STRING) == SOLUTION_PLAYER_MARKER then
-            SetRaidTarget(PLAYER_STRING, 0);
+        if GetRaidTargetIndex('player') == SOLUTION_PLAYER_MARKER then
+            SetRaidTarget('player', 0);
         end
     end
 end);
@@ -1184,8 +1176,8 @@ local function Button_SetActive(button, send, sender, isDoubleClick)
 
     if MHMOTSConfig.SetMarkerSolutionPlayer then
         if not inEncounter and not sender and SOLUTION_BUTTON_ID and not PREDICTED_SOLUTION_BUTTON_ID and button.id == SOLUTION_BUTTON_ID then
-            if GetRaidTargetIndex(PLAYER_STRING) ~= SOLUTION_PLAYER_MARKER then
-                SetRaidTarget(PLAYER_STRING, SOLUTION_PLAYER_MARKER);
+            if GetRaidTargetIndex('player') ~= SOLUTION_PLAYER_MARKER then
+                SetRaidTarget('player', SOLUTION_PLAYER_MARKER);
             end
         end
     end
@@ -1222,8 +1214,8 @@ local function Button_SetUnactive(button, send, sender)
 
         if MHMOTSConfig.SetMarkerSolutionPlayer then
             if not inEncounter and not sender and SOLUTION_BUTTON_ID and not PREDICTED_SOLUTION_BUTTON_ID and button.id == SOLUTION_BUTTON_ID then
-                if GetRaidTargetIndex(PLAYER_STRING) == SOLUTION_PLAYER_MARKER then
-                    SetRaidTarget(PLAYER_STRING, 0);
+                if GetRaidTargetIndex('player') == SOLUTION_PLAYER_MARKER then
+                    SetRaidTarget('player', 0);
                 end
             end
         end
@@ -1329,7 +1321,7 @@ function MazeHelper:CreateButton(index)
             self.sequence = nil;
         end
 
-        self.SequenceText:SetText(EMPTY_STRING);
+        self.SequenceText:SetText('');
     end
 
     button:SetUnactiveBorder();
@@ -1570,7 +1562,7 @@ function MazeHelper:UpdateSolution()
 
             if MHMOTSConfig.AutoAnnouncerAsAlways then
                 announce = true;
-            elseif MHMOTSConfig.AutoAnnouncerAsPartyLeader and UnitIsGroupLeader(PLAYER_STRING) then
+            elseif MHMOTSConfig.AutoAnnouncerAsPartyLeader and UnitIsGroupLeader('player') then
                 announce = true;
             elseif MHMOTSConfig.AutoAnnouncerAsTank and playerRole == 'TANK' then
                 announce = true;
@@ -1808,7 +1800,7 @@ local function UpdateShown()
 end
 
 local function UpdateState()
-    local playerName, playerShortenedRealm = UnitFullName(PLAYER_STRING);
+    local playerName, playerShortenedRealm = UnitFullName('player');
     playerNameWithRealm = playerName .. '-' .. playerShortenedRealm;
 
     inInstance = IsInInstance();
@@ -2039,23 +2031,23 @@ function MazeHelper.frame:PLAYER_TARGET_CHANGED()
         return;
     end
 
-    if not UnitExists(TARGET_STRING) then
+    if not UnitExists('target') then
         return;
     end
 
-    local npcId = GetNpcId(TARGET_STRING);
+    local npcId = GetNpcId('target');
     if not npcId or npcId ~= ILLUSIONARY_CLONE_ID then
         return;
     end
 
-    local targetIndex = GetRaidTargetIndex(TARGET_STRING);
+    local targetIndex = GetRaidTargetIndex('target');
     if not targetIndex or targetIndex ~= SKULL_MARKER then
-        SetRaidTarget(TARGET_STRING, SKULL_MARKER);
+        SetRaidTarget('target', SKULL_MARKER);
     end
 end
 
 function MazeHelper.frame:GOSSIP_SHOW()
-    local npcId = GetNpcId(NPC_STRING);
+    local npcId = GetNpcId('npc');
     if not npcId then
 		return;
     end
@@ -2098,27 +2090,27 @@ function MazeHelper.frame:UPDATE_MOUSEOVER_UNIT()
         return;
     end
 
-    if not UnitExists(MOUSEOVER_STRING) or UnitIsDead(MOUSEOVER_STRING) then
+    if not UnitExists('mouseover') or UnitIsDead('mouseover') then
         return;
     end
 
-    local npcId = GetNpcId(MOUSEOVER_STRING);
+    local npcId = GetNpcId('mouseover');
     if not npcId or npcId ~= EXPOSED_BOGGARD_NPC_ID then
 		return;
     end
 
-    local targetIndex = GetRaidTargetIndex(MOUSEOVER_STRING);
+    local targetIndex = GetRaidTargetIndex('mouseover');
     if not targetIndex or targetIndex ~= SKULL_MARKER then
-        SetRaidTarget(MOUSEOVER_STRING, SKULL_MARKER);
+        SetRaidTarget('mouseover', SKULL_MARKER);
     end
 end
 
 function MazeHelper.frame:PLAYER_SPECIALIZATION_CHANGED(unit)
-    if unit ~= PLAYER_STRING then
+    if unit ~= 'player' then
         return;
     end
 
-    playerRole = (select(5, GetSpecializationInfo(GetSpecialization())) or EMPTY_STRING);
+    playerRole = (select(5, GetSpecializationInfo(GetSpecialization())) or '');
 end
 
 function MazeHelper.frame:CHAT_MSG_MONSTER_SAY(message, npcName)
