@@ -10,7 +10,7 @@
 ## Notes-ptBR: Seu ajudante favorito para «Brumas de Tirna Scithe»
 ## Notes-zhCN: 您最喜欢的«塞兹仙林的迷雾»的助手
 ## Notes-koKR: «티르너 사이드의 안개»에 가장 좋아하는 도우미
-## Version: 1.58
+## Version: 1.59
 ## SavedVariables: MHMOTSConfig
 
 Libraries\Load_Libraries.xml

@@ -334,7 +334,7 @@ MazeHelper.frame:SetScript('OnDragStop', function(self)
 end);
 MazeHelper.frame:HookScript('OnShow', function(self)
     if SOLUTION_BUTTON_ID then
-        self.LargeSymbol:SetShown(true);
+        self.LargeSymbol:Show();
     end
 end);
 E.CreateSmoothShowing(MazeHelper.frame);
@@ -343,7 +343,7 @@ MazeHelper.frame:HookScript('OnEnter', function()
 end);
 MazeHelper.frame:HookScript('OnLeave', function()
     if not MazeHelper.frame.LockDragButton:IsMouseOver() then
-        MazeHelper.frame.LockDragButton:SetShown(false);
+        MazeHelper.frame.LockDragButton:Hide();
     end
 end);
 
@@ -366,22 +366,22 @@ MazeHelper.frame.CloseButton:GetHighlightTexture():SetTexCoord(unpack(M.Icons.CO
 MazeHelper.frame.CloseButton:GetHighlightTexture():SetVertexColor(1, 0.85, 0, 1);
 MazeHelper.frame.CloseButton:SetScript('OnClick', function()
     if MazeHelper.frame.Settings:IsShown() then
-        MazeHelper.frame.Settings:SetShown(false);
-        MazeHelper.frame.SettingsButton:SetShown(true);
-        MazeHelper.frame.MainHolder:SetShown(true);
-        MazeHelper.frame.MinButton:SetShown(true);
+        MazeHelper.frame.Settings:Hide();
+        MazeHelper.frame.SettingsButton:Show();
+        MazeHelper.frame.MainHolder:Show();
+        MazeHelper.frame.MinButton:Show();
 
         return;
     end
 
-    MazeHelper.frame:SetShown(false);
+    MazeHelper.frame:Hide();
 end);
 MazeHelper.frame.CloseButton:HookScript('OnEnter', function()
     MazeHelper.frame.LockDragButton:SetShown(not isMinimized);
 end);
 MazeHelper.frame.CloseButton:HookScript('OnLeave', function()
     if not MazeHelper.frame.LockDragButton:IsMouseOver() then
-        MazeHelper.frame.LockDragButton:SetShown(false);
+        MazeHelper.frame.LockDragButton:Hide();
     end
 end);
 
@@ -398,7 +398,7 @@ MazeHelper.frame.SettingsButton:GetHighlightTexture():SetVertexColor(1, 0.85, 0,
 MazeHelper.frame.SettingsButton:SetScript('OnClick', function(self)
     local settingsIsShown = MazeHelper.frame.Settings:IsShown();
 
-    self:SetShown(false);
+    self:Hide();
 
     MazeHelper.frame.Settings:SetShown(not settingsIsShown);
     MazeHelper.frame.MainHolder:SetShown(settingsIsShown);
@@ -409,7 +409,7 @@ MazeHelper.frame.SettingsButton:HookScript('OnEnter', function()
 end);
 MazeHelper.frame.SettingsButton:HookScript('OnLeave', function()
     if not MazeHelper.frame.LockDragButton:IsMouseOver() then
-        MazeHelper.frame.LockDragButton:SetShown(false);
+        MazeHelper.frame.LockDragButton:Hide();
     end
 end);
 
@@ -432,7 +432,7 @@ MazeHelper.frame.MinButton:SetScript('OnClick', function()
 
     PixelUtil.SetPoint(MazeHelper.frame.SolutionText, 'LEFT', MazeHelper.frame, 'LEFT', 2, 4);
 
-    MazeHelper.frame.BottomButtonsHolder:SetShown(false);
+    MazeHelper.frame.BottomButtonsHolder:Hide();
 
     PixelUtil.SetPoint(MazeHelper.frame.background, 'TOPLEFT', MazeHelper.frame, 'TOPLEFT', -15, 0);
     PixelUtil.SetPoint(MazeHelper.frame.background, 'BOTTOMRIGHT', MazeHelper.frame, 'BOTTOMRIGHT', 15, 0);
@@ -445,23 +445,23 @@ MazeHelper.frame.MinButton:SetScript('OnClick', function()
     PassedCounter_Update();
 
     if SOLUTION_BUTTON_ID then
-        MazeHelper.frame.MiniSolution:SetShown(true);
+        MazeHelper.frame.MiniSolution:Show();
         MazeHelper.frame.MiniSolution.Icon:SetTexCoord(unpack(MHMOTSConfig.UseColoredSymbols and buttonsData[SOLUTION_BUTTON_ID].coords or buttonsData[SOLUTION_BUTTON_ID].coords_white));
     else
-        MazeHelper.frame.MiniSolution:SetShown(false);
+        MazeHelper.frame.MiniSolution:Hide();
     end
 
     MazeHelper.frame.PassedCounter:SetShown(not MazeHelper.frame.MiniSolution:IsShown());
 
-    MazeHelper.frame.AnnounceButton:SetShown(false);
+    MazeHelper.frame.AnnounceButton:Hide();
 
-    MazeHelper.frame.SettingsButton:SetShown(false);
+    MazeHelper.frame.SettingsButton:Hide();
 
-    MazeHelper.frame.InvisibleMaxButton:SetShown(true);
+    MazeHelper.frame.InvisibleMaxButton:Show();
 
-    MazeHelper.frame.MinButton:SetShown(false);
+    MazeHelper.frame.MinButton:Hide();
 
-    MazeHelper.frame.LockDragButton:SetShown(false);
+    MazeHelper.frame.LockDragButton:Hide();
 
     MazeHelper.frame:SetClampRectInsets(-8, 4, 4, 0);
 end);
@@ -472,7 +472,7 @@ MazeHelper.frame.MinButton:HookScript('OnEnter', function()
 end);
 MazeHelper.frame.MinButton:HookScript('OnLeave', function()
     if not MazeHelper.frame.LockDragButton:IsMouseOver() then
-        MazeHelper.frame.LockDragButton:SetShown(false);
+        MazeHelper.frame.LockDragButton:Hide();
     end
 end);
 
@@ -494,7 +494,7 @@ MazeHelper.frame.InvisibleMaxButton:SetScript('OnClick', function()
 
     PixelUtil.SetPoint(MazeHelper.frame.SolutionText, 'LEFT', MazeHelper.frame, 'LEFT', 2, -54);
 
-    MazeHelper.frame.BottomButtonsHolder:SetShown(true);
+    MazeHelper.frame.BottomButtonsHolder:Show();
     MazeHelper.frame.PassedButton:SetShown(not inEncounter);
     if inEncounter then
         PixelUtil.SetSize(MazeHelper.frame.BottomButtonsHolder, MazeHelper.frame.ResetButton:GetWidth(), 22);
@@ -510,20 +510,20 @@ MazeHelper.frame.InvisibleMaxButton:SetScript('OnClick', function()
     MazeHelper.frame.PassedCounter:ClearAllPoints();
     PixelUtil.SetPoint(MazeHelper.frame.PassedCounter, 'BOTTOM', MazeHelper.frame, 'TOP', 0, -32);
     MazeHelper.frame.PassedCounter:SetScale(1.25);
-    MazeHelper.frame.PassedCounter:SetShown(true);
+    MazeHelper.frame.PassedCounter:Show();
     PassedCounter_Update();
 
-    MazeHelper.frame.MiniSolution:SetShown(false);
+    MazeHelper.frame.MiniSolution:Hide();
 
     MazeHelper.frame.AnnounceButton:SetShown((SOLUTION_BUTTON_ID and not MazeHelper.frame.AnnounceButton.clicked and GetPartyChatType() and not MHMOTSConfig.AutoAnnouncer) and true or false);
 
-    MazeHelper.frame.SettingsButton:SetShown(true);
+    MazeHelper.frame.SettingsButton:Show();
 
-    MazeHelper.frame.InvisibleMaxButton:SetShown(false);
+    MazeHelper.frame.InvisibleMaxButton:Hide();
 
-    MazeHelper.frame.MinButton:SetShown(true);
+    MazeHelper.frame.MinButton:Show();
 
-    MazeHelper.frame.LockDragButton:SetShown(true);
+    MazeHelper.frame.LockDragButton:Show();
 
     MazeHelper.frame:SetClampRectInsets(-4, 4, 24, 0);
 end);
@@ -536,7 +536,7 @@ end);
 MazeHelper.frame.InvisibleMaxButton:SetScript('OnDragStop', function()
     BetterOnDragStop(MazeHelper.frame, MHMOTSConfig.SavedPosition);
 end);
-MazeHelper.frame.InvisibleMaxButton:SetShown(false);
+MazeHelper.frame.InvisibleMaxButton:Hide();
 
 MazeHelper.frame.MainHolder = CreateFrame('Frame', nil, MazeHelper.frame);
 MazeHelper.frame.MainHolder:SetAllPoints();
@@ -551,7 +551,7 @@ MazeHelper.frame.LargeSymbol:SetMovable(true);
 MazeHelper.frame.LargeSymbol:SetClampedToScreen(true);
 MazeHelper.frame.LargeSymbol:RegisterForClicks('RightButtonUp');
 MazeHelper.frame.LargeSymbol:SetScript('OnClick', function(self)
-    self:SetShown(false);
+    self:Hide();
 end);
 MazeHelper.frame.LargeSymbol:RegisterForDrag('LeftButton');
 MazeHelper.frame.LargeSymbol:SetScript('OnDragStart', function(self)
@@ -570,7 +570,7 @@ PixelUtil.SetPoint(MazeHelper.frame.LargeSymbol.Background, 'TOPLEFT', MazeHelpe
 PixelUtil.SetPoint(MazeHelper.frame.LargeSymbol.Background, 'BOTTOMRIGHT', MazeHelper.frame.LargeSymbol, 'BOTTOMRIGHT', 64, -64);
 MazeHelper.frame.LargeSymbol.Background:SetTexture(M.Rings.TEXTURE);
 MazeHelper.frame.LargeSymbol.Background:SetTexCoord(unpack(M.Rings.COORDS.GREEN));
-MazeHelper.frame.LargeSymbol:SetShown(false);
+MazeHelper.frame.LargeSymbol:Hide();
 MazeHelper.frame.LargeSymbol:HookScript('OnShow', function()
     PlaySoundFile(M.Sounds.Notification, 'SFX');
 end);
@@ -606,12 +606,12 @@ local function ResetAll()
 
     MazeHelper.frame.SolutionText:SetText(L['CHOOSE_SYMBOLS_4']);
     MazeHelper.frame.PassedButton:SetEnabled(false);
-    MazeHelper.frame.AnnounceButton:SetShown(false);
+    MazeHelper.frame.AnnounceButton:Hide();
     MazeHelper.frame.AnnounceButton.clicked = false;
 
-    MazeHelper.frame.LargeSymbol:SetShown(false);
-    MazeHelper.frame.MiniSolution:SetShown(false);
-    MazeHelper.frame.PassedCounter:SetShown(true);
+    MazeHelper.frame.LargeSymbol:Hide();
+    MazeHelper.frame.MiniSolution:Hide();
+    MazeHelper.frame.PassedCounter:Show();
 
     MazeHelper.frame.ResetButton:SetEnabled(false);
 
@@ -645,7 +645,7 @@ MazeHelper.frame.ResetButton:HookScript('OnEnter', function()
 end);
 MazeHelper.frame.ResetButton:HookScript('OnLeave', function()
     if not MazeHelper.frame.LockDragButton:IsMouseOver() then
-        MazeHelper.frame.LockDragButton:SetShown(false);
+        MazeHelper.frame.LockDragButton:Hide();
     end
 end);
 
@@ -668,7 +668,7 @@ MazeHelper.frame.PassedButton:HookScript('OnEnter', function()
 end);
 MazeHelper.frame.PassedButton:HookScript('OnLeave', function()
     if not MazeHelper.frame.LockDragButton:IsMouseOver() then
-        MazeHelper.frame.LockDragButton:SetShown(false);
+        MazeHelper.frame.LockDragButton:Hide();
     end
 end);
 
@@ -698,7 +698,7 @@ MazeHelper.frame.MiniSolution.Icon = MazeHelper.frame.MiniSolution:CreateTexture
 PixelUtil.SetPoint(MazeHelper.frame.MiniSolution.Icon, 'CENTER', MazeHelper.frame.MiniSolution, 'CENTER', 0, 0);
 PixelUtil.SetSize(MazeHelper.frame.MiniSolution.Icon, 40, 40);
 MazeHelper.frame.MiniSolution.Icon:SetTexture(M.Symbols.TEXTURE);
-MazeHelper.frame.MiniSolution:SetShown(false);
+MazeHelper.frame.MiniSolution:Hide();
 
 -- Announce Button
 MazeHelper.frame.AnnounceButton = CreateFrame('Button', nil, MazeHelper.frame.MainHolder);
@@ -723,9 +723,9 @@ MazeHelper.frame.AnnounceButton:SetScript('OnClick', function(self)
     AnnounceInChat(GetPartyChatType(), true);
 
     self.clicked = true;
-    self:SetShown(false);
+    self:Hide();
 end);
-MazeHelper.frame.AnnounceButton:SetShown(false);
+MazeHelper.frame.AnnounceButton:Hide();
 
 local function GameTooltip_LockDragButton_Show(self)
     GameTooltip:SetOwner(self, 'ANCHOR_RIGHT');
@@ -757,11 +757,11 @@ MazeHelper.frame.LockDragButton:SetScript('OnClick', function(self)
 end);
 MazeHelper.frame.LockDragButton:HookScript('OnEnter', GameTooltip_LockDragButton_Show);
 MazeHelper.frame.LockDragButton:HookScript('OnLeave', GameTooltip_Hide);
-MazeHelper.frame.LockDragButton:SetShown(false);
+MazeHelper.frame.LockDragButton:Hide();
 
 MazeHelper.frame.Settings = CreateFrame('Frame', nil, MazeHelper.frame);
 MazeHelper.frame.Settings:SetAllPoints();
-MazeHelper.frame.Settings:SetShown(false);
+MazeHelper.frame.Settings:Hide();
 
 MazeHelper.frame.PracticeModeButton = CreateFrame('Button', nil, MazeHelper.frame.Settings);
 PixelUtil.SetPoint(MazeHelper.frame.PracticeModeButton, 'BOTTOM', MazeHelper.frame.Settings, 'TOP', 0, -4);
@@ -773,9 +773,9 @@ MazeHelper.frame.PracticeModeButton:SetHighlightTexture(M.Icons.TEXTURE, 'BLEND'
 MazeHelper.frame.PracticeModeButton:GetHighlightTexture():SetTexCoord(unpack(M.Icons.COORDS.MAZE_BRAIN));
 MazeHelper.frame.PracticeModeButton:GetHighlightTexture():SetVertexColor(1, 0.85, 0, 1);
 MazeHelper.frame.PracticeModeButton:SetScript('OnClick', function()
-    MazeHelper.frame:SetShown(false);
-    MazeHelper.frame.LargeSymbol:SetShown(false);
-    MazeHelper.PracticeFrame:SetShown(true);
+    MazeHelper.frame:Hide();
+    MazeHelper.frame.LargeSymbol:Hide();
+    MazeHelper.PracticeFrame:Show();
 end);
 E.CreateTooltip(MazeHelper.frame.PracticeModeButton, L['PRACTICE_BUTTON_TOOLTIP']);
 
@@ -1209,7 +1209,7 @@ local function Button_SetUnactive(button, send, sender)
         end
 
         MazeHelper.frame.PassedButton:SetEnabled(false);
-        MazeHelper.frame.AnnounceButton:SetShown(false);
+        MazeHelper.frame.AnnounceButton:Hide();
         MazeHelper.frame.AnnounceButton.clicked = false;
 
         if MHMOTSConfig.SetMarkerSolutionPlayer then
@@ -1367,7 +1367,7 @@ function MazeHelper:CreateButton(index)
 
     button:HookScript('OnLeave', function()
         if not MazeHelper.frame.LockDragButton:IsMouseOver() then
-            MazeHelper.frame.LockDragButton:SetShown(false);
+            MazeHelper.frame.LockDragButton:Hide();
         end
     end);
 
@@ -1553,8 +1553,8 @@ function MazeHelper:UpdateSolution()
         MazeHelper.frame.SolutionText:SetText(string.format(L['SOLUTION'], buttons[SOLUTION_BUTTON_ID].data.name));
 
         if isMinimized then
-            MazeHelper.frame.MiniSolution:SetShown(true);
-            MazeHelper.frame.PassedCounter:SetShown(false);
+            MazeHelper.frame.MiniSolution:Show();
+            MazeHelper.frame.PassedCounter:Hide();
         end
 
         if MHMOTSConfig.AutoAnnouncer and partyChatType then
@@ -1576,10 +1576,10 @@ function MazeHelper:UpdateSolution()
             end
         end
     else
-        MazeHelper.frame.LargeSymbol:SetShown(false);
-        MazeHelper.frame.MiniSolution:SetShown(false);
-        MazeHelper.frame.PassedCounter:SetShown(true);
-        MazeHelper.frame.AnnounceButton:SetShown(false);
+        MazeHelper.frame.LargeSymbol:Hide();
+        MazeHelper.frame.MiniSolution:Hide();
+        MazeHelper.frame.PassedCounter:Show();
+        MazeHelper.frame.AnnounceButton:Hide();
 
         MazeHelper.frame.PassedButton:SetEnabled(false);
 
@@ -1766,16 +1766,16 @@ local function UpdateShown()
     if MHMOTSConfig.AutoToggleVisibility then
         if inMOTS and GetMinimapZoneText() == L['ZONE_NAME'] then
             if bossKilled then
-                MazeHelper.frame:SetShown(false);
+                MazeHelper.frame:Hide();
             else
                 if inEncounter then
                     MazeHelper.frame:SetShown(MHMOTSConfig.ShowAtBoss);
                 else
-                    MazeHelper.frame:SetShown(true);
+                    MazeHelper.frame:Show();
                 end
             end
         else
-            MazeHelper.frame:SetShown(false);
+            MazeHelper.frame:Hide();
         end
 
         if MazeHelper.frame:IsShown() then
@@ -2158,11 +2158,13 @@ function MazeHelper.frame:CHAT_MSG_ADDON(prefix, message, _, sender)
                 MazeHelper:ReceiveUnactiveButtonID(tonumber(buttonId), sender);
             end
         elseif command == 'SendPassed' then
-            if arg2 == 'AP' then
+            local step, suffix = arg1, arg2;
+
+            if suffix == 'AP' then
                 return;
             end
 
-            MazeHelper:ReceivePassedCommand(tonumber(arg1));
+            MazeHelper:ReceivePassedCommand(tonumber(step));
 
             if MHMOTSConfig.PrintResettedPlayerName then
                 mhPrint(string.format(L['PASSED_PLAYER'], sender));
@@ -2174,9 +2176,13 @@ function MazeHelper.frame:CHAT_MSG_ADDON(prefix, message, _, sender)
                 mhPrint(string.format(L['RESETED_PLAYER'], sender));
             end
         elseif command == 'REQPC' then
-            MazeHelper:SendPassedCounter(tonumber(arg1));
+            local step = tonumber(arg1);
+
+            MazeHelper:SendPassedCounter(step);
         elseif command == 'RECPC' then
-            MazeHelper:ReceivePassedCounter(tonumber(arg1));
+            local step = tonumber(arg1);
+
+            MazeHelper:ReceivePassedCounter(step);
         end
     end
 end
@@ -2287,8 +2293,8 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
     MazeHelper.frame.LargeSymbol.Background:SetAlpha(MHMOTSConfig.SavedBackgroundAlphaLargeSymbol);
 
     if MazeHelper.currentLocale == 'enUS' then
-        settingsScrollChild.Data.AnnounceWithEnglish:SetShown(false);
-        settingsScrollChild.Data.AnnounceOnlyEnglish:SetShown(false);
+        settingsScrollChild.Data.AnnounceWithEnglish:Hide();
+        settingsScrollChild.Data.AnnounceOnlyEnglish:Hide();
         settingsScrollChild.Data.AutoAnnouncer:SetPosition('TOPLEFT', settingsScrollChild.Data.PrintResettedPlayerName, 'BOTTOMLEFT', 0, 0);
     end
 
@@ -2308,10 +2314,11 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
         if input then
             if string.find(input, 'scalels') then
                 local _, scale = strsplit(' ', input);
+
                 if not scale or scale == '' or scale == 'reset' or scale == 'r' then
                     scale = 1;
                 else
-                    scale = tonumber(scale);
+                    scale = tonumber(scale) or 1;
                     scale = math.min(scale, 3);
                     scale = math.max(scale, 0.25);
                 end
@@ -2326,7 +2333,7 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
                 if not scale or scale == '' or scale == 'reset' or scale == 'r' then
                     scale = 1;
                 else
-                    scale = tonumber(scale);
+                    scale = tonumber(scale) or 1;
                     scale = math.min(scale, 3);
                     scale = math.max(scale, 0.25);
                 end
@@ -2338,7 +2345,6 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
                 return;
             elseif string.find(input, 'minimap') then
                 MinimapButton:ToggleShown();
-
                 return;
             end
         end
