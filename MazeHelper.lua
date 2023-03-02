@@ -2,8 +2,6 @@ local ADDON_NAME, MazeHelper = ...;
 local L, E, M = MazeHelper.L, MazeHelper.E, MazeHelper.M;
 local Version = GetAddOnMetadata(ADDON_NAME, 'Version');
 
--- Happy New 2022 Year!
-
 -- Lua API
 local tonumber = tonumber;
 
@@ -2319,8 +2317,7 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
                     scale = 1;
                 else
                     scale = tonumber(scale) or 1;
-                    scale = math.min(scale, 3);
-                    scale = math.max(scale, 0.25);
+                    scale = math.max(math.min(scale, 3), 0.25);
                 end
 
                 MHMOTSConfig.SavedScaleLargeSymbol = scale;
@@ -2334,8 +2331,7 @@ function MazeHelper.frame:ADDON_LOADED(addonName)
                     scale = 1;
                 else
                     scale = tonumber(scale) or 1;
-                    scale = math.min(scale, 3);
-                    scale = math.max(scale, 0.25);
+                    scale = math.max(math.min(scale, 3), 0.25);
                 end
 
                 MHMOTSConfig.SavedScale = scale;
