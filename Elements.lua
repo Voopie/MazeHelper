@@ -132,6 +132,7 @@ E.CreateScrollFrame = function(parent, scrollStep)
 
     scrollArea.scrollBarHideable = true;
     scrollArea.noScrollThumb     = false;
+    scrollArea.noScrollBar       = true;
 
     local scrollbarName    = scrollArea:GetName();
     local scrollBar        = _G[scrollbarName .. 'ScrollBar'];
